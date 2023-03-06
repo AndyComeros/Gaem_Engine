@@ -12,7 +12,6 @@
 */
 class Texture {
 public:
-
 		//read in from file
 	Texture(const char *fileName);
 	~Texture();

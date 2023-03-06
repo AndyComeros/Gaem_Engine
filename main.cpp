@@ -46,10 +46,8 @@ int main(void)
 
 	//Main Loop
 	while (!glfwWindowShouldClose(window))
-	{
-		
+	{	
 		glfwSwapBuffers(window);
-		
 		glfwPollEvents();
 	}
 

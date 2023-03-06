@@ -67,9 +67,9 @@ OBJData *ReadObjFile(const char* fileName) {
 	for (size_t i = 0; i < indexes.size(); i++)
 	{
 		vertex nVert;
-		nVert.vertex = vertCoords[indexes[i].x - 1.0f];
-		nVert.texCoord = texCoords[indexes[i].y - 1.0f];
-		nVert.normal = vertNorms[indexes[i].z - 1.0f];
+		nVert.vertex = vertCoords[indexes[i].x - 1];
+		nVert.texCoord = texCoords[indexes[i].y - 1];
+		nVert.normal = vertNorms[indexes[i].z - 1];
 
 		objData->vertexData.push_back(nVert);
 	}

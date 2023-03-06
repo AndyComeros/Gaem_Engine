@@ -3,11 +3,15 @@
 
 model3D::model3D(void) {
 	elementCount = 0;
+
 	diffuseTexture = nullptr;
 	specularMap = nullptr;
 	emissionMap = nullptr;
+
 	vertCount = 0;
 	instanceCount = 1;
+
+	modelData = nullptr;
 }
 
 model3D::model3D(const char* fileName) {
@@ -33,8 +37,8 @@ model3D::model3D(const char* fileName, std::vector<glm::mat4> nMatrix) {
 
 	freeData();
 	modelData = ReadObjFile(fileName);
-	vertCount = modelData->vertexData.size();
-	elementCount = modelData->elements.size();
+	vertCount = (int)modelData->vertexData.size();
+	elementCount = (int)modelData->elements.size();
 	setInstanceMatrix(nMatrix);
 
 
@@ -44,12 +48,12 @@ void model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 	
 	freeData();
 	instanceMatrixes = nMatrix;
-	instanceCount = nMatrix.size();
+	instanceCount = (int)nMatrix.size();
 
 	VAO nVAO;
 	VBO iVBO(nMatrix);
-	VBO nVBO(&modelData->vertexData[0].vertex.x, sizeof(float) * modelData->vertexData.size() * 8);
-	EBO nEBO(&modelData->elements[0], sizeof(unsigned int) * modelData->elements.size());
+	VBO nVBO(&modelData->vertexData[0].vertex.x, sizeof(float) * (int)modelData->vertexData.size() * 8);
+	EBO nEBO(&modelData->elements[0], sizeof(unsigned int) * (int)modelData->elements.size());
 
 	//normal vert data
 	nVAO.AddAttribute(nVBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
@@ -112,12 +116,12 @@ bool model3D::readOBJ(const char* fileName) {
 	freeData();
 	modelData = ReadObjFile(fileName);
 
-	vertCount = modelData->vertexData.size();
-	elementCount = modelData->elements.size();
+	vertCount = (int)modelData->vertexData.size();
+	elementCount = (int)modelData->elements.size();
 
 	VAO nVAO;
-	VBO nVBO(&modelData->vertexData[0].vertex.x,sizeof(float) * modelData->vertexData.size() * 8);
-	EBO nEBO(&modelData->elements[0], sizeof(unsigned int) * modelData->elements.size());
+	VBO nVBO(&modelData->vertexData[0].vertex.x,sizeof(float) * (int)modelData->vertexData.size() * 8);
+	EBO nEBO(&modelData->elements[0], sizeof(unsigned int) * (int)modelData->elements.size());
 
 	//unsigned int* indexes, int size
 	nVAO.AddAttribute(nVBO,0,3,GL_FLOAT,8 * sizeof(float),(void*)0);
@@ -232,3 +236,4 @@ void model3D::freeData() {
 void model3D::freeEBO() {
 	ebo.Delete();
 }
+

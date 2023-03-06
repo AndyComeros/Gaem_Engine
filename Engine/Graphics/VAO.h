@@ -12,7 +12,7 @@
 */
 class VAO {
 public:
-	///ID used by opengl to identify the VAO
+		///ID used by opengl to identify the VAO
 	unsigned int ID;
 
 		/**
