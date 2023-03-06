@@ -31,7 +31,3 @@ struct OBJData
 	*	@brief reads an OBJ file and retuns its vertex data in an OBJData struct
 	*/
 OBJData* ReadObjFile(const char* fileName);
-	/*
-	*	@brief frees allocated data of an OBJData struct
-	*/
-void FreeObjFile(struct OBJData* data);

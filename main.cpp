@@ -1,23 +1,15 @@
 #include <iostream>.
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
+#include "Engine/Graphics/Graphics.h"
 
-#define windowW 500
-#define windowH 500
-
-
+const int windowW = 500;
+const int windowH = 500;
 
 void window_Resize_Callback(GLFWwindow* window, int w, int h);
 
-
-
 int main(void)
 {
-	float vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-	};
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -40,9 +32,6 @@ int main(void)
 		std::cout << "glad brokey" << std::endl;
 		return -1;
 	}
-
-
-
 
 	//Main Loop
 	while (!glfwWindowShouldClose(window))

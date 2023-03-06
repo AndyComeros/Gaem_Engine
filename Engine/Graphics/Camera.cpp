@@ -35,16 +35,8 @@ void Camera::LookAt(glm::vec3 lookPos) {
 	 frontVec = glm::normalize(lookPos - position);
 }
 
-void Camera::SetFollowLookAt(bool nisLook) {
-	isLook = nisLook;
-}
-
 glm::mat4 Camera::GetViewMatrix() 
-{	
-	if (isLook) {
-		return glm::lookAt(position, position + frontVec, upVec);
-	}
-		
+{		
 	frontVec.x = cos(glm::radians(rotation.y)) * cos(glm::radians(rotation.x));
 	frontVec.y = sin(glm::radians(rotation.x));
 	frontVec.z = sin(glm::radians(rotation.y)) * cos(glm::radians(rotation.x));

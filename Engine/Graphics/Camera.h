@@ -34,12 +34,6 @@ public:
 		*/
 	void LookAt(glm::vec3 lookPos);
 		/**
-		*	@brief changes sets whether camera uses rotation or lookat/forward vec
-		*	to determine view matrix.
-		*	@return void
-		*/
-	void SetFollowLookAt(bool nisLook);
-		/**
 		*	@brief returns view matrix
 		*	@details returns a view matrix based on cameras position and orentation in space.
 		*	used by opengl to deform vertecies in the vertex shader.

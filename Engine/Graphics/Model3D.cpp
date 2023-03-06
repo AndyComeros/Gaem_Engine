@@ -40,8 +40,6 @@ model3D::model3D(const char* fileName, std::vector<glm::mat4> nMatrix) {
 	vertCount = (int)modelData->vertexData.size();
 	elementCount = (int)modelData->elements.size();
 	setInstanceMatrix(nMatrix);
-
-
 }
 
 void model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
@@ -112,24 +110,12 @@ OBJData* model3D::getModelData() { return modelData; }
 
 std::vector<glm::mat4>* model3D::getInstanceMatrix() { return &instanceMatrixes; }
 
-bool model3D::readOBJ(const char* fileName) {
+void model3D::readOBJ(const char* fileName) {
+
 	freeData();
 	modelData = ReadObjFile(fileName);
+	setVertexData(&modelData->vertexData[0].vertex.x, (int)modelData->vertexData.size(), &modelData->elements[0], (int)modelData->elements.size());
 
-	vertCount = (int)modelData->vertexData.size();
-	elementCount = (int)modelData->elements.size();
-
-	VAO nVAO;
-	VBO nVBO(&modelData->vertexData[0].vertex.x,sizeof(float) * (int)modelData->vertexData.size() * 8);
-	EBO nEBO(&modelData->elements[0], sizeof(unsigned int) * (int)modelData->elements.size());
-
-	//unsigned int* indexes, int size
-	nVAO.AddAttribute(nVBO,0,3,GL_FLOAT,8 * sizeof(float),(void*)0);
-	nVAO.AddAttribute(nVBO,1,3,GL_FLOAT,8 * sizeof(float),(void*)(3 * sizeof(float)));
-	nVAO.AddAttribute(nVBO,2,2,GL_FLOAT,8 * sizeof(float),(void*)(6 * sizeof(float)));
-	vbo = nVBO;
-	vao = nVAO;
-	return true;
 }
 
 void model3D::setVertexData(float* nVertexData, int numData, unsigned int* vertIndexes, int numIndex) {
@@ -169,7 +155,7 @@ void model3D::setVertexElemements(unsigned int* vertIndexes, int numIndex) {
 }
 
 //isElements specifies if using glDrawElements instead of arrays. 
-void model3D::render(Camera* camera, Shader* shader,bool isElements,unsigned int primative) {
+void model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
 	if (diffuseTexture != nullptr) {
 		diffuseTexture->Bind(GL_TEXTURE0);
@@ -226,7 +212,6 @@ void model3D::render(Camera* camera, Shader* shader,bool isElements,unsigned int
 
 
 void model3D::freeData() {
-	//vao.Bind();
 	vbo.Delete();
 	ivbo.Delete();
 	ebo.Delete();

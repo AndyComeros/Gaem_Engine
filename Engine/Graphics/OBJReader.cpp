@@ -1,7 +1,5 @@
 #include "OBJReader.h"
 
-//kinda scuff atm
-//will fix i swear...
 OBJData *ReadObjFile(const char* fileName) {
 	
 	std::vector<glm::vec3>  vertCoords;
@@ -75,8 +73,4 @@ OBJData *ReadObjFile(const char* fileName) {
 	}
 	
 	return objData;
-}
-
-void FreeObjFile(struct OBJData* data) {
-	//free(data);
 }
