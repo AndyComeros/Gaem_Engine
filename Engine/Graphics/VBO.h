@@ -16,7 +16,6 @@ class VBO {
 public:
 	///ID used by opengl to identify the VBO
 	unsigned int ID = -1;
-		
 		/**
 		*	@brief default constructor
 		*/

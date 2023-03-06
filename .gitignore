@@ -35,3 +35,7 @@
 glad.c
 dependencies
 
+# junk files
+x64
+.vs
+

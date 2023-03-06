@@ -13,10 +13,10 @@
 class Texture {
 public:
 
-	//read in from file
+		//read in from file
 	Texture(const char *fileName);
 	~Texture();
-	//read raw image data
+		//read raw image data
 	Texture(unsigned char *imgData, int w,int h,int c);
 		//bind to one of the approx 16 texture units to be used in rendering
 	void Bind(GLuint tUnit);

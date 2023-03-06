@@ -5,16 +5,20 @@
 #define windowW 500
 #define windowH 500
 
-float vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-};
+
 
 void window_Resize_Callback(GLFWwindow* window, int w, int h);
 
+
+
 int main(void)
 {
+	float vertices[] = {
+	-0.5f, -0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.0f,  0.5f, 0.0f
+	};
+
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -37,26 +41,12 @@ int main(void)
 		return -1;
 	}
 
-	//init stuff
-	//glfwSetFramebufferSizeCallback(window, window_Resize_Callback);
-	glViewport(0,0,windowW, windowH);
 
-	unsigned int VBO;
-	glGenBuffers(1,&VBO);
-	glBindBuffer(GL_ARRAY_BUFFER,VBO);
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,GL_STATIC_DRAW);
 
 
 	//Main Loop
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-
-
-		//glDrawArrays(,GL_TRIANGLES);
 		
 		glfwSwapBuffers(window);
 		
