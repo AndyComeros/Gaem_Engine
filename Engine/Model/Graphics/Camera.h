@@ -60,6 +60,5 @@ public:
 	float nearPlane;
 	float farPlane;
 private:
-	bool isLook = false;
 
 };

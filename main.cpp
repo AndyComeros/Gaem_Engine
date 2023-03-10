@@ -1,7 +1,7 @@
 #include <iostream>.
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
-#include "Engine/Graphics/Graphics.h"
+#include "Graphics/Graphics.h"
 
 const int windowW = 500;
 const int windowH = 500;
