@@ -2,8 +2,6 @@
 #include "GameObject.h"
 #include <vector>
 
-
-//plz make singleton
 class Scene
 {
 public:

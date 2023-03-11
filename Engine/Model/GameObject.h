@@ -19,9 +19,9 @@ public:
 	Shader* shader = nullptr;
 	std::string name;
 
-	int GetID();
+	int GetID() { return ID; }
 private:
 
-	unsigned int ID;
+	unsigned int ID = -1;
 	
 };
