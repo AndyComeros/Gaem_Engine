@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Renderer.h>
 //class used to manage the engine itself, run main loop, contains setup etc
 
 
@@ -14,8 +15,9 @@ public:
 	void Run();
 
 private:
-	double DeltaTime;
-	double FPS;
+	double deltaTime;
+	double fps;
 
+	Renderer renderer;
 };
 

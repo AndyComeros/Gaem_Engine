@@ -104,6 +104,9 @@
     <ClInclude Include="Engine\View\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Controller\GaemEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />

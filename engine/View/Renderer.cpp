@@ -23,3 +23,11 @@ void Renderer::DrawScene(Scene& scene) {
 	}
 
 }
+
+void Renderer::Init() {
+
+}
+
+void Renderer::Resize() {
+
+}

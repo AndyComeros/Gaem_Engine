@@ -14,4 +14,5 @@ public:
 	void DrawScene(Scene& scene);
 
 private:
+	Shader mainShader;
 };

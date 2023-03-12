@@ -149,6 +149,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="Engine\Model\Scene.h" />
     <ClInclude Include="Engine\Model\Graphics\Camera.h" />
