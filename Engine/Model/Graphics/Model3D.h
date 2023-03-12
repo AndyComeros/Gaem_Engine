@@ -74,7 +74,7 @@ public:
         *   @param primative which openGL primative to draw using the vertecies
         *   @return void
         */
-	void render(Camera* camera, Shader* shader, bool isElements, unsigned int primative);
+	void render(Camera& camera, Shader& shader, bool isElements, unsigned int primative);
         /*
         *   @brief set instance data
         *   @param nMatrix all transforms for each instance

@@ -49,7 +49,7 @@ CubeMap::CubeMap() {
     VBO nVBO(cubeMapVertices,sizeof(cubeMapVertices));
     vao.AddAttribute(nVBO, 0, 3, GL_FLOAT, 3 * sizeof(float), (void*)0);
 
-    Shader nShader("shaders/Cube_map.vert","shaders/Cube_map.frag",nullptr);
+    Shader nShader("resources/shaders/Cube_map.vert","resources/shaders/Cube_map.frag",nullptr);
     shader = nShader;
     ID = 0;
     height = 0;
@@ -62,7 +62,9 @@ void CubeMap::render(Camera* camera) {
         return;
 
     glm::mat4 projection = camera->GetProjectionMatrix();
-    glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix()));//wacky mat4 to mat 3 to mat 4 to stop transformations
+
+    //wacky mat4 to mat 3 to mat 4 to stop transformations
+    glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix()));
 
     shader.setUniform("projection",projection);
     shader.setUniform("view", view);

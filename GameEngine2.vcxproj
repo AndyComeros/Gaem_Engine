@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="Engine\Model\Graphics\Camera.cpp" />
     <ClCompile Include="Engine\Model\Graphics\CubeMap.cpp" />
     <ClCompile Include="Engine\Model\Graphics\EBO.cpp" />
@@ -142,6 +143,8 @@
     <ClCompile Include="Engine\Model\Graphics\Texture.cpp" />
     <ClCompile Include="Engine\Model\Graphics\VAO.cpp" />
     <ClCompile Include="Engine\Model\Graphics\VBO.cpp" />
+    <ClCompile Include="engine\Model\Scene.cpp" />
+    <ClCompile Include="Engine\View\Renderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -159,6 +162,7 @@
     <ClInclude Include="Engine\Model\Graphics\Texture.h" />
     <ClInclude Include="Engine\Model\Graphics\VAO.h" />
     <ClInclude Include="Engine\Model\Graphics\VBO.h" />
+    <ClInclude Include="Engine\View\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />

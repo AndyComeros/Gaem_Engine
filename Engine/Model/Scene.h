@@ -8,7 +8,8 @@ public:
 	Scene();
 	~Scene();
 
-	CubeMap* skybox;
+	Camera camera;	
+	CubeMap skybox;
 	std::vector<GameObject> gameObjects;
 private:
 	
