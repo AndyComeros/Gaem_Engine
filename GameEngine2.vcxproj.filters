@@ -60,6 +60,9 @@
     <ClCompile Include="engine\Model\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Controller\GaemEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Model\Graphics\Camera.h">

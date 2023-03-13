@@ -8,7 +8,7 @@ public:
 	Renderer();
 	~Renderer();
 
-	void Init();
+	void Init(GLFWwindow* window);
 	void Resize();
 
 	void DrawScene(Scene& scene);

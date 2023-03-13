@@ -8,16 +8,28 @@ class GameEngine
 {
 public:
 
-	GameEngine();
-	~GameEngine();
+	static GameEngine& Get();
+
+	void Init();
 
 	//start main loop
 	void Run();
 
 private:
+
+	GLFWwindow* window;
+	Renderer renderer;
+	Scene* Scene;
+
+	int wWidth = 500;
+	int wHeight = 500;
+
 	double deltaTime;
 	double fps;
 
-	Renderer renderer;
-};
 
+	GameEngine();
+	~GameEngine();
+	GameEngine(const GameEngine&);
+	GameEngine& operator=(const GameEngine&);
+};
