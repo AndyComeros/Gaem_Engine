@@ -53,11 +53,6 @@ void Renderer::Init(GLFWwindow* window) {
 }
 
 void Renderer::Resize(GLFWwindow* window, int w, int h) {
-
-	auto engine = &GameEngine::Get();
-	engine->wWidth = w;
-	engine->wHeight = h;
-
 	glViewport(0, 0, w, h);
 
 }

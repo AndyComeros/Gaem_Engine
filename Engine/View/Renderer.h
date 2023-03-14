@@ -1,6 +1,5 @@
 #pragma once
 #include <Scene.h>
-#include <GaemEngine.h>
 #include <Graphics/Graphics.h>
 
 class Renderer
