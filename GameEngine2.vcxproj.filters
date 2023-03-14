@@ -21,69 +21,87 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Camera.cpp">
+    <ClCompile Include="Engine\Model\Graphics\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\CubeMap.cpp">
+    <ClCompile Include="Engine\Model\Graphics\CubeMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\EBO.cpp">
+    <ClCompile Include="Engine\Model\Graphics\EBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Model3D.cpp">
+    <ClCompile Include="Engine\Model\Graphics\GameAssetFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\OBJReader.cpp">
+    <ClCompile Include="Engine\Model\Graphics\Model3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Shader.cpp">
+    <ClCompile Include="Engine\Model\Graphics\OBJReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\Texture.cpp">
+    <ClCompile Include="Engine\Model\Graphics\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\VAO.cpp">
+    <ClCompile Include="Engine\Model\Graphics\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\VBO.cpp">
+    <ClCompile Include="Engine\Model\Graphics\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Graphics\stb_image.cpp">
+    <ClCompile Include="Engine\Model\Graphics\VAO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Model\Graphics\VBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Graphics\Camera.h">
+    <ClInclude Include="Engine\Model\Graphics\Asset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\CubeMap.h">
+    <ClInclude Include="Engine\Model\Graphics\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\EBO.h">
+    <ClInclude Include="Engine\Model\Graphics\CubeMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\Graphics.h">
+    <ClInclude Include="Engine\Model\Graphics\EBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\Lighting.h">
+    <ClInclude Include="Engine\Model\Graphics\GameAssetFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\Model3D.h">
+    <ClInclude Include="Engine\Model\Graphics\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\OBJReader.h">
+    <ClInclude Include="Engine\Model\Graphics\Lighting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\Shader.h">
+    <ClInclude Include="Engine\Model\Graphics\Model3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\Texture.h">
+    <ClInclude Include="Engine\Model\Graphics\OBJReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\VAO.h">
+    <ClInclude Include="Engine\Model\Graphics\readFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\VBO.h">
+    <ClInclude Include="Engine\Model\Graphics\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Model\Graphics\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Model\Graphics\VAO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Model\Graphics\VBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Model\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Model\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

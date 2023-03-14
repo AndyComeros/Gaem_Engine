@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -113,6 +113,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,31 +133,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Graphics\Camera.cpp" />
-    <ClCompile Include="Engine\Graphics\CubeMap.cpp" />
-    <ClCompile Include="Engine\Graphics\EBO.cpp" />
-    <ClCompile Include="Engine\Graphics\Model3D.cpp" />
-    <ClCompile Include="Engine\Graphics\OBJReader.cpp" />
-    <ClCompile Include="Engine\Graphics\Shader.cpp" />
-    <ClCompile Include="Engine\Graphics\stb_image.cpp" />
-    <ClCompile Include="Engine\Graphics\Texture.cpp" />
-    <ClCompile Include="Engine\Graphics\VAO.cpp" />
-    <ClCompile Include="Engine\Graphics\VBO.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\Camera.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\CubeMap.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\EBO.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\GameAssetFactory.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\Model3D.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\OBJReader.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\Shader.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\stb_image.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\Texture.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\VAO.cpp" />
+    <ClCompile Include="Engine\Model\Graphics\VBO.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Graphics\Camera.h" />
-    <ClInclude Include="Engine\Graphics\CubeMap.h" />
-    <ClInclude Include="Engine\Graphics\EBO.h" />
-    <ClInclude Include="Engine\Graphics\Graphics.h" />
-    <ClInclude Include="Engine\Graphics\Lighting.h" />
-    <ClInclude Include="Engine\Graphics\Model3D.h" />
-    <ClInclude Include="Engine\Graphics\OBJReader.h" />
-    <ClInclude Include="Engine\Graphics\Shader.h" />
-    <ClInclude Include="Engine\Graphics\Texture.h" />
-    <ClInclude Include="Engine\Graphics\VAO.h" />
-    <ClInclude Include="Engine\Graphics\VBO.h" />
+    <ClInclude Include="Engine\Model\GameObject.h" />
+    <ClInclude Include="Engine\Model\Graphics\Asset.h" />
+    <ClInclude Include="Engine\Model\Graphics\Camera.h" />
+    <ClInclude Include="Engine\Model\Graphics\CubeMap.h" />
+    <ClInclude Include="Engine\Model\Graphics\EBO.h" />
+    <ClInclude Include="Engine\Model\Graphics\GameAssetFactory.h" />
+    <ClInclude Include="Engine\Model\Graphics\Graphics.h" />
+    <ClInclude Include="Engine\Model\Graphics\Lighting.h" />
+    <ClInclude Include="Engine\Model\Graphics\Model3D.h" />
+    <ClInclude Include="Engine\Model\Graphics\OBJReader.h" />
+    <ClInclude Include="Engine\Model\Graphics\readFile.h" />
+    <ClInclude Include="Engine\Model\Graphics\Shader.h" />
+    <ClInclude Include="Engine\Model\Graphics\Texture.h" />
+    <ClInclude Include="Engine\Model\Graphics\VAO.h" />
+    <ClInclude Include="Engine\Model\Graphics\VBO.h" />
+    <ClInclude Include="Engine\Model\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\Cube_map.frag" />

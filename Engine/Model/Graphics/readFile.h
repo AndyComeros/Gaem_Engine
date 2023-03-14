@@ -10,15 +10,15 @@
 class readFile
 {
 public:
-	void loadAssetsFromFile(const char* dir, std::vector<Asset>& vector);
+	void LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector);
 	
-	void loadModelsFromFile(const char* dir, std::vector<model3D>& vector);
+	void LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector);
 
-	void loadShadersFromFile(const char* dir, std::vector<Shader>& vector);
+	void LoadShadersFromFile(const char* dir, std::vector<Shader>& vector);
 };
 
 //reads spreadsheet to create a vector of the game assets
-inline void readFile::loadAssetsFromFile(const char* dir, std::vector<Asset>& vector)
+inline void readFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector)
 {
 	std::vector<std::string> headers;
 	std::ifstream assets(dir);
@@ -59,7 +59,7 @@ inline void readFile::loadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 			if (headers[i].compare("Model") == 0)
 			{
 				if (!token.empty())
-					input.model = new model3D(token.c_str());
+					input.model = new Model3D(token.c_str());
 				else
 					continue;
 			}
@@ -112,7 +112,7 @@ inline void readFile::loadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 
 //reads a file to create a vector of models
 //todo:change to spread sheet format if still needec
-void readFile::loadModelsFromFile(const char* dir, std::vector<model3D>& vector)
+void readFile::loadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
 {
 	std::ifstream models(dir);
 	std::string str = "test\n";
@@ -135,7 +135,7 @@ void readFile::loadModelsFromFile(const char* dir, std::vector<model3D>& vector)
 			data[i] = str;
 		}
 
-		model3D* model = new model3D(data[0].c_str());
+		Model3D* model = new Model3D(data[0].c_str());
 		model->setDiffuseTexture(data[1].c_str());
 		model->setEmissionTexture(data[2].c_str());
 		vector.push_back(*model);
