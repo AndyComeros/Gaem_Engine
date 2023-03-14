@@ -1,5 +1,6 @@
 #pragma once
 #include <Scene.h>
+#include <GaemEngine.h>
 #include <Graphics/Graphics.h>
 
 class Renderer
@@ -9,7 +10,7 @@ public:
 	~Renderer();
 
 	void Init(GLFWwindow* window);
-	void Resize();
+	void Resize(GLFWwindow* window, int w, int h);
 
 	void Draw(Scene& scene);
 

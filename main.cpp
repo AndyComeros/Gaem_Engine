@@ -5,8 +5,7 @@
 
 #include <vector>//temp
 
-void window_Resize_Callback(GLFWwindow* window, int w, int h);
-
+//temp
 void pretend_factory();
 
 int main(void)
@@ -50,8 +49,4 @@ void pretend_factory(){	//setup test scene, factory should do this normally.
 
 	scene.camera.position = { -2,0.5,0 }; 
 
-}
-void window_Resize_Callback(GLFWwindow* window, int w, int h) {
-
-	glViewport(0, 0, w, h);
 }

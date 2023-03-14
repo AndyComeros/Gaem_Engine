@@ -16,7 +16,6 @@ public:
 	Lights lights;
 	std::vector<GameObject> gameObjects;
 
-
 private:
 
 };

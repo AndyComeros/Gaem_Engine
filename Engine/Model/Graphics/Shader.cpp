@@ -28,7 +28,6 @@ Shader::Shader(const char *vertShader, const char *fragShader, const char* geomS
 		unsigned int geomID = createGeometryShader(geomShader);
 		glAttachShader(ID, geomID);
 	}
-	
 
 	glLinkProgram(ID);
 

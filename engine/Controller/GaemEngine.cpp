@@ -42,7 +42,6 @@ GameEngine::GameEngine() :
 	//set defaults for input etc
 }
 
-
 GameEngine::~GameEngine() {
 	//do some cleanup
 	glfwTerminate();
@@ -50,6 +49,8 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
+
+	isRunning = true;
 
 	//main loop
 	while (!glfwWindowShouldClose(window))

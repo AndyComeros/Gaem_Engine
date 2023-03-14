@@ -1,17 +1,8 @@
 #include "Renderer.h"
 
-Renderer::Renderer() {
+Renderer::Renderer() {}
 
-	//check if glfw/opengl is setup is setup
-
-	//set gl settings and viewport
-
-	//settup main shader	
-}
-
-Renderer::~Renderer() {
-
-}
+Renderer::~Renderer() {}
 
 //may want to make several "draw queues" to seperate shaders and opacity
 void Renderer::Draw(Scene& scene) {
@@ -61,6 +52,12 @@ void Renderer::Init(GLFWwindow* window) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::Resize() {
+void Renderer::Resize(GLFWwindow* window, int w, int h) {
+
+	auto engine = &GameEngine::Get();
+	engine->wWidth = w;
+	engine->wHeight = h;
+
+	glViewport(0, 0, w, h);
 
 }
