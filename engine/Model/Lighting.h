@@ -2,7 +2,6 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-
 	/**
 	*	@struct PontLight
 	*	@brief Point light data
@@ -39,6 +38,7 @@ struct SpotLight {
 	float linear;
 	float quadratic;
 };
+
 	/**
 	*	@struct DirectionLight
 	*	@brief light poining on all surfaces uniformly from a specified direction
@@ -50,13 +50,14 @@ struct DirectionLight {
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 };
+
 	/**
-	*	@struct LightSetup
+	*	@struct Lights
 	*	@brief Collection of lights for a scene
 	*	@details stores all lights a scene may use
 	*/
-struct LightSetup {
-	glm::vec3 ambientLight;
+struct Lights {
+	glm::vec3 ambientLight = {1,1,1};
 	std::vector<PointLight> pointLights;
 	std::vector<SpotLight> spotLights;
 	std::vector<DirectionLight> diectionLights;

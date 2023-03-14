@@ -24,6 +24,11 @@ public:
 		*		-"shaders/frag_cube_map.frag"
 		*/
 	CubeMap();
+	    /**
+        *	@brief constructor with texture data.
+        *   @param nTextures vector containing all 6 filepaths to cubemap textures.
+        */
+	CubeMap(std::vector<std::string>& nTextures);
 		/**
 		*	@brief draws cubemap texture as skybox.
 		*	@details draws a skybox using the cubemap texture from the
@@ -38,7 +43,7 @@ public:
 		*	right, left, top, bottom, front, back.
 		*	@param nTextures vector containing all 6 filepaths to cubemap textures.
 		*/
-	void setTextures(std::vector<std::string> nTextures);
+	void setTextures(std::vector<std::string>& nTextures);
 		///Shader used to render cubemap
 	Shader shader;
 private:
@@ -49,4 +54,49 @@ private:
 		///Texture details
 	int width, height, numColorChannels;
 
+};
+
+//generic cube verts
+static float cubeMapVertices[] = {
+    -1.0f,  1.0f, -1.0f,
+    -1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+    -1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f
 };
