@@ -155,7 +155,7 @@ void Model3D::setVertexElemements(unsigned int* vertIndexes, int numIndex) {
 }
 
 //isElements specifies if using glDrawElements instead of arrays. 
-void Model3D::render(Camera& camera, Shader& shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
+void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
 	if (diffuseTexture != nullptr) {
 		diffuseTexture->Bind(GL_TEXTURE0);
@@ -178,18 +178,18 @@ void Model3D::render(Camera& camera, Shader& shader,bool isElements = true,unsig
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	glm::mat4 view = camera.GetViewMatrix();
-	glm::mat4 projection = camera.GetProjectionMatrix();
+	glm::mat4 view = camera->GetViewMatrix();
+	glm::mat4 projection = camera->GetProjectionMatrix();
 
 	//basic postion matricies
-	shader.setUniform("view", view);
-	shader.setUniform("projection", projection);
+	shader->setUniform("view", view);
+	shader->setUniform("projection", projection);
 
 	//set textures
-	shader.setUniform("material.diffuseTexture", 0);
-	shader.setUniform("material.specularMap", 1);
-	shader.setUniform("material.emissionMap", 2);
-	shader.setUniform("material.alpha", 5.0f);//hmmmmmmmmmmmmm.. why tho, why here?
+	shader->setUniform("material.diffuseTexture", 0);
+	shader->setUniform("material.specularMap", 1);
+	shader->setUniform("material.emissionMap", 2);
+	shader->setUniform("material.alpha", 5.0f);//hmmmmmmmmmmmmm.. why tho, why here?
 	vao.Bind();
 
 	if (instanceCount == 1) {
@@ -206,7 +206,7 @@ void Model3D::render(Camera& camera, Shader& shader,bool isElements = true,unsig
 		glDrawElementsInstanced(primative, elementCount, GL_UNSIGNED_INT, 0, instanceCount);
 	}
 	
-	shader.Use();
+	shader->Use();
 	vao.UnBind();
 }
 

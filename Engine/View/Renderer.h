@@ -11,7 +11,7 @@ public:
 	void Init(GLFWwindow* window);
 	void Resize();
 
-	void DrawScene(Scene& scene);
+	void Draw(Scene& scene);
 
 private:
 	Shader mainShader;

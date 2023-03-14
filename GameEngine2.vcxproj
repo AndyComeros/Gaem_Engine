@@ -157,7 +157,7 @@
     <ClInclude Include="Engine\Model\Graphics\CubeMap.h" />
     <ClInclude Include="Engine\Model\Graphics\EBO.h" />
     <ClInclude Include="Engine\Model\Graphics\Graphics.h" />
-    <ClInclude Include="Engine\Model\Graphics\Lighting.h" />
+    <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="Engine\Model\Graphics\Model3D.h" />
     <ClInclude Include="Engine\Model\Graphics\OBJReader.h" />
     <ClInclude Include="Engine\Model\Graphics\Shader.h" />

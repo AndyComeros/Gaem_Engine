@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Renderer.h>
-//class used to manage the engine itself, run main loop, contains setup etc
 
+//class used to manage the engine itself, run main loop, contains setup etc
 
 class GameEngine
 {
@@ -10,16 +10,14 @@ public:
 
 	static GameEngine& Get();
 
-	void Init();
-
-	//start main loop
 	void Run();
 
-private:
-
+	Scene scene;
 	GLFWwindow* window;
 	Renderer renderer;
-	Scene* Scene;
+	
+
+private:
 
 	int wWidth = 500;
 	int wHeight = 500;
@@ -27,6 +25,8 @@ private:
 	double deltaTime;
 	double fps;
 
+	bool isRunning = false;
+	
 
 	GameEngine();
 	~GameEngine();

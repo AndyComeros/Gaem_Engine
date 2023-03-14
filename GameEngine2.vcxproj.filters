@@ -77,7 +77,7 @@
     <ClInclude Include="Engine\Model\Graphics\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Model\Graphics\Lighting.h">
+    <ClInclude Include="engine\Model\Lighting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model\Graphics\Model3D.h">

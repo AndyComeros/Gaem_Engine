@@ -6,11 +6,11 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
-GameEngine::GameEngine(): 
+GameEngine::GameEngine() :
 	deltaTime(0.0),
 	fps(0.0)
 {
-	//init window and glfw and opengl.
+	//init window and glfw.
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -26,7 +26,7 @@ GameEngine::GameEngine():
 	}
 	glfwMakeContextCurrent(window);
 
-	//initialize glad before we can use openGL
+	//glad required to access GL functions
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "ERROR: Could not load glad" << std::endl;
@@ -34,7 +34,10 @@ GameEngine::GameEngine():
 	}
 
 	//init renderer
-	
+	renderer.Init(window);
+
+	//scene camera settings
+	scene.camera.aspectRatio = wWidth / wHeight;
 
 	//set defaults for input etc
 }
@@ -45,20 +48,13 @@ GameEngine::~GameEngine() {
 	glfwTerminate();
 }
 
-void GameEngine::Init() {
-	glfwInit();
-}
-
 //start main loop
 void GameEngine::Run() {
 
-	//init renderer
-	renderer.Init(window);
-
-	//main loop./
+	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		//Renderer.Draw();
+		renderer.Draw(scene);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

@@ -14,7 +14,13 @@ CubeMap::CubeMap() {
     numColorChannels = 0;
 }
 
+CubeMap::CubeMap(std::vector<std::string>& nTextures) : CubeMap() {
+
+    setTextures(nTextures);
+}
+
 void CubeMap::render(Camera* camera) {
+
     if (ID == 0)
         return;
 
@@ -38,7 +44,7 @@ void CubeMap::render(Camera* camera) {
     glDepthFunc(GL_LESS);
 }
 
-void CubeMap::setTextures(std::vector<std::string> nTextures) {
+void CubeMap::setTextures(std::vector<std::string>& nTextures) {
     
     glGenTextures(1, &ID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, ID);
