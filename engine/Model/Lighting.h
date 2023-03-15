@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <vector>
+#include <Graphics/Texture.h>
 
 	/**
 	*	@struct PontLight
@@ -46,7 +47,6 @@ struct SpotLight {
 	*/
 struct DirectionLight {
 	glm::vec3 direction;
-
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 };
@@ -60,5 +60,14 @@ struct Lights {
 	glm::vec3 ambientLight = {1,1,1};
 	std::vector<PointLight> pointLights;
 	std::vector<SpotLight> spotLights;
-	std::vector<DirectionLight> diectionLights;
+	std::vector<DirectionLight> directionLights;
+};
+
+struct Material {
+	Texture* diffuseTexture= nullptr;
+	Texture* specularMap   = nullptr;
+	Texture* emissionMap   = nullptr;
+	Texture* normalMap	   = nullptr;
+
+	float shine = 1.0f;
 };

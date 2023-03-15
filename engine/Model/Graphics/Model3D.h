@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include <iostream>
 #include "OBJReader.h"
+#include <lighting.h>
 
 /**
 *	@Class model3D
@@ -136,6 +137,8 @@ private:
     EBO ebo;
 
     OBJData* modelData;
+
+    Material material;
 
 	Texture* diffuseTexture;
 	Texture* specularMap;

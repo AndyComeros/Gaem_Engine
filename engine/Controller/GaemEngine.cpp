@@ -37,7 +37,7 @@ GameEngine::GameEngine() :
 	renderer.Init(window);
 
 	//scene camera settings
-	scene.camera.aspectRatio = wWidth / wHeight;
+	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
 
 	//set defaults for input etc
 }

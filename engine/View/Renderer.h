@@ -14,7 +14,10 @@ public:
 	void Draw(Scene& scene);
 
 	void SetLightUniforms(Lights& sLights);
-	
+
+	void SetPointLightUniforms(Lights& sLights);
+	void SetDirectionLightUniforms(Lights& sLights);
+	void SetSpotLightUniforms(Lights& sLights);
 
 private:
 	Shader mainShader;
