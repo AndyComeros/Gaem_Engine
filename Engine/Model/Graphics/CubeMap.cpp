@@ -1,55 +1,12 @@
 #include "CubeMap.h"
 
-//generic cube verts
-static float cubeMapVertices[] = {
-    -1.0f,  1.0f, -1.0f,
-    -1.0f, -1.0f, -1.0f,
-     1.0f, -1.0f, -1.0f,
-     1.0f, -1.0f, -1.0f,
-     1.0f,  1.0f, -1.0f,
-    -1.0f,  1.0f, -1.0f,
-
-    -1.0f, -1.0f,  1.0f,
-    -1.0f, -1.0f, -1.0f,
-    -1.0f,  1.0f, -1.0f,
-    -1.0f,  1.0f, -1.0f,
-    -1.0f,  1.0f,  1.0f,
-    -1.0f, -1.0f,  1.0f,
-
-     1.0f, -1.0f, -1.0f,
-     1.0f, -1.0f,  1.0f,
-     1.0f,  1.0f,  1.0f,
-     1.0f,  1.0f,  1.0f,
-     1.0f,  1.0f, -1.0f,
-     1.0f, -1.0f, -1.0f,
-
-    -1.0f, -1.0f,  1.0f,
-    -1.0f,  1.0f,  1.0f,
-     1.0f,  1.0f,  1.0f,
-     1.0f,  1.0f,  1.0f,
-     1.0f, -1.0f,  1.0f,
-    -1.0f, -1.0f,  1.0f,
-
-    -1.0f,  1.0f, -1.0f,
-     1.0f,  1.0f, -1.0f,
-     1.0f,  1.0f,  1.0f,
-     1.0f,  1.0f,  1.0f,
-    -1.0f,  1.0f,  1.0f,
-    -1.0f,  1.0f, -1.0f,
-
-    -1.0f, -1.0f, -1.0f,
-    -1.0f, -1.0f,  1.0f,
-     1.0f, -1.0f, -1.0f,
-     1.0f, -1.0f, -1.0f,
-    -1.0f, -1.0f,  1.0f,
-     1.0f, -1.0f,  1.0f
-};
 
 CubeMap::CubeMap() {
+    
     VBO nVBO(cubeMapVertices,sizeof(cubeMapVertices));
     vao.AddAttribute(nVBO, 0, 3, GL_FLOAT, 3 * sizeof(float), (void*)0);
 
-    Shader nShader("shaders/Cube_map.vert","shaders/Cube_map.frag",nullptr);
+    Shader nShader("resources/shaders/Cube_map.vert","resources/shaders/Cube_map.frag",nullptr);
     shader = nShader;
     ID = 0;
     height = 0;
@@ -57,12 +14,20 @@ CubeMap::CubeMap() {
     numColorChannels = 0;
 }
 
+CubeMap::CubeMap(std::vector<std::string>& nTextures) : CubeMap() {
+
+    setTextures(nTextures);
+}
+
 void CubeMap::render(Camera* camera) {
+
     if (ID == 0)
         return;
 
     glm::mat4 projection = camera->GetProjectionMatrix();
-    glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix()));//wacky mat4 to mat 3 to mat 4 to stop transformations
+
+    //wacky mat4 to mat 3 to mat 4 to stop transformations
+    glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix()));
 
     shader.setUniform("projection",projection);
     shader.setUniform("view", view);
@@ -79,7 +44,7 @@ void CubeMap::render(Camera* camera) {
     glDepthFunc(GL_LESS);
 }
 
-void CubeMap::setTextures(std::vector<std::string> nTextures) {
+void CubeMap::setTextures(std::vector<std::string>& nTextures) {
     
     glGenTextures(1, &ID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, ID);

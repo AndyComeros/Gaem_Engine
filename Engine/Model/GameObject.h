@@ -8,11 +8,11 @@
 class GameObject
 {
 public:
-	GameObject() {};
-	~GameObject() {};
+	GameObject();
+	~GameObject();
 
 	glm::vec3 position = {0,0,0};
-	glm::vec3 scale =	{0,0,0};
+	glm::vec3 scale =	{1,1,1};
 	glm::vec3 rotation = {0,0,0};
 
 	Model3D* model_data = nullptr;
@@ -20,6 +20,7 @@ public:
 	std::string name;
 
 	int GetID() { return ID; }
+	int SetID(int id) { id = ID; };
 private:
 
 	unsigned int ID = -1;

@@ -4,9 +4,7 @@
 #include <vector>
 #include "readFile.h"
 #include "../GameObject.h"
-
-//singleton class so it can be accessed rom anywhere bu calling getInstance
-//just need to run readInAssets, once for it to be usable
+#include "Model3D.h"
 class GameAssetFactory
 {
 protected:
@@ -14,19 +12,19 @@ protected:
 
 public:
 	GameAssetFactory() {};
-	static GameAssetFactory* getInstance();
+	
+	static GameAssetFactory* GetInstance();
 
 	void ReadInAssets(const char* dir);
 
 	//creates a new gameobject
 	GameObject CreateGameObject (std::string id);
 
-
 	//deleting copy construtor
 	GameAssetFactory(const GameAssetFactory& obj) = delete;
 
 private:
-	readFile readFile;
+	ReadFile readFile;
 	
 	std::vector<Asset> assets;
 };

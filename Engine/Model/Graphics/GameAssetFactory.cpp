@@ -2,11 +2,11 @@
 
 GameAssetFactory* GameAssetFactory::gameAssetFactory_;
 
-GameAssetFactory* GameAssetFactory::getInstance()
+GameAssetFactory* GameAssetFactory::GetInstance()
 {
 	if (gameAssetFactory_ == NULL)
 	{
-		gameAssetFactory_ =  new GameAssetFactory();
+		gameAssetFactory_ = new GameAssetFactory();
 
 		return gameAssetFactory_;
 	}
@@ -27,17 +27,20 @@ GameObject GameAssetFactory::CreateGameObject(std::string id)
 	GameObject object;
 	for (Asset asset : assets)
 	{
-		if (asset.id.compare(id))
+		if (asset.id.compare(id) == 0)
 		{
 			object.name = asset.name;
+			std::cout << asset.name;
 			object.model_data = asset.model;
+			if (asset.Diffuse != nullptr)
+				object.model_data->setDiffuseTexture(asset.Diffuse);
+			if (asset.Emission != nullptr)
+				object.model_data->setEmissionTexture(asset.Emission);
 			object.position = { 0.0, 0.0, 0.0 };
 			object.rotation = { 0.0, 0.0, 0.0 };
 			object.scale = { 1.0, 1.0, 1.0 };
 			if (asset.Shader != nullptr)
 				object.shader = asset.Shader;
-			else
-				object.shader = nullptr;
 			break;
 		}
 	}

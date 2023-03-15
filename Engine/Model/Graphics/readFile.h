@@ -4,22 +4,27 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Asset.h"
+#include <GaemEngine.h>
 #ifndef readFile_H
 #define readFile_H
 
-class readFile
+class ReadFile
 {
 public:
-	void LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector);
+	inline void LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector);
 	
-	void LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector);
+	inline void LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector);
 
-	void LoadShadersFromFile(const char* dir, std::vector<Shader>& vector);
+	inline void LoadShadersFromFile(const char* dir, std::vector<Shader>& vector);
+
+	//for skybox
+	inline void LoadTextureFromFile();
 };
 
 //reads spreadsheet to create a vector of the game assets
-inline void readFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector)
+inline void ReadFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector)
 {
+	GameEngine::Get();
 	std::vector<std::string> headers;
 	std::ifstream assets(dir);
 	std::string str = "test\n";
@@ -38,14 +43,13 @@ inline void readFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 	while (assets.good())
 	{
 		std::getline(assets, str);
-		ss << str;
+		std::stringstream ss(str);
 		Asset input;
 		std::string token;
 		std::string shader[3];
 		int i = 0;
 		while (std::getline(ss, token, ','))
 		{
-			
 			if (headers[i].compare("ID") == 0)
 			{
 				if (token.empty())
@@ -60,39 +64,31 @@ inline void readFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 			{
 				if (!token.empty())
 					input.model = new Model3D(token.c_str());
-				else
-					continue;
 			}
 			if (headers[i].compare("DiffuseTexture") == 0)
 			{
 				if (!token.empty())
 					input.Diffuse = new Texture(token.c_str());
-				else
-					continue;
 			}
 			if (headers[i].compare("EmissionTexture") == 0)
 			{
-				if (token.empty())
-					continue;
-				input.Emission = new Texture(token.c_str());
+				if (!token.empty())
+					input.Emission = new Texture(token.c_str());
 			}
 			if (headers[i].compare("VertShader") == 0)
 			{
-				if (token.empty())
-					continue;
-				shader[0] = token;
+				if (!token.empty())
+					shader[0] = token;
 			}
 			if (headers[i].compare("FragShader") == 0)
 			{
-				if (token.empty())
-					continue;
-				shader[1] = token;
+				if (!token.empty())
+					shader[1] = token;
 			}
 			if (headers[i].compare("GeomShader") == 0)
 			{
-				if (token.empty())
-					continue;
-				shader[2] = token;
+				if (!token.empty())
+					shader[2] = token;
 			}
 			i++;
 		}
@@ -112,7 +108,7 @@ inline void readFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 
 //reads a file to create a vector of models
 //todo:change to spread sheet format if still needec
-void readFile::loadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
+void ReadFile::LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
 {
 	std::ifstream models(dir);
 	std::string str = "test\n";
@@ -144,7 +140,7 @@ void readFile::loadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
 
 //reads a file to create a vector of shaders
 //todo:change to spread sheet format if still needed
-void readFile::loadShadersFromFile(const char* dir, std::vector<Shader>& vector)
+void ReadFile::LoadShadersFromFile(const char* dir, std::vector<Shader>& vector)
 {
 	std::ifstream shaders(dir);
 	std::string str = "test\n";
@@ -171,4 +167,11 @@ void readFile::loadShadersFromFile(const char* dir, std::vector<Shader>& vector)
 		vector.push_back(*shader);
 	}
 }
+
+
+void ReadFile::LoadTextureFromFile()
+{
+
+}
+
 #endif

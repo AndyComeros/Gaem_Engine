@@ -15,6 +15,7 @@ Model3D::Model3D(void) {
 }
 
 Model3D::Model3D(const char* fileName) {
+	std::cout << "test";
 	readOBJ(fileName);
 	instanceCount = 1;
 }

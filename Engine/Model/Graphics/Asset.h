@@ -10,10 +10,10 @@ struct Asset
 	std::string id;
 	std::string name;
 	
-	Model3D* model;
+	Model3D* model = nullptr;
 
-	Texture* Diffuse;
-	Texture* Emission;
+	Texture* Diffuse = nullptr;
+	Texture* Emission = nullptr;
 
-	Shader* Shader;
+	Shader* Shader = nullptr;
 };

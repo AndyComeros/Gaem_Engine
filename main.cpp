@@ -1,52 +1,54 @@
 #include <iostream>.
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
-#include "Engine/Graphics/Graphics.h"
+#include <GaemEngine.h>
 
-const int windowW = 500;
-const int windowH = 500;
+#include <vector>//temp
 
-void window_Resize_Callback(GLFWwindow* window, int w, int h);
+#include "engine/Model/Graphics/GameAssetFactory.h"
+
+//temp
+void pretend_factory();
 
 int main(void)
 {
+	GameAssetFactory::GetInstance()->ReadInAssets("AssetDictionary.csv");
+	//factory populates scene before running game.
+	//can also manipulate scene during runtime
+	pretend_factory();
 
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
-	glfwWindowHint(GLFW_SAMPLES, 4);
-	GLFWwindow* window = glfwCreateWindow(windowW, windowH, "Engine", NULL, NULL);
-
-	if (!window)
-	{
-		std::cout << "GLFW window brokey" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-	glfwMakeContextCurrent(window);
-
-	//initialize glad
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "glad brokey" << std::endl;
-		return -1;
-	}
-
-	//Main Loop
-	while (!glfwWindowShouldClose(window))
-	{	
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	}
-
-	//cleanup
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	return 0;
+	//run
+	GameEngine::Get().Run();
+	
 }
 
-void window_Resize_Callback(GLFWwindow* window, int w, int h) {
+void pretend_factory(){	//setup test scene, factory should do this normally.
+	//get reference to 'Model' part of design pattern
+	Scene& scene = GameEngine::Get().scene;
+	std::vector<GameObject>& objects = GameEngine::Get().scene.gameObjects;
+	Lights& lights = GameEngine::Get().scene.lights;
 
-	glViewport(0, 0, w, h);
+	//load data
+	//set skybox
+	std::vector<std::string> textures_faces = {
+		"resources/textures/skybox/Right.png",
+		"resources/textures/skybox/Left.png",
+		"resources/textures/skybox/Top.png",
+		"resources/textures/skybox/Bottom.png",
+		"resources/textures/skybox/Front.png",
+		"resources/textures/skybox/Back.png",
+	};
+	scene.skybox = new CubeMap(textures_faces);
+
+	//create 3D data
+	Model3D* arcadeModel = new Model3D("resources/models/untitled2022/Arcade.obj");
+	arcadeModel->setDiffuseTexture("resources/models/untitled2022/Arcade.png");
+
+	GameObject arcade;
+	arcade.position = { 0,0,0 };
+	arcade.model_data = arcadeModel;
+	scene.gameObjects.push_back(GameAssetFactory::GetInstance()->CreateGameObject("c01"));
+
+	scene.camera.position = { -2,0.5,0 }; 
+
 }

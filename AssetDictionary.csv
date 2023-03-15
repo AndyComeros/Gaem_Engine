@@ -1,0 +1,2 @@
+ID,Name,Model,DiffuseTexture,EmissionTexture,VertShader,FragShader,GeomShader
+c01,arcade,resources/models/untitled2022/Arcade.obj,resources/models/untitled2022/Arcade.png,,,,
