@@ -7,8 +7,8 @@ Renderer::~Renderer() {}
 //may want to make several "draw queues" to seperate shaders and opacity
 void Renderer::Draw(Scene& scene) {
 
-	//draw skybox
-	scene.skybox->render(&scene.camera);
+	//set appropriate uniforms.
+
 
 	mainShader.setUniform("cameraPos", &scene.camera);
 
@@ -33,6 +33,14 @@ void Renderer::Draw(Scene& scene) {
 			obj.model_data->render(&scene.camera, &mainShader, true, GL_TRIANGLES);
 		}
 	}
+
+	//draw skybox
+	scene.skybox->render(&scene.camera);
+}
+
+void Renderer::SetLightUniforms(Lights& sLights) {
+
+	mainShader.setUniform("ambient_Light", sLights.ambientLight);
 }
 
 void Renderer::Init(GLFWwindow* window) {
