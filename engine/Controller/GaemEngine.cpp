@@ -51,6 +51,7 @@ GameEngine::~GameEngine() {
 void GameEngine::Run() {
 
 	renderer.SetLightUniforms(scene.lights);
+  
 	isRunning = true;
 
 	//main loop
