@@ -36,6 +36,9 @@ GameEngine::GameEngine() :
 	//init renderer
 	renderer.Init(window);
 
+	//init callback
+	//glfwSetKeyCallback(window, InputManager::GlfwKeyCallBackDispatch);
+
 	//scene camera settings
 	scene.camera.aspectRatio = wWidth / wHeight;
 
@@ -55,6 +58,7 @@ void GameEngine::Run() {
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
+		inputMngr.CheckInputLoop();
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);
 		glfwPollEvents();

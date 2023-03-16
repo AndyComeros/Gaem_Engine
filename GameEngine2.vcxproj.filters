@@ -63,6 +63,9 @@
     <ClCompile Include="engine\Controller\GaemEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Controller\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Model\Graphics\Camera.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\Controller\GaemEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Controller\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
