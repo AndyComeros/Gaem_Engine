@@ -1,9 +1,2 @@
 ﻿  InputManager.cpp
-  GaemEngine.cpp
-E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\V1\engine\Controller\GaemEngine.cpp(43,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\V1\main.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-GaemEngine.obj : error LNK2001: unresolved external symbol "public: static class InputManager * InputManager::eventInstance" (?eventInstance@InputManager@@2PAV1@A)
-E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\V1\Debug\GameEngine2.exe : fatal error LNK1120: 1 unresolved externals
+  GameEngine2.vcxproj -> E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\V1\Debug\GameEngine2.exe

@@ -16,7 +16,7 @@ public:
 	Scene scene;
 	GLFWwindow* window;
 	Renderer renderer;
-	InputManager inputMngr;
+	InputManager& inputMngr = InputManager::getInstance();
 
 	int wWidth = 500;
 	int wHeight = 500;
