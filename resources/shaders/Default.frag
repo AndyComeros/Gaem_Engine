@@ -96,8 +96,8 @@ void main()
 	
 	vec4 diffTexture = texture(material.diffuseTexture,textureCoord);
 	
-	//FragColor = vec4(1,0,0,1);//(diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
-	FragColor = diffTexture;//vec4(1,0,0,1);//(diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
+	FragColor =	(diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
+	//FragColor = diffTexture;//vec4(1,0,0,1);//(diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
 }
 
 

@@ -13,6 +13,7 @@ void pretend_factory();
 int main(void)
 {
 	GameAssetFactory::GetInstance()->ReadInAssets("AssetDictionary.csv");
+
 	//factory populates scene before running game.
 	//can also manipulate scene during runtime
 	pretend_factory();
@@ -47,6 +48,7 @@ void pretend_factory(){	//setup test scene, factory should do this normally.
 	GameObject arcade;
 	arcade.position = { 0,0,0 };
 	arcade.model_data = arcadeModel;
+  
 	scene.gameObjects.push_back(GameAssetFactory::GetInstance()->CreateGameObject("c01"));
 
 	scene.camera.position = { -2,0.5,0 }; 
