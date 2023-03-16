@@ -14,7 +14,6 @@ public:
 	void Draw(Scene& scene);
 
 	void SetLightUniforms(Lights& sLights);
-	
 
 private:
 	Shader mainShader;
