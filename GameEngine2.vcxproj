@@ -158,10 +158,10 @@
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
-    <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="engine\Model\Graphics\Asset.h" />
     <ClInclude Include="engine\Model\Graphics\GameAssetFactory.h" />
     <ClInclude Include="engine\Model\Graphics\readFile.h" />
+    <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="Engine\Model\Scene.h" />
     <ClInclude Include="Engine\Model\Graphics\Camera.h" />
     <ClInclude Include="Engine\Model\Graphics\CubeMap.h" />
