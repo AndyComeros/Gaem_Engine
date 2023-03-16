@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Renderer.h>
+#include "../View/Renderer.h"
 
 //class used to manage the engine itself, run main loop, contains setup etc
 //setup as a singleton. need only one and will be nice to have global access to deltatime, window size scene data etc.
