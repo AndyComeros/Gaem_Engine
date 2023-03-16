@@ -81,30 +81,36 @@ void Model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 }
 
 void Model3D::setDiffuseTexture(Texture* nTexture) {
+	material.diffuseTexture = nTexture;
 	diffuseTexture = nTexture;
 }
 void Model3D::setSpecularTexture(Texture* nTexture) {
+	material.specularMap = nTexture;
 	specularMap = nTexture;
 }
 void Model3D::setEmissionTexture(Texture* nTexture) {
+	material.emissionMap = nTexture;
 	emissionMap = nTexture;
 }
 
 void Model3D::setDiffuseTexture(const char* fileName) {
+	material.diffuseTexture = new Texture(fileName);
 	diffuseTexture = new Texture(fileName);
 }
 
 void Model3D::setSpecularTexture(const char* fileName) {
+	material.specularMap = new Texture(fileName);
 	specularMap = new Texture(fileName);
 }
 
 void Model3D::setEmissionTexture(const char* fileName) {
+	material.emissionMap = new Texture(fileName);
 	emissionMap = new Texture(fileName);
 }
 
-Texture* Model3D::getDiffuseTexture()  { return diffuseTexture; }
-Texture* Model3D::getSpecularTexture() { return specularMap; }
-Texture* Model3D::getEmissionTexture() { return emissionMap; }
+Texture* Model3D::getDiffuseTexture()  { return material.diffuseTexture; }
+Texture* Model3D::getSpecularTexture() { return material.specularMap; }
+Texture* Model3D::getEmissionTexture() { return material.emissionMap; }
 
 OBJData* Model3D::getModelData() { return modelData; }
 

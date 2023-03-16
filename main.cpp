@@ -23,7 +23,7 @@ int main(void)
 	
 }
 
-void pretend_factory(){	//setup test scene, factory should do this normally.
+void pretend_factory() {	//setup test scene, factory should do this normally.
 	//get reference to 'Model' part of design pattern
 	Scene& scene = GameEngine::Get().scene;
 	std::vector<GameObject>& objects = GameEngine::Get().scene.gameObjects;
@@ -51,6 +51,15 @@ void pretend_factory(){	//setup test scene, factory should do this normally.
   
 	scene.gameObjects.push_back(GameAssetFactory::GetInstance()->CreateGameObject("c01"));
 
-	scene.camera.position = { -2,0.5,0 }; 
+	scene.camera.position = { -2,0.5,0 };
+
+	scene.lights.ambientLight = { 0.1,0.1,0.1 };
+
+	DirectionLight dl = { { -1,0,-1 }, { 1,1,1 }, { 1,1,1 } };
+	scene.lights.directionLights.push_back(dl);
+
+
+	PointLight pl = { {0,0,1}, { 1,1,1 }, { 1,1,1 }, 1, 0.1, 0.03 };
+	scene.lights.pointLights.push_back(pl);
 
 }

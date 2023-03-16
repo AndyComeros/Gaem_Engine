@@ -80,9 +80,6 @@
     <ClInclude Include="Engine\Model\Graphics\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\Model\Lighting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Model\Graphics\Model3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,6 +110,7 @@
     <ClInclude Include="engine\Controller\GaemEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Model\Lighting.h">
     <ClInclude Include="engine\Model\Graphics\readFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
