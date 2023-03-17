@@ -4,9 +4,9 @@
 Model3D::Model3D(void) {
 	elementCount = 0;
 
-	diffuseTexture = nullptr;
-	specularMap = nullptr;
-	emissionMap = nullptr;
+	material.diffuseTexture = nullptr;
+	material.specularMap = nullptr;
+	material.emissionMap = nullptr;
 
 	vertCount = 0;
 	instanceCount = 1;
@@ -22,12 +22,12 @@ Model3D::Model3D(const char* fileName) {
 Model3D::~Model3D() {
 	freeData();
 	
-	if (diffuseTexture)
-		delete diffuseTexture;
-	if (specularMap)
-		delete specularMap;
-	if (emissionMap)
-		delete emissionMap;
+	if (material.diffuseTexture)
+		delete material.diffuseTexture;
+	if (material.specularMap)
+		delete material.specularMap;
+	if (material.emissionMap)
+		delete material.emissionMap;
 	if (modelData)
 		delete modelData;
 
@@ -82,30 +82,24 @@ void Model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 
 void Model3D::setDiffuseTexture(Texture* nTexture) {
 	material.diffuseTexture = nTexture;
-	diffuseTexture = nTexture;
 }
 void Model3D::setSpecularTexture(Texture* nTexture) {
 	material.specularMap = nTexture;
-	specularMap = nTexture;
 }
 void Model3D::setEmissionTexture(Texture* nTexture) {
 	material.emissionMap = nTexture;
-	emissionMap = nTexture;
 }
 
 void Model3D::setDiffuseTexture(const char* fileName) {
 	material.diffuseTexture = new Texture(fileName);
-	diffuseTexture = new Texture(fileName);
 }
 
 void Model3D::setSpecularTexture(const char* fileName) {
 	material.specularMap = new Texture(fileName);
-	specularMap = new Texture(fileName);
 }
 
 void Model3D::setEmissionTexture(const char* fileName) {
 	material.emissionMap = new Texture(fileName);
-	emissionMap = new Texture(fileName);
 }
 
 Texture* Model3D::getDiffuseTexture()  { return material.diffuseTexture; }
@@ -163,22 +157,22 @@ void Model3D::setVertexElemements(unsigned int* vertIndexes, int numIndex) {
 //isElements specifies if using glDrawElements instead of arrays. 
 void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
-	if (diffuseTexture != nullptr) {
-		diffuseTexture->Bind(GL_TEXTURE0);
+	if (material.diffuseTexture != nullptr) {
+		material.diffuseTexture->Bind(GL_TEXTURE0);
 	}else {
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	if (specularMap != nullptr) {
-		specularMap->Bind(GL_TEXTURE1);
+	if (material.specularMap != nullptr) {
+		material.specularMap->Bind(GL_TEXTURE1);
 	}else {
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	if (emissionMap != nullptr) {
-		emissionMap->Bind(GL_TEXTURE2);
+	if (material.emissionMap != nullptr) {
+		material.emissionMap->Bind(GL_TEXTURE2);
 	}else {
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D, 0);

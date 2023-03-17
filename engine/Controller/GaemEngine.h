@@ -29,5 +29,5 @@ private:
 	GameEngine();
 	~GameEngine();
 	GameEngine(const GameEngine&);
-	GameEngine& operator=(const GameEngine&);
+	GameEngine& operator=(const GameEngine&) {};
 };

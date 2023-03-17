@@ -140,10 +140,6 @@ private:
 
     Material material;
 
-	Texture* diffuseTexture;
-	Texture* specularMap;
-	Texture* emissionMap;
-
     std::vector<glm::mat4> instanceMatrixes;
     int instanceCount;
 };
