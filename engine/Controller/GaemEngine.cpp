@@ -40,6 +40,7 @@ GameEngine::GameEngine() :
 	scene.camera.aspectRatio = wWidth / wHeight;
 
 	//set defaults for input etc [temp]			should be done by the game
+	inputMngr.LoadKeyConfig();
 	inputMngr.AddKey(65);//a
 	inputMngr.AddKey(68);//d
 	inputMngr.AddKey(87);//w

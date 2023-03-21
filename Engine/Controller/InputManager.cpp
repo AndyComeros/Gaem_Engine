@@ -1,5 +1,4 @@
 #include "InputManager.h"
-#include <iostream>
 
 void InputManager::AddKey(int newKey)
 {
@@ -10,11 +9,13 @@ void InputManager::RemoveKey(int keyToDel)
 {
 	inputMap.erase(keyToDel);
 }
-/*
-void InputManager::ToggleKey(int keyToTog)												
+
+bool InputManager::GetKeyState(int keyCheck)
 {
-	inputMap[keyToTog] = !inputMap[keyToTog];
-}*/
+	std::map<int, bool>::iterator it = inputMap.find(keyCheck);
+	if (it != inputMap.end())
+		return it->second;
+}
 
 void InputManager::KeyActions()
 {
@@ -27,14 +28,17 @@ void InputManager::KeyActions()
 				//------------------------------//
 			switch (key.first)
 			{
-				 case GLFW_KEY_A:  
-					 std::cout << "KEY a PRESSED" << std::endl;
-					 break;
 				 case GLFW_KEY_W:
-					 std::cout << "KEY w PRESSED" << std::endl;
+					 break;
+				 case GLFW_KEY_A:  
+					 break;
+				 case GLFW_KEY_S:
+					 break;
+				 case GLFW_KEY_D:
+					 break;
+				 case GLFW_KEY_SPACE:
 					 break;
 				 default:
-					 std::cout << "no key pressed" << std::endl;
 					 break;
 			}
 		}

@@ -1,6 +1,6 @@
-#include <iostream>.
-#include <glad/glad.h> 
-#include <GLFW/glfw3.h>
+#include <iostream>
+#include "../Dependancies/glad/glad.h"
+#include "../Dependancies/GLFW/glfw3.h"
 #include "Engine/Controller/GaemEngine.h"
 
 #include <vector>//temp

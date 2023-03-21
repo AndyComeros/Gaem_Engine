@@ -75,8 +75,8 @@
     <LibraryPath>$(solutiondir)dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\Dependancies;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\Dependancies;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Admin\OneDrive - Murdoch University\Y3S1\ICT397\repos\Dependancies;E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\Dependancies;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Admin\OneDrive - Murdoch University\Y3S1\ICT397\repos\Dependancies;E:\Uni Stuff\OneDrive - Murdoch University\Y3S1\ICT397\repos\Dependancies;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
     <ClCompile Include="Engine\Controller\InputManager.cpp" />
+    <ClCompile Include="Engine\Controller\physics.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="Engine\Model\Graphics\Camera.cpp" />
     <ClCompile Include="Engine\Model\Graphics\CubeMap.cpp" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="Engine\Controller\InputManager.h" />
+    <ClInclude Include="Engine\Controller\physics.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="Engine\Model\Scene.h" />
     <ClInclude Include="Engine\Model\Graphics\Camera.h" />
@@ -181,8 +183,14 @@
     <None Include="Engine\Model\Graphics\Shaders\Depth.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\InstanceDepth.frag" />
+    <None Include="keyconfig.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

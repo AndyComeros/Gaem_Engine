@@ -66,6 +66,9 @@
     <ClCompile Include="Engine\Controller\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Controller\physics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Model\Graphics\Camera.h">
@@ -116,6 +119,9 @@
     <ClInclude Include="Engine\Controller\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Controller\physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
@@ -125,5 +131,6 @@
     <None Include="Engine\Model\Graphics\Shaders\Default.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Default.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Depth.frag" />
+    <None Include="keyconfig.json" />
   </ItemGroup>
 </Project>

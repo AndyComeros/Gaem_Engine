@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <map>
+#include <fstream>
 
 #include <GLFW/glfw3.h>
 
@@ -16,7 +17,7 @@ class InputManager
 
 		void AddKey(int newKey);
 		void RemoveKey(int keyToDel);
-		//void ToggleKey(int keyToTog);
+		bool GetKeyState(int keyCheck);
 
 		void KeyActions();
 
@@ -26,14 +27,6 @@ class InputManager
 		}
 
 		void GlfwKeyCallbackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods);
-
-		/*virtual void GlfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		static void GlfwKeyCallBackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods){
-			if (eventInstance)
-				eventInstance->GlfwKeyCallback(window, key, scancode, action, mods);
-		}
-		virtual void setKeyCallbackEvent() { eventInstance = this; }
-		static InputManager* eventInstance;*/
 
 	private:
 		//std::map<int, std::map<int, bool>> inputOuterMap;
