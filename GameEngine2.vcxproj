@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(solutiondir)dependencies\include;$(solutiondir)Engine\Controller;$(solutiondir)Engine\Model;$(solutiondir)Engine\View;$(IncludePath)</IncludePath>
+    <IncludePath>$(solutiondir)dependencies\include;$(solutiondir)Engine\Controller;$(solutiondir)Engine\Model;$(solutiondir)Engine\View;$(solutiondir)dependencies\include\lua;$(IncludePath)</IncludePath>
     <LibraryPath>$(solutiondir)dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(solutiondir)dependencies\include;$(solutiondir)Engine\Controller;$(solutiondir)Engine\Model;$(solutiondir)Engine\View;$(IncludePath)</IncludePath>
+    <IncludePath>$(solutiondir)dependencies\include;$(solutiondir)Engine\Controller;$(solutiondir)Engine\Model;$(solutiondir)Engine\View;$(solutiondir)dependencies\include\lua;$(IncludePath)</IncludePath>
     <LibraryPath>$(solutiondir)dependencies\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -112,6 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
+    <ClCompile Include="engine\Controller\LuaManger.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="Engine\Model\Graphics\Camera.cpp" />
     <ClCompile Include="Engine\Model\Graphics\CubeMap.cpp" />
@@ -157,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
+    <ClInclude Include="engine\Controller\LuaManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Graphics\Asset.h" />
     <ClInclude Include="engine\Model\Graphics\GameAssetFactory.h" />
@@ -183,6 +187,12 @@
     <None Include="Engine\Model\Graphics\Shaders\Depth.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\InstanceDepth.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dependencies\lib\glfw3.lib" />
+    <Library Include="dependencies\lib\glfw3dll.lib" />
+    <Library Include="dependencies\lib\glfw3_mt.lib" />
+    <Library Include="dependencies\lib\liblua54.a" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

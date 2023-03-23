@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 #include <GaemEngine.h>
 
+
+#include <LuaManager.h>//temp
 #include <vector>//temp
 #include "engine/Model/Graphics/GameAssetFactory.h"//temp
 
@@ -19,7 +21,6 @@ int main(void)
 
 	//run
 	GameEngine::Get().Run();
-	
 }
 
 void pretend_factory() {	//setup test scene, factory should do this normally.
