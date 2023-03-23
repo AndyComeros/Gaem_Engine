@@ -5,7 +5,7 @@ class LuaManger
 public:
 	LuaManger();
 	~LuaManger();
-	void LoadScript(std::string& fileNames);
+	void LoadScript(const std::string& fileNames);
 private:
 	
 	sol::state* luaState = nullptr;
