@@ -1,18 +1,18 @@
 #include "LuaManager.h"
 
 
-LuaManger::LuaManger()
+LuaManager::LuaManager()
 {
 	luaState = new sol::state;
 	luaState->open_libraries(sol::lib::base);
 }
 
-LuaManger::~LuaManger()
+LuaManager::~LuaManager()
 {
 	luaState->collect_garbage();
 }
 
-void LuaManger::LoadScript(const std::string& fileName) {
+void LuaManager::LoadScript(const std::string& fileName) {
 
 	try
 	{
@@ -25,4 +25,9 @@ void LuaManger::LoadScript(const std::string& fileName) {
 	//luaState->load_file(); //returns a lua function that can be executed later.
 	//luaState->do_file();  //runs code as a string or from a file. returns a function result./lower lever ver of script(not recomended...)
 	
+}
+
+void LuaManager::RegisterFunction(void*cppFunc , const std::string luaName) {
+	luaState->set_function(luaName, *cppFunc);
+
 }

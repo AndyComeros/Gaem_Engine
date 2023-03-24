@@ -3,8 +3,6 @@
 #include <GLFW/glfw3.h>
 #include <GaemEngine.h>
 
-
-#include <Lua/LuaManager.h>//temp
 #include <vector>//temp
 #include "engine/Model/Graphics/GameAssetFactory.h"//temp
 
@@ -13,13 +11,7 @@ void pretend_factory();
 
 int main(void)
 {
-	LuaManger luaManager;
-
-	luaManager.LoadScript("resources/scripts/test1.lua");
-	luaManager.LoadScript("resources/scripts/test2.lua");
-
-
-	/*
+	
 	GameAssetFactory::GetInstance()->ReadInAssets("AssetDictionary.csv");
 
 	//factory populates scene before running game.
@@ -29,7 +21,7 @@ int main(void)
 	//run
 	GameEngine::Get().Run();
 	
-	*/
+	
 }
 
 void pretend_factory() {	//setup test scene, factory should do this normally.

@@ -1,11 +1,12 @@
 #include <sol/sol.hpp>
 
-class LuaManger
+class LuaManager
 {
 public:
-	LuaManger();
-	~LuaManger();
+	LuaManager();
+	~LuaManager();
 	void LoadScript(const std::string& fileNames);
+
 private:
 	
 	sol::state* luaState = nullptr;
