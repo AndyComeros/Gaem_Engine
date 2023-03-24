@@ -11,6 +11,7 @@ void pretend_factory();
 
 int main(void)
 {
+	
 	GameAssetFactory::GetInstance()->ReadInAssets("AssetDictionary.csv");
 
 	//factory populates scene before running game.
@@ -19,6 +20,7 @@ int main(void)
 
 	//run
 	GameEngine::Get().Run();
+	
 	
 }
 
