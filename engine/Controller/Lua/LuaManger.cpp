@@ -26,8 +26,3 @@ void LuaManager::LoadScript(const std::string& fileName) {
 	//luaState->do_file();  //runs code as a string or from a file. returns a function result./lower lever ver of script(not recomended...)
 	
 }
-
-void LuaManager::RegisterFunction(void*cppFunc , const std::string luaName) {
-	luaState->set_function(luaName, *cppFunc);
-
-}
