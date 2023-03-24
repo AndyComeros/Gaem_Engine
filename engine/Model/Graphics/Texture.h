@@ -19,8 +19,15 @@ public:
 	Texture(unsigned char *imgData, int w,int h,int c);
 		//bind to one of the approx 16 texture units to be used in rendering
 	void Bind(GLuint tUnit);
+	
+		//get a pixel value at specific coord in texture. index to get r,g,b,a values etc.
+	 unsigned char GetPixelValue(int x,int y,int index);
+
+	int GetChannelCount();
+
 	unsigned int ID;
 private:
 	Texture();
 	int width, height, numColorChannels;
+	unsigned char* imageData = nullptr;
 };

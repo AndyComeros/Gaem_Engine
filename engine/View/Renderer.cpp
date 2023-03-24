@@ -31,7 +31,8 @@ void Renderer::Draw(Scene& scene) {
 
 	//set appropriate uniforms.
 
-	mainShader.setUniform("cameraPos", &scene.camera);
+	mainShader.setUniform("cameraPos", &scene.camera.position);
+
 
 	for (auto obj : scene.gameObjects) {
 

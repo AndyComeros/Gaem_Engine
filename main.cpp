@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 #include <GaemEngine.h>
 
+
+
 #include <vector>//temp
 #include "engine/Model/Graphics/GameAssetFactory.h"//temp
 
@@ -13,15 +15,13 @@ int main(void)
 {
 	
 	GameAssetFactory::GetInstance()->ReadInAssets("AssetDictionary.csv");
-
 	//factory populates scene before running game.
 	//can also manipulate scene during runtime
 	pretend_factory();
 
 	//run
 	GameEngine::Get().Run();
-	
-	
+
 }
 
 void pretend_factory() {	//setup test scene, factory should do this normally.
