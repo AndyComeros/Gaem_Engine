@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Renderer.h>
-#include <InputManager.h>
 
 //class used to manage the engine itself, run main loop, contains setup etc
 //setup as a singleton. need only one and will be nice to have global access to deltatime, window size scene data etc.
@@ -16,7 +15,6 @@ public:
 	Scene scene;
 	GLFWwindow* window;
 	Renderer renderer;
-	InputManager& inputMngr = InputManager::getInstance();
 
 	int wWidth = 500;
 	int wHeight = 500;
@@ -31,5 +29,5 @@ private:
 	GameEngine();
 	~GameEngine();
 	GameEngine(const GameEngine&);
-	GameEngine& operator=(const GameEngine&);
+	GameEngine& operator=(const GameEngine&) {};
 };

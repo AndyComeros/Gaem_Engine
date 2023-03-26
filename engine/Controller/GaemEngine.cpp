@@ -37,15 +37,10 @@ GameEngine::GameEngine() :
 	renderer.Init(window);
 
 	//scene camera settings
-	scene.camera.aspectRatio = wWidth / wHeight;
+	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
 
-	//set defaults for input etc [temp]			should be done by the game
-	inputMngr.AddKey(65);//a
-	inputMngr.AddKey(68);//d
-	inputMngr.AddKey(87);//w
-	inputMngr.AddKey(83);//s
+	//set defaults for input etc
 }
-
 
 GameEngine::~GameEngine() {
 	//do some cleanup
@@ -55,14 +50,13 @@ GameEngine::~GameEngine() {
 //start main loop
 void GameEngine::Run() {
 
+	renderer.SetLightUniforms(scene.lights);
+  
 	isRunning = true;
-
-	glfwSetKeyCallback(window, &InputManager::GlfwKeyCallback);
 
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		inputMngr.KeyActions();
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
