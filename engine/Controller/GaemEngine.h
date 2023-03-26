@@ -2,6 +2,7 @@
 
 #include <Renderer.h>
 #include <InputManager.h>
+#include <Physics.h>
 
 //class used to manage the engine itself, run main loop, contains setup etc
 //setup as a singleton. need only one and will be nice to have global access to deltatime, window size scene data etc.
@@ -17,6 +18,7 @@ public:
 	GLFWwindow* window;
 	Renderer renderer;
 	InputManager& inputMngr = InputManager::getInstance();
+	
 
 	int wWidth = 500;
 	int wHeight = 500;
