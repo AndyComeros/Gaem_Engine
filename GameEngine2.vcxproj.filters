@@ -19,7 +19,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="engine\Model\Graphics\GameAssetFactory.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
-    <ClCompile Include="Engine\Controller\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -41,7 +40,6 @@
     <ClInclude Include="engine\Model\Graphics\Asset.h" />
     <ClInclude Include="engine\Model\Graphics\readFile.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
-    <ClInclude Include="Engine\Controller\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
