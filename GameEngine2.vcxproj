@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
+    <ClCompile Include="Engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="Engine\Model\Graphics\Camera.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
+    <ClInclude Include="Engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Graphics\Asset.h" />
