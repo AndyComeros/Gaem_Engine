@@ -18,6 +18,7 @@ public:
 	GLFWwindow* window;
 	Renderer renderer;
 	InputManager& inputMngr = InputManager::getInstance();
+	Physics physics;
 	
 
 	int wWidth = 500;

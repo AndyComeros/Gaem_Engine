@@ -159,11 +159,13 @@
     <None Include="Engine\Model\Graphics\Shaders\Depth.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\InstanceDepth.frag" />
+    <None Include="lua54.dll" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />
     <Library Include="dependencies\lib\glfw3.lib" />
     <Library Include="dependencies\lib\glfw3_mt.lib" />
     <Library Include="dependencies\lib\glfw3dll.lib" />
+    <Library Include="liblua54.a" />
   </ItemGroup>
 </Project>

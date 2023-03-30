@@ -39,6 +39,10 @@ GameEngine::GameEngine() :
 	//scene camera settings
 	scene.camera.aspectRatio = wWidth / wHeight;
 
+	//init physics
+	physics.CreatePhysicsWorld();
+	physics.SetTimeStep(60);
+
 	//set defaults for input etc [temp]			should be done by the game
 	inputMngr.AddKey(65);//a
 	inputMngr.AddKey(68);//d
@@ -62,6 +66,7 @@ void GameEngine::Run() {
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
+		physics.StepPhysics();
 		inputMngr.KeyActions();
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);
