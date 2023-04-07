@@ -9,9 +9,8 @@ int main(void)
 {
 	//Setup Lights
 	Scene& scene = GameEngine::Get().scene;
-	//scene.lights.ambientLight = { 0.1,0.1,0.1 };
-	scene.lights.ambientLight = { 1,1,1 };
-	//scene.lights.directionLights.push_back({ { -1,0.5,-1 }, { 0.85,0.85,1 }, { 1,1,1 } });
+	scene.lights.ambientLight = { 0.1,0.1,0.1 };
+	scene.lights.directionLights.push_back({ { -1,0.5,-1 }, { 0.85,0.85,1 }, { 1,1,1 } });
 
 	//Set Skybox
 	std::vector<std::string> textures_faces = {
@@ -28,7 +27,7 @@ int main(void)
 	//Create Terrain
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(terrainSize,64,0,10,0.4,0.5);
 	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
-	Terrain terrain(heightMap,12);
+	Terrain terrain(heightMap,8);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
 	terrain.shader = terrainShader;
 	terrain.SetTextureScale(50);
