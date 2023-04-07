@@ -119,9 +119,9 @@ public:
         */
     void setEmissionTexture(const char* fileName);
         
-    Texture* getDiffuseTexture ();
-    Texture* getSpecularTexture();
-    Texture* getEmissionTexture();
+    Texture* getDiffuseTexture (int index);
+    Texture* getSpecularTexture(int index);
+    Texture* getEmissionTexture(int index);
     OBJData* getModelData();
     std::vector<glm::mat4>* getInstanceMatrix();
     

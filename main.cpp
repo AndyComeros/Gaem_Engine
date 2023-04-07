@@ -3,35 +3,16 @@
 #include <GLFW/glfw3.h>
 #include <GaemEngine.h>
 
-
-
-#include <vector>//temp
-#include "engine/Model/Graphics/GameAssetFactory.h"//temp
-
-//temp
-void pretend_factory();
+#include <TerrainManager.h>
 
 int main(void)
 {
-	
-	GameAssetFactory::GetInstance()->ReadInAssets("AssetDictionary.csv");
-	//factory populates scene before running game.
-	//can also manipulate scene during runtime
-	pretend_factory();
-
-	//run
-	GameEngine::Get().Run();
-
-}
-
-void pretend_factory() {	//setup test scene, factory should do this normally.
-	//get reference to 'Model' part of design pattern
+	//Setup Lights
 	Scene& scene = GameEngine::Get().scene;
-	std::vector<GameObject>& objects = GameEngine::Get().scene.gameObjects;
-	Lights& lights = GameEngine::Get().scene.lights;
+	scene.lights.ambientLight = { 0.1,0.1,0.1 };
+	scene.lights.directionLights.push_back({ { -1,0.5,-1 }, { 0.85,0.85,1 }, { 1,1,1 } });
 
-	//load data
-	//set skybox
+	//Set Skybox
 	std::vector<std::string> textures_faces = {
 		"resources/textures/skybox/Right.png",
 		"resources/textures/skybox/Left.png",
@@ -42,25 +23,46 @@ void pretend_factory() {	//setup test scene, factory should do this normally.
 	};
 	scene.skybox = new CubeMap(textures_faces);
 
-	//create 3D data
-	Model3D* arcadeModel = new Model3D("resources/models/untitled2022/Arcade.obj");
-	arcadeModel->setDiffuseTexture("resources/models/untitled2022/Arcade.png");
 
-	GameObject arcade;
-	arcade.position = { 0,0,0 };
-	arcade.model_data = arcadeModel;
-  
-	scene.gameObjects.push_back(GameAssetFactory::GetInstance()->CreateGameObject("c01"));
+	//Create Terrain
+	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(terrainSize,64,0,10,0.4,0.5);
+	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
+	Terrain terrain(heightMap,12);
+	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
+	terrain.shader = terrainShader;
+	terrain.SetTextureScale(10.0f);
+	terrain.SetTextures(
+		{
+			new Texture("resources/textures/terrain/water.jpg"),
+			new Texture("resources/textures/terrain/sand.jpg"),
+			new Texture("resources/textures/terrain/grass.jpg"),
+			new Texture("resources/textures/terrain/rock.jpg"),
+			new Texture("resources/textures/terrain/snow.jpg")
+		},
+		new Texture("resources/textures/terrain/detailMap.png")
+	);
 
-	scene.camera.position = { -2,0.5,0 };
+	terrain.SetTextureHeights({-3,0,2,5,10});
+	
 
-	scene.lights.ambientLight = { 0.1,0.1,0.1 };
+	scene.gameObjects.push_back(terrain);
+	GameEngine::Get().terrain = &terrain;
 
-	DirectionLight dl = { { -1,0,-1 }, { 1,1,1 }, { 1,1,1 } };
-	scene.lights.directionLights.push_back(dl);
+	//TEST ARCADE MACHINE
+	GameObject* arcade = new GameObject();
+	arcade->model_data = new Model3D("resources/models/untitled2022/Arcade.obj");
+	arcade->model_data->setDiffuseTexture("resources/models/untitled2022/Arcade.png");
+	arcade->position.x = terrain.GetSize() / 2.0;
+	arcade->position.z = terrain.GetSize() / 2.0;
+	arcade->position.y = terrain.GetHeight(arcade->position.x, arcade->position.z);
+	scene.gameObjects.push_back(*arcade);
 
+	//Setup Camera
+	scene.camera.FOV = 75;
+	scene.camera.position.x = terrain.GetSize() / 2.0;
+	scene.camera.position.z = terrain.GetSize() / 2.0;
+	scene.camera.farPlane = 2000;
 
-	PointLight pl = { {0,0,1}, { 1,1,1 }, { 1,1,1 }, 1, 0.1, 0.03 };
-	scene.lights.pointLights.push_back(pl);
-
+	//Run the game
+	GameEngine::Get().Run();
 }

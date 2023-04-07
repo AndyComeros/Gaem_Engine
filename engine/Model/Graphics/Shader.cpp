@@ -68,6 +68,10 @@ void Shader::setUniform(const std::string& uName, float uValue){
 	Use();
 	glUniform1f(glGetUniformLocation(ID,uName.c_str()),uValue);
 }
+void Shader::setUniform(const std::string& uName, std::vector<float> uValue) {
+	Use();
+	glUniform1fv(glGetUniformLocation(ID, uName.c_str()), 10, &uValue[0]);
+}
 //--vec2
 void Shader::setUniform(const std::string& uName, float v1, float v2) {
 	Use();
@@ -99,6 +103,10 @@ void Shader::setUniform(const std::string& uName, glm::vec4 uValue) {
 void Shader::setUniform(const std::string& uName, int uValue){
 	Use();
 	glUniform1i(glGetUniformLocation(ID, uName.c_str()), uValue);
+}
+void Shader::setUniform(const std::string& uName, std::vector<int> uValue) {
+	Use();
+	glUniform1iv(glGetUniformLocation(ID, uName.c_str()), 10, &uValue[0]);
 }
 //--boolean
 void Shader::setUniform(const std::string& uName, bool uValue){

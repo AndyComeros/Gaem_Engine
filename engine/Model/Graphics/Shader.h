@@ -6,6 +6,7 @@
 #include <sstream>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <vector>
 /**
 *	@Class Texture
 *	@brief Allows easy handling, binding and setting if shader programs
@@ -26,6 +27,7 @@ public:
 
 	//uniform modifiers:
 	void setUniform(const std::string &uName, float uValue);
+	void setUniform(const std::string& uName, std::vector<float> uValue);
 	void setUniform(const std::string& uName, float v1, float v2);
 	void setUniform(const std::string& uName, glm::vec2 uValue);
 	void setUniform(const std::string &uName, float v1, float v2, float v3);
@@ -33,6 +35,7 @@ public:
 	void setUniform(const std::string &uName, float v1, float v2, float v3, float v4);
 	void setUniform(const std::string &uName, glm::vec4 uValue);
 	void setUniform(const std::string &uName, int uValue);
+	void setUniform(const std::string& uName, std::vector<int> uValue);
 	void setUniform(const std::string &uName, bool uValue);
 	void setUniform(const std::string &uName, glm::mat4 &uValue);
 

@@ -1,9 +1,11 @@
 #version 330 core
 
+#define MAX_TEXTURES 11
 #define MAX_POINT_LIGHTS 20
 #define MAX_SPOT_LIGHTS 20
 #define MAX_DIRECTION_LIGHTS 20
 
+//lighting values
 struct Material {
     sampler2D diffuseTexture;
     sampler2D specularMap;
@@ -44,19 +46,19 @@ struct DirectionLight{
 	vec3 specular;
 };
 
-//input values
-in vec2 textureCoord;
-in vec3 normal;
-in vec3 fragPos;
-
-//uniforms
 uniform vec3 cameraPos;
 uniform Material material;
 uniform vec4 color;
 uniform int wireframe;
 
-uniform vec3 ambient_Light;
 
+//input values
+in vec2 textureCoord;
+in vec3 normal;
+in vec3 fragPos;
+
+//light uniforms
+uniform vec3 ambient_Light;
 uniform SpotLight	   spotLights[MAX_SPOT_LIGHTS];
 uniform DirectionLight directionLights[MAX_DIRECTION_LIGHTS];
 uniform PointLight	   pointLights[MAX_POINT_LIGHTS];
@@ -65,6 +67,13 @@ uniform int numSpotLights;
 uniform int numDirectionLights;
 uniform int numPointLights;
 
+//terrain texture data
+uniform int textureCount;
+uniform sampler2D textures[MAX_TEXTURES];
+
+uniform float heights[MAX_TEXTURES];
+uniform int heightCount;
+
 //output
 out vec4 FragColor;
 
@@ -72,9 +81,16 @@ out vec4 FragColor;
 vec3 calcPointLight(PointLight light,vec3 fragNormal,vec3 viewDirection);
 vec3 calcSpotLight(SpotLight light,vec3 fragNormal,vec3 viewDirection);
 vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection);
+vec4 CalcTextureMix();
+
+//allocate space for diffuse texture
+vec4 diffuse;
 
 void main()
 {
+	
+	diffuse = CalcTextureMix();
+
 	vec3 norm = normalize(normal);
 	vec3 viewDir = normalize(cameraPos - fragPos);
 	vec3 result = vec3(0);
@@ -94,7 +110,7 @@ void main()
 	//add ambient light
 	result += ambient_Light;
 	
-	vec4 diffTexture = texture(material.diffuseTexture,textureCoord);
+	vec4 diffTexture = diffuse;
 	
 	
 	if(wireframe == 0){
@@ -102,11 +118,7 @@ void main()
 	}else{
 		FragColor =	vec4(1.0,1.0,1.0,1.0);
 	}
-	
-	
 }
-
-
 
 //function implemetnations
 vec3 calcPointLight(PointLight light,vec3 fragNormal,vec3 viewDirection){
@@ -118,7 +130,7 @@ vec3 calcPointLight(PointLight light,vec3 fragNormal,vec3 viewDirection){
 
 	//diffuse
 	float difStrength = max(dot(fragNormal,lightDir),0.0f);
-	diffuse = difStrength * light.diffuse * vec3(texture(material.diffuseTexture,textureCoord));
+	diffuse = difStrength * light.diffuse * vec3(diffuse);
 	
 	//specualar
 	vec3 reflectDir = reflect(-lightDir, fragNormal); 
@@ -154,7 +166,7 @@ vec3 calcSpotLight(SpotLight light,vec3 fragNormal,vec3 viewDirection){
 
 		//diffuse
 		float difStrength = max(dot(fragNormal,lightDir),0.0f);
-		diffuse = difStrength * light.diffuse * vec3(texture(material.diffuseTexture,textureCoord));
+		diffuse = difStrength * light.diffuse * vec3(diffuse);
 	
 		//specualar
 		vec3 reflectDir = reflect(-lightDir, fragNormal); 
@@ -188,7 +200,7 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 
 	//diffuse
 	float difStrength = max(dot(fragNormal,light.direction),0.0f);
-	diffuse = difStrength * light.diffuse * vec3(texture(material.diffuseTexture,textureCoord));
+	diffuse = difStrength * light.diffuse * vec3(diffuse);
 	
 	//specualar
 	vec3 reflectDir = reflect(-light.direction, fragNormal); 
@@ -197,4 +209,29 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 	
 	vec3 result = (diffuse + specular) ;
 	return result;
+}
+
+vec4 CalcTextureMix(){
+
+    vec4 result = vec4(0);
+    float height = fragPos.y;
+
+    if(height < heights[0]){
+        result = texture(textures[0],textureCoord);
+    }else if(height < heights[heightCount - 1]){
+        for(int i = 1; i < textureCount; i++){
+            if(height < heights[i]){
+                float factor = ((height - heights[i-1])/(heights[i] - heights[i-1]));
+                result = (mix(texture(textures[i-1],textureCoord),texture(textures[i],textureCoord),factor));
+                break;
+            }
+         }
+    }else{
+        result = texture(textures[textureCount - 1],textureCoord);
+    }
+
+	//add detail map
+	result += texture(textures[textureCount],textureCoord);
+
+    return result;
 }

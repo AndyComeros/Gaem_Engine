@@ -64,10 +64,10 @@ struct Lights {
 };
 
 struct Material {
-	Texture* diffuseTexture= nullptr;
-	Texture* specularMap   = nullptr;
-	Texture* emissionMap   = nullptr;
-	Texture* normalMap	   = nullptr;
+	std::vector<Texture*> diffuseTexture;
+	std::vector<Texture*> specularMap;
+	std::vector<Texture*> emissionMap;
+	std::vector<Texture*> normalMap;
 
 	float shine = 1.0f;
 };

@@ -5,20 +5,22 @@
 class Renderer
 {
 public:
+	
 	Renderer();
 	~Renderer();
-
 	void Init(GLFWwindow* window);
-	void Resize(GLFWwindow* window, int w, int h);
 
 	void Draw(Scene& scene);
 
-	void SetLightUniforms(Lights& sLights);
+	static void SetLightUniforms(Lights& sLights,Shader& sShader);
+	static void SetPointLightUniforms(Lights& sLights, Shader& sShader);
+	static void SetDirectionLightUniforms(Lights& sLights, Shader& sShader);
+	static void SetSpotLightUniforms(Lights& sLights, Shader& sShader);
 
-	void SetPointLightUniforms(Lights& sLights);
-	void SetDirectionLightUniforms(Lights& sLights);
-	void SetSpotLightUniforms(Lights& sLights);
+	Shader& GetShader();
 
+	bool wireFrame = false;
 private:
+	GLFWwindow* mainWindow;
 	Shader mainShader;
 };

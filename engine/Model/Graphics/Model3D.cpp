@@ -3,14 +3,8 @@
 
 Model3D::Model3D(void) {
 	elementCount = 0;
-
-	material.diffuseTexture = nullptr;
-	material.specularMap = nullptr;
-	material.emissionMap = nullptr;
-
 	vertCount = 0;
 	instanceCount = 1;
-
 	modelData = nullptr;
 }
 
@@ -21,16 +15,6 @@ Model3D::Model3D(const char* fileName) {
 
 Model3D::~Model3D() {
 	freeData();
-	
-	if (material.diffuseTexture)
-		delete material.diffuseTexture;
-	if (material.specularMap)
-		delete material.specularMap;
-	if (material.emissionMap)
-		delete material.emissionMap;
-	if (modelData)
-		delete modelData;
-
 }
 
 Model3D::Model3D(const char* fileName, std::vector<glm::mat4> nMatrix) {
@@ -81,30 +65,30 @@ void Model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 }
 
 void Model3D::setDiffuseTexture(Texture* nTexture) {
-	material.diffuseTexture = nTexture;
+	material.diffuseTexture.push_back(nTexture);
 }
 void Model3D::setSpecularTexture(Texture* nTexture) {
-	material.specularMap = nTexture;
+	material.specularMap.push_back(nTexture);
 }
 void Model3D::setEmissionTexture(Texture* nTexture) {
-	material.emissionMap = nTexture;
+	material.emissionMap.push_back(nTexture);
 }
 
 void Model3D::setDiffuseTexture(const char* fileName) {
-	material.diffuseTexture = new Texture(fileName);
+	material.diffuseTexture.push_back(new Texture(fileName));
 }
 
 void Model3D::setSpecularTexture(const char* fileName) {
-	material.specularMap = new Texture(fileName);
+	material.specularMap.push_back(new Texture(fileName));
 }
 
 void Model3D::setEmissionTexture(const char* fileName) {
-	material.emissionMap = new Texture(fileName);
+	material.emissionMap.push_back(new Texture(fileName));
 }
 
-Texture* Model3D::getDiffuseTexture()  { return material.diffuseTexture; }
-Texture* Model3D::getSpecularTexture() { return material.specularMap; }
-Texture* Model3D::getEmissionTexture() { return material.emissionMap; }
+Texture* Model3D::getDiffuseTexture(int index)  { return material.diffuseTexture[index]; }
+Texture* Model3D::getSpecularTexture(int index) { return material.specularMap[index]; }
+Texture* Model3D::getEmissionTexture(int index) { return material.emissionMap[index]; }
 
 OBJData* Model3D::getModelData() { return modelData; }
 
@@ -157,39 +141,61 @@ void Model3D::setVertexElemements(unsigned int* vertIndexes, int numIndex) {
 //isElements specifies if using glDrawElements instead of arrays. 
 void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
-	if (material.diffuseTexture != nullptr) {
-		material.diffuseTexture->Bind(GL_TEXTURE0);
+	unsigned int curTexture = GL_TEXTURE0;
+	int diff = 0;
+	int spec = 0;
+	int emis = 0;
+	if (!material.diffuseTexture.empty()) {
+		diff = curTexture;
+		for (int i = 0; i < material.diffuseTexture.size(); i++)
+		{
+			material.diffuseTexture[i]->Bind(curTexture);
+			curTexture++;
+		}
 	}else {
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(curTexture);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	if (material.specularMap != nullptr) {
-		material.specularMap->Bind(GL_TEXTURE1);
+	if (!material.specularMap.empty()) {
+		spec = curTexture;
+		for (int i = 0; i < material.specularMap.size(); i++)
+		{
+			material.specularMap[i]->Bind(curTexture);
+			curTexture++;
+		}
 	}else {
-		glActiveTexture(GL_TEXTURE1);
+		glActiveTexture(curTexture);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	if (material.emissionMap != nullptr) {
-		material.emissionMap->Bind(GL_TEXTURE2);
+	if (!material.emissionMap.empty()) {
+		emis = curTexture;
+		for (int i = 0; i < material.emissionMap.size(); i++)
+		{
+			material.emissionMap[i]->Bind(curTexture);
+			curTexture++;
+		}
 	}else {
-		glActiveTexture(GL_TEXTURE2);
+		glActiveTexture(curTexture);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 	glm::mat4 view = camera->GetViewMatrix();
 	glm::mat4 projection = camera->GetProjectionMatrix();
 
+	//camera pos
+	shader->setUniform("cameraPos", camera->position);
+
 	//basic postion matricies
 	shader->setUniform("view", view);
 	shader->setUniform("projection", projection);
 
-	//set textures
-	shader->setUniform("material.diffuseTexture", 0);
-	shader->setUniform("material.specularMap", 1);
-	shader->setUniform("material.emissionMap", 2);
-	shader->setUniform("material.alpha", 5.0f);//hmmmmmmmmmmmmm.. why tho, why here?
+	//set shader texture unit numbers
+	shader->setUniform("material.diffuseTexture", diff);
+	shader->setUniform("material.specularMap", spec);
+	shader->setUniform("material.emissionMap", emis);
+	shader->setUniform("material.alpha", material.shine);
 	vao.Bind();
 
 	if (instanceCount == 1) {
@@ -209,7 +215,6 @@ void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsig
 	shader->Use();
 	vao.UnBind();
 }
-
 
 void Model3D::freeData() {
 	vbo.Delete();
