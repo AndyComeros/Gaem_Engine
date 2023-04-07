@@ -218,20 +218,24 @@ vec4 CalcTextureMix(){
 
     if(height < heights[0]){
         result = texture(textures[0],textureCoord);
-    }else if(height < heights[heightCount - 1]){
-        for(int i = 1; i < textureCount; i++){
-            if(height < heights[i]){
+    }else if(height < heights[heightCount - 1])
+	{
+        for(int i = 1; i < textureCount; i++)
+		{
+            if(height < heights[i])
+			{
                 float factor = ((height - heights[i-1])/(heights[i] - heights[i-1]));
                 result = (mix(texture(textures[i-1],textureCoord),texture(textures[i],textureCoord),factor));
                 break;
             }
          }
+
     }else{
         result = texture(textures[textureCount - 1],textureCoord);
     }
 
 	//add detail map
-	result += texture(textures[textureCount],textureCoord);
+	//result += texture(textures[textureCount],textureCoord);
 
     return result;
 }

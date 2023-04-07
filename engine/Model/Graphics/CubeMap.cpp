@@ -16,10 +16,10 @@ CubeMap::CubeMap() {
 
 CubeMap::CubeMap(std::vector<std::string>& nTextures) : CubeMap() {
 
-    setTextures(nTextures);
+    SetTextures(nTextures);
 }
 
-void CubeMap::render(Camera* camera) {
+void CubeMap::Render(Camera* camera) {
 
     if (ID == 0)
         return;
@@ -29,9 +29,9 @@ void CubeMap::render(Camera* camera) {
     //wacky mat4 to mat 3 to mat 4 to stop transformations
     glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix()));
 
-    shader.setUniform("projection",projection);
-    shader.setUniform("view", view);
-    shader.setUniform("cubemap", 0);
+    shader.SetUniform("projection",projection);
+    shader.SetUniform("view", view);
+    shader.SetUniform("cubemap", 0);
 
     glDepthFunc(GL_LEQUAL);
     shader.Use();
@@ -44,7 +44,7 @@ void CubeMap::render(Camera* camera) {
     glDepthFunc(GL_LESS);
 }
 
-void CubeMap::setTextures(std::vector<std::string>& nTextures) {
+void CubeMap::SetTextures(std::vector<std::string>& nTextures) {
     
     glGenTextures(1, &ID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, ID);

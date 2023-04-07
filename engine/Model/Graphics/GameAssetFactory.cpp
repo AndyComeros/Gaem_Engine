@@ -33,9 +33,9 @@ GameObject GameAssetFactory::CreateGameObject(std::string id)
 			std::cout << asset.name;
 			object.model_data = asset.model;
 			if (asset.Diffuse != nullptr)
-				object.model_data->setDiffuseTexture(asset.Diffuse);
+				object.model_data->SetDiffuseTexture(asset.Diffuse);
 			if (asset.Emission != nullptr)
-				object.model_data->setEmissionTexture(asset.Emission);
+				object.model_data->SetEmissionTexture(asset.Emission);
 			object.position = { 0.0, 0.0, 0.0 };
 			object.rotation = { 0.0, 0.0, 0.0 };
 			object.scale = { 1.0, 1.0, 1.0 };

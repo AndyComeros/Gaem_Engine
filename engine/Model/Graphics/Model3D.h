@@ -43,7 +43,7 @@ public:
         *   @param fileName file path to obj file
         *   @return bool - if read was a success
         */
-	void readOBJ(const char *fileName);
+	void ReadOBJ(const char *fileName);
         /*
         *   @brief Sets vertex data manually, use if data uses an EBO
         *   @param nVertexData pointer to array of verticies for VBO
@@ -52,21 +52,21 @@ public:
         *   @param numIndex size of vertIndexes
         *   @return void
         */
-	void setVertexData(float* nVertexData, int numData,unsigned int *vertIndexes,int numIndex);
+	void SetVertexData(float* nVertexData, int numData,unsigned int *vertIndexes,int numIndex);
         /*
         *   @brief Sets vertex data manually, use if data does not use an EBO
         *   @param nVertexData pointer to array of verticies for VBO
         *   @param numData size of vertex array
         *   @return void
         */
-    void setVertexData(float* nVertexData, int numData);
+    void SetVertexData(float* nVertexData, int numData);
         /*
         *   @brief Sets Index data manually, use if data uses and EBO
         *   @param vertIndexes  pointer to array of indicies for the EBO
         *   @param numIndex size of vertIndexes
         *   @return void
         */
-    void setVertexElemements(unsigned int* vertIndexes, int numIndex);
+    void SetVertexElements(unsigned int* vertIndexes, int numIndex);
         /*
         *   @brief draw this model using specified camera and shader
         *   @param camera camera data to modify vertecies by in shader
@@ -75,59 +75,59 @@ public:
         *   @param primative which openGL primative to draw using the vertecies
         *   @return void
         */
-	void render(Camera* camera, Shader* shader, bool isElements, unsigned int primative);
+	void Render(Camera* camera, Shader* shader, bool isElements, unsigned int primative);
         /*
         *   @brief set instance data
         *   @param nMatrix all transforms for each instance
         *   @return void
         */
-    void setInstanceMatrix(std::vector<glm::mat4> nMatrix);
+    void SetInstanceMatrix(std::vector<glm::mat4> nMatrix);
         /*
         *   @brief set Diffuse Texture
         *   @param nTexture, pointer to texture object being used,
         *   @return void
         */
-	void setDiffuseTexture (Texture* nTexture);
+	void SetDiffuseTexture (Texture* nTexture);
         /*
         *   @brief set Specular Texture
         *   @param nTexture, pointer to texture object being used,
         *   @return void
         */
-	void setSpecularTexture(Texture* nTexture);
+	void SetSpecularTexture(Texture* nTexture);
         /*
         *   @brief set Emission Texture
         *   @param nTexture, pointer to texture object being used,
         *   @return void
         */
-	void setEmissionTexture(Texture* nTexture);
+	void SetEmissionTexture(Texture* nTexture);
         /*
         *   @brief set Diffuse Texture
         *   @param fileName, pointer to texture file
         *   @return void
         */
-    void setDiffuseTexture (const char* fileName);
+    void SetDiffuseTexture (const char* fileName);
         /*
         *   @brief set Specular Texture
         *   @param fileName, pointer to texture file
         *   @return void
         */
-    void setSpecularTexture(const char* fileName);
+    void SetSpecularTexture(const char* fileName);
         /*
         *   @brief set Emission Texture
         *   @param fileName, pointer to texture file
         *   @return void
         */
-    void setEmissionTexture(const char* fileName);
+    void SetEmissionTexture(const char* fileName);
         
-    Texture* getDiffuseTexture (int index);
-    Texture* getSpecularTexture(int index);
-    Texture* getEmissionTexture(int index);
-    OBJData* getModelData();
+    Texture* GetDiffuseTexture (int index);
+    Texture* GetSpecularTexture(int index);
+    Texture* GetEmissionTexture(int index);
+    OBJData* GetModelData();
     std::vector<glm::mat4>* getInstanceMatrix();
     
     //careful using, same EBO and VAO may be used by multiple objects
-    void freeData();
-    void freeEBO();
+    void FreeData();
+    void FreeEBO();
 private:
 	int vertCount;
 	int elementCount;

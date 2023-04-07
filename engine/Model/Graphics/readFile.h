@@ -132,8 +132,8 @@ void ReadFile::LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
 		}
 
 		Model3D* model = new Model3D(data[0].c_str());
-		model->setDiffuseTexture(data[1].c_str());
-		model->setEmissionTexture(data[2].c_str());
+		model->SetDiffuseTexture(data[1].c_str());
+		model->SetEmissionTexture(data[2].c_str());
 		vector.push_back(*model);
 	}
 }

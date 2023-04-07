@@ -36,14 +36,14 @@ public:
 		*	so will always be draw behind other vertecies.
 		*	@param camera Camera object to be drawn using
 		*/
-	void render(Camera* camera);
+	void Render(Camera* camera);
 		/**
 		*	@brief Sets all 6 textures for the cubemap
 		*	@warning Function expects textures in the following order:
 		*	right, left, top, bottom, front, back.
 		*	@param nTextures vector containing all 6 filepaths to cubemap textures.
 		*/
-	void setTextures(std::vector<std::string>& nTextures);
+	void SetTextures(std::vector<std::string>& nTextures);
 		///Shader used to render cubemap
 	Shader shader;
 private:

@@ -36,7 +36,7 @@ void Renderer::Draw(Scene& scene) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//set appropriate uniforms.
-	mainShader.setUniform("wireframe", wireFrame);
+	mainShader.SetUniform("wireframe", wireFrame);
 
 	for (auto obj : scene.gameObjects) {
 
@@ -51,23 +51,23 @@ void Renderer::Draw(Scene& scene) {
 		modelMat = glm::rotate(modelMat, glm::radians(obj.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 
 		if (obj.shader) {
-			obj.shader->setUniform("model", modelMat);
-			obj.model_data->render(&scene.camera,obj.shader, true, GL_TRIANGLES);
+			obj.shader->SetUniform("model", modelMat);
+			obj.model_data->Render(&scene.camera,obj.shader, true, GL_TRIANGLES);
 		}
 		else {
-			mainShader.setUniform("model", modelMat);
-			obj.model_data->render(&scene.camera, &mainShader, true, GL_TRIANGLES);
+			mainShader.SetUniform("model", modelMat);
+			obj.model_data->Render(&scene.camera, &mainShader, true, GL_TRIANGLES);
 		}
 	}
 
 	//draw skybox
 	if(scene.skybox)
-		scene.skybox->render(&scene.camera);
+		scene.skybox->Render(&scene.camera);
 }
 
 void Renderer::SetLightUniforms(Lights& sLights, Shader& sShader) {
 
-	sShader.setUniform("ambient_Light", sLights.ambientLight);
+	sShader.SetUniform("ambient_Light", sLights.ambientLight);
 
 	SetPointLightUniforms(sLights, sShader);
 	SetDirectionLightUniforms(sLights, sShader);
@@ -77,29 +77,29 @@ void Renderer::SetLightUniforms(Lights& sLights, Shader& sShader) {
 
 void Renderer::SetPointLightUniforms(Lights& sLights, Shader& sShader) {
 
-	sShader.setUniform("numPointLights", (int)sLights.pointLights.size());
+	sShader.SetUniform("numPointLights", (int)sLights.pointLights.size());
 
 	for (int i = 0; i < (int)sLights.pointLights.size(); i++)
 	{
 		char buffer[32];
 
 		sprintf_s(buffer, "pointLights[%i].position", i);
-		sShader.setUniform(buffer, sLights.pointLights[i].position);
+		sShader.SetUniform(buffer, sLights.pointLights[i].position);
 
 		sprintf_s(buffer, "pointLights[%i].diffuse", i);
-		sShader.setUniform(buffer, sLights.pointLights[i].diffuse);
+		sShader.SetUniform(buffer, sLights.pointLights[i].diffuse);
 
 		sprintf_s(buffer, "pointLights[%i].specular", i);
-		sShader.setUniform(buffer, sLights.pointLights[i].specular);
+		sShader.SetUniform(buffer, sLights.pointLights[i].specular);
 
 		sprintf_s(buffer, "pointLights[%i].constant", i);
-		sShader.setUniform(buffer, sLights.pointLights[i].constant);
+		sShader.SetUniform(buffer, sLights.pointLights[i].constant);
 
 		sprintf_s(buffer, "pointLights[%i].linear", i);
-		sShader.setUniform(buffer, sLights.pointLights[i].linear);
+		sShader.SetUniform(buffer, sLights.pointLights[i].linear);
 
 		sprintf_s(buffer, "pointLights[%i].quadratic", i);
-		sShader.setUniform(buffer, sLights.pointLights[i].quadratic);
+		sShader.SetUniform(buffer, sLights.pointLights[i].quadratic);
 	}
 
 }
@@ -107,57 +107,57 @@ void Renderer::SetPointLightUniforms(Lights& sLights, Shader& sShader) {
 void Renderer::SetDirectionLightUniforms(Lights& sLights, Shader& sShader) {
 
 
-	sShader.setUniform("numDirectionLights", (int)sLights.directionLights.size());
+	sShader.SetUniform("numDirectionLights", (int)sLights.directionLights.size());
 
 	for (int i = 0; i < sLights.directionLights.size(); i++)
 	{
 		char buffer[32];
 
 		sprintf_s(buffer, "directionLights[%i].direction", i);
-		sShader.setUniform(buffer, sLights.directionLights[i].direction);
+		sShader.SetUniform(buffer, sLights.directionLights[i].direction);
 
 		sprintf_s(buffer, "directionLights[%i].diffuse", i);
-		sShader.setUniform(buffer, sLights.directionLights[i].diffuse);
+		sShader.SetUniform(buffer, sLights.directionLights[i].diffuse);
 
 		sprintf_s(buffer, "directionLights[%i].specular", i);
-		sShader.setUniform(buffer, sLights.directionLights[i].specular);
+		sShader.SetUniform(buffer, sLights.directionLights[i].specular);
 	}
 }
 
 void Renderer::SetSpotLightUniforms(Lights& sLights, Shader& sShader) {
 
-	sShader.setUniform("numSpotLights", (int)sLights.spotLights.size());
+	sShader.SetUniform("numSpotLights", (int)sLights.spotLights.size());
 
 	for (int i = 0; i < sLights.spotLights.size(); i++)
 	{
 		char buffer[32];
 
 		sprintf_s(buffer, "spotLights[%i].position", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].position);
+		sShader.SetUniform(buffer, sLights.spotLights[i].position);
 
 		sprintf_s(buffer, "spotLights[%i].direction", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].direction);
+		sShader.SetUniform(buffer, sLights.spotLights[i].direction);
 
 		sprintf_s(buffer, "spotLights[%i].maxAngle", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].maxAngle);
+		sShader.SetUniform(buffer, sLights.spotLights[i].maxAngle);
 
 		sprintf_s(buffer, "spotLights[%i].featherAngle", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].featherAngle);
+		sShader.SetUniform(buffer, sLights.spotLights[i].featherAngle);
 
 		sprintf_s(buffer, "spotLights[%i].diffuse", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].diffuse);
+		sShader.SetUniform(buffer, sLights.spotLights[i].diffuse);
 
 		sprintf_s(buffer, "spotLights[%i].specular", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].specular);
+		sShader.SetUniform(buffer, sLights.spotLights[i].specular);
 
 		sprintf_s(buffer, "spotLights[%i].constant", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].constant);
+		sShader.SetUniform(buffer, sLights.spotLights[i].constant);
 
 		sprintf_s(buffer, "spotLights[%i].linear", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].linear);
+		sShader.SetUniform(buffer, sLights.spotLights[i].linear);
 
 		sprintf_s(buffer, "spotLights[%i].quadratic", i);
-		sShader.setUniform(buffer, sLights.spotLights[i].quadratic);
+		sShader.SetUniform(buffer, sLights.spotLights[i].quadratic);
 	}
 
 }

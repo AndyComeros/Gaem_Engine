@@ -26,26 +26,26 @@ public:
 	void Use();
 
 	//uniform modifiers:
-	void setUniform(const std::string &uName, float uValue);
-	void setUniform(const std::string& uName, std::vector<float> uValue);
-	void setUniform(const std::string& uName, float v1, float v2);
-	void setUniform(const std::string& uName, glm::vec2 uValue);
-	void setUniform(const std::string &uName, float v1, float v2, float v3);
-	void setUniform(const std::string &uName, glm::vec3 uValue);
-	void setUniform(const std::string &uName, float v1, float v2, float v3, float v4);
-	void setUniform(const std::string &uName, glm::vec4 uValue);
-	void setUniform(const std::string &uName, int uValue);
-	void setUniform(const std::string& uName, std::vector<int> uValue);
-	void setUniform(const std::string &uName, bool uValue);
-	void setUniform(const std::string &uName, glm::mat4 &uValue);
+	void SetUniform(const std::string &uName, float uValue);
+	void SetUniform(const std::string& uName, std::vector<float> uValue);
+	void SetUniform(const std::string& uName, float v1, float v2);
+	void SetUniform(const std::string& uName, glm::vec2 uValue);
+	void SetUniform(const std::string &uName, float v1, float v2, float v3);
+	void SetUniform(const std::string &uName, glm::vec3 uValue);
+	void SetUniform(const std::string &uName, float v1, float v2, float v3, float v4);
+	void SetUniform(const std::string &uName, glm::vec4 uValue);
+	void SetUniform(const std::string &uName, int uValue);
+	void SetUniform(const std::string& uName, std::vector<int> uValue);
+	void SetUniform(const std::string &uName, bool uValue);
+	void SetUniform(const std::string &uName, glm::mat4 &uValue);
 
 	
 private:
 
-	unsigned int createVertexShader(const char* filePath);
-	unsigned int createFragmentShader(const char* filePath);
-	unsigned int createGeometryShader(const char* filePath);
+	unsigned int CreateVertexShader(const char* filePath);
+	unsigned int CreateFragmentShader(const char* filePath);
+	unsigned int CreateGeometryShader(const char* filePath);
 
-	std::string readFile(const char* fileName);
+	std::string ReadFile(const char* fileName);
 	unsigned int ID;
 };

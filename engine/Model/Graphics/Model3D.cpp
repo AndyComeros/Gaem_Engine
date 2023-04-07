@@ -9,26 +9,26 @@ Model3D::Model3D(void) {
 }
 
 Model3D::Model3D(const char* fileName) {
-	readOBJ(fileName);
+	ReadOBJ(fileName);
 	instanceCount = 1;
 }
 
 Model3D::~Model3D() {
-	freeData();
+	FreeData();
 }
 
 Model3D::Model3D(const char* fileName, std::vector<glm::mat4> nMatrix) {
 
-	freeData();
+	FreeData();
 	modelData = ReadObjFile(fileName);
 	vertCount = (int)modelData->vertexData.size();
 	elementCount = (int)modelData->elements.size();
-	setInstanceMatrix(nMatrix);
+	SetInstanceMatrix(nMatrix);
 }
 
-void Model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
+void Model3D::SetInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 	
-	freeData();
+	FreeData();
 	instanceMatrixes = nMatrix;
 	instanceCount = (int)nMatrix.size();
 
@@ -64,46 +64,46 @@ void Model3D::setInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 	ivbo.Delete();
 }
 
-void Model3D::setDiffuseTexture(Texture* nTexture) {
+void Model3D::SetDiffuseTexture(Texture* nTexture) {
 	material.diffuseTexture.push_back(nTexture);
 }
-void Model3D::setSpecularTexture(Texture* nTexture) {
+void Model3D::SetSpecularTexture(Texture* nTexture) {
 	material.specularMap.push_back(nTexture);
 }
-void Model3D::setEmissionTexture(Texture* nTexture) {
+void Model3D::SetEmissionTexture(Texture* nTexture) {
 	material.emissionMap.push_back(nTexture);
 }
 
-void Model3D::setDiffuseTexture(const char* fileName) {
+void Model3D::SetDiffuseTexture(const char* fileName) {
 	material.diffuseTexture.push_back(new Texture(fileName));
 }
 
-void Model3D::setSpecularTexture(const char* fileName) {
+void Model3D::SetSpecularTexture(const char* fileName) {
 	material.specularMap.push_back(new Texture(fileName));
 }
 
-void Model3D::setEmissionTexture(const char* fileName) {
+void Model3D::SetEmissionTexture(const char* fileName) {
 	material.emissionMap.push_back(new Texture(fileName));
 }
 
-Texture* Model3D::getDiffuseTexture(int index)  { return material.diffuseTexture[index]; }
-Texture* Model3D::getSpecularTexture(int index) { return material.specularMap[index]; }
-Texture* Model3D::getEmissionTexture(int index) { return material.emissionMap[index]; }
+Texture* Model3D::GetDiffuseTexture(int index)  { return material.diffuseTexture[index]; }
+Texture* Model3D::GetSpecularTexture(int index) { return material.specularMap[index]; }
+Texture* Model3D::GetEmissionTexture(int index) { return material.emissionMap[index]; }
 
-OBJData* Model3D::getModelData() { return modelData; }
+OBJData* Model3D::GetModelData() { return modelData; }
 
 std::vector<glm::mat4>* Model3D::getInstanceMatrix() { return &instanceMatrixes; }
 
-void Model3D::readOBJ(const char* fileName) {
+void Model3D::ReadOBJ(const char* fileName) {
 
-	freeData();
+	FreeData();
 	modelData = ReadObjFile(fileName);
-	setVertexData(&modelData->vertexData[0].vertex.x, (int)modelData->vertexData.size(), &modelData->elements[0], (int)modelData->elements.size());
+	SetVertexData(&modelData->vertexData[0].vertex.x, (int)modelData->vertexData.size(), &modelData->elements[0], (int)modelData->elements.size());
 
 }
 
-void Model3D::setVertexData(float* nVertexData, int numData, unsigned int* vertIndexes, int numIndex) {
-	freeData();
+void Model3D::SetVertexData(float* nVertexData, int numData, unsigned int* vertIndexes, int numIndex) {
+	FreeData();
 	vertCount = numData;
 	elementCount = numIndex;
 	VAO nVAO;
@@ -117,8 +117,8 @@ void Model3D::setVertexData(float* nVertexData, int numData, unsigned int* vertI
 	vao = nVAO;
 }
 
-void Model3D::setVertexData(float* nVertexData, int numData) {
-	freeData();
+void Model3D::SetVertexData(float* nVertexData, int numData) {
+	FreeData();
 	vertCount = numData;
 	VAO nVAO;
 	VBO nVBO(nVertexData, sizeof(float) * numData * 8);
@@ -131,7 +131,7 @@ void Model3D::setVertexData(float* nVertexData, int numData) {
 	vao = nVAO;
 }
 
-void Model3D::setVertexElemements(unsigned int* vertIndexes, int numIndex) {
+void Model3D::SetVertexElements(unsigned int* vertIndexes, int numIndex) {
 	elementCount = numIndex;
 	vao.Bind();
 	EBO nEBO(vertIndexes, sizeof(unsigned int) * numIndex);
@@ -139,7 +139,7 @@ void Model3D::setVertexElemements(unsigned int* vertIndexes, int numIndex) {
 }
 
 //isElements specifies if using glDrawElements instead of arrays. 
-void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
+void Model3D::Render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
 	unsigned int curTexture = GL_TEXTURE0;
 	int diff = 0;
@@ -185,17 +185,17 @@ void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsig
 	glm::mat4 projection = camera->GetProjectionMatrix();
 
 	//camera pos
-	shader->setUniform("cameraPos", camera->position);
+	shader->SetUniform("cameraPos", camera->position);
 
 	//basic postion matricies
-	shader->setUniform("view", view);
-	shader->setUniform("projection", projection);
+	shader->SetUniform("view", view);
+	shader->SetUniform("projection", projection);
 
 	//set shader texture unit numbers
-	shader->setUniform("material.diffuseTexture", diff);
-	shader->setUniform("material.specularMap", spec);
-	shader->setUniform("material.emissionMap", emis);
-	shader->setUniform("material.alpha", material.shine);
+	shader->SetUniform("material.diffuseTexture", diff);
+	shader->SetUniform("material.specularMap", spec);
+	shader->SetUniform("material.emissionMap", emis);
+	shader->SetUniform("material.alpha", material.shine);
 	vao.Bind();
 
 	if (instanceCount == 1) {
@@ -216,14 +216,14 @@ void Model3D::render(Camera* camera, Shader* shader,bool isElements = true,unsig
 	vao.UnBind();
 }
 
-void Model3D::freeData() {
+void Model3D::FreeData() {
 	vbo.Delete();
 	ivbo.Delete();
 	ebo.Delete();
 	vao.Delete();
 }
 
-void Model3D::freeEBO() {
+void Model3D::FreeEBO() {
 	ebo.Delete();
 }
 

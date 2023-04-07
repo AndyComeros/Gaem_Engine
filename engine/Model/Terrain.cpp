@@ -74,12 +74,12 @@ void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
 	int tCount = 0;
 	int i;
 	for (i = 0; i < textures.size(); i++) {
-		model_data->setDiffuseTexture(textures[i]);
+		model_data->SetDiffuseTexture(textures[i]);
 		tUnits.push_back(i);
 		tCount++;
 	}
 
-	model_data->setDiffuseTexture(detailMap);
+	model_data->SetDiffuseTexture(detailMap);
 	tUnits.push_back(i);
 
 	//need to use all texture units in shader or GLSL will only use one texture
@@ -87,16 +87,16 @@ void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
 		tUnits.push_back(0);
 
 	
-	shader->setUniform("textures", tUnits);
-	shader->setUniform("textureCount", tCount);
+	shader->SetUniform("textures", tUnits);
+	shader->SetUniform("textureCount", tCount);
 }
 
 
 
 void Terrain::SetTextureHeights(std::vector<float> heights) {
 
-	shader->setUniform("heights", heights);
-	shader->setUniform("heightCount", (int)heights.size());
+	shader->SetUniform("heights", heights);
+	shader->SetUniform("heightCount", (int)heights.size());
 
 }
 
@@ -176,7 +176,7 @@ void Terrain::GenerateModel() {
 		{
 			vertex nVert;
 			nVert.normal = { 0,0,0 };
-			nVert.texCoord = { (float)x / terrainSize * textureScale,(float)y / terrainSize * textureScale };
+			nVert.texCoord = { (float)x / (float)terrainSize * textureScale,(float)y / (float)terrainSize * textureScale };
 			nVert.vertex.x = y;
 			nVert.vertex.z = x;
 			nVert.vertex.y = heightArray[x + (y * terrainSize)];
@@ -232,5 +232,5 @@ void Terrain::GenerateModel() {
 		delete model_data;
 
 	model_data = new Model3D();
-	model_data->setVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
+	model_data->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
 }	

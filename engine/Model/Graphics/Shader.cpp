@@ -15,17 +15,17 @@ Shader::Shader(const char *vertShader, const char *fragShader, const char* geomS
 	ID = glCreateProgram();
 
 	if (vertShader) { 
-		vertID = createVertexShader(vertShader);
+		vertID = CreateVertexShader(vertShader);
 		glAttachShader(ID, vertID);
 	}
 		
 	if (fragShader) {
-		unsigned int fragID = createFragmentShader(fragShader); 
+		unsigned int fragID = CreateFragmentShader(fragShader); 
 		glAttachShader(ID, fragID);
 	}
 	
 	if (geomShader) { 
-		unsigned int geomID = createGeometryShader(geomShader);
+		unsigned int geomID = CreateGeometryShader(geomShader);
 		glAttachShader(ID, geomID);
 	}
 
@@ -64,63 +64,63 @@ void Shader::Use() {
 
 //--UNIFORM FUNCTIONS
 //--float
-void Shader::setUniform(const std::string& uName, float uValue){
+void Shader::SetUniform(const std::string& uName, float uValue){
 	Use();
 	glUniform1f(glGetUniformLocation(ID,uName.c_str()),uValue);
 }
-void Shader::setUniform(const std::string& uName, std::vector<float> uValue) {
+void Shader::SetUniform(const std::string& uName, std::vector<float> uValue) {
 	Use();
 	glUniform1fv(glGetUniformLocation(ID, uName.c_str()), 10, &uValue[0]);
 }
 //--vec2
-void Shader::setUniform(const std::string& uName, float v1, float v2) {
+void Shader::SetUniform(const std::string& uName, float v1, float v2) {
 	Use();
 	glUniform2f(glGetUniformLocation(ID, uName.c_str()), v1, v2);
 }
-void Shader::setUniform(const std::string& uName, glm::vec2 uValue) {
+void Shader::SetUniform(const std::string& uName, glm::vec2 uValue) {
 	Use();
 	glUniform2f(glGetUniformLocation(ID, uName.c_str()), uValue.x, uValue.y);
 }
 //--vec3
-void Shader::setUniform(const std::string& uName, float v1, float v2, float v3) {
+void Shader::SetUniform(const std::string& uName, float v1, float v2, float v3) {
 	Use();
 	glUniform3f(glGetUniformLocation(ID, uName.c_str()), v1,v2,v3);
 }
-void Shader::setUniform(const std::string& uName, glm::vec3 uValue) {
+void Shader::SetUniform(const std::string& uName, glm::vec3 uValue) {
 	Use();
 	glUniform3f(glGetUniformLocation(ID, uName.c_str()),uValue.x,uValue.y,uValue.z);
 }
 //--vec4
-void Shader::setUniform(const std::string& uName, float v1, float v2, float v3, float v4) {
+void Shader::SetUniform(const std::string& uName, float v1, float v2, float v3, float v4) {
 	Use();
 	glUniform4f(glGetUniformLocation(ID, uName.c_str()), v1, v2, v3,v4);
 }
-void Shader::setUniform(const std::string& uName, glm::vec4 uValue) {
+void Shader::SetUniform(const std::string& uName, glm::vec4 uValue) {
 	Use();
 	glUniform4f(glGetUniformLocation(ID, uName.c_str()), uValue.x, uValue.y, uValue.z,uValue.w);
 }
 //--integer
-void Shader::setUniform(const std::string& uName, int uValue){
+void Shader::SetUniform(const std::string& uName, int uValue){
 	Use();
 	glUniform1i(glGetUniformLocation(ID, uName.c_str()), uValue);
 }
-void Shader::setUniform(const std::string& uName, std::vector<int> uValue) {
+void Shader::SetUniform(const std::string& uName, std::vector<int> uValue) {
 	Use();
 	glUniform1iv(glGetUniformLocation(ID, uName.c_str()), 10, &uValue[0]);
 }
 //--boolean
-void Shader::setUniform(const std::string& uName, bool uValue){
+void Shader::SetUniform(const std::string& uName, bool uValue){
 	Use();
 	glUniform1i(glGetUniformLocation(ID, uName.c_str()), uValue);
 }
 //--glm::mat4
-void Shader::setUniform(const std::string& uName, glm::mat4 &uValue) {
+void Shader::SetUniform(const std::string& uName, glm::mat4 &uValue) {
 	Use();
 	glUniformMatrix4fv(glGetUniformLocation(ID, uName.c_str()), 1,GL_FALSE,glm::value_ptr(uValue));
 }
 
 
-std::string Shader::readFile(const char* fileName) {
+std::string Shader::ReadFile(const char* fileName) {
 	
 	std::ifstream fileStream;
 	std::stringstream buffer;
@@ -138,9 +138,9 @@ std::string Shader::readFile(const char* fileName) {
 	return shaderString;
 }
 
-unsigned int Shader::createVertexShader(const char* filePath)
+unsigned int Shader::CreateVertexShader(const char* filePath)
 {
-	std::string vString = readFile(filePath);
+	std::string vString = ReadFile(filePath);
 	const char* vertSource = vString.c_str();
 
 	unsigned int vertID;
@@ -163,9 +163,9 @@ unsigned int Shader::createVertexShader(const char* filePath)
 	return vertID;
 }
 
-unsigned int Shader::createFragmentShader(const char* filePath) 
+unsigned int Shader::CreateFragmentShader(const char* filePath) 
 {
-	std::string fString = readFile(filePath);
+	std::string fString = ReadFile(filePath);
 	const char* fragSource = fString.c_str();
 
 	unsigned int fragID;
@@ -188,9 +188,9 @@ unsigned int Shader::createFragmentShader(const char* filePath)
 	return fragID;
 }
 
-unsigned int Shader::createGeometryShader(const char* filePath) 
+unsigned int Shader::CreateGeometryShader(const char* filePath) 
 {
-	std::string gString = readFile(filePath);
+	std::string gString = ReadFile(filePath);
 	const char* geoSource = gString.c_str();
 
 	unsigned int geoID;

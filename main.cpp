@@ -9,8 +9,9 @@ int main(void)
 {
 	//Setup Lights
 	Scene& scene = GameEngine::Get().scene;
-	scene.lights.ambientLight = { 0.1,0.1,0.1 };
-	scene.lights.directionLights.push_back({ { -1,0.5,-1 }, { 0.85,0.85,1 }, { 1,1,1 } });
+	//scene.lights.ambientLight = { 0.1,0.1,0.1 };
+	scene.lights.ambientLight = { 1,1,1 };
+	//scene.lights.directionLights.push_back({ { -1,0.5,-1 }, { 0.85,0.85,1 }, { 1,1,1 } });
 
 	//Set Skybox
 	std::vector<std::string> textures_faces = {
@@ -30,7 +31,7 @@ int main(void)
 	Terrain terrain(heightMap,12);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
 	terrain.shader = terrainShader;
-	terrain.SetTextureScale(10.0f);
+	terrain.SetTextureScale(50);
 	terrain.SetTextures(
 		{
 			new Texture("resources/textures/terrain/water.jpg"),
@@ -51,7 +52,7 @@ int main(void)
 	//TEST ARCADE MACHINE
 	GameObject* arcade = new GameObject();
 	arcade->model_data = new Model3D("resources/models/untitled2022/Arcade.obj");
-	arcade->model_data->setDiffuseTexture("resources/models/untitled2022/Arcade.png");
+	arcade->model_data->SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
 	arcade->position.x = terrain.GetSize() / 2.0;
 	arcade->position.z = terrain.GetSize() / 2.0;
 	arcade->position.y = terrain.GetHeight(arcade->position.x, arcade->position.z);
