@@ -13,7 +13,7 @@ class ReadFile
 public:
 	inline void LoadAssetsFromFile(const char* dir, std::vector<Asset>& vector);
 
-	inline void LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector);
+	inline void LoadModelsFromFile(const char* dir, std::vector<Model>& vector);
 
 	inline void LoadShadersFromFile(const char* dir, std::vector<Shader>& vector);
 
@@ -63,7 +63,7 @@ inline void ReadFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 			if (headers[i].compare("Model") == 0)
 			{
 				if (!token.empty())
-					input.model = new Model3D(token.c_str());
+					input.model = new Model(token.c_str());
 			}
 			if (headers[i].compare("DiffuseTexture") == 0)
 			{
@@ -108,7 +108,7 @@ inline void ReadFile::LoadAssetsFromFile(const char* dir, std::vector<Asset>& ve
 
 //reads a file to create a vector of models
 //todo:change to spread sheet format if still needec
-void ReadFile::LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
+void ReadFile::LoadModelsFromFile(const char* dir, std::vector<Model>& vector)
 {
 	std::ifstream models(dir);
 	std::string str = "test\n";
@@ -131,7 +131,7 @@ void ReadFile::LoadModelsFromFile(const char* dir, std::vector<Model3D>& vector)
 			data[i] = str;
 		}
 
-		Model3D* model = new Model3D(data[0].c_str());
+		Model* model = new Model(data[0].c_str());
 		model->SetDiffuseTexture(data[1].c_str());
 		model->SetEmissionTexture(data[2].c_str());
 		vector.push_back(*model);

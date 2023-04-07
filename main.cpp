@@ -27,7 +27,7 @@ int main(void)
 	//Create Terrain
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(terrainSize,64,0,10,0.4,0.5);
 	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
-	Terrain terrain(heightMap,8);
+	Terrain terrain(heightMap,10);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
 	terrain.shader = terrainShader;
 	terrain.SetTextureScale(50);
@@ -42,15 +42,14 @@ int main(void)
 		new Texture("resources/textures/terrain/detailMap.png")
 	);
 
-	terrain.SetTextureHeights({-3,0,2,5,10});
+	terrain.SetTextureHeights({-3,0,2,5,8});
 	
-
 	scene.gameObjects.push_back(terrain);
 	GameEngine::Get().terrain = &terrain;
 
 	//TEST ARCADE MACHINE
 	GameObject* arcade = new GameObject();
-	arcade->model_data = new Model3D("resources/models/untitled2022/Arcade.obj");
+	arcade->model_data = new Model("resources/models/untitled2022/Arcade.obj");
 	arcade->model_data->SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
 	arcade->position.x = terrain.GetSize() / 2.0;
 	arcade->position.z = terrain.GetSize() / 2.0;

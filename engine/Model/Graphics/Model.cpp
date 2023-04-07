@@ -1,23 +1,23 @@
-#include "Model3D.h"
+#include "Model.h"
 #include <vector>
 
-Model3D::Model3D(void) {
+Model::Model(void) {
 	elementCount = 0;
 	vertCount = 0;
 	instanceCount = 1;
 	modelData = nullptr;
 }
 
-Model3D::Model3D(const char* fileName) {
+Model::Model(const char* fileName) {
 	ReadOBJ(fileName);
 	instanceCount = 1;
 }
 
-Model3D::~Model3D() {
+Model::~Model() {
 	FreeData();
 }
 
-Model3D::Model3D(const char* fileName, std::vector<glm::mat4> nMatrix) {
+Model::Model(const char* fileName, std::vector<glm::mat4> nMatrix) {
 
 	FreeData();
 	modelData = ReadObjFile(fileName);
@@ -26,7 +26,7 @@ Model3D::Model3D(const char* fileName, std::vector<glm::mat4> nMatrix) {
 	SetInstanceMatrix(nMatrix);
 }
 
-void Model3D::SetInstanceMatrix(std::vector<glm::mat4> nMatrix) {
+void Model::SetInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 	
 	FreeData();
 	instanceMatrixes = nMatrix;
@@ -64,37 +64,37 @@ void Model3D::SetInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 	ivbo.Delete();
 }
 
-void Model3D::SetDiffuseTexture(Texture* nTexture) {
+void Model::SetDiffuseTexture(Texture* nTexture) {
 	material.diffuseTexture.push_back(nTexture);
 }
-void Model3D::SetSpecularTexture(Texture* nTexture) {
+void Model::SetSpecularTexture(Texture* nTexture) {
 	material.specularMap.push_back(nTexture);
 }
-void Model3D::SetEmissionTexture(Texture* nTexture) {
+void Model::SetEmissionTexture(Texture* nTexture) {
 	material.emissionMap.push_back(nTexture);
 }
 
-void Model3D::SetDiffuseTexture(const char* fileName) {
+void Model::SetDiffuseTexture(const char* fileName) {
 	material.diffuseTexture.push_back(new Texture(fileName));
 }
 
-void Model3D::SetSpecularTexture(const char* fileName) {
+void Model::SetSpecularTexture(const char* fileName) {
 	material.specularMap.push_back(new Texture(fileName));
 }
 
-void Model3D::SetEmissionTexture(const char* fileName) {
+void Model::SetEmissionTexture(const char* fileName) {
 	material.emissionMap.push_back(new Texture(fileName));
 }
 
-Texture* Model3D::GetDiffuseTexture(int index)  { return material.diffuseTexture[index]; }
-Texture* Model3D::GetSpecularTexture(int index) { return material.specularMap[index]; }
-Texture* Model3D::GetEmissionTexture(int index) { return material.emissionMap[index]; }
+Texture* Model::GetDiffuseTexture(int index)  { return material.diffuseTexture[index]; }
+Texture* Model::GetSpecularTexture(int index) { return material.specularMap[index]; }
+Texture* Model::GetEmissionTexture(int index) { return material.emissionMap[index]; }
 
-OBJData* Model3D::GetModelData() { return modelData; }
+OBJData* Model::GetModelData() { return modelData; }
 
-std::vector<glm::mat4>* Model3D::getInstanceMatrix() { return &instanceMatrixes; }
+std::vector<glm::mat4>* Model::getInstanceMatrix() { return &instanceMatrixes; }
 
-void Model3D::ReadOBJ(const char* fileName) {
+void Model::ReadOBJ(const char* fileName) {
 
 	FreeData();
 	modelData = ReadObjFile(fileName);
@@ -102,7 +102,7 @@ void Model3D::ReadOBJ(const char* fileName) {
 
 }
 
-void Model3D::SetVertexData(float* nVertexData, int numData, unsigned int* vertIndexes, int numIndex) {
+void Model::SetVertexData(float* nVertexData, int numData, unsigned int* vertIndexes, int numIndex) {
 	FreeData();
 	vertCount = numData;
 	elementCount = numIndex;
@@ -117,7 +117,7 @@ void Model3D::SetVertexData(float* nVertexData, int numData, unsigned int* vertI
 	vao = nVAO;
 }
 
-void Model3D::SetVertexData(float* nVertexData, int numData) {
+void Model::SetVertexData(float* nVertexData, int numData) {
 	FreeData();
 	vertCount = numData;
 	VAO nVAO;
@@ -131,7 +131,7 @@ void Model3D::SetVertexData(float* nVertexData, int numData) {
 	vao = nVAO;
 }
 
-void Model3D::SetVertexElements(unsigned int* vertIndexes, int numIndex) {
+void Model::SetVertexElements(unsigned int* vertIndexes, int numIndex) {
 	elementCount = numIndex;
 	vao.Bind();
 	EBO nEBO(vertIndexes, sizeof(unsigned int) * numIndex);
@@ -139,7 +139,7 @@ void Model3D::SetVertexElements(unsigned int* vertIndexes, int numIndex) {
 }
 
 //isElements specifies if using glDrawElements instead of arrays. 
-void Model3D::Render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
+void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
 	unsigned int curTexture = GL_TEXTURE0;
 	int diff = 0;
@@ -216,14 +216,14 @@ void Model3D::Render(Camera* camera, Shader* shader,bool isElements = true,unsig
 	vao.UnBind();
 }
 
-void Model3D::FreeData() {
+void Model::FreeData() {
 	vbo.Delete();
 	ivbo.Delete();
 	ebo.Delete();
 	vao.Delete();
 }
 
-void Model3D::FreeEBO() {
+void Model::FreeEBO() {
 	ebo.Delete();
 }
 

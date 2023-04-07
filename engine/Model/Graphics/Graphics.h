@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Model3D.h"
+#include "Model.h"
 #include "Camera.h"
 #include "Shader.h"
 #include "CubeMap.h"

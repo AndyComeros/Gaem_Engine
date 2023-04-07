@@ -4,7 +4,7 @@
 #include <vector>
 #include "readFile.h"
 #include "../GameObject.h"
-#include "Model3D.h"
+#include "Model.h"
 class GameAssetFactory
 {
 protected:

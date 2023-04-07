@@ -17,27 +17,27 @@
 *	@version 2.0
 *	@date 30/10/2022
 */
-class Model3D {
+class Model {
 public:
         /**
         *	@brief default constructor
         */
-	Model3D();
+	Model();
         /*
         *   @brief default destructor, ensures textures and model data is freed
         */
-	~Model3D();
+	~Model();
         /**
         *	@brief constructor with inital obj file
         *   @param fileName file path to OBJ file
         */
-	Model3D(const char* fileName);
+	Model(const char* fileName);
         /**
         *	@brief constructor with inital obj file and model matrix vector for instancing
         *   @param fileName file path to OBJ file
         *   @param nMatrix vector of transforms for instances of this model
         */
-    Model3D(const char* fileName, std::vector<glm::mat4> nMatrix);
+    Model(const char* fileName, std::vector<glm::mat4> nMatrix);
         /*
         *   @brief sets the model data based on obj file
         *   @param fileName file path to obj file

@@ -161,7 +161,7 @@ void Terrain::CreateHeightArray() {
 
 void Terrain::GenerateModel() {
 	if (heightArray.empty()) {
-		model_data = new Model3D();
+		model_data = new Model();
 		return;
 	}
 
@@ -231,6 +231,6 @@ void Terrain::GenerateModel() {
 	if (model_data)
 		delete model_data;
 
-	model_data = new Model3D();
+	model_data = new Model();
 	model_data->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
 }	

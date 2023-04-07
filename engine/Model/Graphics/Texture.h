@@ -26,7 +26,6 @@ public:
 	int GetWidth();
 	int GetHeight();
 
-
 	unsigned int ID;
 private:
 	Texture();
