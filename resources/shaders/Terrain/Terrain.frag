@@ -216,22 +216,29 @@ vec4 CalcTextureMix(){
     vec4 result = vec4(0);
     float height = fragPos.y;
 
+
+	vec4 colors[MAX_TEXTURES];
+	for(int i = 0; i < textureCount; i++)
+		colors[i] = texture(textures[i],textureCoord);
+
+
     if(height < heights[0]){
         result = texture(textures[0],textureCoord);
-    }else if(height < heights[heightCount - 1])
+    }else if(height <= heights[heightCount - 1])
 	{
         for(int i = 1; i < textureCount; i++)
 		{
-            if(height < heights[i])
+            if(height <= heights[i] && height >= heights[i-1])
 			{
                 float factor = ((height - heights[i-1])/(heights[i] - heights[i-1]));
-                result = (mix(texture(textures[i-1],textureCoord),texture(textures[i],textureCoord),factor));
+				factor = smoothstep(0.0, 1.0, factor);
+                result += (mix(colors[i-1],colors[i],factor));
                 break;
             }
          }
 
     }else{
-        result = texture(textures[textureCount - 1],textureCoord);
+        result = colors[textureCount - 1];
     }
 
 	//add detail map

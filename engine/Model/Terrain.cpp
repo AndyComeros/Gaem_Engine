@@ -176,7 +176,7 @@ void Terrain::GenerateModel() {
 		{
 			vertex nVert;
 			nVert.normal = { 0,0,0 };
-			nVert.texCoord = { (float)x / (float)terrainSize * textureScale,(float)y / (float)terrainSize * textureScale };
+			nVert.texCoord = { ((float)x / (float)terrainSize) * textureScale,((float)y / (float)terrainSize) * textureScale };
 			nVert.vertex.x = y;
 			nVert.vertex.z = x;
 			nVert.vertex.y = heightArray[x + (y * terrainSize)];
