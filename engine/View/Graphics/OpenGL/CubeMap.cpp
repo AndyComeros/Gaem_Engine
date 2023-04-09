@@ -67,10 +67,10 @@ void CubeMap::Render(Camera* camera) {
     if (ID == 0)
         return;
 
-    glm::mat4 projection = camera->GetProjectionMatrix();
+    glm::mat4 projection = camera->GetProjection();
 
     //wacky mat4 to mat 3 to mat 4 to stop transformations
-    glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix()));
+    glm::mat4 view = glm::mat4(glm::mat3(camera->GetView()));
 
     shader.SetUniform("projection",projection);
     shader.SetUniform("view", view);

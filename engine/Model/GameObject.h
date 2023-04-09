@@ -1,9 +1,6 @@
 #pragma once
-#include "Graphics/Graphics.h"
-#include <glm/glm.hpp>
-#include <string>
-//#include <glm/gtc/matrix_transform.hpp>
-//#include <glm/gtc/type_ptr.hpp>
+#include <Graphics/Graphics.h>
+#include <Model.h>
 
 class GameObject
 {

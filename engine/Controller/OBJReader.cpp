@@ -21,7 +21,7 @@ OBJData *ReadObjFile(const char* fileName) {
 	int indexNum = 0;
 	while (file.good()) {
 
-		char dt[1024];//our line buffer,
+		char dt[1024];
 
 		file >> dt;
 		//read in the specific type of data on that line

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "readFile.h"
-#include "../GameObject.h"
+#include <GameObject.h>
 #include "Model.h"
 class GameAssetFactory
 {

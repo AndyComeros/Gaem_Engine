@@ -20,8 +20,11 @@ public:
 	int wHeight = 1080;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
 	//temporary imput function for lab4
-	static void Lab4Input(GLFWwindow* window, int key, int scancode, int action, int mods);
+	void Lab4Input();
+	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 	Terrain* terrain = nullptr;
+
+	float lastX = 250, lastY = 250;
 private:
 
 	double deltaTime;

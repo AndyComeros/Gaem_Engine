@@ -38,7 +38,6 @@ public:
 	void SetUniform(const std::string& uName, std::vector<int> uValue);
 	void SetUniform(const std::string &uName, bool uValue);
 	void SetUniform(const std::string &uName, glm::mat4 &uValue);
-
 	
 private:
 

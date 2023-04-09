@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 #include "Model.h"
-#include "Texture.h"
-#include "Shader.h"
+#include <Graphics/Graphics.h>
 #include <glm/glm.hpp>
 
 struct Asset

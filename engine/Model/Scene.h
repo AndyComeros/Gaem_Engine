@@ -15,8 +15,6 @@ public:
 	Camera camera;
 	CubeMap* skybox = nullptr;
 	Lights lights;
-
-
 	std::vector<GameObject> gameObjects;
 private:
 	

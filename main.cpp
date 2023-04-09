@@ -10,24 +10,24 @@ int main(void)
 	//Setup Lights
 	Scene& scene = GameEngine::Get().scene;
 	scene.lights.ambientLight = { 0.1,0.1,0.1 };
-	scene.lights.directionLights.push_back({ { -1,0.5,-1 }, { 0.85,0.85,1 }, { 1,1,1 } });
+	scene.lights.directionLights.push_back({ { -0.7,0.5,-1 }, { 0.85,0.85,1 }, { 0.95,0.1,0.6 } });
 
 	//Set Skybox
 	std::vector<std::string> textures_faces = {
-		"resources/textures/skybox/Right.png",
-		"resources/textures/skybox/Left.png",
-		"resources/textures/skybox/Top.png",
-		"resources/textures/skybox/Bottom.png",
-		"resources/textures/skybox/Front.png",
-		"resources/textures/skybox/Back.png",
+		"resources/textures/skybox/Synthwave2/Right.png",
+		"resources/textures/skybox/Synthwave2/Left.png",
+		"resources/textures/skybox/Synthwave2/Top.png",
+		"resources/textures/skybox/Synthwave2/Bottom.png",
+		"resources/textures/skybox/Synthwave2/Front.png",
+		"resources/textures/skybox/Synthwave2/Back.png"
 	};
 	scene.skybox = new CubeMap(textures_faces);
 
 
 	//Create Terrain
-	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(terrainSize,64,0,10,0.4,0.5);
-	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
-	Terrain terrain(heightMap,10);
+	std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(1024,64,0,10,0.4,0.4);
+	//Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
+	Terrain terrain(heightMap);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
 	terrain.shader = terrainShader;
 	terrain.SetTextureScale(50);
@@ -42,7 +42,7 @@ int main(void)
 		new Texture("resources/textures/terrain/detailMap.png")
 	);
 
-	terrain.SetTextureHeights({-3,0,2,5,8});
+	terrain.SetTextureHeights({0,10,20,30,40});
 	
 	scene.gameObjects.push_back(terrain);
 	GameEngine::Get().terrain = &terrain;

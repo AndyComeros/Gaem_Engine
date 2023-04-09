@@ -1,22 +1,13 @@
 #pragma once
-#include "VBO.h"
-#include "VAO.h"
-#include "EBO.h"
-#include "Texture.h"
-#include "Shader.h"
+#include <Graphics/Graphics.h>
+
 #include "Camera.h"
+#include "Material.h"
+
 #include <iostream>
 #include "OBJReader.h"
 #include <lighting.h>
 
-/**
-*	@Class model3D
-*	@brief stores mesh and texture data for a model
-*
-*	@author Andres Comeros-Ochtman
-*	@version 2.0
-*	@date 30/10/2022
-*/
 class Model {
 public:
         /**
@@ -125,7 +116,6 @@ public:
     OBJData* GetModelData();
     std::vector<glm::mat4>* getInstanceMatrix();
     
-    //careful using, same EBO and VAO may be used by multiple objects
     void FreeData();
     void FreeEBO();
 private:

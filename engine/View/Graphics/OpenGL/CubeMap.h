@@ -6,14 +6,7 @@
 #include <string>
 #include <vector>
 #include <glm/glm.hpp>
-/**
-*	@Class CubeMap
-*	@brief Stores a cubemap texture
-*
-*	@author Andres Comeros-Ochtman
-*	@version 1.0
-*	@date 05/09/2022
-*/
+
 class CubeMap {
 public:
 		/**

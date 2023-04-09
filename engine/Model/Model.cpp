@@ -181,8 +181,8 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	glm::mat4 view = camera->GetViewMatrix();
-	glm::mat4 projection = camera->GetProjectionMatrix();
+	glm::mat4 view = camera->GetView();
+	glm::mat4 projection = camera->GetProjection();
 
 	//camera pos
 	shader->SetUniform("cameraPos", camera->position);

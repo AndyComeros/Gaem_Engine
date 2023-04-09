@@ -45,7 +45,7 @@ GameEngine::GameEngine() :
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window,ResizeCallback);
-	glfwSetKeyCallback(window, Lab4Input);
+	glfwSetCursorPosCallback(window, mouse_callback);
 }
 
 GameEngine::~GameEngine() {
@@ -80,6 +80,8 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
+
+		Lab4Input();
 		glfwPollEvents();
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);
@@ -102,53 +104,61 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	GameEngine::Get().renderer.Draw(s);
 }
 
-void GameEngine::Lab4Input(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
+void GameEngine::Lab4Input() {
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	Camera& cam = GameEngine::Get().scene.camera;
 	glm::vec3 up = { 0,1,0 };
 	float moveSpeed = 100 * GameEngine::Get().DeltaTime();
 	float lookSpeed = 100 * GameEngine::Get().DeltaTime();
 
-	switch (key)
-	{
-	case GLFW_KEY_W :
-		cam.position += glm::normalize(glm::cross(up, cam.rightVec)) * moveSpeed;
-		break;
-	case GLFW_KEY_A:
-		cam.position -= cam.rightVec * moveSpeed;
-		break;
-	case GLFW_KEY_S:
-		cam.position -= glm::normalize(glm::cross(up, cam.rightVec)) * moveSpeed;
-		break;
-	case GLFW_KEY_D:
-		cam.position += cam.rightVec * moveSpeed;
-		break;
-	case GLFW_KEY_SPACE:
+
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		cam.position += glm::normalize(glm::cross(up, cam.right)) * moveSpeed;
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		cam.position -= glm::normalize(glm::cross(up, cam.right)) * moveSpeed;
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		cam.position -= cam.right * moveSpeed;
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		cam.position += cam.right * moveSpeed;
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		cam.position += up * moveSpeed;
-		break;
-	case GLFW_KEY_LEFT_SHIFT:
+	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 		cam.position -= up * moveSpeed;
-		break;
-	case GLFW_KEY_UP:
-		cam.rotation.x += lookSpeed;
-		break;
-	case GLFW_KEY_DOWN:
-		cam.rotation.x -= lookSpeed;
-		break;
-	case GLFW_KEY_LEFT:
-		cam.rotation.y -= lookSpeed;
-		break;
-	case GLFW_KEY_RIGHT:
-		cam.rotation.y += lookSpeed;
-		break;
-	default:
-		break;
+
+	//if escape pressed, close context window
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(window, true);
 	}
 
 	//cam.position.y = GameEngine::Get().terrain->GetHeight(cam.position.x,cam.position.z) + 3;
-
-	if (key == GLFW_KEY_C && action == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
 		GameEngine::Get().renderer.wireFrame = !GameEngine::Get().renderer.wireFrame;
-	}
+
+}
+
+
+float lastX = 250, lastY = 250;
+void GameEngine::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	Camera& cam = GameEngine::Get().scene.camera;
+
+	float xoffset = xpos - GameEngine::Get().lastX;
+	float yoffset = GameEngine::Get().lastY - ypos;
+	GameEngine::Get().lastX = xpos;
+	GameEngine::Get().lastY = ypos;
+
+	float sensitivity = 0.1f;
+	xoffset *= (sensitivity);
+	yoffset *= (sensitivity);
+
+	cam.rotation.y += xoffset;
+	cam.rotation.x += yoffset;
+
+	if (cam.rotation.x > 89.0f)
+		cam.rotation.x = 89.0f;
+	if (cam.rotation.x < -89.0f)
+		cam.rotation.x = -89.0f;
 
 }
