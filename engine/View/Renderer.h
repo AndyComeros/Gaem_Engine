@@ -23,4 +23,5 @@ public:
 private:
 	GLFWwindow* mainWindow;
 	Shader mainShader;
+
 };

@@ -84,12 +84,12 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 vec4 CalcTextureMix();
 
 //allocate space for diffuse texture
-vec4 diffuse;
+vec4 diffTexture;
 
 void main()
 {
 	
-	diffuse = CalcTextureMix();
+	diffTexture = CalcTextureMix();
 
 	vec3 norm = normalize(normal);
 	vec3 viewDir = normalize(cameraPos - fragPos);
@@ -109,9 +109,7 @@ void main()
 
 	//add ambient light
 	result += ambient_Light;
-	
-	vec4 diffTexture = diffuse;
-	
+
 	
 	if(wireframe == 0){
 		FragColor =	(diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
@@ -200,7 +198,7 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 
 	//diffuse
 	float difStrength = max(dot(fragNormal,light.direction),0.0f);
-	diffuse = difStrength * light.diffuse * vec3(diffuse);
+	diffuse = difStrength * light.diffuse * vec3(diffTexture);
 	
 	//specualar
 	vec3 reflectDir = reflect(-light.direction, fragNormal); 

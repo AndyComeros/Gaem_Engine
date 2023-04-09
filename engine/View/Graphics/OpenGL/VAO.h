@@ -1,15 +1,7 @@
 #pragma once
 #include<glad/glad.h>
 #include "VBO.h"
-/**
-*	@Class VAO
-*	@brief abstraction of Vertex Attribute Object.
-*	@details Allows for easy handling of Opengl VAO's.
-*
-*	@author Andres Comeros-Ochtman
-*	@version 1.0
-*	@date 05/09/2022
-*/
+
 class VAO {
 public:
 		///ID used by opengl to identify the VAO

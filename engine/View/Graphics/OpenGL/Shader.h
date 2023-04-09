@@ -7,15 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
-/**
-*	@Class Texture
-*	@brief Allows easy handling, binding and setting if shader programs
-*	and their uniforms
-*
-*	@author Andres Comeros-Ochtman
-*	@version 1.0
-*	@date 05/09/2022
-*/
+
 class Shader{
 public:
 	Shader();

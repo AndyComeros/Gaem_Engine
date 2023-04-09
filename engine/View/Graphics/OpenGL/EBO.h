@@ -1,15 +1,5 @@
 #pragma once
 #include<glad/glad.h>
-
-	/**
-	*	@Class EBO
-	*	@brief abstraction of Element Buffer Object.
-	*	@details Allows for easy handling of Opengl EBO's.
-	*
-	*	@author Andres Comeros-Ochtman
-	*	@version 1.0
-	*	@date 05/09/2022
-	*/
 class EBO {
 
 public:

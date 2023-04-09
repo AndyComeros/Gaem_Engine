@@ -25,7 +25,7 @@ int main(void)
 
 
 	//Create Terrain
-	std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(1024,64,0,10,0.4,0.4);
+	std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
 	//Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
 	Terrain terrain(heightMap);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
