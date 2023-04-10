@@ -23,6 +23,7 @@
     <ClCompile Include="engine\Controller\GameAssetFactory.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="Engine\Controller\InputManager.cpp" />
+    <ClCompile Include="Engine\Controller\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -50,6 +51,7 @@
     <ClInclude Include="engine\Model\Material.h" />
     <ClInclude Include="engine\View\Graphics\Graphics.h" />
     <ClInclude Include="Engine\Controller\InputManager.h" />
+    <ClInclude Include="Engine\Controller\Physics.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
@@ -65,6 +67,7 @@
     <None Include="resources\shaders\Default.vert" />
     <None Include="resources\shaders\Depth.frag" />
     <None Include="resources\shaders\Terrain\Terrain.frag" />
+    <None Include="dependencies\lib\lua54.dll" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />
