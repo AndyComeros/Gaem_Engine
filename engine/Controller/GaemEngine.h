@@ -21,8 +21,8 @@ public:
 	InputManager& inputMngr = InputManager::getInstance();
 
 
-	int wWidth = 1920;
-	int wHeight = 1080;
+	int wWidth = 500;
+	int wHeight = 500;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
 	//temporary imput function for lab4
 	void Lab4Input();

@@ -68,11 +68,13 @@
     <None Include="resources\shaders\Depth.frag" />
     <None Include="resources\shaders\Terrain\Terrain.frag" />
     <None Include="dependencies\lib\lua54.dll" />
+    <None Include="dependencies\lib\glfw3.dll" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />
     <Library Include="dependencies\lib\glfw3.lib" />
     <Library Include="dependencies\lib\glfw3_mt.lib" />
     <Library Include="dependencies\lib\glfw3dll.lib" />
+    <Library Include="dependencies\lib\reactphysics3d.lib" />
   </ItemGroup>
 </Project>

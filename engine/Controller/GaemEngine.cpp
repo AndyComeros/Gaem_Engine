@@ -62,8 +62,6 @@ GameEngine::~GameEngine() {
 //start main loop
 void GameEngine::Run() {
 	
-	scene.camera.position.y = GameEngine::Get().terrain->GetHeight(scene.camera.position.x, scene.camera.position.z) + 3;
-
 	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
 
 	//temp inneffient light setup. need a recource manager for shaders.
@@ -72,7 +70,6 @@ void GameEngine::Run() {
 			Renderer::SetLightUniforms(scene.lights, *scene.gameObjects[i].shader);
 		}
 	}
-
 
 	isRunning = true;
 

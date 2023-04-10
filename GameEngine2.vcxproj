@@ -113,6 +113,7 @@
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +130,7 @@
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,6 +192,7 @@
     <ClInclude Include="Engine\View\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dependencies\lib\glfw3.dll" />
     <None Include="dependencies\lib\lua54.dll" />
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.vert" />
@@ -210,6 +213,7 @@
     <Library Include="dependencies\lib\glfw3dll.lib" />
     <Library Include="dependencies\lib\glfw3_mt.lib" />
     <Library Include="dependencies\lib\liblua54.a" />
+    <Library Include="dependencies\lib\reactphysics3d.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
