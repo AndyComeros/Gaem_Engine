@@ -1,7 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <vector>
-#include <Graphics/Texture.h>
 
 	/**
 	*	@struct PontLight
@@ -63,11 +62,3 @@ struct Lights {
 	std::vector<DirectionLight> directionLights;
 };
 
-struct Material {
-	Texture* diffuseTexture= nullptr;
-	Texture* specularMap   = nullptr;
-	Texture* emissionMap   = nullptr;
-	Texture* normalMap	   = nullptr;
-
-	float shine = 1.0f;
-};
