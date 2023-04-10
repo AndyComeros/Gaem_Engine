@@ -48,6 +48,9 @@ GameEngine::GameEngine() :
 	inputMngr.AddKey(68);//d
 	inputMngr.AddKey(87);//w
 	inputMngr.AddKey(83);//s
+
+	//set GLFW callback
+
 }
 
 
