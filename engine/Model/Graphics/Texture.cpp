@@ -3,7 +3,7 @@ Texture::Texture() {}
 
 Texture::Texture(const char* fileName) 
 {
-	stbi_set_flip_vertically_on_load(true);
+	stbi_set_flip_vertically_on_load(true);//bit sussy putting this here
 	imageData = stbi_load(fileName,&width,&height,&numColorChannels,0);
 
 	if (!imageData) {
@@ -39,41 +39,6 @@ Texture::Texture(const char* fileName)
 }
 
 Texture::Texture(unsigned char* imgData, int w, int h,int c) {
-<<<<<<< Updated upstream:engine/Model/Graphics/Texture.cpp
-=======
-	GenTexture(imgData,w,h,c);
-	
-}
-
-Texture::~Texture() {
-
-	stbi_image_free(imageData);
-	glDeleteTextures(1,&ID);
-}
-
-void Texture::Bind(GLuint tUnit) {
-	glActiveTexture(tUnit);
-	glBindTexture(GL_TEXTURE_2D,ID);
-	glEnable(GL_TEXTURE_2D);
-}
-
-unsigned char Texture::GetPixelValue(int x, int y, int index) {
-	if (index > numColorChannels - 1) {
-		return (unsigned char)0.0f;
-	}
-	return imageData[(y * width + x) * numColorChannels];
-}
-
-int Texture::GetChannelCount() {
-	return numColorChannels;
-}
-
-int Texture::GetWidth() { return width; }
-
-int Texture::GetHeight() { return height; }
-
-void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
->>>>>>> Stashed changes:engine/View/Graphics/OpenGL/Texture.cpp
 
 	if (!imgData)
 		std::cout << "could not load image data" << std::endl;

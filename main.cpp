@@ -46,7 +46,6 @@ void pretend_factory() {	//setup test scene, factory should do this normally.
 	Model3D* arcadeModel = new Model3D("resources/models/untitled2022/Arcade.obj");
 	arcadeModel->setDiffuseTexture("resources/models/untitled2022/Arcade.png");
 
-<<<<<<< Updated upstream
 	GameObject arcade;
 	arcade.position = { 0,0,0 };
 	arcade.model_data = arcadeModel;
@@ -63,16 +62,5 @@ void pretend_factory() {	//setup test scene, factory should do this normally.
 
 	PointLight pl = { {0,0,1}, { 1,1,1 }, { 1,1,1 }, 1, 0.1, 0.03 };
 	scene.lights.pointLights.push_back(pl);
-=======
-	//Create Terrain
-	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
-	//Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
-
-	Terrain terrain("resources/textures/heightmap/heightmap256.png",5,1,5);
-	terrain.SetTextureScale(5);
-	
-
-	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
->>>>>>> Stashed changes
 
 }
