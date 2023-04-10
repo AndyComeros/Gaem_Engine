@@ -3,15 +3,7 @@
 #include<vector>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-/**
-*	@Class VBO
-*	@brief abstraction of Vertex Buffer Object.
-*	@details Allows for easy handling of Opengl VBO's.
-*
-*	@author Andres Comeros-Ochtman
-*	@version 1.0
-*	@date 05/09/2022
-*/
+
 class VBO {
 public:
 	///ID used by opengl to identify the VBO

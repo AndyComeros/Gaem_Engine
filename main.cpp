@@ -9,8 +9,8 @@ int main(void)
 {
 	//Setup Lights
 	Scene& scene = GameEngine::Get().scene;
-	scene.lights.ambientLight = { 0.1,0.1,0.1 };
-	scene.lights.directionLights.push_back({ { -0.7,0.5,-1 }, { 0.85,0.85,1 }, { 0.95,0.1,0.6 } });
+	//scene.lights.ambientLight = { 0.1,0.1,0.1 };
+	//scene.lights.directionLights.push_back({ { -0.7,0.5,-1 }, { 0.7,0.1,0.5 }, { 0.5,0.3,0.05 } });
 
 	//Set Skybox
 	std::vector<std::string> textures_faces = {
@@ -25,24 +25,27 @@ int main(void)
 
 
 	//Create Terrain
-	std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
-	//Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
-	Terrain terrain(heightMap);
+	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
+	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap2048.png");
+	Terrain terrain(heightMap,1);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
+
 	terrain.shader = terrainShader;
-	terrain.SetTextureScale(50);
+	terrain.SetTextureScale(10);
 	terrain.SetTextures(
 		{
 			new Texture("resources/textures/terrain/water.jpg"),
-			new Texture("resources/textures/terrain/sand.jpg"),
-			new Texture("resources/textures/terrain/grass.jpg"),
-			new Texture("resources/textures/terrain/rock.jpg"),
+			new Texture("resources/textures/terrain/dirt.png"),
+			new Texture("resources/textures/terrain/grass.png"),
+			new Texture("resources/textures/terrain/rock.png"),
 			new Texture("resources/textures/terrain/snow.jpg")
 		},
-		new Texture("resources/textures/terrain/detailMap.png")
+		new Texture("resources/textures/terrain/black.png")
 	);
 
-	terrain.SetTextureHeights({0,10,20,30,40});
+	terrain.model_data->SetSpecularTexture("resources/textures/tile_Specular.png");
+
+	terrain.SetTextureHeights({-20,-10,0,10,100});
 	
 	scene.gameObjects.push_back(terrain);
 	GameEngine::Get().terrain = &terrain;

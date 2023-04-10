@@ -8,5 +8,5 @@ struct Material {
 	std::vector<Texture*> emissionMap;
 	std::vector<Texture*> normalMap;
 
-	float shine = 1.0f;
+	float shine = 1;
 };

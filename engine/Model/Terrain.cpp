@@ -86,7 +86,6 @@ void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
 	for (i = tCount; i < MAX_TERRAIN_TEXTURES; i++)
 		tUnits.push_back(0);
 
-	
 	shader->SetUniform("textures", tUnits);
 	shader->SetUniform("textureCount", tCount);
 }
@@ -97,7 +96,6 @@ void Terrain::SetTextureHeights(std::vector<float> heights) {
 
 	shader->SetUniform("heights", heights);
 	shader->SetUniform("heightCount", (int)heights.size());
-
 }
 
 
@@ -154,12 +152,13 @@ void Terrain::CreateHeightArray() {
 		for (int x = 0; x < tWidth; x++)
 	
 		{
-			heightArray.push_back(scaleY * ((heightTexture->GetPixelValue(x * scaleX, y * scaleZ, 0.0f) - 127.0f) / 127.0f));
+			heightArray.push_back(scaleY * (heightTexture->GetPixelValue(x * scaleX, y * scaleZ, 0.0f)));
 		}
 	}
 }
 
 void Terrain::GenerateModel() {
+
 	if (heightArray.empty()) {
 		model_data = new Model();
 		return;
@@ -179,7 +178,7 @@ void Terrain::GenerateModel() {
 			nVert.texCoord = { ((float)x / (float)terrainSize) * textureScale,((float)y / (float)terrainSize) * textureScale };
 			nVert.vertex.x = y;
 			nVert.vertex.z = x;
-			nVert.vertex.y = heightArray[x + (y * terrainSize)];
+			nVert.vertex.y = heightArray[x +  (y * terrainSize)];
 
 			vertexData.push_back(nVert);
 		}
