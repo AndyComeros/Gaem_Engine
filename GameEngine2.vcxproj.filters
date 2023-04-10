@@ -3,22 +3,25 @@
   <ItemGroup>
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\Camera.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\CubeMap.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\EBO.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\Model3D.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\OBJReader.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\Shader.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\stb_image.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\Texture.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\VAO.cpp" />
-    <ClCompile Include="Engine\Model\Graphics\VBO.cpp" />
+    <ClCompile Include="engine\Model\Camera.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\CubeMap.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\EBO.cpp" />
+    <ClCompile Include="engine\Model\Model.cpp" />
+    <ClCompile Include="engine\Controller\OBJReader.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\Shader.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\stb_image.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\Texture.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\VAO.cpp" />
+    <ClCompile Include="engine\View\Graphics\OpenGL\VBO.cpp" />
     <ClCompile Include="engine\Model\Scene.cpp" />
     <ClCompile Include="Engine\View\Renderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="engine\Model\Graphics\GameAssetFactory.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
+    <ClCompile Include="engine\Model\Terrain.cpp" />
+    <ClCompile Include="engine\Controller\TerrainManager.cpp" />
+    <ClCompile Include="engine\Controller\GameAssetFactory.cpp" />
+    <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="Engine\Controller\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -26,21 +29,26 @@
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="Engine\Model\Scene.h" />
-    <ClInclude Include="Engine\Model\Graphics\Camera.h" />
-    <ClInclude Include="Engine\Model\Graphics\CubeMap.h" />
-    <ClInclude Include="Engine\Model\Graphics\EBO.h" />
-    <ClInclude Include="Engine\Model\Graphics\Graphics.h" />
-    <ClInclude Include="Engine\Model\Graphics\Model3D.h" />
-    <ClInclude Include="Engine\Model\Graphics\OBJReader.h" />
-    <ClInclude Include="Engine\Model\Graphics\Shader.h" />
-    <ClInclude Include="Engine\Model\Graphics\Texture.h" />
-    <ClInclude Include="Engine\Model\Graphics\VAO.h" />
-    <ClInclude Include="Engine\Model\Graphics\VBO.h" />
+    <ClInclude Include="engine\Model\Camera.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\CubeMap.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\EBO.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\GraphicsOpenGL.h" />
+    <ClInclude Include="engine\Model\Model.h" />
+    <ClInclude Include="engine\Controller\OBJReader.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\Shader.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\Texture.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\VAO.h" />
+    <ClInclude Include="engine\View\Graphics\OpenGL\VBO.h" />
     <ClInclude Include="Engine\View\Renderer.h" />
-    <ClInclude Include="engine\Model\Graphics\GameAssetFactory.h" />
-    <ClInclude Include="engine\Model\Graphics\Asset.h" />
-    <ClInclude Include="engine\Model\Graphics\readFile.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
+    <ClInclude Include="engine\Model\Terrain.h" />
+    <ClInclude Include="engine\Controller\TerrainManager.h" />
+    <ClInclude Include="engine\Controller\readFile.h" />
+    <ClInclude Include="engine\Controller\GameAssetFactory.h" />
+    <ClInclude Include="engine\Model\Asset.h" />
+    <ClInclude Include="engine\Controller\InputManager.h" />
+    <ClInclude Include="engine\Model\Material.h" />
+    <ClInclude Include="engine\View\Graphics\Graphics.h" />
     <ClInclude Include="Engine\Controller\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +59,12 @@
     <None Include="Engine\Model\Graphics\Shaders\Depth.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\InstanceDepth.frag" />
+    <None Include="resources\shaders\Cube_map.frag" />
+    <None Include="resources\shaders\Cube_map.vert" />
+    <None Include="resources\shaders\Default.frag" />
+    <None Include="resources\shaders\Default.vert" />
+    <None Include="resources\shaders\Depth.frag" />
+    <None Include="resources\shaders\Terrain\Terrain.frag" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />
