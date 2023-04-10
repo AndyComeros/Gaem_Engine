@@ -30,7 +30,7 @@ private:
 	void GenerateModel();
 
 	//how often terrain textures repeat
-	float textureScale = 1.0f;
+	float textureScale = 10.0f;
 
 	float scaleX = 1.0f;
 	float scaleY = 1.0f;

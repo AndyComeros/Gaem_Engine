@@ -28,10 +28,8 @@ int main(void)
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
 	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap2048.png");
 
-	Terrain terrain("resources/textures/heightmap/heightmap2048.png",10,5,10);
+	Terrain terrain("resources/textures/heightmap/heightmap256.png",20,5,20);
 	terrain.SetTextureScale(5);
-	
-
 
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
 
@@ -39,18 +37,15 @@ int main(void)
 	
 	terrain.SetTextures(
 		{
-			new Texture("resources/textures/terrain/water.jpg"),
-			new Texture("resources/textures/terrain/dirt.png"),
-			new Texture("resources/textures/terrain/grass.png"),
 			new Texture("resources/textures/terrain/rock.png"),
-			new Texture("resources/textures/terrain/snow.jpg")
+			new Texture("resources/textures/terrain/grass.png"),
 		},
 		new Texture("resources/textures/terrain/black.png")
 	);
 
 	terrain.model_data->SetSpecularTexture("resources/textures/tile_Specular.png");
 
-	terrain.SetTextureHeights({-20,-10,0,10,100});
+	terrain.SetTextureHeights({300,500});
 	
 	scene.gameObjects.push_back(terrain);
 	GameEngine::Get().terrain = &terrain;
@@ -68,7 +63,7 @@ int main(void)
 	scene.camera.FOV = 75;
 	scene.camera.position.x = terrain.GetSize() / 2.0;
 	scene.camera.position.z = terrain.GetSize() / 2.0;
-	scene.camera.farPlane = 2000;
+	scene.camera.farPlane = 10000;
 
 	//Run the game
 	GameEngine::Get().Run();
