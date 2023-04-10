@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Renderer.h>
-#include <InputManager.h>
-#include <Physics.h>
+#include "../Controller/InputManager.h"
+
 
 //class used to manage the engine itself, run main loop, contains setup etc
 //setup as a singleton. need only one and will be nice to have global access to deltatime, window size scene data etc.
@@ -13,26 +13,33 @@ public:
 	static GameEngine& Get();
 
 	void Run();
+	double DeltaTime();
 
 	Scene scene;
 	GLFWwindow* window;
 	Renderer renderer;
 	InputManager& inputMngr = InputManager::getInstance();
-	Physics physics;
-	
 
-	int wWidth = 500;
-	int wHeight = 500;
 
+	int wWidth = 1920;
+	int wHeight = 1080;
+	static void ResizeCallback(GLFWwindow* window, int width, int height);
+	//temporary imput function for lab4
+	void Lab4Input();
+	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+	Terrain* terrain = nullptr;
+
+	float lastX = 250, lastY = 250;
 private:
 
 	double deltaTime;
+	double prevTime;
 	double fps;
 
 	bool isRunning = false;
-	
+
 	GameEngine();
 	~GameEngine();
-	GameEngine(const GameEngine&);
+	GameEngine(const GameEngine&){};
 	GameEngine& operator=(const GameEngine&);
 };

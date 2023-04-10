@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Terrain.h"
 #include "Lighting.h"
 #include <vector>
 
@@ -14,8 +15,8 @@ public:
 	Camera camera;
 	CubeMap* skybox = nullptr;
 	Lights lights;
-
 	std::vector<GameObject> gameObjects;
 private:
+	
 
 };
