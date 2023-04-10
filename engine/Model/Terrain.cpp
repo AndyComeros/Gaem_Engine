@@ -105,8 +105,8 @@ void Terrain::SetTextureScale(float nScale) {
 
 	textureScale = nScale;
 
-	if (heightArray.size() > 0)
-		GenerateModel();
+	//if (heightArray.size() > 0)
+		//GenerateModel();
 
 }
 
@@ -168,19 +168,25 @@ void Terrain::GenerateModel() {
 	std::vector<glm::uvec3> elementsIndexes;
 	std::vector<glm::vec3> faceNorms;
 
+	vertexData.reserve(terrainSize * terrainSize);
+	elementsIndexes.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
+	faceNorms.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
+
 	//create vert data
+	float texCoordScaleX = (float)textureScale / (float)terrainSize;
+	float texCoordScaleY = (float)textureScale / (float)terrainSize;
 	for (int y = 0; y < terrainSize; y++)
 	{
 		for (int x = 0; x < terrainSize; x++)
 		{
 			vertex nVert;
 			nVert.normal = { 0,0,0 };
-			nVert.texCoord = { ((float)x / (float)terrainSize) * textureScale,((float)y / (float)terrainSize) * textureScale };
+			nVert.texCoord = { x * texCoordScaleX, y * texCoordScaleY };
 			nVert.vertex.x = y;
 			nVert.vertex.z = x;
 			nVert.vertex.y = heightArray[x +  (y * terrainSize)];
 
-			vertexData.push_back(nVert);
+			vertexData.emplace_back(nVert);
 		}
 	}
 
@@ -194,12 +200,12 @@ void Terrain::GenerateModel() {
 			nIndex.x = (y * terrainSize) + x;
 			nIndex.y = (y * terrainSize) + x + 1;
 			nIndex.z = (y * terrainSize) + x + terrainSize;
-			elementsIndexes.push_back(nIndex);
+			elementsIndexes.emplace_back(nIndex);
 
 			nIndex.x = (y * terrainSize) + x + 1;
 			nIndex.y = (y * terrainSize) + x + terrainSize + 1;
 			nIndex.z = (y * terrainSize) + x + terrainSize;
-			elementsIndexes.push_back(nIndex);
+			elementsIndexes.emplace_back(nIndex);
 		}
 	}
 
@@ -211,16 +217,16 @@ void Terrain::GenerateModel() {
 		glm::vec3 e2 = vertexData[elementsIndexes[i].x].vertex - vertexData[elementsIndexes[i].z].vertex;
 
 		nNorm = glm::cross(e1, e2);
-		faceNorms.push_back(nNorm);
+		faceNorms.emplace_back(nNorm);
 	}
 
 	//assign vertecies norms
 	for (int i = 0; i < elementsIndexes.size(); i++)
 	{
 		glm::ivec3 curFace = elementsIndexes[i];
-		vertexData.at(curFace.x).normal += faceNorms.at(i);
-		vertexData.at(curFace.y).normal += faceNorms.at(i);
-		vertexData.at(curFace.z).normal += faceNorms.at(i);
+		vertexData[curFace.x].normal += faceNorms[i];
+		vertexData[curFace.y].normal += faceNorms[i];
+		vertexData[curFace.z].normal += faceNorms[i];
 	}
 	for (int i = 0; i < vertexData.size(); i++)
 	{
