@@ -1,6 +1,9 @@
 #pragma once
-#include <Graphics/Graphics.h>
-#include <Model.h>
+#include "Graphics/Graphics.h"
+#include <glm/glm.hpp>
+#include <string>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/type_ptr.hpp>
 
 class GameObject
 {
@@ -12,7 +15,7 @@ public:
 	glm::vec3 scale =	{1,1,1};
 	glm::vec3 rotation = {0,0,0};
 
-	Model* model_data = nullptr;
+	Model3D* model_data = nullptr;
 	Shader* shader = nullptr;
 	std::string name;
 
