@@ -5,13 +5,17 @@ Terrain::Terrain()
 	
 }
 
-Terrain::Terrain(const std::string& nHeightMap, float yScale) {
+Terrain::Terrain(const std::string& nHeightMap, float xScale, float yScale, float zScale) {
+	scaleX = xScale;
 	scaleY = yScale;
+	scaleZ = zScale;
 	LoadHeightMap(nHeightMap);
 }
 
-Terrain::Terrain(Texture* nHeightMap, float yScale) {
+Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale) {
+	scaleX = xScale;
 	scaleY = yScale;
+	scaleZ = zScale;
 	LoadHeightMap(nHeightMap);
 }
 
@@ -152,7 +156,7 @@ void Terrain::CreateHeightArray() {
 		for (int x = 0; x < tWidth; x++)
 	
 		{
-			heightArray.push_back(scaleY * (heightTexture->GetPixelValue(x * scaleX, y * scaleZ, 0.0f)));
+			heightArray.push_back(scaleY * (heightTexture->GetPixelValue(x , y, 0)));
 		}
 	}
 }
@@ -182,8 +186,8 @@ void Terrain::GenerateModel() {
 			vertex nVert;
 			nVert.normal = { 0,0,0 };
 			nVert.texCoord = { x * texCoordScaleX, y * texCoordScaleY };
-			nVert.vertex.x = y;
-			nVert.vertex.z = x;
+			nVert.vertex.x = y * scaleX;
+			nVert.vertex.z = x * scaleZ;
 			nVert.vertex.y = heightArray[x +  (y * terrainSize)];
 
 			vertexData.emplace_back(nVert);

@@ -28,7 +28,7 @@ int main(void)
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
 	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap2048.png");
 
-	Terrain terrain("resources/textures/heightmap/heightmap2048.png",5);
+	Terrain terrain("resources/textures/heightmap/heightmap2048.png",10,5,10);
 	terrain.SetTextureScale(5);
 	
 

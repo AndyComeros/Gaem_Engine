@@ -5,8 +5,8 @@ class Terrain : public GameObject
 {
 public:
 	Terrain();
-	Terrain(const std::string& nHeightMap, float yScale);
-	Terrain(Texture* nHeightMap, float yScale);
+	Terrain(const std::string& nHeightMap,float xScale, float yScale, float zScale);
+	Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale);
 	Terrain(std::vector<float> nHeights);
 	~Terrain();
 
