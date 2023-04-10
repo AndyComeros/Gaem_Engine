@@ -22,6 +22,7 @@
     <ClCompile Include="engine\Controller\TerrainManager.cpp" />
     <ClCompile Include="engine\Controller\GameAssetFactory.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
+    <ClCompile Include="Engine\Controller\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Model\Material.h" />
     <ClInclude Include="engine\View\Graphics\Graphics.h" />
+    <ClInclude Include="Engine\Controller\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
