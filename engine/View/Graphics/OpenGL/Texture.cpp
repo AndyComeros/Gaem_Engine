@@ -75,7 +75,7 @@ void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
 		format = GL_RGBA;
 	}
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, imgData);
 
 	imageData = imgData;
 	glGenerateMipmap(GL_TEXTURE_2D);

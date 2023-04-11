@@ -145,6 +145,7 @@
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="Engine\Controller\Physics.cpp" />
+    <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
     <ClCompile Include="engine\Controller\TerrainManager.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
+    <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="engine\Controller\TerrainManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Asset.h" />
