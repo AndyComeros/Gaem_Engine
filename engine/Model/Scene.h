@@ -10,6 +10,7 @@ public:
 	Scene();
 
 	~Scene();
+	
 
 	//all scene data
 	Camera camera;

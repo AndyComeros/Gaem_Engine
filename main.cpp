@@ -7,21 +7,9 @@
 
 int main(void)
 {
+	std::cout << "HERE!1";
+	Model* arcadeModel;// = new Model("resources/models/untitled2022/Arcade.obj");
+	arcadeModel = new Model("resources/models/untitled2022/Arcade.obj");
 
 	GameEngine::Get().Run();
-	
-	/*	Scene& scene = GameEngine::Get().scene;
-	std::vector<std::string> textures_faces = {
-		"resources/textures/skybox/Synthwave2/Right.png",
-		"resources/textures/skybox/Synthwave2/Left.png",
-		"resources/textures/skybox/Synthwave2/Top.png",
-		"resources/textures/skybox/Synthwave2/Bottom.png",
-		"resources/textures/skybox/Synthwave2/Front.png",
-		"resources/textures/skybox/Synthwave2/Back.png"
-	};
-	scene.skybox = new CubeMap(textures_faces);
-
-
-	//Run the game
-	GameEngine::Get().Run();*/
 }

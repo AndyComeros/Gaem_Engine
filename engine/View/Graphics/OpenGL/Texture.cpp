@@ -61,22 +61,21 @@ void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//when image is enlarged
 
 
-	switch (numColorChannels) {
-	case 1:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, imgData);
-		break;
-	case 2:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RG, width, height, 0, GL_RG, GL_UNSIGNED_BYTE, imgData);
-		break;
-	case 3:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, imgData);
-		break;
-	case 4:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
-		break;
-	default:
-		break;
+	unsigned int format = GL_RED;
+	if (numColorChannels == 1) {
+		format = GL_RED;
 	}
+	else if (numColorChannels == 2) {
+		format = GL_RG;
+	}
+	else if (numColorChannels == 3) {
+		format = GL_RGB;
+	}
+	else if (numColorChannels == 4) {
+		format = GL_RGBA;
+	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
 
 	imageData = imgData;
 	glGenerateMipmap(GL_TEXTURE_2D);

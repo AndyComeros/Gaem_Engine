@@ -9,6 +9,7 @@ Model::Model(void) {
 }
 
 Model::Model(const char* fileName) {
+
 	ReadOBJ(fileName);
 	instanceCount = 1;
 }
