@@ -16,9 +16,9 @@ void LuaManager::RunInitMethod() {
 		init();
 }
 
-void LuaManager::RunUpdateMethod() {
+void LuaManager::RunUpdateMethod(double dt) {
 	if (update.valid()) 
-		update();
+		update(dt);
 }
 
 bool LuaManager::Expose_Engine() {
@@ -36,6 +36,20 @@ bool LuaManager::Expose_Engine() {
 		"rotation",&GameObject::rotation,
 		"scale",&GameObject::scale
 		);
+
+	//expose scene object
+
+	//expose material
+
+	//expose lights
+
+	//expose model
+
+	//expose terrain
+
+	//expise camera
+
+	//expose game engine
 
 	return true;
 

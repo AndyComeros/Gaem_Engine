@@ -87,7 +87,7 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
-		luaManager.RunUpdateMethod();
+		luaManager.RunUpdateMethod(deltaTime);
 		Lab4Input();
 		glfwPollEvents();
 

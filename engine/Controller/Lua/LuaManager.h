@@ -10,7 +10,7 @@ public:
 	~LuaManager();
 	
 	void RunInitMethod();
-	void RunUpdateMethod();
+	void RunUpdateMethod(double dt);
 	bool Expose_Engine();
 
 	void LoadScript(const std::string& fileNames);

@@ -4,8 +4,8 @@ function init()
 	print("init lua");
 end
 
-function update()
-	print("Update lua");
+function update(deltaTime)
+	print("Update lua" .. deltaTime);
 end
 
 
