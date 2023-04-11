@@ -73,7 +73,6 @@ void GameEngine::Run() {
 		}
 	}
 
-
 	isRunning = true;
 
 	deltaTime = 0.0;
@@ -86,6 +85,7 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
+		scene.physics.StepPhysics();
 		Lab4Input();
 		glfwPollEvents();
 

@@ -110,14 +110,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;reactphysics3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,6 +142,7 @@
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
+    <ClCompile Include="engine\Controller\Physics.cpp" />
     <ClCompile Include="engine\Controller\TerrainManager.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
+    <ClInclude Include="engine\Controller\Physics.h" />
     <ClInclude Include="engine\Controller\TerrainManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Asset.h" />

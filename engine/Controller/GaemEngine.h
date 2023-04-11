@@ -2,6 +2,7 @@
 
 #include <Renderer.h>
 #include "../Controller/InputManager.h"
+#include <Physics.h>
 
 
 //class used to manage the engine itself, run main loop, contains setup etc
@@ -20,10 +21,10 @@ public:
 	Renderer renderer;
 	InputManager& inputMngr = InputManager::getInstance();
 
-
 	int wWidth = 1920;
 	int wHeight = 1080;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
+
 	//temporary imput function for lab4
 	void Lab4Input();
 	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);

@@ -17,7 +17,7 @@ public:
 	std::string name;
 
 	int GetID() { return ID; }
-	int SetID(int id) { id = ID; };
+	void SetID(int id) { ID = id; };
 private:
 
 	unsigned int ID = -1;
