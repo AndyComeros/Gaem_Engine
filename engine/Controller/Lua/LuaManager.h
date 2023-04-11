@@ -1,12 +1,33 @@
 #include <sol/sol.hpp>
 
+#include <GameObject.h>
+
 class LuaManager
 {
 public:
 	LuaManager();
+
 	~LuaManager();
+	
+	void RunInitMethod();
+	void RunUpdateMethod();
+	bool Expose_Engine();
+
 	void LoadScript(const std::string& fileNames);
 	
+	sol::function GetFunction(const char* luaName);
+
+	template<typename T>
+	T GetData(const char* luaName) {
+		try {
+			return luaState.get<T>(luaName);
+		}
+		catch (const sol::error& e) {
+			std::cout << "Error could not get data: " << e.what() << std::endl;
+			return T();
+		}
+	}
+
 	template<typename T>
 	void Expose_CPPVariable(const char* luaName, T cppData) {
 		luaState.set(luaName, cppData);
@@ -22,23 +43,11 @@ public:
 		luaState.new_usertype<Class>(luaName, args...);
 	}
 
-	template<typename T>
-	T GetData(const char* luaName) {
-
-		sol::optional<T> result = luaState.get<T>(luaName);
-
-		if (result)
-			return result;
-
-		std::cerr << "Could not retrieve" << luaName << std::endl;
-		return T();
-		
-	}
-
-
 
 private:
 
-	sol::state luaState;;
+	sol::state luaState;
+	sol::function update;
+	sol::function init;
 };
 

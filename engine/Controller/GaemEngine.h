@@ -19,8 +19,10 @@ public:
 	GLFWwindow* window;
 
 	Renderer renderer;
-	InputManager& inputMngr = InputManager::getInstance();
+	LuaManager luaManager;
 
+	InputManager& inputMngr = InputManager::getInstance();
+	
 	int wWidth = 500;
 	int wHeight = 500;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
@@ -28,6 +30,7 @@ public:
 	void Lab4Input();
 	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 	Terrain* terrain = nullptr;
+
 
 	float lastX = 250, lastY = 250;
 private:

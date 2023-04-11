@@ -61,8 +61,12 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-	
+
+	luaManager.Expose_Engine();
+	luaManager.RunInitMethod();
+
 	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
+
 
 	//temp inneffient light setup. need a recource manager for shaders.
 	for (int i = 0; i < scene.gameObjects.size(); i++) {
@@ -83,6 +87,7 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
+		luaManager.RunUpdateMethod();
 		Lab4Input();
 		glfwPollEvents();
 

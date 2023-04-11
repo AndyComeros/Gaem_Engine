@@ -1,16 +1,11 @@
 
 
---x = 5;
---go = GameObject.new();
-
---go.name = "bobbithy";
-
 function init()
-
+	print("init lua");
 end
 
 function update()
-
+	print("Update lua");
 end
 
 
