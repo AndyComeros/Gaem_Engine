@@ -53,13 +53,12 @@ int main(void)
 
 	terrain.SetTextureHeights({-20,-10,0,10,100});
 	
-	//scene.gameObjects.push_back(terrain);
+	scene.gameObjects.push_back(terrain);
 	terrain.SetID(1);
 	scene.physics.AddGameObject(terrain);
 	scene.physics.AddRigidBody(terrain);
 	scene.physics.ModRigidBodyType(terrain.GetID(), STAT);
 	scene.physics.AddRigidBodyColliderBox(terrain.GetID(), Vector3(10, 5, 10));
-	GameEngine::Get().terrain = &terrain;
 
 	//TEST ARCADE MACHINE
 	GameObject* arcade = new GameObject();

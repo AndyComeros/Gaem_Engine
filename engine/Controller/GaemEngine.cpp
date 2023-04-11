@@ -61,8 +61,6 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-	
-	scene.camera.position.y = GameEngine::Get().terrain->GetHeight(scene.camera.position.x, scene.camera.position.z) + 3;
 
 	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
 
