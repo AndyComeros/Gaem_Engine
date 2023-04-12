@@ -37,6 +37,27 @@ bool LuaManager::Expose_Engine() {
 		"scale",&GameObject::scale
 		);
 
+	//expose resource manager class
+	Expose_CPPClass<ResourceManager>("ResourceManager",
+		sol::no_constructor,
+		"Get", &ResourceManager::Get,
+
+		"CreateGameObject", &ResourceManager::CreateGameObject,//temp
+
+		"TestPrint", &ResourceManager::PrintTest,
+		"LoadTexture", &ResourceManager::LoadTexture,
+		"LoadModel", &ResourceManager::LoadModel,
+		"LoadShader", &ResourceManager::LoadShader,
+
+		"GetTexture", &ResourceManager::GetTexture,
+		"GetModel", &ResourceManager::GetModel,
+		"GetShader", &ResourceManager::GetShader
+
+		);
+	//expose resource manager singleton
+	luaState["resources"] = &ResourceManager::Get();
+
+
 	//expose scene object
 
 	//expose material
@@ -49,10 +70,8 @@ bool LuaManager::Expose_Engine() {
 
 	//expise camera
 
-	//expose game engine
 
 	return true;
-
 }
 
 

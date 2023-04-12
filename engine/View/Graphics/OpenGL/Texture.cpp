@@ -3,6 +3,7 @@ Texture::Texture() {}
 
 Texture::Texture(const char* fileName) 
 {
+	filePath = fileName;
 	stbi_set_flip_vertically_on_load(true);//bit sussy putting this here
 	imageData = stbi_load(fileName,&width,&height,&numColorChannels,0);
 	GenTexture(imageData,width,height,numColorChannels);
@@ -11,7 +12,6 @@ Texture::Texture(const char* fileName)
 
 Texture::Texture(unsigned char* imgData, int w, int h,int c) {
 	GenTexture(imgData,w,h,c);
-	
 }
 
 Texture::~Texture() {
@@ -40,6 +40,8 @@ int Texture::GetChannelCount() {
 int Texture::GetWidth() { return width; }
 
 int Texture::GetHeight() { return height; }
+
+std::string Texture::GetPath() { return filePath; }
 
 void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
 

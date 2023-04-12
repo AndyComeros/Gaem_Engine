@@ -1,6 +1,7 @@
 #include <sol/sol.hpp>
 
 #include <GameObject.h>
+#include <ResourceManager.h>
 
 class LuaManager
 {
@@ -23,7 +24,7 @@ public:
 			return luaState.get<T>(luaName);
 		}
 		catch (const sol::error& e) {
-			std::cout << "Error could not get data: " << e.what() << std::endl;
+			std::cout << "ERROR: could not get data: " << e.what() << std::endl;
 			return T();
 		}
 	}
@@ -42,6 +43,7 @@ public:
 	void Expose_CPPClass(const char* luaName, Args... args) {
 		luaState.new_usertype<Class>(luaName, args...);
 	}
+
 
 
 private:

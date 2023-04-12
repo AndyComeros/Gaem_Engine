@@ -29,8 +29,6 @@ public:
 	//temporary imput function for lab4
 	void Lab4Input();
 	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-	Terrain* terrain = nullptr;
-
 
 	float lastX = 250, lastY = 250;
 private:
@@ -43,6 +41,6 @@ private:
 
 	GameEngine();
 	~GameEngine();
-	GameEngine(const GameEngine&);
-	GameEngine& operator=(const GameEngine&) {}
+	GameEngine& operator =(const GameEngine&) = delete;
+	GameEngine(const GameEngine&) = delete;
 };
