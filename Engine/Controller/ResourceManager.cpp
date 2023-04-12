@@ -9,7 +9,12 @@ ResourceManager& ResourceManager::Get() {
 
 ResourceManager::ResourceManager(){
 
-	//load defaults
+		//default shader
+	shaders.emplace("default", new Shader("resources/shaders/Default.vert", "resources/shaders/Default.frag", ""));
+		//default terrain shader
+	shaders.emplace("terrain", new Shader("resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", ""));
+		//default texture
+	textures.emplace("default", new Texture("resources/textures/default.png"));
 }
 
 ResourceManager::~ResourceManager(){}
@@ -27,6 +32,19 @@ GameObject ResourceManager::CreateGameObject(std::string objectName, std::string
 		gameObject.shader = GetShader(shaderName);
 
 	return gameObject;
+}
+
+Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, float scaleX, float scaleY, float scaleZ) {
+	
+	Terrain terrain(textures.at(terrainName),scaleX,scaleY,scaleZ);
+	terrain.name = terrainName;
+	terrain.SetID(IDIndex);
+	IDIndex++;
+
+	if(shaders.find("terrain") != shaders.end())
+		terrain.shader = shaders.at("terrain");
+
+	return terrain;
 }
 
 void ResourceManager::LoadTexture(std::string resName, std::string fileName) {

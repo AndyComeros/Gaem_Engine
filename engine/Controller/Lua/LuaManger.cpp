@@ -21,8 +21,8 @@ void LuaManager::RunUpdateMethod(double dt) {
 		update(dt);
 }
 
-bool LuaManager::Expose_Engine() {
-	
+void LuaManager::Expose_Engine() {
+
 	//Get main update loop
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");
@@ -31,10 +31,10 @@ bool LuaManager::Expose_Engine() {
 	//expose game object
 	Expose_CPPClass<GameObject>("GameObject",
 		sol::constructors<GameObject()>(),
-		"name",&GameObject::name,
-		"position",&GameObject::position,
-		"rotation",&GameObject::rotation,
-		"scale",&GameObject::scale
+		"name", &GameObject::name,
+		"position", &GameObject::position,
+		"rotation", &GameObject::rotation,
+		"scale", &GameObject::scale
 		);
 
 	//expose resource manager class
@@ -62,18 +62,56 @@ bool LuaManager::Expose_Engine() {
 		"AddObject", &Scene::AddObject
 		);
 
-	//expose material
+	//expose camera
+	Expose_CPPClass<Camera>("Camera",
+		sol::constructors<Camera()>(),
+		"LookAt", &Camera::LookAt,
+		"position", &Camera::position,
+		"rotation", &Camera::rotation,
+		"aspectRatio", &Camera::aspectRatio,
+		"FOV", &Camera::FOV,
+		"nearPlane", &Camera::nearPlane,
+		"farPlane", &Camera::farPlane
+		);
 
 	//expose lights
-
-	//expose model
+	Expose_CPPClass<PointLight>("PointLight",
+		sol::constructors<PointLight>(),
+		"position", &PointLight::position,
+		"diffuse", &PointLight::diffuse,
+		"quadratic", &PointLight::quadratic
+		);
+	Expose_CPPClass<SpotLight>("SpotLight",
+		sol::constructors<SpotLight>(),
+		"position", &SpotLight::position,
+		"direction", &SpotLight::direction,
+		"maxAngle", &SpotLight::maxAngle,
+		"featherAngle", &SpotLight::featherAngle,
+		"diffuse", &SpotLight::diffuse,
+		"specular", &SpotLight::specular,
+		"constant", &SpotLight::constant,
+		"linear", &SpotLight::linear,
+		"quadratic", &SpotLight::quadratic
+		);
+	Expose_CPPClass<DirectionLight>("DirectionLight",
+		sol::constructors<DirectionLight>(),
+		"direction", &DirectionLight::direction,
+		"diffuse", &DirectionLight::diffuse,
+		"specular", &DirectionLight::specular
+		);
+	Expose_CPPClass<Lights>("Lights",
+		sol::constructors<Lights>(),
+		"ambientLight", &Lights::ambientLight,
+		"pointLights", &Lights::pointLights,
+		"spotLights", &Lights::spotLights,
+		"directionLights", &Lights::directionLights
+		);
 
 	//expose terrain
-
-	//expise camera
-
-
-	return true;
+	Expose_CPPClass<Terrain>("Terrain",
+		sol::constructors<Terrain, Terrain(std::string&, float, float, float)>(),
+		"GetHeight", &Terrain::GetHeight
+		);
 }
 
 

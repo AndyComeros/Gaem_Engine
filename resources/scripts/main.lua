@@ -18,7 +18,9 @@ function init()
 
 	
 	--populate scene
-	scene:AddObject(resources:CreateGameObject("bobbithy", "arcade", ""));
+	go = resources:CreateGameObject("bobbithy", "arcade", "");
+	--go.position.y = 3;
+	scene:AddObject(go);
 
 	
 	print("End Init");

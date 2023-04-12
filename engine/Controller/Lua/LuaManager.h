@@ -14,7 +14,7 @@ public:
 	
 	void RunInitMethod();
 	void RunUpdateMethod(double dt);
-	bool Expose_Engine();
+	void Expose_Engine();
 
 	void LoadScript(const std::string& fileNames);
 	
