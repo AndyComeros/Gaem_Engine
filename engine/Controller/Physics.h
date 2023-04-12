@@ -42,16 +42,13 @@ public:
 	//TODO add collision filtering
 	//TODO add trigger
 	//MAYBE hinge and motor
-
 	//=========RIGIDBODY==============END==
-
 
 	//ray casting
 	//TODO add Ray casting
 
 	//update GO vector
 	void updateGameObjects(std::vector<GameObject>& goStore);
-
 
 	//simulation settings
 	void SetTimeStep(float time);

@@ -55,10 +55,7 @@ int main(void)
 	terrain.SetID(1);
 	terrain.position.y = 0;
 	scene.physics.AddRigidBody(terrain);
-	//int row, col, channel;
-	//unsigned char* hv = stbi_load("resources/textures/heightmap/heightmap2048.png", &row, &col, &channel, 0);
-	//scene.physics.AddRigidBodyColliderHeightMap(terrain, hv , row, col, -10.0f, 10.0f);
-	scene.physics.AddRigidBodyColliderBox(terrain, Vector3(10000, 1, 10000));
+	scene.physics.AddRigidBodyColliderBox(terrain, Vector3(100000, 1, 100000));
 	scene.physics.ModRigidBodyType(terrain, STAT);
 	scene.gameObjects.push_back(terrain);
 
@@ -68,13 +65,12 @@ int main(void)
 	arcade->model_data->SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
 	arcade->position.x = terrain.GetSize() / 2.0;
 	arcade->position.z = terrain.GetSize() / 2.0;
-	arcade->position.y = 1000.0f;//terrain.GetHeight(arcade->position.x, arcade->position.z);
+	arcade->position.y = terrain.GetHeight(arcade->position.x, arcade->position.z);
 	arcade->SetID(2); 
 	scene.physics.AddRigidBody(*arcade);
 	scene.physics.ModRigidBodyType(*arcade, DYNA);
 	scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(1,1,1));
 	scene.gameObjects.push_back(*arcade);
-
 
 	//Setup Camera
 	scene.camera.FOV = 75;

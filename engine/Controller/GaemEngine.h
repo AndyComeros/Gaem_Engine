@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Renderer.h>
-#include "../Controller/InputManager.h"
+#include <InputManager.h>
 #include <Physics.h>
 
 

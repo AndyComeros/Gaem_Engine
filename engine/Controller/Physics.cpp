@@ -151,5 +151,22 @@ void Physics::DebugDisplay()
 	const reactphysics3d::DebugRenderer::DebugLine *line = debugRenderer.getLinesArray();
 	const reactphysics3d::DebugRenderer::DebugTriangle *tri = debugRenderer.getTrianglesArray();
 
+	/*
+	glColor3f(1, 0, 0 );
+	glBegin(GL_LINES);
+	for (int i = 0; i < nLines; ++i) {
+		const reactphysics3d::DebugRenderer::DebugLine& debugLine = line[i];
+		glVertex3f(debugLine.point1.x, debugLine.point1.y, debugLine.point1.z);
+		glVertex3f(debugLine.point2.x, debugLine.point2.y, debugLine.point2.z);
+	}
+	glEnd();
 
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < nTri; ++i) {
+		const reactphysics3d::DebugRenderer::DebugTriangle& debugTri = tri[i];
+		glVertex3f(debugTri.point1.x, debugTri.point1.y, debugTri.point1.z);
+		glVertex3f(debugTri.point2.x, debugTri.point2.y, debugTri.point2.z);
+		glVertex3f(debugTri.point3.x, debugTri.point3.y, debugTri.point3.z);
+	}
+	glEnd();*/
 }

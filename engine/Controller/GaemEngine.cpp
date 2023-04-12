@@ -41,15 +41,8 @@ GameEngine::GameEngine() :
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
 
-	//set defaults for input etc [temp]			should be done by the game
-	inputMngr.AddKey(65);//a
-	inputMngr.AddKey(68);//d
-	inputMngr.AddKey(87);//w
-	inputMngr.AddKey(83);//s
-
-	//set defaults for input etc
-
 	//callbacks
+	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
 	glfwSetFramebufferSizeCallback(window,ResizeCallback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 }
@@ -76,6 +69,10 @@ void GameEngine::Run() {
 	deltaTime = 0.0;
 	prevTime = 0.0;
 
+
+	//[TOREMOVE]  TEMP TEMP REMOVE LATER
+	inputMngr.InputManagerInitActions();
+
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -85,12 +82,11 @@ void GameEngine::Run() {
 
 		scene.physics.StepPhysics();
 		scene.physics.updateGameObjects(scene.gameObjects);
-		scene.camera.position = scene.gameObjects[1].position;
-
-		Lab4Input();
-		glfwPollEvents();
+		//scene.camera.position = scene.gameObjects[1].position;
 
 		inputMngr.KeyActions();
+		//Lab4Input();
+		glfwPollEvents();
 
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);
