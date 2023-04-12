@@ -28,6 +28,14 @@ void LuaManager::Expose_Engine() {
 	update = GetFunction("update");
 	init = GetFunction("init");
 
+	//expose vec3
+	Expose_CPPClass<glm::vec3>("vec3",
+		sol::constructors<glm::vec3()>(),
+		"x", &glm::vec3::x,
+		"y", &glm::vec3::y,
+		"z", &glm::vec3::z
+		);
+
 	//expose game object
 	Expose_CPPClass<GameObject>("GameObject",
 		sol::constructors<GameObject()>(),
@@ -37,12 +45,26 @@ void LuaManager::Expose_Engine() {
 		"scale", &GameObject::scale
 		);
 
+	//expose terrain
+	Expose_CPPClass<Terrain>("Terrain",
+		sol::constructors<Terrain(), Terrain(std::string&, float, float, float)>(),
+		sol::base_classes, sol::bases<GameObject>(),
+		"GetHeight", &Terrain::GetHeight
+		);
+	////expose terrain
+	//Expose_CPPClass<Terrain>("Terrain",
+	//	sol::base_classes, sol::bases<GameObject>(),
+	//	sol::constructors<Terrain(),Terrain(std::string&, float, float, float)>(),
+	//	"GetHeight", &Terrain::GetHeight
+	//	);
+
 	//expose resource manager class
 	Expose_CPPClass<ResourceManager>("ResourceManager",
 		sol::no_constructor,
 		"Get", &ResourceManager::Get,
 
 		"CreateGameObject", &ResourceManager::CreateGameObject,
+		"CreateTerrain", &ResourceManager::CreateTerrain,
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,
 		"LoadShader", &ResourceManager::LoadShader,
@@ -106,28 +128,18 @@ void LuaManager::Expose_Engine() {
 		"spotLights", &Lights::spotLights,
 		"directionLights", &Lights::directionLights
 		);
-
-	//expose terrain
-	Expose_CPPClass<Terrain>("Terrain",
-		sol::constructors<Terrain, Terrain(std::string&, float, float, float)>(),
-		"GetHeight", &Terrain::GetHeight
-		);
 }
 
 
 void LuaManager::LoadScript(const std::string& fileName) {
-
 	try
 	{
-		luaState.script_file(fileName);//loads a file or runs a string of lua code. returns a function result.
+		luaState.script_file(fileName);
 	}
 	catch (const sol::error e)
 	{
 		std::cout << "ERROR: Could not load Loading Script File!" << e.what() << std::endl;
 	}
-	//luaState->load_file(); //returns a lua function that can be executed later.
-	//luaState->do_file();  //runs code as a string or from a file. returns a function result./lower lever ver of script(not recomended...)
-	
 }
 
 sol::function LuaManager::GetFunction(const char* luaName) {
