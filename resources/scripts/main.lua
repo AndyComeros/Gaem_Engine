@@ -27,11 +27,13 @@ function init()
 	
 	--load custom shaders
 	
+	--setup terrain
+	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","rock", "grass"},"specular",1.0,0.1,1.0);
+	terrain:SetTextureHeights({1,2,3});
 
-	
 	--populate scene
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","rock", "grass"},"specular",1.0,0.1,1.0);
+
 	go = resources:CreateGameObject("bobbithy", "arcade", "");
 	go2 = resources:CreateGameObject("bobbithy2", "arcade", "");
 	go.position.y = 3;

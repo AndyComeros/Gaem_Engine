@@ -49,7 +49,8 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPClass<Terrain>("Terrain",
 		sol::constructors<Terrain(), Terrain(std::string&, float, float, float)>(),
 		sol::base_classes, sol::bases<GameObject>(),
-		"GetHeight", &Terrain::GetHeight
+		"GetHeight", &Terrain::GetHeight,
+		"SetTextureHeights",&Terrain::SetTextureHeights
 		);
 
 	//expose resource manager class
