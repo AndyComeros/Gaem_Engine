@@ -1,6 +1,7 @@
 #pragma once
 #include <Graphics/Graphics.h>
 #include <Model.h>
+#include <reactphysics3d/reactphysics3d.h>
 
 class GameObject
 {
@@ -14,12 +15,11 @@ public:
 
 	Model* model_data = nullptr;
 	Shader* shader = nullptr;
+	reactphysics3d::RigidBody* rigidBody = nullptr;
 	std::string name;
 
 	int GetID() { return ID; }
-	void SetID(int id) { ID = id; };
+	void SetID(int id) { ID = id; }
 private:
-
 	unsigned int ID = -1;
-	
 };

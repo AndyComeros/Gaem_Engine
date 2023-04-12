@@ -43,31 +43,6 @@ void Renderer::Draw(Scene& scene) {
 	//set appropriate uniforms.
 	mainShader.SetUniform("wireframe", wireFrame);
 
-	// for gameobject map in physics
-	for (auto it : scene.physics.goStore) 
-	{
-		GameObject obj = it.second; 
-		//set model matrix uniforms
-		glm::mat4 modelMat(1.0f);
-		modelMat = glm::translate(modelMat, obj.position);
-		modelMat = glm::scale(modelMat, obj.scale);
-
-		//x y z rotationss
-		modelMat = glm::rotate(modelMat, glm::radians(obj.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelMat = glm::rotate(modelMat, glm::radians(obj.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-		modelMat = glm::rotate(modelMat, glm::radians(obj.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-
-		if (obj.shader) {
-			obj.shader->SetUniform("model", modelMat);
-			obj.model_data->Render(&scene.camera, obj.shader, true, GL_TRIANGLES);
-		}
-		else {
-			mainShader.SetUniform("model", modelMat);
-			obj.model_data->Render(&scene.camera, &mainShader, true, GL_TRIANGLES);
-		}
-	}
-
-	/*     for gameobject vector in scene
 	for (auto obj : scene.gameObjects) {
 
 		//set model matrix uniforms
@@ -89,8 +64,6 @@ void Renderer::Draw(Scene& scene) {
 			obj.model_data->Render(&scene.camera, &mainShader, true, GL_TRIANGLES);
 		}
 	}
-
-	*/
 
 	//draw skybox
 	if(scene.skybox)

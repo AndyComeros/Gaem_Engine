@@ -84,6 +84,9 @@ void GameEngine::Run() {
 		prevTime = time;
 
 		scene.physics.StepPhysics();
+		scene.physics.updateGameObjects(scene.gameObjects);
+		scene.camera.position = scene.gameObjects[1].position;
+
 		Lab4Input();
 		glfwPollEvents();
 

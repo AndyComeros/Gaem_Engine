@@ -17,6 +17,9 @@ public:
 	int GetChannelCount();
 	int GetWidth();
 	int GetHeight();
+	unsigned char* GetImageData() {
+		return imageData;
+	}
 
 	unsigned int ID;
 private:

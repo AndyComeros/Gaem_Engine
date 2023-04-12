@@ -10,154 +10,101 @@ void Physics::DestroyPhysicsWorld()
 	physicsCommon.destroyPhysicsWorld(world);
 }
 
-void Physics::AddGameObject(GameObject go)
-{
-	std::cout << go.GetID() << std::endl;
-	goStore.emplace(go.GetID(), go);
-}
-
-void Physics::DelGameObject(int id)
-{
-	//delete record
-	auto it = goStore.find(id);
-	goStore.erase(it);
-}
-
-void Physics::AddRigidBody(GameObject go)
+void Physics::AddRigidBody(GameObject &go)
 {
 	Vector3 position(go.position.x, go.position.y, go.position.z);
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
 
-	RigidBody* body = world->createRigidBody(transform);
-	rbStore.emplace(go.GetID(), body);
+	go.rigidBody = world->createRigidBody(transform); 
 }
 
-void Physics::DelRigidBody(int id)
+void Physics::DelRigidBody(GameObject &go)
 {
 	//delete rb from simulation
-	world->destroyRigidBody(rbStore[id]);
-
-	//delete record
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-		rbStore.erase(it);
+	world->destroyRigidBody(go.rigidBody);
 }
 
-void Physics::AddRigidBodyColliderBox(int id, Vector3 scale)
+void Physics::AddRigidBodyColliderBox(GameObject &go, Vector3 scale)
 {
 	BoxShape* shape = physicsCommon.createBoxShape(scale);
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-	{
-		Transform transform = Transform::identity();
+	Transform transform = Transform::identity();
 
-		Collider* collider = it->second->addCollider(shape, transform);
-		colStore.emplace(id, collider);
-	}
+	go.rigidBody->addCollider(shape, transform); 
 }
 
-void Physics::AddRigidBodyColliderSphere(int id, float radius)
+void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius)
 {
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-	{
-		Transform transform = Transform::identity();
+	Transform transform = Transform::identity();
 
-		Collider* collider = it->second->addCollider(shape, transform);
-		colStore.emplace(id, collider);
-	}
+	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderCapsule(int id, float radius ,float height)
+void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height)
 {
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-	{
-		Transform transform = Transform::identity();
+	Transform transform = Transform::identity();
 
-		Collider* collider = it->second->addCollider(shape, transform);
-		colStore.emplace(id, collider);
-	}
+	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderHeightMap(int id, float* heightValues[], int nbRows, int nbCols, float minH, float maxH)
+void Physics::AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH)
 {
 	Vector3 scale = { 1,1,1 };
 	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(nbCols, nbRows, minH, maxH, heightValues, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-	{
-		Transform transform = Transform::identity();
+	Transform transform = Transform::identity();
 
-		Collider* collider = it->second->addCollider(shape, transform);
-		colStore.emplace(id, collider);
+	go.rigidBody->addCollider(shape, transform);
+}
+
+void Physics::ModRigidBodyType(GameObject &go, int type)
+{
+	switch (type)
+	{
+	case KINE:
+		go.rigidBody->setType(BodyType::KINEMATIC);
+		break;
+	case STAT:
+		go.rigidBody->setType(BodyType::STATIC);
+		break;
+	case DYNA:
+		go.rigidBody->setType(BodyType::DYNAMIC);
+		break;
 	}
 }
 
-void Physics::AddColBody(GameObject go)
+void Physics::ModRigidBodyGravity(GameObject &go, bool state)
 {
-	Vector3 position(go.position.x, go.position.y, go.position.z);
-	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
-	Transform transform(position, orientation);
-
-	CollisionBody* body = world->createCollisionBody(transform);
-	cbStore.emplace(go.GetID(), body);
+	go.rigidBody->enableGravity(state);
 }
 
-void Physics::DelColBody(int id)
+void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force)
 {
-	//delete rb from simulation
-	world->destroyCollisionBody(cbStore[id]);
-
-	//delete record
-	auto it = cbStore.find(id);
-	cbStore.erase(it);
+	go.rigidBody->applyLocalForceAtCenterOfMass(force);
 }
 
-void Physics::ModRigidBodyType(int id, int type)
+void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force, Vector3 point)
 {
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
+	go.rigidBody->applyLocalForceAtLocalPosition(force, point);
+}
+
+void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
+{
+	go.rigidBody->applyLocalTorque(torque);
+}
+
+void Physics::updateGameObjects(std::vector<GameObject>& goStore)
+{
+	//UPDATE GO POSITON
+	for (int i = 0; i < goStore.size(); i++) 
 	{
-		if (type == KINE)
-			it->second->setType(BodyType::KINEMATIC);
-		else if (type == STAT)
-			it->second->setType(BodyType::STATIC);
-		else if (type == DYNA)
-			it->second->setType(BodyType::DYNAMIC);
-	}
-}
+		Transform transform = goStore[i].rigidBody->getTransform();
+		Vector3 position = transform.getPosition();
 
-void Physics::ModRigidBodyGravity(int id, bool state)
-{
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-		it->second->enableGravity(state);
-}
-
-void Physics::ApplyRigidBodyForce(int id, Vector3 force)
-{
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-		it->second->applyLocalForceAtCenterOfMass(force);
-}
-
-void Physics::ApplyRigidBodyForce(int id, Vector3 force, Vector3 point)
-{
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-		it->second->applyLocalForceAtLocalPosition(force, point);
-}
-
-void Physics::ApplyRigidBodyTorque(int id, Vector3 torque)
-{
-	auto it = rbStore.find(id);
-	if (it != rbStore.end())
-		it->second->applyLocalTorque(torque);
+		goStore[i].position = glm::vec3(position.x, position.y, position.z);
+	}	
 }
 
 void Physics::SetTimeStep(float time)
@@ -178,46 +125,31 @@ void Physics::StepPhysics()
 	{
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
-		 
 		// Decrease the accumulated time 
 		accumulator -= timeStep;
 	}
 
-	// update stores
-	//UpdateCbStore();
-	UpdateGoStore();
+	if (DispDebug)				// TEMP TEMP TEMP TEMP REMOVE LATER PLS
+		DebugDisplay();
+
 }
 
-void Physics::UpdateCbStore()
+void Physics::DebugDisplay()
 {
-	for (auto it : goStore)
-	{
-		auto ct = cbStore.find(it.first);
-		if (ct != cbStore.end())
-		{
-			GameObject go = it.second;
+	// Enable debug rendering 
+	world->setIsDebugRenderingEnabled(true);
 
-			Vector3 position(go.position.x, go.position.y, go.position.z);
-			Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
-			Transform transform(position, orientation);
+	// Get a reference to the debug renderer 
+	DebugRenderer& debugRenderer = world->getDebugRenderer();
 
-			ct->second->setTransform(transform);
-		}
-	}
-}
+	// Select the contact points and contact normals to be displayed 
+	debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_POINT, true);
+	debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_NORMAL, true);
 
-void Physics::UpdateGoStore()
-{
-	for (auto it : rbStore)
-	{
-		auto gt = goStore.find(it.first);
-		if (gt != goStore.end())
-		{
-			Transform transform = it.second->getTransform();
-			Quaternion q = transform.getOrientation();
+	int nLines = debugRenderer.getNbLines();
+	int nTri = debugRenderer.getNbTriangles();
+	const reactphysics3d::DebugRenderer::DebugLine *line = debugRenderer.getLinesArray();
+	const reactphysics3d::DebugRenderer::DebugTriangle *tri = debugRenderer.getTrianglesArray();
 
-			gt->second.position = react2glm(transform.getPosition());
-			gt->second.rotation = react2glm(transform.getOrientation().getVectorV());
-		}
-	}
+
 }
