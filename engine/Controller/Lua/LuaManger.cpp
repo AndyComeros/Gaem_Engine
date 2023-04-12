@@ -51,12 +51,6 @@ void LuaManager::Expose_Engine() {
 		sol::base_classes, sol::bases<GameObject>(),
 		"GetHeight", &Terrain::GetHeight
 		);
-	////expose terrain
-	//Expose_CPPClass<Terrain>("Terrain",
-	//	sol::base_classes, sol::bases<GameObject>(),
-	//	sol::constructors<Terrain(),Terrain(std::string&, float, float, float)>(),
-	//	"GetHeight", &Terrain::GetHeight
-	//	);
 
 	//expose resource manager class
 	Expose_CPPClass<ResourceManager>("ResourceManager",
@@ -68,20 +62,26 @@ void LuaManager::Expose_Engine() {
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,
 		"LoadShader", &ResourceManager::LoadShader,
+		"LoadCubemap", &ResourceManager::LoadCubemap,
 
 		"GetTexture", &ResourceManager::GetTexture,
 		"GetModel", &ResourceManager::GetModel,
-		"GetShader", &ResourceManager::GetShader
-
+		"GetShader", &ResourceManager::GetShader,
+		"GetCubeMap", &ResourceManager::GetCubeMap
 		);
 	//expose resource manager singleton
 	luaState["resources"] = &ResourceManager::Get();
 
+	//expose skybox
+	Expose_CPPClass<CubeMap>("CubeMap",
+		sol::constructors<CubeMap, CubeMap(std::vector<std::string>&)>()
+		);
 
 	//expose scene object
 	Expose_CPPClass<Scene>("Scene",
 		sol::constructors<Scene()>(),
-		"AddObject", &Scene::AddObject
+		"AddObject", &Scene::AddObject,
+		"SetSkybox", &Scene::SetSkybox
 		);
 
 	//expose camera

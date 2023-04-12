@@ -13,30 +13,31 @@ function init()
 	resources:LoadTexture("specular","resources/textures/tile_Specular.png");
 	
 	--load skybox
+	resources:LoadCubemap("skybox",
+		"resources/textures/skybox/Synthwave2/Right.png",
+		"resources/textures/skybox/Synthwave2/Left.png",
+		"resources/textures/skybox/Synthwave2/Top.png",
+		"resources/textures/skybox/Synthwave2/Bottom.png",
+		"resources/textures/skybox/Synthwave2/Front.png",
+		"resources/textures/skybox/Synthwave2/Back.png"
+	);
 
 	--load models
 	resources:LoadModel("arcade", "resources/models/untitled2022/Arcade.obj","arcade","","");
 	
 	--load custom shaders
-	resources:LoadShader("mainShader","resources/shaders/Default.vert","resources/shaders/Default.frag","");
+	
 
 	
 	--populate scene
+	scene:SetSkybox(resources:GetCubeMap("skybox"));
 	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","rock", "grass"},"specular",1.0,0.1,1.0);
-
 	go = resources:CreateGameObject("bobbithy", "arcade", "");
 	go2 = resources:CreateGameObject("bobbithy2", "arcade", "");
 	go.position.y = 3;
 	scene:AddObject(terrain);
 	scene:AddObject(go);
-	scene:AddObject(go2);
-	
-
-
-
-	print()
-	
-	
+	scene:AddObject(go2);	
 	
 	print("End Init");
 end

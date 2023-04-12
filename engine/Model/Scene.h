@@ -11,7 +11,9 @@ public:
 
 	~Scene();
 
-	void AddObject(GameObject& go);
+	void AddObject(GameObject& gameObject);
+	void SetSkybox(CubeMap* nSkybox);
+
 
 	//all scene data
 	Camera camera;

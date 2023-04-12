@@ -16,10 +16,13 @@ public:
 	void LoadTexture(std::string resName, std::string fileName);
 	void LoadModel	(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName);
 	void LoadShader	(std::string resName, std::string vertPath, std::string fragPath, std::string geomPath);
+	void LoadCubemap(std::string resName, std::string right, std::string left, std::string top, std::string bottom, std::string front, std::string back);
 
+	//right, left, top, bottom, front, back.
 	Texture* GetTexture(std::string resName);
 	Model* GetModel(std::string resName);
 	Shader* GetShader(std::string resName);
+	CubeMap* GetCubeMap(std::string resName);
 
 private:
 
@@ -33,5 +36,6 @@ private:
 	std::map<std::string, Texture*> textures;
 	std::map<std::string, Model*> models;
 	std::map<std::string, Shader*> shaders;
+	std::map<std::string, CubeMap*> cubemaps;
 };
 

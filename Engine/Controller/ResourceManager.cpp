@@ -100,6 +100,18 @@ void ResourceManager::LoadShader(std::string resName, std::string vertPath, std:
 	}
 }
 
+void ResourceManager::LoadCubemap(std::string resName, std::string right, std::string left, std::string top, std::string bottom, std::string front, std::string back) {
+	try
+	{
+		std::vector<std::string> sides({right,left,top,bottom,front,back});
+		cubemaps.emplace(resName, new CubeMap(sides));
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Error: Could not create: " << resName << std::endl;
+	}
+}
+
 Texture* ResourceManager::GetTexture(std::string resName) {
 	Texture* texture;
 	try
@@ -140,4 +152,19 @@ Shader* ResourceManager::GetShader(std::string resName) {
 		shader = nullptr;
 	}
 	return shader;
+}
+
+CubeMap* ResourceManager::GetCubeMap(std::string resName) {
+	CubeMap* cubemap;
+	try
+	{
+		cubemap = cubemaps.at(resName);
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "ERROR: Cubemap: '" << resName << "' does not exist: " << e.what() << std::endl;
+		cubemap = nullptr;
+	}
+	return cubemap;
+
 }

@@ -9,7 +9,7 @@ int main(void)
 {
 	GameEngine::Get();
 
-	std::vector<std::string> textures_faces = {
+	/*std::vector<std::string> textures_faces = {
 		"resources/textures/skybox/Synthwave2/Right.png",
 		"resources/textures/skybox/Synthwave2/Left.png",
 		"resources/textures/skybox/Synthwave2/Top.png",
@@ -17,7 +17,7 @@ int main(void)
 		"resources/textures/skybox/Synthwave2/Front.png",
 		"resources/textures/skybox/Synthwave2/Back.png"
 	};
-	GameEngine::Get().scene.skybox = new CubeMap(textures_faces);
+	GameEngine::Get().scene.skybox = new CubeMap(textures_faces);*/
 
 	//Model arcadeModel("resources/models/untitled2022/Arcade.obj");
 	//arcadeModel.SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
