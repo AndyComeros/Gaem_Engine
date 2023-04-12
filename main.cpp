@@ -19,14 +19,14 @@ int main(void)
 	};
 	GameEngine::Get().scene.skybox = new CubeMap(textures_faces);
 
-	Model arcadeModel("resources/models/untitled2022/Arcade.obj");
-	arcadeModel.SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
+	//Model arcadeModel("resources/models/untitled2022/Arcade.obj");
+	//arcadeModel.SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
 
-	GameObject go;
-	go.model_data = &arcadeModel;
+	//GameObject go;
+	//go.model_data = &arcadeModel;
 
 
-	GameEngine::Get().scene.gameObjects.push_back(go);
+	//GameEngine::Get().scene.gameObjects.push_back(go);
 
 	GameEngine::Get().Run();
 }

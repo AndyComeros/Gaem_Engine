@@ -15,8 +15,9 @@ ResourceManager::ResourceManager(){
 ResourceManager::~ResourceManager(){}
 
 
-GameObject ResourceManager::CreateGameObject(std::string modelName, std::string shaderName) {
+GameObject ResourceManager::CreateGameObject(std::string objectName, std::string modelName, std::string shaderName) {
 	GameObject gameObject;
+	gameObject.name = objectName;
 	gameObject.SetID(IDIndex);
 	IDIndex++;
 
@@ -38,33 +39,19 @@ void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 	}
 }
 
-void ResourceManager::LoadModel(std::string resName, std::string fileName, std::string diffTexPath, std::string emisTexPath, std::string specTexPath) {
+void ResourceManager::LoadModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName) {
 	try
 	{
 		//model
 		models.emplace(resName, Model(fileName.c_str()));
 
-		//diffuse
-		if (textureNames.find(diffTexPath) == textureNames.end()) {
-			textures.emplace(resName + "diffTex",Texture(diffTexPath.c_str()));
-			textureNames.emplace(diffTexPath, resName + "diffTex");
-		}
-		models.at(resName).SetDiffuseTexture(&textures.at(textureNames.at(diffTexPath)));
-		
-		//emissive
-		if (textureNames.find(emisTexPath) == textureNames.end()) {
-			textures.emplace(resName + "emisTex",Texture(emisTexPath.c_str()));
-			textureNames.emplace(emisTexPath, resName + "emisTex");
-		}
-		models.at(resName).SetDiffuseTexture(&textures.at(textureNames.at(emisTexPath)));
-
-		//specular
-		if (textureNames.find(specTexPath) == textureNames.end()) {
-			textures.emplace(resName + "specTex",Texture(specTexPath.c_str()));
-			textureNames.emplace(specTexPath, resName + "specTex");
-		}
-		models.at(resName).SetDiffuseTexture(&textures.at(textureNames.at(specTexPath)));
-
+		//textures
+		if (diffName != "" && textures.find(diffName) != textures.end())
+			models.at(resName).SetDiffuseTexture(&textures.at(diffName));
+		if (emisName != "" && textures.find(emisName) != textures.end())
+			models.at(emisName).SetEmissionTexture(&textures.at(emisName));
+		if (specName != "" && textures.find(specName) != textures.end())
+			models.at(resName).SetSpecularTexture(&textures.at(specName));
 	}
 	catch (const std::exception&)
 	{

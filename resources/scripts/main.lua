@@ -6,6 +6,15 @@ function init()
 	resources:TestPrint("print!");
 	--resources:LoadTexture("resources/textures/tile_specular.png","rock");
 
+	resources:LoadModel("Arcade","resources/models/untitled2022/Arcade.obj",
+	"resources/models/untitled2022/Arcade.png",
+	"resources/models/untitled2022/Arcade.png",
+	"resources/models/untitled2022/Arcade.png"
+	);
+
+
+
+	--resources:CreateGameObject("bobbithy", "resources/models/Arcade.obj", "");
 
 
 	--void LoadTexture(std::string fileName, std::string resName);

@@ -10,10 +10,10 @@ public:
 	
 	static ResourceManager& Get();
 
-	GameObject CreateGameObject(std::string modelName, std::string shaderName);
+	GameObject CreateGameObject(std::string objectName, std::string modelName, std::string shaderName);
 
 	void LoadTexture(std::string resName, std::string fileName);
-	void LoadModel	(std::string resName, std::string fileName, std::string difTexPath, std::string emisTexPath, std::string specTexPath);
+	void LoadModel	(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName);
 	void LoadShader	(std::string resName, std::string vertPath, std::string fragPath, std::string geomPath);
 
 	Texture* GetTexture(std::string resName);
@@ -34,8 +34,5 @@ private:
 	std::map<std::string, Texture> textures;
 	std::map<std::string, Model> models;
 	std::map<std::string, Shader> shaders;
-
-	//links texture names and texture file paths
-	std::map<std::string, std::string> textureNames;
 };
 

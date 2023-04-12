@@ -45,6 +45,7 @@ bool LuaManager::Expose_Engine() {
 		"CreateGameObject", &ResourceManager::CreateGameObject,//temp
 
 		"TestPrint", &ResourceManager::PrintTest,
+		"CreateGameObject", &ResourceManager::CreateGameObject,
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,
 		"LoadShader", &ResourceManager::LoadShader,
