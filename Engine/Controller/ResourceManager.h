@@ -20,8 +20,6 @@ public:
 	Model* GetModel(std::string resName);
 	Shader* GetShader(std::string resName);
 
-	void PrintTest(std::string printME) { std::cout << printME << std::endl; }
-
 private:
 
 	unsigned int IDIndex = 1;
@@ -31,8 +29,8 @@ private:
 	ResourceManager(const ResourceManager&) = delete;
 	ResourceManager& operator = (const ResourceManager&) = delete;
 
-	std::map<std::string, Texture> textures;
-	std::map<std::string, Model> models;
-	std::map<std::string, Shader> shaders;
+	std::map<std::string, Texture*> textures;
+	std::map<std::string, Model*> models;
+	std::map<std::string, Shader*> shaders;
 };
 

@@ -1,7 +1,9 @@
 #include <sol/sol.hpp>
 
+#include <Scene.h>
 #include <GameObject.h>
 #include <ResourceManager.h>
+
 
 class LuaManager
 {
@@ -34,6 +36,11 @@ public:
 		luaState.set(luaName, cppData);
 	}
 
+	template<typename T>
+	void Expose_CPPReference(const char* luaName, T &cppData) {
+		luaState[luaName] = &cppData;
+	}
+
 	template<typename Func, typename... Args>
 	void Expose_CPPFunction(const char* luaName, Func cppFunc, Args... args) {
 		luaState.set_function(luaName, cppFunc, args);
@@ -43,8 +50,6 @@ public:
 	void Expose_CPPClass(const char* luaName, Args... args) {
 		luaState.new_usertype<Class>(luaName, args...);
 	}
-
-
 
 private:
 

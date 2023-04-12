@@ -7,7 +7,7 @@ Renderer::~Renderer() {}
 void Renderer::Init(GLFWwindow* window) {
 
 	mainWindow = window;
-	mainShader = Shader("resources/shaders/Default.vert", "resources/shaders/Default.frag", nullptr);
+	mainShader = Shader("resources/shaders/Default.vert", "resources/shaders/Default.frag", "");
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);

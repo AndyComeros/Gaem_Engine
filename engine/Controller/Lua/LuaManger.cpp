@@ -42,9 +42,6 @@ bool LuaManager::Expose_Engine() {
 		sol::no_constructor,
 		"Get", &ResourceManager::Get,
 
-		"CreateGameObject", &ResourceManager::CreateGameObject,//temp
-
-		"TestPrint", &ResourceManager::PrintTest,
 		"CreateGameObject", &ResourceManager::CreateGameObject,
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,
@@ -60,6 +57,10 @@ bool LuaManager::Expose_Engine() {
 
 
 	//expose scene object
+	Expose_CPPClass<Scene>("Scene",
+		sol::constructors<Scene()>(),
+		"AddObject", &Scene::AddObject
+		);
 
 	//expose material
 

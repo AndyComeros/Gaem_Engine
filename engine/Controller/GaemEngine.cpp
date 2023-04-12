@@ -62,11 +62,13 @@ GameEngine::~GameEngine() {
 //start main loop
 void GameEngine::Run() {
 
+
+	//expose to lua
 	luaManager.Expose_Engine();
+	luaManager.Expose_CPPReference("scene", scene);
 	luaManager.RunInitMethod();
 
 	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
-
 
 	//temp inneffient light setup. need a recource manager for shaders.
 	for (int i = 0; i < scene.gameObjects.size(); i++) {
@@ -79,7 +81,7 @@ void GameEngine::Run() {
 
 	deltaTime = 0.0;
 	prevTime = 0.0;
-
+	
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -119,7 +121,7 @@ void GameEngine::Lab4Input() {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	Camera& cam = GameEngine::Get().scene.camera;
 	glm::vec3 up = { 0,1,0 };
-	float moveSpeed = 100 * GameEngine::Get().DeltaTime();
+	float moveSpeed = 10 * GameEngine::Get().DeltaTime();
 	float lookSpeed = 100 * GameEngine::Get().DeltaTime();
 
 

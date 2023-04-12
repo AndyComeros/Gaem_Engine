@@ -14,17 +14,17 @@ Shader::Shader(const char *vertShader, const char *fragShader, const char* geomS
 	int success;
 	ID = glCreateProgram();
 
-	if (vertShader) { 
+	if (strlen(vertShader) > 0) {
 		vertID = CreateVertexShader(vertShader);
 		glAttachShader(ID, vertID);
 	}
 		
-	if (fragShader) {
+	if (strlen(fragShader) > 0) {
 		unsigned int fragID = CreateFragmentShader(fragShader); 
 		glAttachShader(ID, fragID);
 	}
 	
-	if (geomShader) { 
+	if (strlen(geomShader) > 0) {
 		unsigned int geomID = CreateGeometryShader(geomShader);
 		glAttachShader(ID, geomID);
 	}

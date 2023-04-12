@@ -14,9 +14,7 @@ Model::Model(const char* fileName) {
 	instanceCount = 1;
 }
 
-Model::~Model() {
-	FreeData();
-}
+Model::~Model() {}
 
 Model::Model(const char* fileName, std::vector<glm::mat4> nMatrix) {
 

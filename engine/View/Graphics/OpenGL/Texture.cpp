@@ -15,8 +15,6 @@ Texture::Texture(unsigned char* imgData, int w, int h,int c) {
 }
 
 Texture::~Texture() {
-
-	stbi_image_free(imageData);
 	glDeleteTextures(1,&ID);
 }
 

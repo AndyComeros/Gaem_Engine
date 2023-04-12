@@ -22,7 +22,9 @@ GameObject ResourceManager::CreateGameObject(std::string objectName, std::string
 	IDIndex++;
 
 	gameObject.model_data = GetModel(modelName);
-	gameObject.shader = GetShader(shaderName);
+
+	if(!shaderName.empty())
+		gameObject.shader = GetShader(shaderName);
 
 	return gameObject;
 }
@@ -30,8 +32,7 @@ GameObject ResourceManager::CreateGameObject(std::string objectName, std::string
 void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 	try
 	{
-		textures.emplace(resName, Texture(fileName.c_str()));
-		textureNames.emplace(fileName, resName);
+		textures.emplace(resName, new Texture(fileName.c_str()));
 	}
 	catch (const std::exception&)
 	{
@@ -42,16 +43,20 @@ void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 void ResourceManager::LoadModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName) {
 	try
 	{
-		//model
-		models.emplace(resName, Model(fileName.c_str()));
+		Model* model = new Model(fileName.c_str());
 
 		//textures
-		if (diffName != "" && textures.find(diffName) != textures.end())
-			models.at(resName).SetDiffuseTexture(&textures.at(diffName));
-		if (emisName != "" && textures.find(emisName) != textures.end())
-			models.at(emisName).SetEmissionTexture(&textures.at(emisName));
-		if (specName != "" && textures.find(specName) != textures.end())
-			models.at(resName).SetSpecularTexture(&textures.at(specName));
+		if (textures.find(diffName) != textures.end())
+			model->SetDiffuseTexture(textures.at(diffName));
+		if (textures.find(emisName) != textures.end())
+			model->SetEmissionTexture(textures.at(emisName));
+		if (textures.find(specName) != textures.end())
+			model->SetSpecularTexture(textures.at(specName));
+
+		//model
+		models.emplace(resName, model);
+
+		
 	}
 	catch (const std::exception&)
 	{
@@ -62,7 +67,7 @@ void ResourceManager::LoadModel(std::string resName, std::string fileName, std::
 void ResourceManager::LoadShader(std::string resName, std::string vertPath, std::string fragPath, std::string geomPath) {
 	try
 	{
-		shaders.emplace(resName, Shader(vertPath.c_str(), fragPath.c_str(), geomPath.c_str()));
+		shaders.emplace(resName, new Shader(vertPath.c_str(), fragPath.c_str(), geomPath.c_str()));
 	}
 	catch (const std::exception&)
 	{
@@ -74,11 +79,11 @@ Texture* ResourceManager::GetTexture(std::string resName) {
 	Texture* texture;
 	try
 	{
-		texture = &textures.at(resName);
+		texture = textures.at(resName);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
-		std::cout << "Texture: '" << resName << "' does not exist" << std::endl;
+		std::cout << "ERROR: Texture: '" << resName << "' does not exist: " << e.what() << std::endl;
 		texture = nullptr;
 	}
 	return texture;
@@ -88,11 +93,11 @@ Model* ResourceManager::GetModel(std::string resName) {
 	Model* model;
 	try
 	{
-		model = &models.at(resName);
+		model = models.at(resName);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
-		std::cout << "Model: '" << resName << "' does not exist" << std::endl;
+		std::cout << "ERROR: Model: '" << resName << "' does not exist: " << e.what() << std::endl;
 		model = nullptr;
 	}
 	return model;
@@ -102,11 +107,11 @@ Shader* ResourceManager::GetShader(std::string resName) {
 	Shader* shader;
 	try
 	{
-		shader = &shaders.at(resName);
+		shader = shaders.at(resName);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
-		std::cout << "Shader: '" << resName << "' does not exist" << std::endl;
+		std::cout << "ERROR: Shader: '" << resName << "' does not exist: " << e.what() << std::endl;
 		shader = nullptr;
 	}
 	return shader;

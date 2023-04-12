@@ -11,6 +11,8 @@ public:
 
 	~Scene();
 
+	void AddObject(GameObject& go);
+
 	//all scene data
 	Camera camera;
 	CubeMap* skybox = nullptr;
