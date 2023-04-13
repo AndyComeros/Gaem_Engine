@@ -1,5 +1,6 @@
 #include "InputManager.h"
 
+
 void InputManager::AddKey(int newKey)
 {
 	inputMap.emplace(newKey, false);
@@ -17,34 +18,84 @@ bool InputManager::GetKeyState(int keyCheck)
 		return it->second;
 }
 
-void InputManager::KeyActions()
+void InputManager::KeyActions(float deltatime)
 {
 	for (auto key : inputMap)
 	{
 		if (key.second == true)
-		{			
-				//------------------------------//
-				//  key press action goes here  //
-				//------------------------------//
+		{
+			//------------------------------//
+			//  key press action goes here  //
+			//------------------------------//
 			switch (key.first)
 			{
-				 case GLFW_KEY_W:
-					 break;
-				 case GLFW_KEY_A:  
-					 break;
-				 case GLFW_KEY_S:
-					 break;
-				 case GLFW_KEY_D:
-					 break;
-				 case GLFW_KEY_SPACE:
-					 break;
-				 default:
-					 break;
+			case GLFW_KEY_W:
+				//move player
+				_Player->position.z += 100 * deltatime;
+				_Player->rotation.y = 90.0f;
+				_Camera->CalaulateCamPos(_Player->position);
+				break;
+			case GLFW_KEY_A:
+				_Player->position.x += 100 * deltatime;
+				_Player->rotation.y = 180;
+				_Camera->CalaulateCamPos(_Player->position);
+				break;
+			case GLFW_KEY_S:
+				_Player->position.z -= 100 * deltatime;
+				_Player->rotation.y = -90.0f;
+				_Camera->CalaulateCamPos(_Player->position);
+				break;
+			case GLFW_KEY_D:
+				_Player->position.x -= 100 * deltatime;
+				_Player->rotation.y = 0.0f;
+				_Camera->CalaulateCamPos(_Player->position);
+				break;
+			case GLFW_KEY_C:
+				//causes circle inhertince
+				//GameEngine::Get().renderer.wireFrame = !GameEngine::Get().renderer.wireFrame;
+				break;
+			case GLFW_KEY_SPACE:
+				break;
+			case GLFW_KEY_ESCAPE:
+				glfwSetWindowShouldClose(_Window, true);
+				break;
+			default:
+				break;
 			}
 		}
 	}
 }
 
+
+
+void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos;
+
+	lastX = xpos;
+	lastY = ypos;
+
+	_Camera->ProcessMouseMovement(xoffset, yoffset, _Player->position);
+}
+
+void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	_Camera->Distance -= (float)yoffset;
+	if (_Camera->Distance < 3.0f)
+		_Camera->Distance = 3.0f;
+	if (_Camera->Distance > 45.0f)
+		_Camera->Distance = 45.0f;
+
+	_Camera->CalaulateCamPos(_Player->position);
+}
 
 void InputManager::GlfwKeyCallbackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods)
 {

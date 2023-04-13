@@ -46,12 +46,19 @@ GameEngine::GameEngine() :
 	inputMngr.AddKey(68);//d
 	inputMngr.AddKey(87);//w
 	inputMngr.AddKey(83);//s
+	inputMngr.AddKey(67);//c
+	inputMngr.AddKey(256);//escape
 
+	inputMngr.setCamera(scene.camera);
+	inputMngr.setWindow(window);
 	//set defaults for input etc
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window,ResizeCallback);
-	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetCursorPosCallback(window, inputMngr.GlfwMouseCallback);
+	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
+	glfwSetScrollCallback(window, inputMngr.GlfwScrollCallback);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 GameEngine::~GameEngine() {
@@ -63,9 +70,9 @@ GameEngine::~GameEngine() {
 void GameEngine::Run() {
 	
 	scene.camera.position.y = GameEngine::Get().terrain->GetHeight(scene.camera.position.x, scene.camera.position.z) + 3;
-
 	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
-
+	//temp should be set with to the player by another means
+	inputMngr.setPlayer(&scene.gameObjects[2]);
 	//temp inneffient light setup. need a recource manager for shaders.
 	for (int i = 0; i < scene.gameObjects.size(); i++) {
 		if (scene.gameObjects[i].shader) {
@@ -86,10 +93,9 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
-		Lab4Input();
 		glfwPollEvents();
 
-		inputMngr.KeyActions();
+		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);
@@ -110,63 +116,4 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	s.camera.aspectRatio = (float)width / (float)height;
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s);
-}
-
-
-void GameEngine::Lab4Input() {
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	Camera& cam = GameEngine::Get().scene.camera;
-	glm::vec3 up = { 0,1,0 };
-	float moveSpeed = 100 * GameEngine::Get().DeltaTime();
-	float lookSpeed = 100 * GameEngine::Get().DeltaTime();
-
-
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		cam.position += glm::normalize(glm::cross(up, cam.right)) * moveSpeed;
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		cam.position -= glm::normalize(glm::cross(up, cam.right)) * moveSpeed;
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		cam.position -= cam.right * moveSpeed;
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		cam.position += cam.right * moveSpeed;
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		cam.position += up * moveSpeed;
-	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-		cam.position -= up * moveSpeed;
-
-	//if escape pressed, close context window
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-	{
-		glfwSetWindowShouldClose(window, true);
-	}
-
-	//cam.position.y = GameEngine::Get().terrain->GetHeight(cam.position.x,cam.position.z) + 3;
-	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		GameEngine::Get().renderer.wireFrame = !GameEngine::Get().renderer.wireFrame;
-
-}
-
-
-float lastX = 250, lastY = 250;
-void GameEngine::mouse_callback(GLFWwindow* window, double xpos, double ypos)
-{
-	Camera& cam = GameEngine::Get().scene.camera;
-
-	float xoffset = xpos - GameEngine::Get().lastX;
-	float yoffset = GameEngine::Get().lastY - ypos;
-	GameEngine::Get().lastX = xpos;
-	GameEngine::Get().lastY = ypos;
-
-	float sensitivity = 0.1f;
-	xoffset *= (sensitivity);
-	yoffset *= (sensitivity);
-
-	cam.rotation.y += xoffset;
-	cam.rotation.x += yoffset;
-
-	if (cam.rotation.x > 89.0f)
-		cam.rotation.x = 89.0f;
-	if (cam.rotation.x < -89.0f)
-		cam.rotation.x = -89.0f;
-
 }
