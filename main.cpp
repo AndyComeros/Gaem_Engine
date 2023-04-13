@@ -31,7 +31,7 @@ int main(void)
 	Terrain terrain("resources/textures/heightmap/heightmap2048.png",10,5,10);
 	terrain.SetTextureScale(5);
 
-	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", nullptr);
+	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", "");
 	terrain.shader = terrainShader;
 	
 	terrain.SetTextures(

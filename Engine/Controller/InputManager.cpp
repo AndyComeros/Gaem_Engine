@@ -1,29 +1,6 @@
 #include "InputManager.h"
 #include <GaemEngine.h>
 
-void InputManager::InputManagerInitActions()
-
-void InputManager::AddKey(int newKey)
-
-{
-	/*
-	keyBinding init = { -1, false };
-	inputMap.emplace("forward", init);
-	inputMap.emplace("left", init);
-	inputMap.emplace("right", init);
-	inputMap.emplace("backward", init);
-	inputMap.emplace("shoot", init);
-	*/
-	inputMap.emplace("forward", keyBinding{GLFW_KEY_W, false});
-	inputMap.emplace("left", keyBinding{ GLFW_KEY_A, false });
-	inputMap.emplace("right", keyBinding{ GLFW_KEY_D, false });
-	inputMap.emplace("backward", keyBinding{ GLFW_KEY_S, false });
-	inputMap.emplace("up", keyBinding{ GLFW_KEY_E, false });
-	inputMap.emplace("down", keyBinding{ GLFW_KEY_Q, false });
-	inputMap.emplace("shoot", keyBinding{ GLFW_KEY_SPACE, false });
-	inputMap.emplace("wireframemode", keyBinding{ GLFW_KEY_C, false });
-	inputMap.emplace("quit", keyBinding{ GLFW_KEY_ESCAPE, false });
-}
 
 void InputManager::BindKey(std::string action, int newKey)
 {

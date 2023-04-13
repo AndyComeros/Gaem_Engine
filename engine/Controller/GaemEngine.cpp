@@ -41,14 +41,6 @@ GameEngine::GameEngine() :
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
 
-	//set defaults for input etc [temp]			should be done by the game
-	inputMngr.AddKey(65);//a
-	inputMngr.AddKey(68);//d
-	inputMngr.AddKey(87);//w
-	inputMngr.AddKey(83);//s
-	inputMngr.AddKey(67);//c
-	inputMngr.AddKey(256);//escape
-
 	inputMngr.setCamera(scene.camera);
 	inputMngr.setWindow(window);
 	//set defaults for input etc

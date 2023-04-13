@@ -99,13 +99,14 @@ void Physics::updateGameObjects(std::vector<GameObject>& goStore)
 	//UPDATE GO POSITON
 	for (int i = 0; i < goStore.size(); i++) 
 	{
-		Transform transform = goStore[i].rigidBody->getTransform();
-		Vector3 position = transform.getPosition();
+		if (goStore[i].rigidBody) {
+			Transform transform = goStore[i].rigidBody->getTransform();
+			Vector3 position = transform.getPosition();
 
-		goStore[i].position = glm::vec3(position.x, position.y, position.z);
+			goStore[i].position = glm::vec3(position.x, position.y, position.z);
+		}	
 	}	
 }
-
 void Physics::SetTimeStep(float time)
 {
 	timeStep = 1.0f / time;
