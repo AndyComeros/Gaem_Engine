@@ -25,6 +25,13 @@
     <ClCompile Include="Engine\Controller\InputManager.cpp" />
     <ClCompile Include="Engine\Controller\Physics.cpp" />
     <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -54,6 +61,16 @@
     <ClInclude Include="Engine\Controller\InputManager.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
+    <ClInclude Include="Engine\View\GUIRenderer.h" />
+    <ClInclude Include="dependencies\include\imgui\imconfig.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_internal.h" />
+    <ClInclude Include="dependencies\include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="dependencies\include\imgui\imstb_textedit.h" />
+    <ClInclude Include="dependencies\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_impl_opengl3_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
@@ -72,6 +89,7 @@
     <None Include="lua54.dll" />
     <None Include="dependencies\lib\lua54.dll" />
     <None Include="dependencies\lib\glfw3.dll" />
+    <None Include="dependencies\include\imgui\new 1.txt.bak" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />
@@ -80,5 +98,8 @@
     <Library Include="dependencies\lib\glfw3dll.lib" />
     <Library Include="liblua54.a" />
     <Library Include="dependencies\lib\reactphysics3d.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dependencies\include\imgui\new 1.txt" />
   </ItemGroup>
 </Project>

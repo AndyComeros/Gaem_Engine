@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Renderer.h>
+#include <GUIRenderer.h>
 #include <InputManager.h>
 #include <Physics.h>
 #include <Lua/LuaManager.h>
@@ -24,6 +25,7 @@ public:
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
 
 	Renderer renderer;
+	GUIRenderer guirenderer;
 	LuaManager luaManager;
 	InputManager& inputMngr = InputManager::getInstance();
 
