@@ -4,7 +4,6 @@
 #include <map>
 #include <iostream>
 #include <string>
-
 #include <GLFW/glfw3.h>
 #include <Camera.h>
 #include <GameObject.h>

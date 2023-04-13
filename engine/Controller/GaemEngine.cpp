@@ -37,6 +37,7 @@ GameEngine::GameEngine() :
 
 	//init renderer
 	renderer.Init(window);
+	guirenderer.Init(window);
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
@@ -66,13 +67,15 @@ void GameEngine::Run() {
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("scene", scene);
 	luaManager.RunInitMethod();
-
+	
+	//set light uniforms
 	auto it = ResourceManager::Get().ShaderBegin();
 	auto end = ResourceManager::Get().ShaderEnd();
 	for (it; it != end; it++) {
 		std::cout << "Set shader: " << it->first << std::endl;
 		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
+
 
 	isRunning = true;
 
@@ -86,17 +89,16 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
-		scene.physics.updateGameObjects(scene.gameObjects);
-		scene.physics.StepPhysics();
-		renderer.Draw(scene);
-		scene.physics.DebugDisplay(&scene.camera, ResourceManager::Get().GetShader("physics"));
-
-		luaManager.RunUpdateMethod(deltaTime);
 		glfwPollEvents();
 
-		
+		scene.physics.UpdateGameObjects(scene.gameObjects);
+		scene.physics.StepPhysics();
+		luaManager.RunUpdateMethod(deltaTime);
+
+		renderer.Draw(scene);
+		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
+		guirenderer.Draw();
 		glfwSwapBuffers(window);
-		
 	}
 
 	//cleanup

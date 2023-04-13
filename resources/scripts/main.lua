@@ -1,9 +1,7 @@
 
 
 function init()
-	print("init lua");
-
-	
+	print("init lua");	
 	
 	print("End Init");
 end

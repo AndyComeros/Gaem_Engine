@@ -12,6 +12,9 @@ using namespace reactphysics3d;
 class Physics
 {
 public:
+	Physics();
+	~Physics();
+
 	void CreatePhysicsWorld();
 	void DestroyPhysicsWorld();
 
@@ -49,7 +52,7 @@ public:
 	//TODO add Ray casting
 
 	//update GO vector
-	void updateGameObjects(std::vector<GameObject>& goStore);
+	void UpdateGameObjects(std::vector<GameObject>& goStore);
 
 	//simulation settings
 	void SetTimeStep(float time);
@@ -58,12 +61,12 @@ public:
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
 	void ToggleDebugDisplay() { 
-		DispDebug = !DispDebug; 
-		world->setIsDebugRenderingEnabled(DispDebug);
+		isDebug = !isDebug; 
+		world->setIsDebugRenderingEnabled(isDebug);
 	}
 
 	//display debug 
-	void DebugDisplay(Camera* cam, Shader* shader);
+	void DrawDebug(Camera* cam, Shader* shader);
 
 private:
 	//physics factory and world
@@ -78,7 +81,7 @@ private:
 	float previousFrameTime = 0.0f;
 	float mDeltaTime = 0.0f;
 
-	bool DispDebug = false;
+	bool isDebug = false;
 
 
 

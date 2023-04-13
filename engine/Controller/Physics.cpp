@@ -1,5 +1,13 @@
 #include <Physics.h>
 
+Physics::Physics() {
+	CreatePhysicsWorld();
+}
+
+Physics::~Physics() {
+	DestroyPhysicsWorld();
+}
+
 void Physics::CreatePhysicsWorld()
 {
 	world = physicsCommon.createPhysicsWorld();
@@ -94,7 +102,7 @@ void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
 	go.rigidBody->applyLocalTorque(torque);
 }
 
-void Physics::updateGameObjects(std::vector<GameObject>& goStore)
+void Physics::UpdateGameObjects(std::vector<GameObject>& goStore)
 {
 	//UPDATE GO POSITON
 	for (int i = 0; i < goStore.size(); i++) 
@@ -121,7 +129,7 @@ void Physics::StepPhysics()
 	accumulator += mDeltaTime;
 
 	// While there is enough accumulated time to take one or several physics steps 
-	while (accumulator >= timeStep)
+	while (accumulator >= timeStep && timeStep > 0)
 	{
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
@@ -132,9 +140,9 @@ void Physics::StepPhysics()
 }
 
 
-void Physics::DebugDisplay(Camera* cam, Shader* shader)
+void Physics::DrawDebug(Camera* cam, Shader* shader)
 {
-	if (DispDebug) {
+	if (isDebug) {
 		// Enable debug rendering 
 		world->setIsDebugRenderingEnabled(true);
 		// Get a reference to the debug renderer 
