@@ -24,6 +24,18 @@ public:
 	Shader* GetShader(std::string resName);
 	CubeMap* GetCubeMap(std::string resName);
 
+
+	auto TextureBegin() { return textures.begin(); }
+	auto TextureEnd() { return textures.end(); }
+						
+	auto ModelBegin() { return models.begin(); }
+	auto ModelEnd() { return models.end(); }
+						
+	auto ShaderBegin() { return shaders.begin(); }
+	auto ShaderEnd() { return shaders.end(); }
+						
+	auto CubeMapBegin() { return cubemaps.begin(); }
+	auto CubeMapEnd() { return cubemaps.end(); }
 private:
 
 	unsigned int IDIndex = 1;

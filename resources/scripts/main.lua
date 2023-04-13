@@ -3,7 +3,6 @@
 function init()
 	print("init lua");
 
-
 	--load textures
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
@@ -27,16 +26,33 @@ function init()
 	
 	--load custom shaders
 	
+
 	--setup terrain
 	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","rock", "grass"},"specular",1.0,0.1,1.0);
 	terrain:SetTextureHeights({1,2,3});
 
-	--populate scene
-	scene:SetSkybox(resources:GetCubeMap("skybox"));
+	--setup lighting
+	lighting = {
+	-- ambient light
+		{0.1,0.1,0.1} ,
 
+	--point lights
+		{},
+	--spot lights
+		{},
+	--directional lights
+		{}
+	
+	};
+
+	--scene:AddLights(lighting);
+
+	--populate scene
 	go = resources:CreateGameObject("bobbithy", "arcade", "");
 	go2 = resources:CreateGameObject("bobbithy2", "arcade", "");
-	go.position.y = 3;
+
+
+	scene:SetSkybox(resources:GetCubeMap("skybox"));
 	scene:AddObject(terrain);
 	scene:AddObject(go);
 	scene:AddObject(go2);	

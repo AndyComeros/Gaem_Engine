@@ -62,19 +62,16 @@ GameEngine::~GameEngine() {
 //start main loop
 void GameEngine::Run() {
 
-
 	//expose to lua
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("scene", scene);
 	luaManager.RunInitMethod();
 
-	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
-
-	//temp inneffient light setup. need a recource manager for shaders.
-	for (int i = 0; i < scene.gameObjects.size(); i++) {
-		if (scene.gameObjects[i].shader) {
-			Renderer::SetLightUniforms(scene.lights, *scene.gameObjects[i].shader);
-		}
+	auto it = ResourceManager::Get().ShaderBegin();
+	auto end = ResourceManager::Get().ShaderEnd();
+	for (it; it != end; it++) {
+		std::cout << "Set shader: " << it->first << std::endl;
+		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
 
 	isRunning = true;

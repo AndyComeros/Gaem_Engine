@@ -28,8 +28,12 @@ GameObject ResourceManager::CreateGameObject(std::string objectName, std::string
 
 	gameObject.model_data = GetModel(modelName);
 
-	if(!shaderName.empty())
+	if (!shaderName.empty()) {
 		gameObject.shader = GetShader(shaderName);
+	}
+	else if (shaders.find("default") != shaders.end()) {
+		gameObject.shader = shaders.at("default");
+	}
 
 	return gameObject;
 }

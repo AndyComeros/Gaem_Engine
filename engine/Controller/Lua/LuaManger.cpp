@@ -30,7 +30,7 @@ void LuaManager::Expose_Engine() {
 
 	//expose vec3
 	Expose_CPPClass<glm::vec3>("vec3",
-		sol::constructors<glm::vec3()>(),
+		sol::constructors<glm::vec3(), glm::vec3(float,float,float)>(),
 		"x", &glm::vec3::x,
 		"y", &glm::vec3::y,
 		"z", &glm::vec3::z
@@ -82,7 +82,9 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPClass<Scene>("Scene",
 		sol::constructors<Scene()>(),
 		"AddObject", &Scene::AddObject,
-		"SetSkybox", &Scene::SetSkybox
+		"AddLights", &Scene::AddLights,
+		"SetSkybox", &Scene::SetSkybox,
+		"GetCamera", &Scene::GetCamera
 		);
 
 	//expose camera
