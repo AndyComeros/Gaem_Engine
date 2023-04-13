@@ -82,6 +82,10 @@ struct Lights {
 	std::vector<SpotLight> spot;
 	std::vector<DirectionLight> direction;
 
+	void SetAmbient(float r, float g, float b){
+		ambient = { r,g,b };
+	}
+
 	void AddDirectionLight(const glm::vec3& ndirection, const glm::vec3& ndiffuse, const glm::vec3& nspecular) {
 		DirectionLight ndir(ndirection, ndiffuse, nspecular);
 		direction.push_back(ndir);

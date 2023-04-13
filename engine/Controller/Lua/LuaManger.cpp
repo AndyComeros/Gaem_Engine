@@ -50,7 +50,9 @@ void LuaManager::Expose_Engine() {
 		sol::constructors<Terrain(), Terrain(std::string&, float, float, float)>(),
 		sol::base_classes, sol::bases<GameObject>(),
 		"GetHeight", &Terrain::GetHeight,
-		"SetTextureHeights",&Terrain::SetTextureHeights
+		"SetTextureHeights",&Terrain::SetTextureHeights,
+		"GetSize",&Terrain::GetSize,
+		"SetTextureScale",&Terrain::SetTextureScale
 		);
 
 	//expose resource manager class
@@ -131,6 +133,7 @@ void LuaManager::Expose_Engine() {
 		"point", &Lights::point,
 		"spot", &Lights::spot,
 		"direction", &Lights::direction,
+		"SetAmbient", &Lights::SetAmbient,
 		"AddDirectionLight", &Lights::AddDirectionLight,
 		"AddPointLight", &Lights::AddPointLight,
 		"AddSpotLight", &Lights::AddSpotLight
