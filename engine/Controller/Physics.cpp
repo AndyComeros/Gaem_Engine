@@ -10,120 +10,100 @@ void Physics::DestroyPhysicsWorld()
 	physicsCommon.destroyPhysicsWorld(world);
 }
 
-void Physics::AddRigidBody()
-{
-	Vector3 position(0, 20, 0);
-	Quaternion orientation = Quaternion::identity();
-	Transform transform(position, orientation);
-
-	RigidBody* body = world->createRigidBody(transform);
-	rbStore.insert(std::make_pair(-1, body));
-}
-
-void Physics::AddRigidBody(GameObject go)
+void Physics::AddRigidBody(GameObject &go)
 {
 	Vector3 position(go.position.x, go.position.y, go.position.z);
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
-
-	RigidBody* body = world->createRigidBody(transform);
-	rbStore.emplace(go.GetID(), body);
+	go.rigidBody = world->createRigidBody(transform); 
 }
 
-void Physics::DelRigidBody(int id)
+void Physics::DelRigidBody(GameObject &go)
 {
 	//delete rb from simulation
-	world->destroyRigidBody(rbStore[id]);
-
-	//delete record
-	auto it = rbStore.find(id);
-	rbStore.erase(it);
+	world->destroyRigidBody(go.rigidBody);
 }
 
-void Physics::AddRigidBodyColliderBox(int id, Vector3 scale)
+void Physics::AddRigidBodyColliderBox(GameObject &go, Vector3 scale)
 {
 	BoxShape* shape = physicsCommon.createBoxShape(scale);
-	auto it = rbStore.find(id);
 	Transform transform = Transform::identity();
 
-	Collider* collider = it->second->addCollider(shape, transform);
-	colStore.emplace(id, collider);
+	go.rigidBody->addCollider(shape, transform); 
 }
 
-void Physics::AddRigidBodyColliderSphere(int id, float radius)
+void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius)
 {
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
-	auto it = rbStore.find(id);
 	Transform transform = Transform::identity();
 
-	Collider* collider = it->second->addCollider(shape, transform);
-	colStore.emplace(id, collider);
+	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderCapsule(int id, float radius ,float height)
+void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height)
 {
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
-	auto it = rbStore.find(id);
 	Transform transform = Transform::identity();
 
-	Collider* collider = it->second->addCollider(shape, transform);
-	colStore.emplace(id, collider);
+	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddColBody(GameObject go)
+void Physics::AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH)
 {
-	Vector3 position(go.position.x, go.position.y, go.position.z);
-	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
-	Transform transform(position, orientation);
+	Vector3 scale = { 1,1,1 };
+	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(nbCols, nbRows, minH, maxH, heightValues, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 
-	CollisionBody* body = world->createCollisionBody(transform);
-	cbStore.emplace(go.GetID(), body);
+	Transform transform = Transform::identity();
+
+	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::DelColBody(int id)
+void Physics::ModRigidBodyType(GameObject &go, int type)
 {
-	//delete rb from simulation
-	world->destroyCollisionBody(cbStore[id]);
-
-	//delete record
-	auto it = cbStore.find(id);
-	cbStore.erase(it);
+	switch (type)
+	{
+	case KINE:
+		go.rigidBody->setType(BodyType::KINEMATIC);
+		break;
+	case STAT:
+		go.rigidBody->setType(BodyType::STATIC);
+		break;
+	case DYNA:
+		go.rigidBody->setType(BodyType::DYNAMIC);
+		break;
+	}
 }
 
-void Physics::ModRigidBodyType(int id, int type)
+void Physics::ModRigidBodyGravity(GameObject &go, bool state)
 {
-	auto it = rbStore.find(id);
-
-	if (type == KINE)
-		it->second->setType(BodyType::KINEMATIC);
-	else if (type == STAT)
-		it->second->setType(BodyType::STATIC);
-	else if (type == DYNA)
-		it->second->setType(BodyType::DYNAMIC);
+	go.rigidBody->enableGravity(state);
 }
 
-void Physics::ModRigidBodyGravity(int id, bool state)
+void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force)
 {
-	auto it = rbStore.find(id);
-	it->second->enableGravity(state);
+	go.rigidBody->applyLocalForceAtCenterOfMass(force);
 }
 
-void Physics::ApplyRigidBodyForce(int id, Vector3 force)
+void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force, Vector3 point)
 {
-	auto it = rbStore.find(id);
-	it->second->applyLocalForceAtCenterOfMass(force);
+	go.rigidBody->applyLocalForceAtLocalPosition(force, point);
 }
 
-void Physics::ApplyRigidBodyForce(int id, Vector3 force, Vector3 point)
+void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
 {
-	auto it = rbStore.find(id);
-	it->second->applyLocalForceAtLocalPosition(force, point);
+	go.rigidBody->applyLocalTorque(torque);
 }
 
-void Physics::ApplyRigidBodyTorque(int id, Vector3 torque)
+void Physics::updateGameObjects(std::vector<GameObject>& goStore)
 {
-	auto it = rbStore.find(id);
-	it->second->applyLocalTorque(torque);
+	//UPDATE GO POSITON
+	for (int i = 0; i < goStore.size(); i++) 
+	{
+		Transform transform = goStore[i].rigidBody->getTransform();
+		Vector3 position = transform.getPosition();
+
+		goStore[i].position = glm::vec3(position.x, position.y, position.z);
+	}	
 }
 
 void Physics::SetTimeStep(float time)
@@ -133,57 +113,59 @@ void Physics::SetTimeStep(float time)
 
 void Physics::StepPhysics()
 {
-	// Get the current system time 
+	// timer
 	long double currentFrameTime = glfwGetTime();
-
-	// Compute the time difference between the two frames 
-	long double deltaTime = currentFrameTime - previousFrameTime;
-
-	// Update the previous time 
+	mDeltaTime = currentFrameTime - previousFrameTime;
 	previousFrameTime = currentFrameTime;
-
-	// Add the time difference in the accumulator 
 	accumulator += mDeltaTime;
 
-	// While there is enough accumulated time to take 
-	// one or several physics steps 
-	while (accumulator >= timeStep) {
-
+	// While there is enough accumulated time to take one or several physics steps 
+	while (accumulator >= timeStep)
+	{
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
-
 		// Decrease the accumulated time 
 		accumulator -= timeStep;
-
-		// Move collision bodies
-		UpdateCbStore();
 	}
+
+	if (DispDebug)				// TEMP TEMP TEMP TEMP REMOVE LATER PLS
+		DebugDisplay();
+
 }
 
-void Physics::UpdateCbStore()
+void Physics::DebugDisplay()
 {
-	for (auto it : goStore)
-	{
-		auto ct = cbStore.find(it.first);
-		GameObject go = it.second;
+	// Enable debug rendering 
+	world->setIsDebugRenderingEnabled(true);
 
-		Vector3 position(go.position.x, go.position.y, go.position.z);
-		Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
-		Transform transform(position, orientation);
+	// Get a reference to the debug renderer 
+	DebugRenderer& debugRenderer = world->getDebugRenderer();
 
-		ct->second->setTransform(transform);
+	// Select the contact points and contact normals to be displayed 
+	debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_POINT, true);
+	debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_NORMAL, true);
+
+	int nLines = debugRenderer.getNbLines();
+	int nTri = debugRenderer.getNbTriangles();
+	const reactphysics3d::DebugRenderer::DebugLine *line = debugRenderer.getLinesArray();
+	const reactphysics3d::DebugRenderer::DebugTriangle *tri = debugRenderer.getTrianglesArray();
+
+	/*
+	glColor3f(1, 0, 0 );
+	glBegin(GL_LINES);
+	for (int i = 0; i < nLines; ++i) {
+		const reactphysics3d::DebugRenderer::DebugLine& debugLine = line[i];
+		glVertex3f(debugLine.point1.x, debugLine.point1.y, debugLine.point1.z);
+		glVertex3f(debugLine.point2.x, debugLine.point2.y, debugLine.point2.z);
 	}
-}
+	glEnd();
 
-void Physics::UpdateGoStore()
-{
-	for (auto it : rbStore)
-	{
-		auto gt = goStore.find(it.first);
-		Transform transform = it.second->getTransform();
-		Quaternion q = transform.getOrientation();
-		
-		gt->second.position = react2glm(transform.getPosition());
-		gt->second.rotation = react2glm(transform.getOrientation().getVectorV());
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < nTri; ++i) {
+		const reactphysics3d::DebugRenderer::DebugTriangle& debugTri = tri[i];
+		glVertex3f(debugTri.point1.x, debugTri.point1.y, debugTri.point1.z);
+		glVertex3f(debugTri.point2.x, debugTri.point2.y, debugTri.point2.z);
+		glVertex3f(debugTri.point3.x, debugTri.point3.y, debugTri.point3.z);
 	}
+	glEnd();*/
 }

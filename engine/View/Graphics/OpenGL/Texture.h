@@ -17,6 +17,11 @@ public:
 	int GetChannelCount();
 	int GetWidth();
 	int GetHeight();
+  
+	unsigned char* GetImageData() {
+		return imageData;
+	}
+  
 	std::string GetPath();
 
 	unsigned int ID;

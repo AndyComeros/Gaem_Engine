@@ -54,6 +54,7 @@ GameEngine::GameEngine() :
 	//set defaults for input etc
 
 	//callbacks
+	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
 	glfwSetFramebufferSizeCallback(window,ResizeCallback);
 	glfwSetCursorPosCallback(window, inputMngr.GlfwMouseCallback);
 	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
@@ -85,18 +86,19 @@ void GameEngine::Run() {
 
 	deltaTime = 0.0;
 	prevTime = 0.0;
-	
+
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
 		float time = glfwGetTime();
 		deltaTime = time - prevTime;
 		prevTime = time;
-    
+
+		scene.physics.StepPhysics();
+		scene.physics.updateGameObjects(scene.gameObjects);
+
 		luaManager.RunUpdateMethod(deltaTime);
 		glfwPollEvents();
-
-		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene);
 		glfwSwapBuffers(window);

@@ -69,6 +69,7 @@
     <None Include="resources\shaders\Default.vert" />
     <None Include="resources\shaders\Depth.frag" />
     <None Include="resources\shaders\Terrain\Terrain.frag" />
+    <None Include="lua54.dll" />
     <None Include="dependencies\lib\lua54.dll" />
     <None Include="dependencies\lib\glfw3.dll" />
   </ItemGroup>
@@ -77,6 +78,7 @@
     <Library Include="dependencies\lib\glfw3.lib" />
     <Library Include="dependencies\lib\glfw3_mt.lib" />
     <Library Include="dependencies\lib\glfw3dll.lib" />
+    <Library Include="liblua54.a" />
     <Library Include="dependencies\lib\reactphysics3d.lib" />
   </ItemGroup>
 </Project>

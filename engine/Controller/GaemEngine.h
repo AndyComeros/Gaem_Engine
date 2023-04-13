@@ -2,6 +2,7 @@
 
 #include <Renderer.h>
 #include <InputManager.h>
+#include <Physics.h>
 #include <Lua/LuaManager.h>
 
 //class used to manage the engine itself, run main loop, contains setup etc
@@ -18,16 +19,14 @@ public:
 	Scene scene;
 	GLFWwindow* window;
 
-	Renderer renderer;
-	LuaManager luaManager;
-
-	InputManager& inputMngr = InputManager::getInstance();
-	
-	int wWidth = 500;
-	int wHeight = 500;
+	int wWidth = 1920;
+	int wHeight = 1080;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
 
-	float lastX = 250, lastY = 250;
+	Renderer renderer;
+	LuaManager luaManager;
+	InputManager& inputMngr = InputManager::getInstance();
+
 private:
 
 	double deltaTime;
