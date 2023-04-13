@@ -3,6 +3,7 @@
 #include <Renderer.h>
 #include <GUIRenderer.h>
 #include <InputManager.h>
+#include <Physics.h>
 #include <Lua/LuaManager.h>
 
 //class used to manage the engine itself, run main loop, contains setup etc
@@ -19,20 +20,15 @@ public:
 	Scene scene;
 	GLFWwindow* window;
 
+	int wWidth = 1920;
+	int wHeight = 1080;
+	static void ResizeCallback(GLFWwindow* window, int width, int height);
+
 	Renderer renderer;
 	GUIRenderer guirenderer;
 	LuaManager luaManager;
-
 	InputManager& inputMngr = InputManager::getInstance();
-	
-	int wWidth = 500;
-	int wHeight = 500;
-	static void ResizeCallback(GLFWwindow* window, int width, int height);
-	//temporary imput function for lab4
-	void Lab4Input();
-	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
-	float lastX = 250, lastY = 250;
 private:
 
 	double deltaTime;

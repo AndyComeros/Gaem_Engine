@@ -2,16 +2,6 @@
 
 function init()
 	print("init lua");
-
-	--load textures
-	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
-	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
-	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
-	resources:LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
-	resources:LoadTexture("heightMap","resources/textures/heightmap/heightMap128.png");
-	resources:LoadTexture("specular","resources/textures/tile_Specular.png");
-	resources:LoadTexture("black","resources/textures/terrain/black.png");
-	
 	--load skybox
 	resources:LoadCubemap("skybox",
 		"resources/textures/skybox/Synthwave2/Right.png",
