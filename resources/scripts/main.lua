@@ -32,18 +32,9 @@ function init()
 	terrain:SetTextureHeights({1,2,3});
 
 	--setup lighting
-	lighting = {
-	-- ambient light
-		{0.1,0.1,0.1} ,
-
-	--point lights
-		{},
-	--spot lights
-		{},
-	--directional lights
-		{}
-	
-	};
+	lighting = scene:GetLights();
+	lighting.ambient = vec3.new(0.2,0.2,0.2);
+	lighting.direction = {vec3.new()}
 
 	--scene:AddLights(lighting);
 

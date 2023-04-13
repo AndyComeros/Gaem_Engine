@@ -15,6 +15,7 @@ public:
 	void AddLights(Lights& nLights);
 	void SetSkybox(CubeMap* nSkybox);
 	Camera& GetCamera();
+	Lights& GetLights();
 
 	//all scene data
 	Camera camera;

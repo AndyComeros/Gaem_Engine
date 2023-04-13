@@ -19,3 +19,7 @@ void Scene::SetSkybox(CubeMap* nSkybox) {
 Camera& Scene::GetCamera() {
 	return camera;
 }
+
+Lights& Scene::GetLights() {
+	return lights;
+}

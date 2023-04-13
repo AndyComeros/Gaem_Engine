@@ -84,7 +84,8 @@ void LuaManager::Expose_Engine() {
 		"AddObject", &Scene::AddObject,
 		"AddLights", &Scene::AddLights,
 		"SetSkybox", &Scene::SetSkybox,
-		"GetCamera", &Scene::GetCamera
+		"GetCamera", &Scene::GetCamera,
+		"GetLights", &Scene::GetLights
 		);
 
 	//expose camera
@@ -101,13 +102,13 @@ void LuaManager::Expose_Engine() {
 
 	//expose lights
 	Expose_CPPClass<PointLight>("PointLight",
-		sol::constructors<PointLight>(),
+		sol::constructors<PointLight, PointLight(glm::vec3, glm::vec3, glm::vec3,float,float,float)>(),
 		"position", &PointLight::position,
 		"diffuse", &PointLight::diffuse,
 		"quadratic", &PointLight::quadratic
 		);
 	Expose_CPPClass<SpotLight>("SpotLight",
-		sol::constructors<SpotLight>(),
+		sol::constructors<SpotLight, SpotLight(glm::vec3, glm::vec3,float,float, glm::vec3, glm::vec3,float,float,float)>(),
 		"position", &SpotLight::position,
 		"direction", &SpotLight::direction,
 		"maxAngle", &SpotLight::maxAngle,
@@ -119,17 +120,17 @@ void LuaManager::Expose_Engine() {
 		"quadratic", &SpotLight::quadratic
 		);
 	Expose_CPPClass<DirectionLight>("DirectionLight",
-		sol::constructors<DirectionLight>(),
+		sol::constructors<DirectionLight,DirectionLight(glm::vec3, glm::vec3, glm::vec3)>(),
 		"direction", &DirectionLight::direction,
 		"diffuse", &DirectionLight::diffuse,
 		"specular", &DirectionLight::specular
 		);
 	Expose_CPPClass<Lights>("Lights",
 		sol::constructors<Lights>(),
-		"ambientLight", &Lights::ambientLight,
-		"pointLights", &Lights::pointLights,
-		"spotLights", &Lights::spotLights,
-		"directionLights", &Lights::directionLights
+		"ambient", &Lights::ambient,
+		"point", &Lights::point,
+		"spot", &Lights::spot,
+		"direction", &Lights::direction
 		);
 }
 
