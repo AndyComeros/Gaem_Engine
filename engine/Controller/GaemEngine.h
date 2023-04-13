@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Renderer.h>
+#include <GUIRenderer.h>
 #include <InputManager.h>
 #include <Lua/LuaManager.h>
 
@@ -19,6 +20,7 @@ public:
 	GLFWwindow* window;
 
 	Renderer renderer;
+	GUIRenderer guirenderer;
 	LuaManager luaManager;
 
 	InputManager& inputMngr = InputManager::getInstance();

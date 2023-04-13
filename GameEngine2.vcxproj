@@ -143,6 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dependencies\include\imgui\imgui.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
@@ -168,6 +175,15 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dependencies\include\imgui\imconfig.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="dependencies\include\imgui\imgui_internal.h" />
+    <ClInclude Include="dependencies\include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="dependencies\include\imgui\imstb_textedit.h" />
+    <ClInclude Include="dependencies\include\imgui\imstb_truetype.h" />
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
@@ -193,9 +209,11 @@
     <ClInclude Include="engine\View\Graphics\OpenGL\VAO.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\VBO.h" />
     <ClInclude Include="engine\Model\Terrain.h" />
+    <ClInclude Include="Engine\View\GUIRenderer.h" />
     <ClInclude Include="Engine\View\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dependencies\include\imgui\new 1.txt.bak" />
     <None Include="dependencies\lib\glfw3.dll" />
     <None Include="dependencies\lib\lua54.dll" />
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
@@ -218,6 +236,9 @@
     <Library Include="dependencies\lib\glfw3_mt.lib" />
     <Library Include="dependencies\lib\liblua54.a" />
     <Library Include="dependencies\lib\reactphysics3d.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dependencies\include\imgui\new 1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

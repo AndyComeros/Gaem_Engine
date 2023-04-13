@@ -29,7 +29,7 @@ function init()
 
 	--setup lighting
 	lighting = scene:GetLights();
-	lighting:SetAmbient(0.2,0.2,0.2);
+	lighting:SetAmbient(0.3,0.3,0.3);
 	lighting:AddDirectionLight(vec3.new( -0.7,0.5,-1),vec3.new( 0.7,0.1,0.5),vec3.new(0.5,0.3,0.05));
 
 	--populate scene
@@ -52,7 +52,7 @@ function init()
 end
 
 function update(deltaTime)
-	--print("Update lua" .. deltaTime);
+	print("Update lua" .. deltaTime);
 end
 
 
