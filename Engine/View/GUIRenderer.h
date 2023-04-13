@@ -6,10 +6,17 @@
 class GUIRenderer
 {
 public:
-	GUIRenderer() {}
-	~GUIRenderer() {}
+	GUIRenderer() : window(nullptr){}
+	~GUIRenderer() {
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
+	}
 	
-	void Init(GLFWwindow* window) {
+	void Init(GLFWwindow* nwindow) {
+
+		window = nwindow;
+
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -21,6 +28,21 @@ public:
 	
 	}
 
-private:
+	void Draw() {
+	
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+		
+		ImGui::Begin("My Window");
+		ImGui::Text("Hello World!");
+		ImGui::End();
 
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
+
+
+private:
+	GLFWwindow* window;
 };

@@ -96,6 +96,7 @@ void GameEngine::Run() {
 		inputMngr.KeyActions();
 
 		renderer.Draw(scene);
+		guirenderer.Draw();
 		glfwSwapBuffers(window);
 		
 	}
