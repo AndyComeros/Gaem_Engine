@@ -89,20 +89,16 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
-		scene.physics.updateGameObjects(scene.gameObjects);
-		scene.physics.StepPhysics();
-		renderer.Draw(scene);
-		scene.physics.DebugDisplay(&scene.camera, ResourceManager::Get().GetShader("physics"));
-
-		luaManager.RunUpdateMethod(deltaTime);
 		glfwPollEvents();
 
-		inputMngr.KeyActions();
+		scene.physics.UpdateGameObjects(scene.gameObjects);
+		scene.physics.StepPhysics();
+		luaManager.RunUpdateMethod(deltaTime);
 
 		renderer.Draw(scene);
+		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
 		guirenderer.Draw();
 		glfwSwapBuffers(window);
-		
 	}
 
 	//cleanup

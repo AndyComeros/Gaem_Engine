@@ -24,17 +24,17 @@ int main(void)
 		"resources/textures/skybox/Synthwave2/Back.png"
 	};
 	scene.skybox = new CubeMap(textures_faces);
-	
+
 	//Create Terrain
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
 	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap2048.png");
-	
-	Terrain terrain("resources/textures/heightmap/heightmap2048.png",10,5,10);
+
+	Terrain terrain("resources/textures/heightmap/heightmap2048.png", 10, 5, 10);
 	terrain.SetTextureScale(5);
 
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", "");
 	terrain.shader = terrainShader;
-	
+
 	terrain.SetTextures(
 		{
 			new Texture("resources/textures/terrain/water.jpg"),
@@ -48,7 +48,7 @@ int main(void)
 
 	terrain.model_data->SetSpecularTexture("resources/textures/tile_Specular.png");
 
-	terrain.SetTextureHeights({-20,-10,0,10,100});
+	terrain.SetTextureHeights({ -20,-10,0,10,100 });
 	terrain.SetID(1);
 	terrain.position.y = 0;
 	scene.physics.AddRigidBody(terrain);
@@ -63,11 +63,11 @@ int main(void)
 	//arcade->position.x = terrain.GetSize() / 2.0;
 	//arcade->position.z = terrain.GetSize() / 2.0;
 	arcade->position.y = 0;// terrain.GetHeight(arcade->position.x, arcade->position.z);
-	arcade->SetID(2); 
+	arcade->SetID(2);
 	arcade->shader = ResourceManager::Get().GetShader("default");
 	scene.physics.AddRigidBody(*arcade);
 	scene.physics.ModRigidBodyType(*arcade, DYNA);
-	scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(2,2,2));
+	scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(2, 2, 2));
 	scene.gameObjects.push_back(*arcade);
 
 	//Setup Camera
