@@ -9,13 +9,12 @@ Model::Model(void) {
 }
 
 Model::Model(const char* fileName) {
+
 	ReadOBJ(fileName);
 	instanceCount = 1;
 }
 
-Model::~Model() {
-	FreeData();
-}
+Model::~Model() {}
 
 Model::Model(const char* fileName, std::vector<glm::mat4> nMatrix) {
 

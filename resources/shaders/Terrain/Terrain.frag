@@ -112,7 +112,7 @@ void main()
 
 	
 	if(wireframe == 0){
-		FragColor =	(diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
+		FragColor = (diffTexture * vec4(result,1.0)) + ((texture(material.emissionMap,textureCoord) * color * 1.5));
 	}else{
 		FragColor =	vec4(1.0,1.0,1.0,1.0);
 	}

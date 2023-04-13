@@ -61,24 +61,24 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-	
-	scene.camera.position.y = GameEngine::Get().terrain->GetHeight(scene.camera.position.x, scene.camera.position.z) + 3;
 
-	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
+	//expose to lua
+	luaManager.Expose_Engine();
+	luaManager.Expose_CPPReference("scene", scene);
+	luaManager.RunInitMethod();
 
-	//temp inneffient light setup. need a recource manager for shaders.
-	for (int i = 0; i < scene.gameObjects.size(); i++) {
-		if (scene.gameObjects[i].shader) {
-			Renderer::SetLightUniforms(scene.lights, *scene.gameObjects[i].shader);
-		}
+	auto it = ResourceManager::Get().ShaderBegin();
+	auto end = ResourceManager::Get().ShaderEnd();
+	for (it; it != end; it++) {
+		std::cout << "Set shader: " << it->first << std::endl;
+		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
-
 
 	isRunning = true;
 
 	deltaTime = 0.0;
 	prevTime = 0.0;
-
+	
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -86,6 +86,7 @@ void GameEngine::Run() {
 		deltaTime = time - prevTime;
 		prevTime = time;
 
+		luaManager.RunUpdateMethod(deltaTime);
 		Lab4Input();
 		glfwPollEvents();
 
@@ -117,7 +118,7 @@ void GameEngine::Lab4Input() {
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	Camera& cam = GameEngine::Get().scene.camera;
 	glm::vec3 up = { 0,1,0 };
-	float moveSpeed = 100 * GameEngine::Get().DeltaTime();
+	float moveSpeed = 10 * GameEngine::Get().DeltaTime();
 	float lookSpeed = 100 * GameEngine::Get().DeltaTime();
 
 

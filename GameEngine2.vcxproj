@@ -113,6 +113,8 @@
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +131,8 @@
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +147,7 @@
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="Engine\Controller\Physics.cpp" />
+    <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
     <ClCompile Include="engine\Controller\TerrainManager.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
@@ -167,6 +172,7 @@
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
+    <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="engine\Controller\TerrainManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Asset.h" />
@@ -190,6 +196,7 @@
     <ClInclude Include="Engine\View\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dependencies\lib\glfw3.dll" />
     <None Include="dependencies\lib\lua54.dll" />
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.vert" />
@@ -210,6 +217,7 @@
     <Library Include="dependencies\lib\glfw3dll.lib" />
     <Library Include="dependencies\lib\glfw3_mt.lib" />
     <Library Include="dependencies\lib\liblua54.a" />
+    <Library Include="dependencies\lib\reactphysics3d.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

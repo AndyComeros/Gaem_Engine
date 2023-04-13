@@ -3,6 +3,7 @@ Texture::Texture() {}
 
 Texture::Texture(const char* fileName) 
 {
+	filePath = fileName;
 	stbi_set_flip_vertically_on_load(true);//bit sussy putting this here
 	imageData = stbi_load(fileName,&width,&height,&numColorChannels,0);
 	GenTexture(imageData,width,height,numColorChannels);
@@ -11,12 +12,9 @@ Texture::Texture(const char* fileName)
 
 Texture::Texture(unsigned char* imgData, int w, int h,int c) {
 	GenTexture(imgData,w,h,c);
-	
 }
 
 Texture::~Texture() {
-
-	stbi_image_free(imageData);
 	glDeleteTextures(1,&ID);
 }
 
@@ -41,6 +39,8 @@ int Texture::GetWidth() { return width; }
 
 int Texture::GetHeight() { return height; }
 
+std::string Texture::GetPath() { return filePath; }
+
 void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
 
 	if (!imgData)
@@ -61,22 +61,21 @@ void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//when image is enlarged
 
 
-	switch (numColorChannels) {
-	case 1:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, imgData);
-		break;
-	case 2:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RG, width, height, 0, GL_RG, GL_UNSIGNED_BYTE, imgData);
-		break;
-	case 3:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, imgData);
-		break;
-	case 4:
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
-		break;
-	default:
-		break;
+	unsigned int format = GL_RED;
+	if (numColorChannels == 1) {
+		format = GL_RED;
 	}
+	else if (numColorChannels == 2) {
+		format = GL_RG;
+	}
+	else if (numColorChannels == 3) {
+		format = GL_RGB;
+	}
+	else if (numColorChannels == 4) {
+		format = GL_RGBA;
+	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, imgData);
 
 	imageData = imgData;
 	glGenerateMipmap(GL_TEXTURE_2D);
