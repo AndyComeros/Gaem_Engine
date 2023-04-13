@@ -2,47 +2,30 @@
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_glfw.h>
 #include <imgui/imgui_impl_opengl3.h>
+#include <Graphics/Graphics.h>
+#include <ResourceManager.h>
+#include <map>
+#include <string>
+
 
 class GUIRenderer
 {
 public:
-	GUIRenderer() : window(nullptr){}
-	~GUIRenderer() {
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-	}
-	
-	void Init(GLFWwindow* nwindow) {
+	GUIRenderer();
+	~GUIRenderer();
+	void Init(GLFWwindow* nwindow);
+	void Draw();
 
-		window = nwindow;
-
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-
-		ImGui::StyleColorsDark();
-
-		ImGui_ImplGlfw_InitForOpenGL(window,true);
-		ImGui_ImplOpenGL3_Init("#version 330");
-	
-	}
-
-	void Draw() {
-	
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-		
-		ImGui::Begin("My Window");
-		ImGui::Text("Hello World!");
-		ImGui::End();
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-	}
-
+	void SwitchMenu(int nGUI);
 
 private:
+
+	void GUI_Main();
+	void GUI_Settings();
+	void GUI_Exit();
+	void GUI_Debug();
+
+	int currentGUI = 0;
+	ImGuiWindowFlags flags;
 	GLFWwindow* window;
 };
