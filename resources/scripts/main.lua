@@ -34,9 +34,8 @@ function init()
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting.ambient = vec3.new(0.2,0.2,0.2);
-	lighting.direction = {vec3.new()}
 
-	--scene:AddLights(lighting);
+	lighting:AddDirectionLight(vec3.new(0.0,1.0,0.0),vec3.new(0.0,0.0,1.0),vec3.new(0.0,0.0,1.0));
 
 	--populate scene
 	go = resources:CreateGameObject("bobbithy", "arcade", "");

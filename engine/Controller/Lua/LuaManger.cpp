@@ -120,7 +120,7 @@ void LuaManager::Expose_Engine() {
 		"quadratic", &SpotLight::quadratic
 		);
 	Expose_CPPClass<DirectionLight>("DirectionLight",
-		sol::constructors<DirectionLight,DirectionLight(glm::vec3, glm::vec3, glm::vec3)>(),
+		sol::constructors<DirectionLight, DirectionLight(glm::vec3, glm::vec3, glm::vec3)>(),
 		"direction", &DirectionLight::direction,
 		"diffuse", &DirectionLight::diffuse,
 		"specular", &DirectionLight::specular
@@ -130,7 +130,10 @@ void LuaManager::Expose_Engine() {
 		"ambient", &Lights::ambient,
 		"point", &Lights::point,
 		"spot", &Lights::spot,
-		"direction", &Lights::direction
+		"direction", &Lights::direction,
+		"AddDirectionLight", &Lights::AddDirectionLight,
+		"AddPointLight", &Lights::AddPointLight,
+		"AddSpotLight", &Lights::AddSpotLight
 		);
 }
 
