@@ -57,12 +57,20 @@ public:
 
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
-	void ToggleDebugDisplay() { DispDebug = !DispDebug; }
+	void ToggleDebugDisplay() { 
+		DispDebug = !DispDebug; 
+		world->setIsDebugRenderingEnabled(DispDebug);
+	}
+
+	//display debug 
+	void DebugDisplay(Camera* cam, Shader* shader);
 
 private:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
 	PhysicsWorld* world;
+
+	Model* debug_model = nullptr;
 
 	//updates per second
 	decimal timeStep = 0.0f;
@@ -72,8 +80,7 @@ private:
 
 	bool DispDebug = false;
 
-	//display debug 
-	void DebugDisplay();
+
 
 };
 

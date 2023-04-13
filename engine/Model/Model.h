@@ -57,6 +57,7 @@ public:
         *   @param numIndex size of vertIndexes
         *   @return void
         */
+    void SetDebugVertexData(float* nVertexData, int numData);
     void SetVertexElements(unsigned int* vertIndexes, int numIndex);
         /*
         *   @brief draw this model using specified camera and shader

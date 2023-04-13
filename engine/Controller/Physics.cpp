@@ -129,44 +129,48 @@ void Physics::StepPhysics()
 		accumulator -= timeStep;
 	}
 
-	if (DispDebug)				// TEMP TEMP TEMP TEMP REMOVE LATER PLS
-		DebugDisplay();
-
 }
 
-void Physics::DebugDisplay()
+
+void Physics::DebugDisplay(Camera* cam, Shader* shader)
 {
-	// Enable debug rendering 
-	world->setIsDebugRenderingEnabled(true);
+	if (DispDebug) {
+		// Enable debug rendering 
+		world->setIsDebugRenderingEnabled(true);
+		// Get a reference to the debug renderer 
+		DebugRenderer& debugRenderer = world->getDebugRenderer();
+		// Select the contact points and contact normals to be displayed 
+		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_POINT, true);
+		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_NORMAL, true);
+		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLISION_SHAPE, true);
+		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLIDER_AABB, true);
+		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLIDER_BROADPHASE_AABB, true);
 
-	// Get a reference to the debug renderer 
-	DebugRenderer& debugRenderer = world->getDebugRenderer();
+		int nLines = debugRenderer.getNbLines();
+		int nTri = debugRenderer.getNbTriangles();
 
-	// Select the contact points and contact normals to be displayed 
-	debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_POINT, true);
-	debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::CONTACT_NORMAL, true);
+		if (nTri > 0) {
 
-	int nLines = debugRenderer.getNbLines();
-	int nTri = debugRenderer.getNbTriangles();
-	const reactphysics3d::DebugRenderer::DebugLine *line = debugRenderer.getLinesArray();
-	const reactphysics3d::DebugRenderer::DebugTriangle *tri = debugRenderer.getTrianglesArray();
+			glDisable(GL_CULL_FACE);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			//set model matrix uniforms
+			glm::mat4 modelMat(1.0f);
 
-	/*
-	glColor3f(1, 0, 0 );
-	glBegin(GL_LINES);
-	for (int i = 0; i < nLines; ++i) {
-		const reactphysics3d::DebugRenderer::DebugLine& debugLine = line[i];
-		glVertex3f(debugLine.point1.x, debugLine.point1.y, debugLine.point1.z);
-		glVertex3f(debugLine.point2.x, debugLine.point2.y, debugLine.point2.z);
+			const reactphysics3d::DebugRenderer::DebugTriangle* tri = debugRenderer.getTrianglesArray();
+
+			if (debug_model)
+				delete debug_model;
+
+			debug_model = new Model();
+			shader->SetUniform("model", modelMat);
+
+			debug_model->SetDebugVertexData((float*)&tri->point1.x, nTri * 3);
+			debug_model->Render(cam, shader, false, GL_TRIANGLES);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glEnable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+		}
+	
 	}
-	glEnd();
-
-	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < nTri; ++i) {
-		const reactphysics3d::DebugRenderer::DebugTriangle& debugTri = tri[i];
-		glVertex3f(debugTri.point1.x, debugTri.point1.y, debugTri.point1.z);
-		glVertex3f(debugTri.point2.x, debugTri.point2.y, debugTri.point2.z);
-		glVertex3f(debugTri.point3.x, debugTri.point3.y, debugTri.point3.z);
-	}
-	glEnd();*/
+	
 }

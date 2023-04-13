@@ -10,6 +10,8 @@ int main(void)
 
 	//setup physics
 	scene.physics.CreatePhysicsWorld();
+	scene.physics.ToggleDebugDisplay();
+
 	scene.physics.SetTimeStep(60);
 
 	//Set Skybox
@@ -22,7 +24,6 @@ int main(void)
 		"resources/textures/skybox/Synthwave2/Back.png"
 	};
 	scene.skybox = new CubeMap(textures_faces);
-
 	
 	//Create Terrain
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
@@ -59,13 +60,14 @@ int main(void)
 	GameObject* arcade = new GameObject();
 	arcade->model_data = new Model("resources/models/untitled2022/Arcade.obj");
 	arcade->model_data->SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
-	arcade->position.x = terrain.GetSize() / 2.0;
-	arcade->position.z = terrain.GetSize() / 2.0;
-	arcade->position.y = terrain.GetHeight(arcade->position.x, arcade->position.z);
+	//arcade->position.x = terrain.GetSize() / 2.0;
+	//arcade->position.z = terrain.GetSize() / 2.0;
+	arcade->position.y = 0;// terrain.GetHeight(arcade->position.x, arcade->position.z);
 	arcade->SetID(2); 
+	arcade->shader = ResourceManager::Get().GetShader("default");
 	scene.physics.AddRigidBody(*arcade);
 	scene.physics.ModRigidBodyType(*arcade, DYNA);
-	scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(1,1,1));
+	scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(2,2,2));
 	scene.gameObjects.push_back(*arcade);
 
 	//Setup Camera
