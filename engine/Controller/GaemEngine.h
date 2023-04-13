@@ -26,9 +26,6 @@ public:
 	int wWidth = 500;
 	int wHeight = 500;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
-	//temporary imput function for lab4
-	void Lab4Input();
-	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 	float lastX = 250, lastY = 250;
 private:
