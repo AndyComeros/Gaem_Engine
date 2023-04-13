@@ -2,6 +2,9 @@
 #include <GaemEngine.h>
 
 void InputManager::InputManagerInitActions()
+
+void InputManager::AddKey(int newKey)
+
 {
 	/*
 	keyBinding init = { -1, false };
@@ -42,7 +45,7 @@ bool InputManager::GetKeyState(std::string action)
 	}
 }
 
-void InputManager::KeyActions()
+void InputManager::KeyActions(float deltatime)
 {
 	glfwSetInputMode(GameEngine::Get().window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -75,8 +78,40 @@ void InputManager::KeyActions()
 				GameEngine::Get().renderer.wireFrame = !GameEngine::Get().renderer.wireFrame;
 			if (key.first == "quit")
 				glfwSetWindowShouldClose(GameEngine::Get().window, true);
+
+
 		}
 	}
+}
+
+
+void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos;
+
+	lastX = xpos;
+	lastY = ypos;
+
+	_Camera->ProcessMouseMovement(xoffset, yoffset, _Player->position);
+}
+
+void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	_Camera->Distance -= (float)yoffset;
+	if (_Camera->Distance < 3.0f)
+		_Camera->Distance = 3.0f;
+	if (_Camera->Distance > 45.0f)
+		_Camera->Distance = 45.0f;
+
+	_Camera->CalaulateCamPos(_Player->position);
 }
 
 void InputManager::GlfwKeyCallbackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods)

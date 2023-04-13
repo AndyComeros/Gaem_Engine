@@ -1,7 +1,6 @@
 #pragma once
 #include <reactphysics3d/reactphysics3d.h>
 #include <GameObject.h>
-//#include <map>
 
 using namespace reactphysics3d;
 
@@ -18,6 +17,7 @@ public:
 
 	//=========RIGIDBODY============START==
 	//add and del rigidbodies
+
 	void AddRigidBody(GameObject &go);
 	void DelRigidBody(GameObject &go);
 
@@ -37,6 +37,7 @@ public:
 	//TODO add Model3D to convex function
 	//TODO add Model3D to concave function
 	void AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH);
+
 	
 	//modify rigidbody colliders
 	//TODO add collision filtering
@@ -57,6 +58,7 @@ public:
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
 	void ToggleDebugDisplay() { DispDebug = !DispDebug; }
+
 private:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
@@ -67,9 +69,11 @@ private:
 	float accumulator = 0.0f;
 	float previousFrameTime = 0.0f;
 	float mDeltaTime = 0.0f;
+
 	bool DispDebug = false;
 
 	//display debug 
 	void DebugDisplay();
+
 };
 

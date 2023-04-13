@@ -15,7 +15,6 @@ void Physics::AddRigidBody(GameObject &go)
 	Vector3 position(go.position.x, go.position.y, go.position.z);
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
-
 	go.rigidBody = world->createRigidBody(transform); 
 }
 
