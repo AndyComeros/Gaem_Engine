@@ -68,31 +68,32 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-	
-	scene.camera.position.y = GameEngine::Get().terrain->GetHeight(scene.camera.position.x, scene.camera.position.z) + 3;
-	Renderer::SetLightUniforms(scene.lights,renderer.GetShader());
-	//temp should be set with to the player by another means
-	inputMngr.setPlayer(&scene.gameObjects[2]);
-	//temp inneffient light setup. need a recource manager for shaders.
-	for (int i = 0; i < scene.gameObjects.size(); i++) {
-		if (scene.gameObjects[i].shader) {
-			Renderer::SetLightUniforms(scene.lights, *scene.gameObjects[i].shader);
-		}
-	}
 
+	//expose to lua
+	luaManager.Expose_Engine();
+	luaManager.Expose_CPPReference("scene", scene);
+	luaManager.RunInitMethod();
+
+	auto it = ResourceManager::Get().ShaderBegin();
+	auto end = ResourceManager::Get().ShaderEnd();
+	for (it; it != end; it++) {
+		std::cout << "Set shader: " << it->first << std::endl;
+		Renderer::SetLightUniforms(scene.lights, *it->second);
+	}
 
 	isRunning = true;
 
 	deltaTime = 0.0;
 	prevTime = 0.0;
-
+	
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
 		float time = glfwGetTime();
 		deltaTime = time - prevTime;
 		prevTime = time;
-
+    
+		luaManager.RunUpdateMethod(deltaTime);
 		glfwPollEvents();
 
 		inputMngr.KeyActions(deltaTime);
@@ -116,4 +117,4 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	s.camera.aspectRatio = (float)width / (float)height;
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s);
-}
+  }

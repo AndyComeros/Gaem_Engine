@@ -31,11 +31,11 @@ Terrain::~Terrain()
 
 float Terrain::GetHeight(float x, float z) {
 
-	if (x >= (terrainSize - 1) || z >= (terrainSize - 1) || x < 0 || z < 0)
+	if (x >= (terrainSize - 1) * scaleX || z >= (terrainSize - 1) * scaleZ || x < 0 || z < 0)
 		return 0;
 
-	int xDown = (int)x;
-	int zDown = (int)z;
+	int xDown = (int)(x / scaleX);
+	int zDown = (int)(z / scaleZ);
 
 	int xUp = xDown + 1;
 	int zUp = zDown + 1;
@@ -46,8 +46,8 @@ float Terrain::GetHeight(float x, float z) {
 	float triZ3 = (heightArray[(xUp * terrainSize) + zUp]);
 
 	float height = 0.0f;
-	float sqX = x - xDown;
-	float sqZ = z - zDown;
+	float sqX = (x / scaleX) - xDown;
+	float sqZ = (z / scaleZ) - zDown;
 	if ((sqX + sqZ) < 1)
 	{
 		height = triZ0;

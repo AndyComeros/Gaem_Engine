@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Renderer.h>
-#include "../Controller/InputManager.h"
-
+#include <InputManager.h>
+#include <Lua/LuaManager.h>
 
 //class used to manage the engine itself, run main loop, contains setup etc
 //setup as a singleton. need only one and will be nice to have global access to deltatime, window size scene data etc.
@@ -17,15 +17,15 @@ public:
 
 	Scene scene;
 	GLFWwindow* window;
+
 	Renderer renderer;
+	LuaManager luaManager;
+
 	InputManager& inputMngr = InputManager::getInstance();
-
-
-	int wWidth = 1920;
-	int wHeight = 1080;
+	
+	int wWidth = 500;
+	int wHeight = 500;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
-
-	Terrain* terrain = nullptr;
 
 	float lastX = 250, lastY = 250;
 private:
@@ -38,6 +38,6 @@ private:
 
 	GameEngine();
 	~GameEngine();
-	GameEngine(const GameEngine&){};
-	GameEngine& operator=(const GameEngine&);
+	GameEngine& operator =(const GameEngine&) = delete;
+	GameEngine(const GameEngine&) = delete;
 };

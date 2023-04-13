@@ -17,6 +17,7 @@ public:
 	int GetChannelCount();
 	int GetWidth();
 	int GetHeight();
+	std::string GetPath();
 
 	unsigned int ID;
 private:
@@ -25,4 +26,5 @@ private:
 	void GenTexture(unsigned char* imgData, int w, int h, int c);
 	int width, height, numColorChannels;
 	unsigned char* imageData = nullptr;
+	std::string filePath = "";
 };
