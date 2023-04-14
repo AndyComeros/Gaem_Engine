@@ -6,10 +6,7 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
-GameEngine::GameEngine() :
-	deltaTime(0.0),
-	fps(0.0),
-	prevTime(0.0)
+GameEngine::GameEngine() 
 {
 	//init window and glfw.
 	glfwInit();
@@ -79,21 +76,24 @@ void GameEngine::Run() {
 
 	isRunning = true;
 
-	deltaTime = 0.0;
-	prevTime = 0.0;
-
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		float time = glfwGetTime();
-		deltaTime = time - prevTime;
-		prevTime = time;
+		// timer
+		long double currentFrameTime = glfwGetTime();
+		deltaTime = currentFrameTime - previousFrameTime;
+		previousFrameTime = currentFrameTime;
+		accumulator += deltaTime;
 
 		glfwPollEvents();
 
+
 		scene.physics.UpdateGameObjects(scene.gameObjects);
-		scene.physics.StepPhysics();
+		scene.physics.StepPhysics(deltaTime);
+
+		
 		luaManager.RunUpdateMethod(deltaTime);
+
 
 		renderer.Draw(scene);
 		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));

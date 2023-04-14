@@ -56,10 +56,10 @@ void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float he
 	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH)
+void Physics::AddRigidBodyColliderHeightMap(GameObject& go, std::vector<float> heightValues, const int nbRows, const int nbCols, float minH, float maxH)
 {
 	Vector3 scale = { 1,1,1 };
-	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(nbCols, nbRows, minH, maxH, heightValues, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
+	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(nbCols, nbRows, minH, maxH, heightValues.data(), HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 
 	Transform transform = Transform::identity();
 
@@ -112,6 +112,23 @@ void Physics::UpdateGameObjects(std::vector<GameObject>& goStore)
 			Vector3 position = transform.getPosition();
 
 			goStore[i].position = glm::vec3(position.x, position.y, position.z);
+			
+			/*
+			// Compute the time interpolation factor 
+			decimal factor = accumulator / timeStep;
+
+			// Get the updated transform of the body 
+			Transform currTransform = goStore[i].rigidBody.rb->getTransform();
+
+			// Compute the interpolated transform of the rigid body 
+			Transform interpolatedTransform = Transform::interpolateTransforms(goStore[i].rigidBody.prevTransform, currTransform, factor);
+
+			// Now you can render your body using the interpolated transform here 
+			Vector3 position = interpolatedTransform.getPosition();
+			goStore[i].position = glm::vec3(position.x, position.y, position.z);
+
+			// Update the previous transform 
+			goStore[i].rigidBody.prevTransform = currTransform;*/
 		}	
 	}	
 }
@@ -120,25 +137,19 @@ void Physics::SetTimeStep(float time)
 	timeStep = 1.0f / time;
 }
 
-void Physics::StepPhysics()
+void Physics::StepPhysics(float deltaTime)
 {
-	// timer
-	long double currentFrameTime = glfwGetTime();
-	mDeltaTime = currentFrameTime - previousFrameTime;
-	previousFrameTime = currentFrameTime;
-	accumulator += mDeltaTime;
+	accumulator += deltaTime;
 
 	// While there is enough accumulated time to take one or several physics steps 
-	while (accumulator >= timeStep && timeStep > 0)
+	if (accumulator >= timeStep && timeStep > 0)
 	{
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
 		// Decrease the accumulated time 
 		accumulator -= timeStep;
 	}
-
 }
-
 
 void Physics::DrawDebug(Camera* cam, Shader* shader)
 {

@@ -39,7 +39,7 @@ public:
 	void AddRigidBodyColliderCapsule(GameObject &go, float radius, float height);
 	//TODO add Model3D to convex function
 	//TODO add Model3D to concave function
-	void AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH);
+	void AddRigidBodyColliderHeightMap(GameObject &go, std::vector<float> heightValues,const int nbRows, const int nbCols, float minH, float maxH);
 
 	
 	//modify rigidbody colliders
@@ -56,7 +56,7 @@ public:
 
 	//simulation settings
 	void SetTimeStep(float time);
-	void StepPhysics();					
+	void StepPhysics(float deltaTime);					
 
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
@@ -78,12 +78,7 @@ private:
 	//updates per second
 	decimal timeStep = 0.0f;
 	float accumulator = 0.0f;
-	float previousFrameTime = 0.0f;
-	float mDeltaTime = 0.0f;
 
 	bool isDebug = false;
-
-
-
 };
 
