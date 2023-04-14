@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <map>
+#include <list>
 #include <iostream>
 #include <string>
 #include <GLFW/glfw3.h>
@@ -9,7 +10,7 @@
 #include <GameObject.h>
 
 class GaemEngine;
-
+typedef void(*actionPTR)();
 class InputManager
 {
 	public:
@@ -24,6 +25,12 @@ class InputManager
 		void BindKey(std::string action, int newKey);
 		void RemoveKey(std::string action);
 		bool GetKeyState(std::string action);
+
+		void BindAction(std::string action, actionPTR actionFunc);
+		void RemoveAction(std::string action);
+
+		void addAction(std::string action);
+		void removeAction(std::string action);
 
 		void KeyActions(float deltatime);
 
@@ -50,6 +57,9 @@ class InputManager
 
 		void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
+		void SetMouseLock(bool visable);
+		glm::vec2 GetMousePostion();
+
 		void setCamera(Camera &camera) { _Camera = &camera; }
 		void setWindow(GLFWwindow* window) { _Window = window; }
 		void setPlayer(GameObject* player) { _Player = player; }
@@ -57,12 +67,17 @@ class InputManager
 	private:
 		//std::map<int, std::map<int, bool>> inputOuterMap;
 		InputManager() {}
-		InputManager(InputManager const&);		//prevent copies
-		void operator=(InputManager const&);	//prevent assignments
+		InputManager(InputManager const&) {};		//prevent copies
+		void operator=(InputManager const&) {};	//prevent assignments
 
 		struct keyBinding { int key; bool state; };
 
+		//keyInputmap
 		std::map<std::string, keyBinding> inputMap;
+		//actionMap
+		std::map<std::string, actionPTR> _ActionMap;
+		
+		std::list<std::string> _ActionList;
 
 		Camera* _Camera;
 		GameObject* _Player = new GameObject();
@@ -71,6 +86,4 @@ class InputManager
 		bool firstMouse = true;
 		float lastX = 1920 / 2.0f;
 		float lastY = 1080 / 2.0f;
-
-		
 };
