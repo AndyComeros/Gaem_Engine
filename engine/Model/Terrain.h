@@ -23,6 +23,11 @@ public:
 	void LoadHeightMap(Texture* nHeightMap);
 	void LoadHeightMap(std::vector<float> nHeights);
 
+	//temp return heightarray [TOREMOVE]
+	std::vector<float> getHeightArray()
+	{
+		return heightArray;
+	}
 private:
 	//creates height values from array from heightTexture
 	void CreateHeightArray();

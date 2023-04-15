@@ -87,13 +87,10 @@ void GameEngine::Run() {
 
 		glfwPollEvents();
 
-
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		scene.physics.StepPhysics(deltaTime);
-
 		
 		luaManager.RunUpdateMethod(deltaTime);
-
 
 		renderer.Draw(scene);
 		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));

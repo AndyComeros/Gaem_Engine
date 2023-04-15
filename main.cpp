@@ -9,10 +9,7 @@ int main(void)
 	//scene.lights.directionLights.push_back({ { -0.7,0.5,-1 }, { 0.7,0.1,0.5 }, { 0.5,0.3,0.05 } });
 
 	//setup physics
-	scene.physics.CreatePhysicsWorld();
 	scene.physics.ToggleDebugDisplay();
-
-	scene.physics.SetTimeStep(60);
 
 	//Set Skybox
 	std::vector<std::string> textures_faces = {
@@ -24,7 +21,7 @@ int main(void)
 		"resources/textures/skybox/Synthwave2/Back.png"
 	};
 	scene.skybox = new CubeMap(textures_faces);
-
+	
 	//Create Terrain
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
 	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap2048.png");
@@ -52,10 +49,12 @@ int main(void)
 	terrain.SetID(1);
 	terrain.position.y = 0;
 	scene.physics.AddRigidBody(terrain);
-	scene.physics.AddRigidBodyColliderBox(terrain, Vector3(100000, 1, 100000));
+	scene.physics.AddRigidBodyColliderBox(terrain, Vector3(100, 1, 100));
+	//scene.physics.AddRigidBodyColliderHeightMap(terrain, terrain.getHeightArray(), terrain.GetSize(), terrain.GetSize(), 0, 100);
 	scene.physics.ModRigidBodyType(terrain, STAT);
 	scene.gameObjects.push_back(terrain);
 
+	
 	for (int i = 0; i < 20; i++)
 	{
 		GameObject* arcade = new GameObject();
@@ -65,7 +64,7 @@ int main(void)
 		arcade->shader = ResourceManager::Get().GetShader("default");
 		scene.physics.AddRigidBody(*arcade);
 		scene.physics.ModRigidBodyType(*arcade, DYNA);
-		scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(2, 2, 2));
+		scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(1, 1, 1));
 		arcade->SetID(i+1);
 		scene.gameObjects.push_back(*arcade);
 	}

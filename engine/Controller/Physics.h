@@ -39,7 +39,7 @@ public:
 	void AddRigidBodyColliderCapsule(GameObject &go, float radius, float height);
 	//TODO add Model3D to convex function
 	//TODO add Model3D to concave function
-	void AddRigidBodyColliderHeightMap(GameObject &go, std::vector<float> heightValues,const int nbRows, const int nbCols, float minH, float maxH);
+	void AddRigidBodyColliderHeightMap(GameObject &go,const std::vector<float> heightValues,const int nbRows, const int nbCols, float minH, float maxH);
 
 	
 	//modify rigidbody colliders
