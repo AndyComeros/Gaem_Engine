@@ -35,9 +35,10 @@ GameEngine::GameEngine() :
 		return;
 	}
 
+	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
-	inputMngr.Init(window);
+	
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;

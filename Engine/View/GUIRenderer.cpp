@@ -83,6 +83,7 @@ void GUIRenderer::GUI_Exit() {
 	if (ImGui::ImageButton((void*)(intptr_t)splash->ID, ImVec2(size, size))) {
 		exit(0);
 	}
+
 }
 
 void GUIRenderer::GUI_Debug() {}
