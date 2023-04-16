@@ -24,42 +24,30 @@ int main(void)
 	
 	//Create Terrain
 	//std::vector<float> heightMap = TerrainManager::GenHeightMapFaultFormation(256,50,0,10,0.4,0.4);
-	Texture* heightMap = new Texture("resources/textures/heightmap/heightmap2048.png");
+	//Texture* heightMap = new Texture("resources/textures/heightmap/heightmap128.png");
 
-	Terrain terrain("resources/textures/heightmap/heightmap2048.png", 10, 5, 10);
-	terrain.SetTextureScale(5);
-
+	Terrain terrain("resources/textures/heightmap/heightmap128.png", 1, 0.1, 1);
 	Shader* terrainShader = new Shader("resources/shaders/Default.vert", "resources/shaders/Terrain/Terrain.frag", "");
 	terrain.shader = terrainShader;
 
-	terrain.SetTextures(
-		{
-			new Texture("resources/textures/terrain/water.jpg"),
-			new Texture("resources/textures/terrain/dirt.png"),
-			new Texture("resources/textures/terrain/grass.png"),
-			new Texture("resources/textures/terrain/rock.png"),
-			new Texture("resources/textures/terrain/snow.jpg")
-		},
-		new Texture("resources/textures/terrain/black.png")
-	);
-
 	terrain.model_data->SetSpecularTexture("resources/textures/tile_Specular.png");
 
-	terrain.SetTextureHeights({ -20,-10,0,10,100 });
 	terrain.SetID(1);
 	terrain.position.y = 0;
-	scene.physics.AddRigidBody(terrain);
-	scene.physics.AddRigidBodyColliderBox(terrain, Vector3(100, 1, 100));
-	//scene.physics.AddRigidBodyColliderHeightMap(terrain, terrain.getHeightArray(), terrain.GetSize(), terrain.GetSize(), 0, 100);
-	scene.physics.ModRigidBodyType(terrain, STAT);
+	
 	scene.gameObjects.push_back(terrain);
 
+	scene.physics.AddRigidBody(terrain);
+	scene.physics.AddRigidBodyColliderHeightMap(terrain);
+	scene.physics.ModRigidBodyType(terrain, STAT);
+
 	
+	ResourceManager::Get().LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
+	ResourceManager::Get().LoadModel("arcade", "resources/models/untitled2022/Arcade.obj", "arcade", "", "");
 	for (int i = 0; i < 20; i++)
 	{
 		GameObject* arcade = new GameObject();
-		arcade->model_data = new Model("resources/models/untitled2022/Arcade.obj");
-		arcade->model_data->SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
+		arcade->model_data = ResourceManager::Get().GetModel("arcade");
 		arcade->position.y = i;
 		arcade->shader = ResourceManager::Get().GetShader("default");
 		scene.physics.AddRigidBody(*arcade);
@@ -87,8 +75,8 @@ int main(void)
 
 	//Setup Camera
 	scene.camera.FOV = 75;
-	scene.camera.position.x = terrain.GetSize() / 2.0;
-	scene.camera.position.z = terrain.GetSize() / 2.0;
+
+
 	scene.camera.farPlane = 2000;
 
 	//Run the game

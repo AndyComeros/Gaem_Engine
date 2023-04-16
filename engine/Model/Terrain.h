@@ -12,6 +12,9 @@ public:
 
 	float GetHeight(float x, float z);
 	int GetSize();
+	float GetMaxHeight();
+	float GetMinHeight();
+	std::vector<float>* GetHeightArray();
 
 	//texutres
 	void SetTextures(std::vector<Texture*> textures, Texture* detailMap);
@@ -23,11 +26,7 @@ public:
 	void LoadHeightMap(Texture* nHeightMap);
 	void LoadHeightMap(std::vector<float> nHeights);
 
-	//temp return heightarray [TOREMOVE]
-	std::vector<float> getHeightArray()
-	{
-		return heightArray;
-	}
+
 private:
 	//creates height values from array from heightTexture
 	void CreateHeightArray();
@@ -44,8 +43,11 @@ private:
 
 	const int MAX_TERRAIN_TEXTURES = 11;
 
+	float maxHeight = 0;
+	float minHeight = 0;
+
 	//Y values of the vertecies
-	std::vector<float> heightArray;
+	std::vector<float> *heightArray;
 	//height map texture
 	Texture* heightTexture = nullptr;
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include <reactphysics3d/reactphysics3d.h>
 #include <GameObject.h>
+#include <Terrain.h>
 
 using namespace reactphysics3d;
 
@@ -39,7 +40,7 @@ public:
 	void AddRigidBodyColliderCapsule(GameObject &go, float radius, float height);
 	//TODO add Model3D to convex function
 	//TODO add Model3D to concave function
-	void AddRigidBodyColliderHeightMap(GameObject &go,const std::vector<float> heightValues,const int nbRows, const int nbCols, float minH, float maxH);
+	void AddRigidBodyColliderHeightMap(Terrain &terrain);
 
 	
 	//modify rigidbody colliders

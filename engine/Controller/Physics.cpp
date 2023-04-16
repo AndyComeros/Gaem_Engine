@@ -57,17 +57,16 @@ void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float he
 	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderHeightMap(GameObject& go, const std::vector<float> heightValues, const int nbRows, const int nbCols, float minH, float maxH)
+void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 {
-	Vector3 scale = { 1,1,1 };
-
-	//HeightFieldShape* shape = physicsCommon.createHeightFieldShape(nbCols, nbRows, minH, maxH, heightValues.data(), HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
-	float hv[3 * 3] = { 1,1,3,5,6,7,6,5,4 };
-	//HeightFieldShape* shape = physicsCommon.createHeightFieldShape(2, 2, 0, 100, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
-
+	int rows = terrain.GetSize();
+	int cols = terrain.GetSize();
+	float min = terrain.GetMinHeight();
+	float max = terrain.GetMaxHeight();
+	float* hv = &terrain.GetHeightArray()->at(0);
+	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 	Transform transform = Transform::identity();
-
-	//go.rigidBody->addCollider(shape, transform);
+	terrain.rigidBody->addCollider(shape, transform);
 }
 
 void Physics::ModRigidBodyType(GameObject &go, int type)
@@ -108,13 +107,11 @@ void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
 
 void Physics::UpdateGameObjects(std::vector<GameObject>& goStore)
 {
-	//UPDATE GO POSITON
 	for (int i = 0; i < goStore.size(); i++) 
 	{
 		if (goStore[i].rigidBody) {
 			Transform transform = goStore[i].rigidBody->getTransform();
 			Vector3 position = transform.getPosition();
-
 			goStore[i].position = glm::vec3(position.x, position.y, position.z);
 		}	
 	}	
@@ -152,7 +149,6 @@ void Physics::DrawDebug(Camera* cam, Shader* shader)
 		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLISION_SHAPE, true);
 		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLIDER_AABB, true);
 		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLIDER_BROADPHASE_AABB, true);
-
 		int nLines = debugRenderer.getNbLines();
 		int nTri = debugRenderer.getNbTriangles();
 
@@ -162,7 +158,7 @@ void Physics::DrawDebug(Camera* cam, Shader* shader)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			//set model matrix uniforms
 			glm::mat4 modelMat(1.0f);
-
+			
 			const reactphysics3d::DebugRenderer::DebugTriangle* tri = debugRenderer.getTrianglesArray();
 
 			if (debug_model)
