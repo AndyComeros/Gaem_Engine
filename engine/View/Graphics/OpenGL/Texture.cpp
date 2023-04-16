@@ -4,7 +4,7 @@ Texture::Texture() {}
 Texture::Texture(const char* fileName) 
 {
 	filePath = fileName;
-	stbi_set_flip_vertically_on_load(true);//bit sussy putting this here
+	stbi_set_flip_vertically_on_load(true);
 	imageData = stbi_load(fileName,&width,&height,&numColorChannels,0);
 	GenTexture(imageData,width,height,numColorChannels);
 	

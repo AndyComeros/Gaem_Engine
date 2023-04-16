@@ -74,7 +74,6 @@ void GameEngine::Run() {
 		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
 
-
 	isRunning = true;
 
 	deltaTime = 0.0;

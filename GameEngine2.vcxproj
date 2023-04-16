@@ -170,6 +170,7 @@
     <ClCompile Include="engine\View\Graphics\OpenGL\VBO.cpp" />
     <ClCompile Include="engine\Model\Scene.cpp" />
     <ClCompile Include="engine\Model\Terrain.cpp" />
+    <ClCompile Include="Engine\View\GUIRenderer.cpp" />
     <ClCompile Include="Engine\View\Renderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />

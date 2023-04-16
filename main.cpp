@@ -3,6 +3,5 @@
 
 int main(void)
 {
-	//Run the game
 	GameEngine::Get().Run();
 }
