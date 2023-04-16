@@ -67,9 +67,11 @@ public:
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
 	inline Vector3 glm2react(glm::vec3& vec) { return {vec.x, vec.y, vec.z}; }
 	void ToggleDebugDisplay() { isDebug = !isDebug; world->setIsDebugRenderingEnabled(isDebug); }
-private:
+
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
+private:
+
 
 	//physics factory and world
 	PhysicsCommon physicsCommon;	

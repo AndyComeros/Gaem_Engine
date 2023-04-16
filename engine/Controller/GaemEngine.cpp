@@ -93,7 +93,7 @@ void GameEngine::Run() {
 		luaManager.RunUpdateMethod(deltaTime);
 
 		renderer.Draw(scene);
-		//scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
+		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
 		guirenderer.Draw();
 		glfwSwapBuffers(window);
 	}
