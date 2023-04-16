@@ -45,10 +45,6 @@ GameEngine::GameEngine() :
 	inputMngr.setCamera(scene.camera);
 	inputMngr.setWindow(window);
 	//set defaults for input etc
-	//EXAMPLE ONLY THIS IS TO BE DONE BY THE GAME WITH LUA PASSING INFO
-	inputMngr.addAction("exit");
-	inputMngr.BindKey("exit", 256);
-	inputMngr.BindAction("exit", []() { glfwSetWindowShouldClose(GameEngine::Get().window, true); });
 
 	//callbacks
 	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
@@ -92,7 +88,6 @@ void GameEngine::Run() {
 		float time = glfwGetTime();
 		deltaTime = time - prevTime;
 		prevTime = time;
-
 		glfwPollEvents();
 
 		scene.physics.UpdateGameObjects(scene.gameObjects);

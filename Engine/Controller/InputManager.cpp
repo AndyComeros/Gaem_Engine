@@ -60,6 +60,7 @@ void InputManager::KeyActions(float deltatime)
 			}
 		}
 	}
+	_Camera->CalaulateCamPos(_Player->position);
 }
 
 

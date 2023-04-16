@@ -11,6 +11,8 @@
 
 class GaemEngine;
 typedef void(*actionPTR)();
+
+
 class InputManager
 {
 	public:
