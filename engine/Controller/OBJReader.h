@@ -6,8 +6,6 @@
 #include <iostream>
 #include <fstream>
 #include <unordered_map>
-
-
 	/**
 	*	@struct vertex
 	*	@brief stores vertex data from an obj file
