@@ -1,32 +1,44 @@
 
 	dofile("resources/scripts/keybinds.lua")
 
-	input:SetMouseLock(true);
+	input:SetMouseLock(false);
 
 	input:BindKey("forward",KEY_W);
 	input:BindKey("backward",KEY_S);
 	input:BindKey("left",KEY_A);
 	input:BindKey("right",KEY_D);
 
-	function TestInputFunc()
+
+	lastX = input:GetMouseX();
+	lastY = input:GetMouseY();
+
+	function MouseMoveFunc(dt)
+
+
 		
+	end
+
+	function TestInputFunc(dt)
+	
+		camera = scene:GetCamera();
+
 		if(input:GetKeyState("forward"))
 		then
-			print("FORWARDS!")	
+			camera.position.z = scene:GetCamera().position.z + dt * 100
 		end
 
 		if(input:GetKeyState("backward"))
 		then
-			print("BACKWARDS!")	
+			camera.position.z = scene:GetCamera().position.z - dt * 100
 		end
 
 		if(input:GetKeyState("left"))
 		then
-			print("LEFT!")	
+			camera.position.x = scene:GetCamera().position.x + dt * 100	
 		end
 
 		if(input:GetKeyState("right"))
 		then
-			print("RIGHT!")	
+			camera.position.x = scene:GetCamera().position.x - dt * 100	
 		end
 	end

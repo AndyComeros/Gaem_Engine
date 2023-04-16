@@ -42,8 +42,8 @@ function init()
 	terrain:SetTextureHeights({0,60,80});
 
 	camera = scene:GetCamera();
-	camera.position = vec3.new(terrain:GetSize()/2,0,terrain:GetSize()/2);
-	camera.position.y = terrain:GetHeight(terrain:GetSize()/2,terrain:GetSize()/2) + 5;
+	camera.position.x = 0;
+	camera.position.y = terrain:GetHeight(terrain:GetSize()/2,terrain:GetSize()/2) + 10;
 
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
 	scene:AddObject(terrain);
@@ -54,7 +54,8 @@ function init()
 end
 
 function update(deltaTime)
-	TestInputFunc();
+	TestInputFunc(deltaTime);
+	MouseMoveFunc(deltaTime)
 	--print("Update lua" .. deltaTime);
 end
 

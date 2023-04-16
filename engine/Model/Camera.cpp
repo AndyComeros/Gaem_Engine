@@ -14,8 +14,6 @@ Camera::Camera()
 	aspectRatio =  16.0f / 9.0f;
 	nearPlane = 0.1f;
 	farPlane = 100.0f;
-
-	updateCameraVectors();
 }
 
 Camera::Camera(float nFOV, float nAspect, float nNear, float nFar)
@@ -31,8 +29,6 @@ Camera::Camera(float nFOV, float nAspect, float nNear, float nFar)
 	aspectRatio = nAspect;
 	farPlane = nFar;
 	nearPlane = nNear;
-
-	updateCameraVectors();
 }
 
 void Camera::LookAt(glm::vec3 lookPos) {
@@ -41,6 +37,15 @@ void Camera::LookAt(glm::vec3 lookPos) {
 
 glm::mat4 Camera::GetView() 
 {
+	front.x = cos(glm::radians(rotation.y)) * cos(glm::radians(rotation.x));
+	front.y = sin(glm::radians(rotation.x));
+	front.z = sin(glm::radians(rotation.y)) * cos(glm::radians(rotation.x));
+	front = glm::normalize(front);
+
+	right = glm::normalize(glm::cross(front, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+	up = glm::normalize(glm::cross(right, front));
+
 	return glm::lookAt(position, position + front, up);
 }
 
@@ -48,17 +53,4 @@ glm::mat4 Camera::GetProjection() {
 
 	glm::mat4 projection = glm::perspective(glm::radians(FOV), aspectRatio, nearPlane, farPlane);
 	return projection;
-}
-
-void Camera::updateCameraVectors()
-{
-	// calculate the new Front vector
-	glm::vec3 Front;
-	Front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-	Front.y = sin(glm::radians(Pitch));
-	Front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-	front = glm::normalize(Front);
-	// also re-calculate the Right and Up vector
-	right = glm::normalize(glm::cross(front, glm::vec3(0.0f, 1.0f, 0.0f)));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-	up = glm::normalize(glm::cross(right, front));
 }

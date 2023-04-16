@@ -33,5 +33,4 @@ public:
 	float farPlane;
 
 private:
-	void updateCameraVectors();
 };
