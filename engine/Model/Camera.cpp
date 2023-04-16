@@ -1,7 +1,6 @@
 #include"Camera.h"
 #include <iostream>
 
-
 Camera::Camera()
 {	
 	position = glm::vec3(0.0f,0.0f,0.0f);
@@ -16,11 +15,6 @@ Camera::Camera()
 	nearPlane = 0.1f;
 	farPlane = 100.0f;
 
-	Yaw = 90.0f;
-	Pitch = 0.0f;
-	MovementSpeed = 100.0f;
-	MouseSensitivity = 0.1f;
-	Distance = 20.0f;
 	updateCameraVectors();
 }
 
@@ -38,11 +32,6 @@ Camera::Camera(float nFOV, float nAspect, float nNear, float nFar)
 	farPlane = nFar;
 	nearPlane = nNear;
 
-	Yaw = 90.0f;
-	Pitch = 0.0f;
-	MovementSpeed = 100.0f;
-	MouseSensitivity = 0.1f;
-	Distance = 20.0f;
 	updateCameraVectors();
 }
 
@@ -59,56 +48,6 @@ glm::mat4 Camera::GetProjection() {
 
 	glm::mat4 projection = glm::perspective(glm::radians(FOV), aspectRatio, nearPlane, farPlane);
 	return projection;
-}
-
-void Camera::ProcessMouseMovement(float xoffset, float yoffset, glm::vec3 playerPos, bool constrainPitch)
-{
-	xoffset *= MouseSensitivity;
-	yoffset *= MouseSensitivity;
-
-	Yaw -= xoffset;
-
-	Pitch -= yoffset;
-	// make sure that when pitch is out of bounds, screen doesn't get flipped
-	if (constrainPitch)
-	{
-		if (Pitch < -89.0f)
-			Pitch = -89.0f;
-		if (Pitch > 0.0f)
-			Pitch = 0.0f;
-	}
-
-	
-	//thirdperson
-	CalaulateCamPos(playerPos);
-
-	// update Front, Right and Up Vectors using the updated Euler angles
-	updateCameraVectors();
-}
-
-void Camera::CalaulateCamPos(glm::vec3 playerPos)
-{
-	//third person camera
-	float yaw = Yaw - 90.0f;
-	float pitch = -Pitch;
-	float x = Distance * cos(glm::radians(pitch)) * sin(glm::radians(-yaw));
-	float y = Distance * sin(glm::radians(pitch));
-	float z = Distance * cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-
-	position = playerPos + glm::vec3(-x, y, -z);
-}
-
-void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
-{
-	float velocity = MovementSpeed * deltaTime;
-	if (direction == FORWARD)
-		position += front * velocity;
-	if (direction == BACKWARD)
-		position -= front * velocity;
-	if (direction == LEFT)
-		position -= right * velocity;
-	if (direction == RIGHT)
-		position += right * velocity;
 }
 
 void Camera::updateCameraVectors()

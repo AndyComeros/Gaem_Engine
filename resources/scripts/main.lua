@@ -1,5 +1,7 @@
 
 
+dofile("resources/scripts/inputs.lua")
+
 function init()
 	print("init lua");
 
@@ -47,11 +49,12 @@ function init()
 	scene:AddObject(terrain);
 	scene:AddObject(go);
 	scene:AddObject(go2);	
-	
+
 	print("End Init");
 end
 
 function update(deltaTime)
+	TestInputFunc();
 	--print("Update lua" .. deltaTime);
 end
 

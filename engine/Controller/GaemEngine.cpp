@@ -41,9 +41,7 @@ GameEngine::GameEngine() :
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
-
-	inputMngr.setCamera(scene.camera);
-	inputMngr.setWindow(window);
+	inputMngr.SetWindow(window);
 	//set defaults for input etc
 
 	//callbacks
@@ -87,12 +85,13 @@ void GameEngine::Run() {
 		float time = glfwGetTime();
 		deltaTime = time - prevTime;
 		prevTime = time;
-
 		glfwPollEvents();
 
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		scene.physics.StepPhysics();
 		luaManager.RunUpdateMethod(deltaTime);
+
+		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene);
 		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));

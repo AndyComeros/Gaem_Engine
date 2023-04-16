@@ -22,18 +22,20 @@ void LuaManager::RunUpdateMethod(double dt) {
 }
 
 void LuaManager::Expose_Engine() {
-
-	//Get main update loop
-	LoadScript("resources/scripts/main.lua");
-	update = GetFunction("update");
-	init = GetFunction("init");
-
+	
 	//expose vec3
 	Expose_CPPClass<glm::vec3>("vec3",
 		sol::constructors<glm::vec3(), glm::vec3(float,float,float)>(),
 		"x", &glm::vec3::x,
 		"y", &glm::vec3::y,
 		"z", &glm::vec3::z
+		);
+
+	//expose vec2
+	Expose_CPPClass<glm::vec2>("vec2",
+		sol::constructors<glm::vec2(), glm::vec2(float, float)>(),
+		"x", &glm::vec2::x,
+		"y", &glm::vec2::y
 		);
 
 	//expose game object
@@ -138,6 +140,24 @@ void LuaManager::Expose_Engine() {
 		"AddPointLight", &Lights::AddPointLight,
 		"AddSpotLight", &Lights::AddSpotLight
 		);
+
+	//expose input manager
+	Expose_CPPClass<InputManager>("InputManager",
+		sol::no_constructor,
+		"Get", &InputManager::Get,
+		"BindKey", &InputManager::BindKey,
+		"GetKeyState", &InputManager::GetKeyState,
+		"SetMouseLock", &InputManager::SetMouseLock,
+		"GetMouseX", &InputManager::GetMouseX,
+		"GetMouseY", &InputManager::GetMouseY
+		);
+	luaState["input"] = &InputManager::Get();
+
+
+	//Get main update loop
+	LoadScript("resources/scripts/main.lua");
+	update = GetFunction("update");
+	init = GetFunction("init");
 }
 
 

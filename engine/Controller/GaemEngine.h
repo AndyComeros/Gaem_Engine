@@ -27,7 +27,7 @@ public:
 	Renderer renderer;
 	GUIRenderer guirenderer;
 	LuaManager luaManager;
-	InputManager& inputMngr = InputManager::getInstance();
+	InputManager& inputMngr = InputManager::Get();
 
 private:
 
