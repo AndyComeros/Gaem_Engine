@@ -4,8 +4,8 @@
 class Rigidbody
 {
 public:
-
-private:
 	Rigidbody* rbPtr = nullptr;
+private:
+
 };
 

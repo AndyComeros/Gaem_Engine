@@ -24,6 +24,7 @@ void Physics::AddRigidBody(GameObject &go)
 	Vector3 position(go.position.x, go.position.y, go.position.z);
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
+
 	go.rigidBody = world->createRigidBody(transform); 
 }
 
@@ -103,6 +104,20 @@ void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force, Vector3 point)
 void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
 {
 	go.rigidBody->applyLocalTorque(torque);
+}
+
+void Physics::SetRigidBodyPosition(GameObject &go, Vector3 newPos)
+{
+	Quaternion quat = Quaternion::identity();
+	Transform transform(newPos, quat);
+	go.rigidBody->setTransform(transform);
+}
+
+Vector3 Physics::GetRigidBodyPosition(GameObject& go)
+{
+	Transform transform = go.rigidBody->getTransform();
+	Vector3 vec = transform.getPosition();
+	return vec;
 }
 
 void Physics::UpdateGameObjects(std::vector<GameObject>& goStore)

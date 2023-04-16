@@ -49,6 +49,10 @@ public:
 	//MAYBE hinge and motor
 	//=========RIGIDBODY==============END==
 
+	//setter and getter
+	void SetRigidBodyPosition(GameObject &go, Vector3 newPos);
+	Vector3 GetRigidBodyPosition(GameObject& go);
+
 	//ray casting
 	//TODO add Ray casting
 
@@ -61,10 +65,8 @@ public:
 
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
-	void ToggleDebugDisplay() { 
-		isDebug = !isDebug; 
-		world->setIsDebugRenderingEnabled(isDebug);
-	}
+	inline Vector3 glm2react(glm::vec3& vec) { return {vec.x, vec.y, vec.z}; }
+	void ToggleDebugDisplay() { isDebug = !isDebug; world->setIsDebugRenderingEnabled(isDebug); }
 private:
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
@@ -81,6 +83,6 @@ private:
 
 	bool isDebug = false;
 
-	friend Rigidbody;
+	//friend Rigidbody;
 };
 

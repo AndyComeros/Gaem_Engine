@@ -1,7 +1,8 @@
 #pragma once
 #include <Graphics/Graphics.h>
 #include <Model.h>
-#include <Rigidbody.h>
+//#include <Rigidbody.h>
+#include <reactphysics3d/reactphysics3d.h>
 
 class GameObject
 {
@@ -14,7 +15,8 @@ public:
 	glm::vec3 rotation = {0,0,0};
 
 	Model *model_data = nullptr;
-	Rigidbody rigidBody;
+	//Rigidbody rigidBody;
+	rp3d::RigidBody* rigidBody = nullptr;
 	Shader* shader = nullptr;
 
 	std::string name;
