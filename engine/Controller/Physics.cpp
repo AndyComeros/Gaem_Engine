@@ -120,16 +120,17 @@ Vector3 Physics::GetRigidBodyPosition(GameObject& go)
 	return vec;
 }
 
-void Physics::UpdateGameObjects(std::vector<GameObject>& goStore)
+void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
 {
-	for (int i = 0; i < goStore.size(); i++) 
-	{
-		if (goStore[i].rigidBody) {
-			Transform transform = goStore[i].rigidBody->getTransform();
+	for (auto& it : goStore) {
+		
+		if (it.second.rigidBody) {
+			Transform transform = it.second.rigidBody->getTransform();
 			Vector3 position = transform.getPosition();
-			goStore[i].position = glm::vec3(position.x, position.y, position.z);
-		}	
-	}	
+			it.second.position = glm::vec3(position.x, position.y, position.z);
+		}
+
+	}
 }
 
 void Physics::SetTimeStep(float time)

@@ -2,6 +2,7 @@
 #include <reactphysics3d/reactphysics3d.h>
 #include <GameObject.h>
 #include <Terrain.h>
+#include <map>
 
 using namespace reactphysics3d;
 
@@ -57,7 +58,7 @@ public:
 	//TODO add Ray casting
 
 	//update GO vector
-	void UpdateGameObjects(std::vector<GameObject>& goStore);
+	void UpdateGameObjects(std::map<std::string, GameObject>& goStore);
 
 	//simulation settings
 	void SetTimeStep(float time);

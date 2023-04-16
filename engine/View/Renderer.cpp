@@ -43,8 +43,9 @@ void Renderer::Draw(Scene& scene) {
 	//set appropriate uniforms.
 	mainShader.SetUniform("wireframe", wireFrame);
 
-	for (auto obj : scene.gameObjects) {
+	for (auto& it : scene.gameObjects) {
 
+		GameObject& obj = it.second;
 		//set model matrix uniforms
 		glm::mat4 modelMat(1.0f);
 		modelMat = glm::translate(modelMat, obj.position);

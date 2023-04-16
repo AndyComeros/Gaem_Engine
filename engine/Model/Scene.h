@@ -3,7 +3,7 @@
 #include "Terrain.h"
 #include "Lighting.h"
 #include <Physics.h>
-#include <vector>
+#include <map>
 
 class Scene
 {
@@ -17,13 +17,14 @@ public:
 	void SetSkybox(CubeMap* nSkybox);
 	Camera& GetCamera();
 	Lights& GetLights();
+	GameObject& GetObject(std::string& objName);
 
 	//all scene data
 	Camera camera;
 	CubeMap* skybox = nullptr;
 	Lights lights;
 	Physics physics;
-	std::vector<GameObject> gameObjects;
+	std::map<std::string,GameObject> gameObjects;
 private:
 	
 

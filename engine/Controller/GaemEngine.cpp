@@ -76,10 +76,6 @@ void GameEngine::Run() {
 		deltaTime = currentFrameTime - previousFrameTime;
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;
-
-		float time = glfwGetTime();
-		deltaTime = time - prevTime;
-		prevTime = time;
     
 		glfwPollEvents();
 

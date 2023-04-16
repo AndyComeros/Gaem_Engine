@@ -35,7 +35,7 @@ int main(void)
 	terrain.SetID(1);
 	terrain.position.y = 0;
 	
-	scene.gameObjects.push_back(terrain);
+	scene.AddObject(terrain);
 
 	scene.physics.AddRigidBody(terrain);
 	scene.physics.AddRigidBodyColliderHeightMap(terrain);
@@ -54,24 +54,9 @@ int main(void)
 		scene.physics.ModRigidBodyType(*arcade, DYNA);
 		scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(1, 1, 1));
 		arcade->SetID(i+1);
-		scene.gameObjects.push_back(*arcade);
+		scene.AddObject(*arcade);
 	}
 
-	/*
-	//TEST ARCADE MACHINE
-	GameObject* arcade = new GameObject();
-	arcade->model_data = new Model("resources/models/untitled2022/Arcade.obj");
-	arcade->model_data->SetDiffuseTexture("resources/models/untitled2022/Arcade.png");
-	//arcade->position.x = terrain.GetSize() / 2.0;
-	//arcade->position.z = terrain.GetSize() / 2.0;
-	arcade->position.y = 0;// terrain.GetHeight(arcade->position.x, arcade->position.z);
-	arcade->shader = ResourceManager::Get().GetShader("default");
-	scene.physics.AddRigidBody(*arcade);
-	scene.physics.ModRigidBodyType(*arcade, DYNA);
-	scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(2, 2, 2));
-	arcade->SetID(2);
-	scene.gameObjects.push_back(*arcade);
-	*/
 
 	//Setup Camera
 	scene.camera.FOV = 75;
