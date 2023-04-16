@@ -2,6 +2,7 @@
 
 Physics::Physics() {
 	CreatePhysicsWorld();
+	SetTimeStep(60);
 }
 
 Physics::~Physics() {
@@ -23,6 +24,7 @@ void Physics::AddRigidBody(GameObject &go)
 	Vector3 position(go.position.x, go.position.y, go.position.z);
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
+
 	go.rigidBody = world->createRigidBody(transform); 
 }
 
@@ -56,14 +58,16 @@ void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float he
 	go.rigidBody->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH)
+void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 {
-	Vector3 scale = { 1,1,1 };
-	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(nbCols, nbRows, minH, maxH, heightValues, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
-
+	int rows = terrain.GetSize();
+	int cols = terrain.GetSize();
+	float min = terrain.GetMinHeight();
+	float max = terrain.GetMaxHeight();
+	float* hv = &terrain.GetHeightArray()->at(0);
+	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 	Transform transform = Transform::identity();
-
-	go.rigidBody->addCollider(shape, transform);
+	terrain.rigidBody->addCollider(shape, transform);
 }
 
 void Physics::ModRigidBodyType(GameObject &go, int type)
@@ -102,43 +106,50 @@ void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
 	go.rigidBody->applyLocalTorque(torque);
 }
 
+void Physics::SetRigidBodyPosition(GameObject &go, Vector3 newPos)
+{
+	Quaternion quat = Quaternion::identity();
+	Transform transform(newPos, quat);
+	go.rigidBody->setTransform(transform);
+}
+
+Vector3 Physics::GetRigidBodyPosition(GameObject& go)
+{
+	Transform transform = go.rigidBody->getTransform();
+	Vector3 vec = transform.getPosition();
+	return vec;
+}
+
 void Physics::UpdateGameObjects(std::vector<GameObject>& goStore)
 {
-	//UPDATE GO POSITON
 	for (int i = 0; i < goStore.size(); i++) 
 	{
 		if (goStore[i].rigidBody) {
 			Transform transform = goStore[i].rigidBody->getTransform();
 			Vector3 position = transform.getPosition();
-
 			goStore[i].position = glm::vec3(position.x, position.y, position.z);
 		}	
 	}	
 }
+
 void Physics::SetTimeStep(float time)
 {
 	timeStep = 1.0f / time;
 }
 
-void Physics::StepPhysics()
+void Physics::StepPhysics(float deltaTime)
 {
-	// timer
-	long double currentFrameTime = glfwGetTime();
-	mDeltaTime = currentFrameTime - previousFrameTime;
-	previousFrameTime = currentFrameTime;
-	accumulator += mDeltaTime;
+	accumulator += deltaTime;
 
 	// While there is enough accumulated time to take one or several physics steps 
-	while (accumulator >= timeStep && timeStep > 0)
+	if (accumulator >= timeStep && timeStep > 0)
 	{
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
 		// Decrease the accumulated time 
 		accumulator -= timeStep;
 	}
-
 }
-
 
 void Physics::DrawDebug(Camera* cam, Shader* shader)
 {
@@ -153,7 +164,6 @@ void Physics::DrawDebug(Camera* cam, Shader* shader)
 		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLISION_SHAPE, true);
 		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLIDER_AABB, true);
 		debugRenderer.setIsDebugItemDisplayed(DebugRenderer::DebugItem::COLLIDER_BROADPHASE_AABB, true);
-
 		int nLines = debugRenderer.getNbLines();
 		int nTri = debugRenderer.getNbTriangles();
 
@@ -163,7 +173,7 @@ void Physics::DrawDebug(Camera* cam, Shader* shader)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			//set model matrix uniforms
 			glm::mat4 modelMat(1.0f);
-
+			
 			const reactphysics3d::DebugRenderer::DebugTriangle* tri = debugRenderer.getTrianglesArray();
 
 			if (debug_model)
