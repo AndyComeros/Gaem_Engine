@@ -1,6 +1,8 @@
 
 	dofile("resources/scripts/keybinds.lua")
 
+	input:SetMouseLock(true);
+
 	input:BindKey("forward",KEY_W);
 	input:BindKey("backward",KEY_S);
 	input:BindKey("left",KEY_A);

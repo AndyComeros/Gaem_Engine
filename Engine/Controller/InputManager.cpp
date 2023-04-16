@@ -81,7 +81,7 @@ void InputManager::SetMouseLock(bool visable)
 
 	if(visable)
 	{
-		glfwSetInputMode(_Window, GLFW_CURSOR, GLFW_CURSOR);
+		glfwSetInputMode(_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
 	else
 	{
