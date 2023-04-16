@@ -35,26 +35,20 @@ GameEngine::GameEngine() :
 		return;
 	}
 
-	//init renderer
 	renderer.Init(window);
 	guirenderer.Init(window);
+	inputMngr.Init(window);
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
-	inputMngr.SetWindow(window);
-	//set defaults for input etc
 
 	//callbacks
-	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
-	glfwSetFramebufferSizeCallback(window,ResizeCallback);
-	glfwSetCursorPosCallback(window, inputMngr.GlfwMouseCallback);
-	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
-	glfwSetScrollCallback(window, inputMngr.GlfwScrollCallback);
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetFramebufferSizeCallback(window, ResizeCallback);
 }
 
 GameEngine::~GameEngine() {
 	//do some cleanup
+	
 	glfwTerminate();
 }
 

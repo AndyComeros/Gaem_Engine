@@ -55,7 +55,7 @@ class InputManager
 		float GetMouseX();
 		float GetMouseY();
 
-		void SetWindow(GLFWwindow* window) { _Window = window; }
+		void Init(GLFWwindow* window);
 
 	private:
 		InputManager() {}

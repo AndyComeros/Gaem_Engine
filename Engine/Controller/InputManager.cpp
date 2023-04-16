@@ -134,3 +134,11 @@ void InputManager::DisableKey(int key)
 			bind.state = false;
 	}
 }
+
+void InputManager::Init(GLFWwindow* window) {
+	_Window = window;
+	glfwSetKeyCallback(window, GlfwKeyCallback);
+	glfwSetCursorPosCallback(window, GlfwMouseCallback);
+	glfwSetKeyCallback(window, GlfwKeyCallback);
+	glfwSetScrollCallback(window, GlfwScrollCallback);
+}
