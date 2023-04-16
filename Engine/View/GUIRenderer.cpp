@@ -42,7 +42,7 @@ void GUIRenderer::Draw() {
 	
 	ImGui::Begin("window",nullptr,flags);
 
-	GUI_Exit();
+	//GUI_Exit();
 	switch (currentGUI)
 	{
 	default:
