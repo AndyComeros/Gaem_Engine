@@ -65,11 +65,10 @@ public:
 		isDebug = !isDebug; 
 		world->setIsDebugRenderingEnabled(isDebug);
 	}
-
+private:
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
 
-private:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
 	PhysicsWorld* world;
@@ -81,5 +80,7 @@ private:
 	float accumulator = 0.0f;
 
 	bool isDebug = false;
+
+	friend Rigidbody;
 };
 

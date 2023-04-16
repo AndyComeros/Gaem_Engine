@@ -173,6 +173,7 @@
     <ClCompile Include="Engine\View\Renderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="engine\Model\Rigidbody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\include\imgui\imconfig.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="engine\Model\Terrain.h" />
     <ClInclude Include="Engine\View\GUIRenderer.h" />
     <ClInclude Include="Engine\View\Renderer.h" />
+    <ClInclude Include="engine\Model\Rigidbody.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dependencies\include\imgui\new 1.txt.bak" />
