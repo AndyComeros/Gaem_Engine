@@ -35,21 +35,11 @@ public:
 	// euler Angles
 	float Yaw;
 	float Pitch;
-	// camera options
-	float MovementSpeed;
-	float MouseSensitivity;
-	float Distance;
 
 	float FOV;
 	float aspectRatio;
 	float nearPlane;
 	float farPlane;
-
-	void ProcessMouseMovement(float xoffset, float yoffset, glm::vec3 playerPos, bool constrainPitch = true);
-	void ProcessKeyboard(Camera_Movement direction, float deltaTime);
-	void CalaulateCamPos(glm::vec3 playerPos);
-
-
 
 private:
 	void updateCameraVectors();

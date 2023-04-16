@@ -1,6 +1,11 @@
 #include "InputManager.h"
 #include <GaemEngine.h>
 
+InputManager& InputManager::Get()
+{
+	static InputManager instance;
+	return instance;
+}
 
 void InputManager::BindKey(std::string action, int newKey)
 {
@@ -29,21 +34,16 @@ void InputManager::BindAction(std::string action, actionPTR actionFunc)
 
 void InputManager::RemoveAction(std::string action)
 {
-	_ActionMap[action] = nullptr;
+	_ActionList.remove(action);
+	inputMap.erase(action);
+	_ActionMap.erase(action);
 }
 
-void InputManager::addAction(std::string action)
+void InputManager::AddAction(std::string action)
 {
 	_ActionList.push_back(action);
 	inputMap.insert({ action, keyBinding{ -1, false } });
 	_ActionMap.insert({ action, nullptr });
-}
-
-void InputManager::removeAction(std::string action)
-{
-	_ActionList.remove(action);
-	inputMap.erase(action);
-	_ActionMap.erase(action);
 }
 
 void InputManager::KeyActions(float deltatime)
@@ -60,7 +60,6 @@ void InputManager::KeyActions(float deltatime)
 			}
 		}
 	}
-	_Camera->CalaulateCamPos(_Player->position);
 }
 
 
@@ -78,19 +77,11 @@ void InputManager::mouseCallback(GLFWwindow* window, double xPos, double yPos)
 
 	lastX = xPos;
 	lastY = yPos;
-
-	_Camera->ProcessMouseMovement(xoffset, yoffset, _Player->position);
 }
 
 void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	_Camera->Distance -= (float)yoffset;
-	if (_Camera->Distance < 3.0f)
-		_Camera->Distance = 3.0f;
-	if (_Camera->Distance > 45.0f)
-		_Camera->Distance = 45.0f;
 
-	_Camera->CalaulateCamPos(_Player->position);
 }
 
 void InputManager::SetMouseLock(bool visable)
