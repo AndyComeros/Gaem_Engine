@@ -20,14 +20,14 @@ public:
 	Scene scene;
 	GLFWwindow* window;
 
-	int wWidth = 1920;
-	int wHeight = 1080;
+	int wWidth = 500;
+	int wHeight = 500;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
 
 	Renderer renderer;
 	GUIRenderer guirenderer;
 	LuaManager luaManager;
-	InputManager& inputMngr = InputManager::getInstance();
+	InputManager& inputMngr = InputManager::Get();
 
 private:
 	//updates per second

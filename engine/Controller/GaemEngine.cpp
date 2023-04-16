@@ -32,28 +32,21 @@ GameEngine::GameEngine()
 		return;
 	}
 
-	//init renderer
+	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
+	
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
 
-	inputMngr.setCamera(scene.camera);
-	inputMngr.setWindow(window);
-	//set defaults for input etc
-
 	//callbacks
-	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
-	glfwSetFramebufferSizeCallback(window,ResizeCallback);
-	glfwSetCursorPosCallback(window, inputMngr.GlfwMouseCallback);
-	glfwSetKeyCallback(window, inputMngr.GlfwKeyCallback);
-	glfwSetScrollCallback(window, inputMngr.GlfwScrollCallback);
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetFramebufferSizeCallback(window, ResizeCallback);
 }
 
 GameEngine::~GameEngine() {
 	//do some cleanup
+	
 	glfwTerminate();
 }
 
@@ -73,7 +66,6 @@ void GameEngine::Run() {
 		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
 
-
 	isRunning = true;
 
 	//main loop
@@ -85,12 +77,18 @@ void GameEngine::Run() {
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;
 
+		float time = glfwGetTime();
+		deltaTime = time - prevTime;
+		prevTime = time;
+    
 		glfwPollEvents();
 
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		scene.physics.StepPhysics(deltaTime);
 		
 		luaManager.RunUpdateMethod(deltaTime);
+
+		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene);
 		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));

@@ -33,6 +33,7 @@
     <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\Model\Rigidbody.cpp" />
+    <ClCompile Include="Engine\View\GUIRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -92,6 +93,9 @@
     <None Include="dependencies\lib\lua54.dll" />
     <None Include="dependencies\lib\glfw3.dll" />
     <None Include="dependencies\include\imgui\new 1.txt.bak" />
+    <None Include="resources\scripts\inputs.lua" />
+    <None Include="resources\scripts\keybinds.lua" />
+    <None Include="resources\scripts\main.lua" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />

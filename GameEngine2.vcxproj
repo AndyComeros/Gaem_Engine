@@ -170,6 +170,7 @@
     <ClCompile Include="engine\View\Graphics\OpenGL\VBO.cpp" />
     <ClCompile Include="engine\Model\Scene.cpp" />
     <ClCompile Include="engine\Model\Terrain.cpp" />
+    <ClCompile Include="Engine\View\GUIRenderer.cpp" />
     <ClCompile Include="Engine\View\Renderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -226,6 +227,9 @@
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\InstanceDepth.frag" />
     <None Include="lua54.dll" />
+    <None Include="resources\scripts\inputs.lua" />
+    <None Include="resources\scripts\keybinds.lua" />
+    <None Include="resources\scripts\main.lua" />
     <None Include="resources\shaders\Cube_map.frag" />
     <None Include="resources\shaders\Cube_map.vert" />
     <None Include="resources\shaders\Default.frag" />

@@ -79,6 +79,5 @@ int main(void)
 
 	scene.camera.farPlane = 2000;
 
-	//Run the game
 	GameEngine::Get().Run();
 }
