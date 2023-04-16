@@ -25,13 +25,9 @@ class InputManager
 		void BindAction(std::string action, actionPTR actionFunc);
 		void RemoveAction(std::string action);
 
-		void AddAction(std::string action);
-
 		void KeyActions(float deltatime);
 
-
 		void GlfwKeyCallbackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods);
-
 
 		void EnableKey(int key);
 		void DisableKey(int key);
@@ -56,12 +52,14 @@ class InputManager
 
 		void SetMouseLock(bool visable);
 		glm::vec2 GetMousePostion();
+		float GetMouseX();
+		float GetMouseY();
 
 		void SetWindow(GLFWwindow* window) { _Window = window; }
 
 	private:
 		InputManager() {}
-		InputManager(InputManager const&) {};		//prevent copies
+		InputManager(InputManager const&) {};	//prevent copies
 		void operator=(InputManager const&) {};	//prevent assignments
 
 		struct keyBinding { int key; bool state; };

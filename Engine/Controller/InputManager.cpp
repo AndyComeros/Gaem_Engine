@@ -1,5 +1,4 @@
 #include "InputManager.h"
-#include <GaemEngine.h>
 
 InputManager& InputManager::Get()
 {
@@ -22,8 +21,7 @@ bool InputManager::GetKeyState(std::string action)
 	std::map<std::string, keyBinding>::iterator it = inputMap.find(action);
 	if (it != inputMap.end())
 	{
-		keyBinding bind = it->second;
-		return bind.state;
+		return it->second.state;
 	}
 }
 
@@ -37,13 +35,6 @@ void InputManager::RemoveAction(std::string action)
 	_ActionList.remove(action);
 	inputMap.erase(action);
 	_ActionMap.erase(action);
-}
-
-void InputManager::AddAction(std::string action)
-{
-	_ActionList.push_back(action);
-	inputMap.insert({ action, keyBinding{ -1, false } });
-	_ActionMap.insert({ action, nullptr });
 }
 
 void InputManager::KeyActions(float deltatime)
@@ -61,7 +52,6 @@ void InputManager::KeyActions(float deltatime)
 		}
 	}
 }
-
 
 void InputManager::mouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
@@ -86,21 +76,35 @@ void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yof
 
 void InputManager::SetMouseLock(bool visable)
 {
+	if (!_Window)
+		return;
+
 	if(visable)
 	{
-		glfwSetInputMode(GameEngine::Get().window, GLFW_CURSOR, GLFW_CURSOR);
+		glfwSetInputMode(_Window, GLFW_CURSOR, GLFW_CURSOR);
 	}
 	else
 	{
-		glfwSetInputMode(GameEngine::Get().window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
 }
 
 glm::vec2 InputManager::GetMousePostion()
 {
-	double xPos, yPos;
-	glfwGetCursorPos(GameEngine::Get().window, &xPos, &yPos);
-	return glm::vec2{xPos, yPos};
+	if (_Window) {
+		double xPos, yPos;
+		glfwGetCursorPos(_Window, &xPos, &yPos);
+		return glm::vec2{ xPos, yPos };
+	}
+	return glm::vec2(0,0);
+}
+
+float InputManager::GetMouseX() { 
+	return GetMousePostion().x;
+}
+
+float InputManager::GetMouseY() {
+	return GetMousePostion().y;
 }
 
 void InputManager::GlfwKeyCallbackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods)

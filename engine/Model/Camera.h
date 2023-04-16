@@ -5,16 +5,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <cmath>
 
-
-
-
 #define PI 3.14159265
-enum Camera_Movement {
-	FORWARD,
-	BACKWARD,
-	LEFT,
-	RIGHT
-};
 
 class Camera {
 public:
@@ -43,5 +34,4 @@ public:
 
 private:
 	void updateCameraVectors();
-	
 };
