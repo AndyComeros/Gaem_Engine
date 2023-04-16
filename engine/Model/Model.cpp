@@ -134,10 +134,10 @@ void Model::SetDebugVertexData(float* nVertexData, int numData) {
 	FreeData();
 	vertCount = numData;
 	VAO nVAO;
-	VBO nVBO(nVertexData, sizeof(float) * numData * 8);
+	VBO nVBO(nVertexData, ((sizeof(float)* 3) + sizeof(unsigned int))*numData);
 
 	nVAO.AddAttribute(nVBO, 0, 3, GL_FLOAT, sizeof(unsigned int) + 3 * sizeof(float), (void*)0);
-	nVAO.AddAttribute(nVBO, 1, 1, GL_UNSIGNED_INT, sizeof(unsigned int) + 3 * sizeof(float), (void*)(3 * sizeof(float)));
+	nVAO.AddAttribute(nVBO, 1, 4, GL_UNSIGNED_BYTE, sizeof(unsigned int) + 3 * sizeof(float), (void*)(3 * sizeof(float)));
 
 	vbo = nVBO;
 	vao = nVAO;

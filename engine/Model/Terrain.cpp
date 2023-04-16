@@ -1,11 +1,12 @@
 #include "Terrain.h"
 
-Terrain::Terrain()
+Terrain::Terrain() : terrainSize(0)
 {
-	
+	heightArray = new std::vector<float>;
 }
 
 Terrain::Terrain(const std::string& nHeightMap, float xScale, float yScale, float zScale) {
+	heightArray = new std::vector<float>;
 	scaleX = xScale;
 	scaleY = yScale;
 	scaleZ = zScale;
@@ -13,6 +14,7 @@ Terrain::Terrain(const std::string& nHeightMap, float xScale, float yScale, floa
 }
 
 Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale) {
+	heightArray = new std::vector<float>;
 	scaleX = xScale;
 	scaleY = yScale;
 	scaleZ = zScale;
@@ -40,10 +42,10 @@ float Terrain::GetHeight(float x, float z) {
 	int xUp = xDown + 1;
 	int zUp = zDown + 1;
 
-	float triZ0 = (heightArray[(xDown * terrainSize) + zDown]);
-	float triZ1 = (heightArray[(xUp * terrainSize) + zDown]);
-	float triZ2 = (heightArray[(xDown * terrainSize) + zUp]);
-	float triZ3 = (heightArray[(xUp * terrainSize) + zUp]);
+	float triZ0 = ((*heightArray)[(xDown * terrainSize) + zDown]);
+	float triZ1 = ((*heightArray)[(xUp * terrainSize) + zDown]);
+	float triZ2 = ((*heightArray)[(xDown * terrainSize) + zUp]);
+	float triZ3 = ((*heightArray)[(xUp * terrainSize) + zUp]);
 
 	float height = 0.0f;
 	float sqX = (x / scaleX) - xDown;
@@ -65,6 +67,14 @@ float Terrain::GetHeight(float x, float z) {
 
 int Terrain::GetSize() {
 	return terrainSize;
+}
+
+float Terrain::GetMaxHeight() { return maxHeight; }
+float Terrain::GetMinHeight() { return minHeight; }
+
+std::vector<float>* Terrain::GetHeightArray()
+{
+	return heightArray;
 }
 
 void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
@@ -129,7 +139,7 @@ void Terrain::LoadHeightMap(Texture* nHeightMap) {
 }
 
 void Terrain::LoadHeightMap(std::vector<float> nHeights) {
-	heightArray = nHeights;
+	*heightArray = nHeights;
 	terrainSize = (int)sqrt(nHeights.size());
 	GenerateModel();
 }
@@ -140,8 +150,8 @@ void Terrain::CreateHeightArray() {
 
 	if (!heightTexture)
 		return;
-	if(!heightArray.empty())
-		heightArray.clear();
+	if(!(*heightArray).empty())
+		(*heightArray).clear();
 
 	int tWidth = heightTexture->GetWidth();
 	int tHeight = heightTexture->GetHeight();
@@ -156,14 +166,14 @@ void Terrain::CreateHeightArray() {
 		for (int x = 0; x < tWidth; x++)
 	
 		{
-			heightArray.push_back(scaleY * (heightTexture->GetPixelValue(x , y, 0)));
+			(*heightArray).push_back(scaleY * (heightTexture->GetPixelValue(x , y, 0)));
 		}
 	}
 }
 
 void Terrain::GenerateModel() {
 
-	if (heightArray.empty()) {
+	if ((*heightArray).empty()) {
 		model_data = new Model();
 		return;
 	}
@@ -188,7 +198,12 @@ void Terrain::GenerateModel() {
 			nVert.texCoord = { x * texCoordScaleX, y * texCoordScaleY };
 			nVert.vertex.x = y * scaleX;
 			nVert.vertex.z = x * scaleZ;
-			nVert.vertex.y = heightArray[x +  (y * terrainSize)];
+			nVert.vertex.y = (*heightArray)[x +  (y * terrainSize)];
+
+			if (nVert.vertex.y > maxHeight)
+				maxHeight = nVert.vertex.y;
+			if (nVert.vertex.y < minHeight)
+				minHeight = nVert.vertex.y;
 
 			vertexData.emplace_back(nVert);
 		}

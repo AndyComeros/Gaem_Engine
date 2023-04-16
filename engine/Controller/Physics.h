@@ -1,6 +1,7 @@
 #pragma once
 #include <reactphysics3d/reactphysics3d.h>
 #include <GameObject.h>
+#include <Terrain.h>
 
 using namespace reactphysics3d;
 
@@ -39,7 +40,7 @@ public:
 	void AddRigidBodyColliderCapsule(GameObject &go, float radius, float height);
 	//TODO add Model3D to convex function
 	//TODO add Model3D to concave function
-	void AddRigidBodyColliderHeightMap(GameObject &go, unsigned char* heightValues, int nbRows, int nbCols, float minH, float maxH);
+	void AddRigidBodyColliderHeightMap(Terrain &terrain);
 
 	
 	//modify rigidbody colliders
@@ -47,6 +48,10 @@ public:
 	//TODO add trigger
 	//MAYBE hinge and motor
 	//=========RIGIDBODY==============END==
+
+	//setter and getter
+	void SetRigidBodyPosition(GameObject &go, Vector3 newPos);
+	Vector3 GetRigidBodyPosition(GameObject& go);
 
 	//ray casting
 	//TODO add Ray casting
@@ -56,19 +61,18 @@ public:
 
 	//simulation settings
 	void SetTimeStep(float time);
-	void StepPhysics();					
+	void StepPhysics(float deltaTime);					
 
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
-	void ToggleDebugDisplay() { 
-		isDebug = !isDebug; 
-		world->setIsDebugRenderingEnabled(isDebug);
-	}
+	inline Vector3 glm2react(glm::vec3& vec) { return {vec.x, vec.y, vec.z}; }
+	void ToggleDebugDisplay() { isDebug = !isDebug; world->setIsDebugRenderingEnabled(isDebug); }
 
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
-
 private:
+
+
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
 	PhysicsWorld* world;
@@ -78,12 +82,9 @@ private:
 	//updates per second
 	decimal timeStep = 0.0f;
 	float accumulator = 0.0f;
-	float previousFrameTime = 0.0f;
-	float mDeltaTime = 0.0f;
 
 	bool isDebug = false;
 
-
-
+	//friend Rigidbody;
 };
 

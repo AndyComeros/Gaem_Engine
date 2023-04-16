@@ -30,10 +30,11 @@ public:
 	InputManager& inputMngr = InputManager::Get();
 
 private:
-
-	double deltaTime;
-	double prevTime;
-	double fps;
+	//updates per second
+	decimal timeStep = 0.0f;
+	float accumulator = 0.0f;
+	float previousFrameTime = 0.0f;
+	float deltaTime = 0.0f;
 
 	bool isRunning = false;
 
