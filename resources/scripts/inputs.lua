@@ -147,9 +147,7 @@ function TestInputFunc(dt)
 																	   
 		if(input:GetKeyState("left"))								   
 		then				
-			print(camera.right.x);
 			camera.position.x =  camera.position.x - (camera.right.x * velocity);
-			print("test");	
 			camera.position.y =  camera.position.y - (camera.right.y * velocity);
 			camera.position.z =  camera.position.z - (camera.right.z * velocity);
 		end															   
