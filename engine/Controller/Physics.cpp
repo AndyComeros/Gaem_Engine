@@ -180,13 +180,14 @@ void Physics::DrawDebug(Camera* cam, Shader* shader)
 			const reactphysics3d::DebugRenderer::DebugTriangle* tri = debugRenderer.getTrianglesArray();
 
 			if (debug_model)
-				delete debug_model;
+				debug_model->FreeData();
 
 			debug_model = new Model();
 			shader->SetUniform("model", modelMat);
 
 			debug_model->SetDebugVertexData((float*)&tri->point1.x, nTri * 3);
 			debug_model->Render(cam, shader, false, GL_TRIANGLES);
+			
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_BACK);

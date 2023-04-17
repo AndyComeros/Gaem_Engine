@@ -11,8 +11,6 @@
 
 	lastX = input:GetMouseX();
 	lastY = input:GetMouseY();
-
-
 	function MouseMoveFunc(dt)
 		
 		local camera = scene:GetCamera();
@@ -24,8 +22,6 @@
 
 		camera.rotation.y = camera.rotation.y + deltaX;
 		camera.rotation.x = camera.rotation.x - deltaY;
-
-		
 
 		lastX = input:GetMouseX();
 		lastY = input:GetMouseY();
