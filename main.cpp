@@ -37,9 +37,8 @@ int main(void)
 	
 	scene.AddObject(terrain);
 
-	scene.physics.AddRigidBody(terrain);
+	scene.physics.AddRigidBody(terrain,STAT);
 	scene.physics.AddRigidBodyColliderHeightMap(terrain);
-	scene.physics.ModRigidBodyType(terrain, STAT);
 
 	
 	ResourceManager::Get().LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
@@ -50,8 +49,7 @@ int main(void)
 		arcade->model_data = ResourceManager::Get().GetModel("arcade");
 		arcade->position.y = i;
 		arcade->shader = ResourceManager::Get().GetShader("default");
-		scene.physics.AddRigidBody(*arcade);
-		scene.physics.ModRigidBodyType(*arcade, DYNA);
+		scene.physics.AddRigidBody(*arcade, DYNA);
 		scene.physics.AddRigidBodyColliderBox(*arcade, Vector3(1, 1, 1));
 		arcade->SetID(i+1);
 		scene.AddObject(*arcade);

@@ -35,6 +35,10 @@ void LuaManager::Expose_Engine() {
 		[](const glm::vec3& a, const glm::vec3& b) {return a + b; }
 	);
 
+	luaState["CrossVectors"] = sol::overload(
+		[](const glm::vec3& a, const glm::vec3& b) {return glm::cross(a,b); }
+	);
+
 	//expose vec2
 	Expose_CPPClass<glm::vec2>("vec2",
 		sol::constructors<glm::vec2(), glm::vec2(float, float)>(),
@@ -159,6 +163,11 @@ void LuaManager::Expose_Engine() {
 		"GetMouseY", &InputManager::GetMouseY
 		);
 	luaState["input"] = &InputManager::Get();
+
+	Expose_CPPClass<Physics>("PhysicsManager",
+		sol::no_constructor,
+		"AddRigidBody", &Physics::AddRigidBody
+		);
 
 
 	//Get main update loop

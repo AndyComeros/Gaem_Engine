@@ -23,7 +23,7 @@ public:
 	//=========RIGIDBODY============START==
 	//add and del rigidbodies
 
-	void AddRigidBody(GameObject &go);
+	void AddRigidBody(GameObject &go, int rbType);
 	void DelRigidBody(GameObject &go);
 
 	//modify rigidbodies
