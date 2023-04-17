@@ -50,7 +50,7 @@ class InputManager
 
 		void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
-		void SetMouseLock(bool visable);
+		void SetMouseLock(bool visible);
 		glm::vec2 GetMousePostion();
 		float GetMouseX();
 		float GetMouseY();
