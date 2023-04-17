@@ -15,7 +15,7 @@ mouseSensitivity = 0.1
 Distance = 20.0
 moveSpeed = 100
 
-thirdPerson = false
+thirdPerson = true
 
 function MouseMoveFunc(dt)
 	local camera = scene:GetCamera();
@@ -30,6 +30,7 @@ function MouseMoveFunc(dt)
 
 	if(thirdPerson)
 	then
+		camDistance();
 		ThirdPersonCamera(xoffset,yoffset)
 	else
 		FirstPersonCamera(xoffset,yoffset)
@@ -37,6 +38,20 @@ function MouseMoveFunc(dt)
 
 	camera:UpdateCameraVectors();
 end
+
+function camDistance()
+	scrollOffset = input:GetScrollOffset();
+	Distance = Distance - scrollOffset;
+	if (Distance < 3.0)
+	then
+		Distance = 3.0;
+	end
+	if (Distance > 45.0)
+	then
+		Distance = 45.0;
+	end
+end
+
 
 function FirstPersonCamera( xoffset, yoffset )
 	local camera = scene:GetCamera();

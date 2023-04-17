@@ -166,7 +166,8 @@ void LuaManager::Expose_Engine() {
 		"GetKeyState", &InputManager::GetKeyState,
 		"SetMouseLock", &InputManager::SetMouseLock,
 		"GetMouseX", &InputManager::GetMouseX,
-		"GetMouseY", &InputManager::GetMouseY
+		"GetMouseY", &InputManager::GetMouseY,
+		"GetScrollOffset", &InputManager::GetScrollOffset
 		);
 	luaState["input"] = &InputManager::Get();
 
