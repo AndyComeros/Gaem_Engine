@@ -4,8 +4,9 @@
 class Rigidbody
 {
 public:
-	Rigidbody* rbPtr = nullptr;
-private:
 
+	friend class Physics;
+private:
+	Rigidbody* rbPtr = nullptr;
 };
 

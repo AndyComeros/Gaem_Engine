@@ -19,13 +19,15 @@ void Physics::DestroyPhysicsWorld()
 	physicsCommon.destroyPhysicsWorld(world);
 }
 
-void Physics::AddRigidBody(GameObject &go)
+void Physics::AddRigidBody(GameObject &go, int rbType)
 {
 	Vector3 position(go.position.x, go.position.y, go.position.z);
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
 
-	go.rigidBody = world->createRigidBody(transform); 
+	go.rigidBody = world->createRigidBody(transform);
+
+	ModRigidBodyType(go,rbType);
 }
 
 void Physics::DelRigidBody(GameObject &go)
