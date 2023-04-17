@@ -12,15 +12,29 @@
 	lastX = input:GetMouseX();
 	lastY = input:GetMouseY();
 
+
 	function MouseMoveFunc(dt)
+		
+		local camera = scene:GetCamera();
+		posX = input:GetMouseX();
+		posY = input:GetMouseY();
 
+		deltaX = (posX - lastX) * dt * 10;
+		deltaY = (posY - lastY) * dt * 10;
 
+		camera.rotation.y = camera.rotation.y + deltaX;
+		camera.rotation.x = camera.rotation.x - deltaY;
+
+		
+
+		lastX = input:GetMouseX();
+		lastY = input:GetMouseY();
 		
 	end
 
 	function TestInputFunc(dt)
 	
-		camera = scene:GetCamera();
+		local camera = scene:GetCamera();
 
 		if(input:GetKeyState("forward"))
 		then

@@ -22,14 +22,18 @@ void LuaManager::RunUpdateMethod(double dt) {
 }
 
 void LuaManager::Expose_Engine() {
-	
 	//expose vec3
 	Expose_CPPClass<glm::vec3>("vec3",
 		sol::constructors<glm::vec3(), glm::vec3(float,float,float)>(),
 		"x", &glm::vec3::x,
 		"y", &glm::vec3::y,
-		"z", &glm::vec3::z
+		"z", &glm::vec3::z,
+		"length",&glm::vec3::length
 		);
+		
+	luaState["AddVectors"] = sol::overload(
+		[](const glm::vec3& a, const glm::vec3& b) {return a + b; }
+	);
 
 	//expose vec2
 	Expose_CPPClass<glm::vec2>("vec2",
@@ -101,7 +105,10 @@ void LuaManager::Expose_Engine() {
 		"aspectRatio", &Camera::aspectRatio,
 		"FOV", &Camera::FOV,
 		"nearPlane", &Camera::nearPlane,
-		"farPlane", &Camera::farPlane
+		"farPlane", &Camera::farPlane,
+		"front", &Camera::front,
+		"farPlane", &Camera::right,
+		"farPlane", &Camera::up
 		);
 
 	//expose lights

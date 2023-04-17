@@ -44,7 +44,7 @@ function init()
 	camera = scene:GetCamera();
 	camera.position.x = 0;
 	camera.position.y = terrain:GetHeight(terrain:GetSize()/2,terrain:GetSize()/2) + 10;
-
+	
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
 	scene:AddObject(terrain);
 	scene:AddObject(go);
