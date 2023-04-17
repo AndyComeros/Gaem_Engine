@@ -20,8 +20,8 @@ public:
 	Scene scene;
 	GLFWwindow* window;
 
-	int wWidth = 500;
-	int wHeight = 500;
+	int wWidth = 1920;
+	int wHeight = 1080;
 	static void ResizeCallback(GLFWwindow* window, int width, int height);
 
 	Renderer renderer;

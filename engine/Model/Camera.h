@@ -16,6 +16,8 @@ public:
 	glm::mat4 GetView();
 	glm::mat4 GetProjection();
 
+	void UpdateCameraVectors();
+
 	glm::vec3 rotation;
 
 	glm::vec3 position;
@@ -33,4 +35,5 @@ public:
 	float farPlane;
 
 private:
+
 };

@@ -4,6 +4,7 @@ LuaManager::LuaManager()
 {
 	luaState;
 	luaState.open_libraries(sol::lib::base);
+	luaState.open_libraries(sol::lib::math);
 }
 
 LuaManager::~LuaManager()
@@ -39,6 +40,7 @@ void LuaManager::Expose_Engine() {
 		[](const glm::vec3& a, const glm::vec3& b) {return glm::cross(a,b); }
 	);
 
+	
 	//expose vec2
 	Expose_CPPClass<glm::vec2>("vec2",
 		sol::constructors<glm::vec2(), glm::vec2(float, float)>(),
@@ -97,7 +99,8 @@ void LuaManager::Expose_Engine() {
 		"AddLights", &Scene::AddLights,
 		"SetSkybox", &Scene::SetSkybox,
 		"GetCamera", &Scene::GetCamera,
-		"GetLights", &Scene::GetLights
+		"GetLights", &Scene::GetLights,
+		"GetObject", &Scene::GetObject
 		);
 
 	//expose camera
@@ -111,8 +114,11 @@ void LuaManager::Expose_Engine() {
 		"nearPlane", &Camera::nearPlane,
 		"farPlane", &Camera::farPlane,
 		"front", &Camera::front,
-		"farPlane", &Camera::right,
-		"farPlane", &Camera::up
+		"right", &Camera::right,
+		"up", &Camera::up,
+		"Yaw", &Camera::Yaw,
+		"Pitch", &Camera::Pitch,
+		"UpdateCameraVectors", &Camera::UpdateCameraVectors
 		);
 
 	//expose lights

@@ -17,7 +17,7 @@ public:
 	void SetSkybox(CubeMap* nSkybox);
 	Camera& GetCamera();
 	Lights& GetLights();
-	GameObject& GetObject(std::string& objName);
+	GameObject& GetObject(std::string objName);
 
 	//all scene data
 	Camera camera;

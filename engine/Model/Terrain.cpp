@@ -164,9 +164,13 @@ void Terrain::CreateHeightArray() {
 	for (int y = 0; y < tHeight; y++)
 	{
 		for (int x = 0; x < tWidth; x++)
-	
 		{
-			(*heightArray).push_back(scaleY * (heightTexture->GetPixelValue(x , y, 0)));
+			float height = scaleY * (heightTexture->GetPixelValue(x, y, 0));
+			(*heightArray).push_back(height);
+			if (height > maxHeight)
+				maxHeight = height;
+			if (height < minHeight)
+				minHeight = height;
 		}
 	}
 }
@@ -186,6 +190,7 @@ void Terrain::GenerateModel() {
 	elementsIndexes.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
 	faceNorms.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
 
+	float heightOffset = (maxHeight + minHeight)/2;
 	//create vert data
 	float texCoordScaleX = (float)textureScale / (float)terrainSize;
 	float texCoordScaleY = (float)textureScale / (float)terrainSize;
@@ -196,14 +201,9 @@ void Terrain::GenerateModel() {
 			vertex nVert;
 			nVert.normal = { 0,0,0 };
 			nVert.texCoord = { x * texCoordScaleX, y * texCoordScaleY };
-			nVert.vertex.x = y * scaleX;
-			nVert.vertex.z = x * scaleZ;
-			nVert.vertex.y = (*heightArray)[x +  (y * terrainSize)];
-
-			if (nVert.vertex.y > maxHeight)
-				maxHeight = nVert.vertex.y;
-			if (nVert.vertex.y < minHeight)
-				minHeight = nVert.vertex.y;
+			nVert.vertex.x = (y - terrainSize/2.0f) * scaleX;
+			nVert.vertex.z = (x - terrainSize/2.0f) * scaleZ;
+			nVert.vertex.y = ((*heightArray)[x + (y * terrainSize)]) - heightOffset;
 
 			vertexData.emplace_back(nVert);
 		}
