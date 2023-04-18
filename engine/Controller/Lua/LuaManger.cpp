@@ -4,6 +4,7 @@ LuaManager::LuaManager()
 {
 	luaState;
 	luaState.open_libraries(sol::lib::base);
+	luaState.open_libraries(sol::lib::math);
 }
 
 LuaManager::~LuaManager()
@@ -38,6 +39,8 @@ void LuaManager::Expose_Engine() {
 	luaState["CrossVectors"] = sol::overload(
 		[](const glm::vec3& a, const glm::vec3& b) {return glm::cross(a,b); }
 	);
+
+	luaState["CloseWindow"] = sol::overload([](bool shouldClose) {glfwSetWindowShouldClose(InputManager::Get().GetWindow(), shouldClose); });
 
 	//expose vec2
 	Expose_CPPClass<glm::vec2>("vec2",
@@ -113,8 +116,11 @@ void LuaManager::Expose_Engine() {
 		"nearPlane", &Camera::nearPlane,
 		"farPlane", &Camera::farPlane,
 		"front", &Camera::front,
-		"farPlane", &Camera::right,
-		"farPlane", &Camera::up
+		"right", &Camera::right,
+		"up", &Camera::up,
+		"Yaw", &Camera::Yaw,
+		"Pitch", &Camera::Pitch,
+		"UpdateCameraVectors", &Camera::UpdateCameraVectors
 		);
 
 	//expose lights
@@ -164,7 +170,8 @@ void LuaManager::Expose_Engine() {
 		"GetKeyState", &InputManager::GetKeyState,
 		"SetMouseLock", &InputManager::SetMouseLock,
 		"GetMouseX", &InputManager::GetMouseX,
-		"GetMouseY", &InputManager::GetMouseY
+		"GetMouseY", &InputManager::GetMouseY,
+		"GetScrollOffset", &InputManager::GetScrollOffset
 		);
 	luaState["input"] = &InputManager::Get();
 

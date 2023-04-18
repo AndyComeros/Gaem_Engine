@@ -71,7 +71,7 @@ void InputManager::mouseCallback(GLFWwindow* window, double xPos, double yPos)
 
 void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
-
+	scrollOffset = yoffset;
 }
 
 void InputManager::SetMouseLock(bool isLock)
@@ -105,6 +105,13 @@ float InputManager::GetMouseX() {
 
 float InputManager::GetMouseY() {
 	return GetMousePostion().y;
+}
+
+float InputManager::GetScrollOffset()
+{
+	float yOffset = scrollOffset;
+	scrollOffset = 0;
+	return yOffset;
 }
 
 void InputManager::GlfwKeyCallbackDispatch(GLFWwindow* window, int key, int scancode, int action, int mods)

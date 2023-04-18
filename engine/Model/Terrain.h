@@ -43,8 +43,8 @@ private:
 
 	const int MAX_TERRAIN_TEXTURES = 11;
 
-	float maxHeight = 0;
-	float minHeight = 0;
+	float maxHeight = -100;
+	float minHeight = 100;
 
 	//Y values of the vertecies
 	std::vector<float> *heightArray;

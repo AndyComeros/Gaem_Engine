@@ -4,7 +4,6 @@ dofile("resources/scripts/inputs.lua")
 
 function init()
 	print("init lua");
-
 	--load textures
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
@@ -13,7 +12,7 @@ function init()
 	resources:LoadTexture("heightMap","resources/textures/heightmap/heightMap128.png");
 	resources:LoadTexture("specular","resources/textures/tile_Specular.png");
 	resources:LoadTexture("black","resources/textures/terrain/black.png");
-	
+	resources:LoadTexture("AE86","resources/textures/AE86.png");
 	--load skybox
 	resources:LoadCubemap("skybox",
 		"resources/textures/skybox/Synthwave2/Right.png",
@@ -26,7 +25,7 @@ function init()
 
 	--load models
 	resources:LoadModel("arcade", "resources/models/untitled2022/Arcade.obj","arcade","","");
-
+	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86", "", "");
 	--load custom shaders
 
 	--setup lighting
@@ -37,25 +36,26 @@ function init()
 	--populate scene
 	go = resources:CreateGameObject("bobbithy", "arcade", "");
 	go2 = resources:CreateGameObject("bobbithy2", "arcade", "");
-
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.2,5.0);
-	terrain:SetTextureHeights({0,60,80});
+	Player = resources:CreateGameObject("Player", "AE86", "");
+	--terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.2,5.0);
+	--terrain:SetTextureHeights({0,60,80});
 
 	camera = scene:GetCamera();
 	camera.position.x = 0;
 	camera.position.y = 5;--terrain:GetHeight(terrain:GetSize()/2,terrain:GetSize()/2) + 10;
-	
-	scene:SetSkybox(resources:GetCubeMap("skybox"));
-	scene:AddObject(terrain);
-	scene:AddObject(go);
-	scene:AddObject(go2);	
 
+	scene:SetSkybox(resources:GetCubeMap("skybox"));
+	--scene:AddObject(terrain);
+	scene:AddObject(go);
+	scene:AddObject(go2);
+	scene:AddObject(Player);
+	
 	print("End Init");
 end
 
 function update(deltaTime)
 	TestInputFunc(deltaTime);
-	MouseMoveFunc(deltaTime)
+	MouseMoveFunc(deltaTime);
 	--print("Update lua" .. deltaTime);
 end
 

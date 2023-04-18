@@ -4,7 +4,6 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 
-
 class LuaManager
 {
 public:

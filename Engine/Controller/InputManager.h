@@ -54,8 +54,9 @@ class InputManager
 		glm::vec2 GetMousePostion();
 		float GetMouseX();
 		float GetMouseY();
-
+		float GetScrollOffset();
 		void Init(GLFWwindow* window);
+		GLFWwindow* GetWindow() { return _Window; };
 
 	private:
 		InputManager() {}
@@ -72,6 +73,8 @@ class InputManager
 		std::list<std::string> _ActionList;
 
 		GLFWwindow* _Window = nullptr;
+
+		float scrollOffset;
 
 		bool firstMouse = true;
 		float lastX = 0.0f;
