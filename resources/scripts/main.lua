@@ -33,15 +33,15 @@ function init()
 	lighting:AddDirectionLight(vec3.new( -0.7,0.5,-1),vec3.new( 0.7,0.1,0.5),vec3.new(0.5,0.3,0.05));
 
 	--populate scene
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.2,5.0);
+	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.0,5.0);
 	terrain:SetTextureHeights({0,60,80});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
 
 	Player = resources:CreateGameObject("Player", "AE86", "");
-	--physics:AddRigidBody(Player,3);
-	--local scale = vec3:new(1,1,1)
-	--physics:AddRigidBodyColliderBox(Player,scale);
+	physics:AddRigidBody(Player,3);
+	local scale = vec3:new(1,1,1)
+	physics:AddRigidBodyColliderBox(Player,scale);
 
 
 	for i = 0, 9, 1 

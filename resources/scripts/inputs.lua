@@ -117,29 +117,33 @@ function TestInputFunc(dt)
 		--todo:splash screen
 		CloseWindow(true);
 	end
-
+	speed = 5;
 	if(input:GetKeyState("forward"))
 	then
-		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right));
-		player.position = AddVectors(dir,player.position);
+		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(speed);
+		player.rigidBody:ApplyForce(dir)
+		--player.position = AddVectors(dir,player.position);
 	end
 		
 	if(input:GetKeyState("backward"))
 	then
-		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(-1);
-		player.position = AddVectors(dir,player.position);
+		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(speed*-1);
+		player.rigidBody:ApplyForce(dir)
+		--player.position = AddVectors(dir,player.position);
 	end
 		
 	if(input:GetKeyState("left"))
 	then
-		local dir = camera.right:multiply(-1);
-		player.position = AddVectors(dir,player.position);
+		local dir = camera.right:multiply(-speed);
+		player.rigidBody:ApplyForce(dir)
+		--player.position = AddVectors(dir,player.position);
 	end
 		
 	if(input:GetKeyState("right"))
 	then
-		local dir = camera.right;
-		player.position = AddVectors(dir,player.position);
+		local dir = camera.right:multiply(speed);
+		player.rigidBody:ApplyForce(dir)
+		--player.position = AddVectors(dir,player.position);
 	end
 	
 end
