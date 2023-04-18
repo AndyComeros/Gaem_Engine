@@ -36,9 +36,9 @@ void Physics::DelRigidBody(GameObject &go)
 	world->destroyRigidBody(go.rigidBody.rbPtr);
 }
 
-void Physics::AddRigidBodyColliderBox(GameObject &go, Vector3 scale)
+void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale)
 {
-	BoxShape* shape = physicsCommon.createBoxShape(scale);
+	BoxShape* shape = physicsCommon.createBoxShape({scale.x,scale.y,scale.z});
 	Transform transform = Transform::identity();
 
 	go.rigidBody.rbPtr->addCollider(shape, transform); 
@@ -130,6 +130,19 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
 		if (it.second.rigidBody.rbPtr) {
 			Transform transform = it.second.rigidBody.rbPtr->getTransform();
 			Vector3 position = transform.getPosition();
+			Quaternion rot = transform.getOrientation();
+			rot.normalize();
+
+			float w = rot.w;
+			float x = rot.x;
+			float y = rot.y;
+			float z = rot.z;
+
+			double roll = atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)) * 57.2957795131;
+			double pitch = asin(2 * (w * y - z * x)) * 57.2957795131;
+			double yaw = atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131;
+
+			it.second.rotation = glm::vec3(roll, pitch, yaw);
 			it.second.position = glm::vec3(position.x, position.y, position.z);
 		}
 

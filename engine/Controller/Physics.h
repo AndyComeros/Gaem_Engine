@@ -2,6 +2,7 @@
 #include <reactphysics3d/reactphysics3d.h>
 #include <ResourceManager.h>
 #include <map>
+#include <math.h>
 
 using namespace reactphysics3d;
 
@@ -32,7 +33,7 @@ public:
 	void ApplyRigidBodyTorque(GameObject &go, Vector3 torque);
 
 	//add and del rigidbody colliders
-	void AddRigidBodyColliderBox(GameObject &go, Vector3 scale);
+	void AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale);
 	void AddRigidBodyColliderSphere(GameObject &go, float radius);
 	void AddRigidBodyColliderCapsule(GameObject &go, float radius, float height);
 	//TODO add Model3D to convex function
