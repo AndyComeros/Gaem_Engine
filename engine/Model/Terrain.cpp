@@ -144,6 +144,21 @@ void Terrain::LoadHeightMap(std::vector<float> nHeights) {
 	GenerateModel();
 }
 
+float Terrain::GetScaleX()
+{
+	return scaleX;
+}
+
+float Terrain::GetScaleY()
+{
+	return scaleY;
+}
+
+float Terrain::GetScaleZ()
+{
+	return scaleZ;
+}
+
 void Terrain::CreateHeightArray() {
 
 	terrainSize = 0;

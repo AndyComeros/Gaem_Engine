@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	//Setup Lights
+	/*	//Setup Lights
 	Scene& scene = GameEngine::Get().scene;
 	//scene.lights.ambientLight = { 0.1,0.1,0.1 };
 	//scene.lights.directionLights.push_back({ { -0.7,0.5,-1 }, { 0.7,0.1,0.5 }, { 0.5,0.3,0.05 } });
@@ -60,7 +60,7 @@ int main(void)
 	scene.camera.FOV = 75;
 
 
-	scene.camera.farPlane = 2000;
+	scene.camera.farPlane = 2000;*/
 
 	GameEngine::Get().Run();
 }

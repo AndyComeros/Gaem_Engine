@@ -82,7 +82,6 @@ void GameEngine::Run() {
 
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		scene.physics.StepPhysics(deltaTime);
-		
 		luaManager.RunUpdateMethod(deltaTime);
 
 		inputMngr.KeyActions(deltaTime);

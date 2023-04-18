@@ -26,6 +26,10 @@ public:
 	void LoadHeightMap(Texture* nHeightMap);
 	void LoadHeightMap(std::vector<float> nHeights);
 
+	float GetScaleX();
+	float GetScaleY();
+	float GetScaleZ();
+
 
 private:
 	//creates height values from array from heightTexture

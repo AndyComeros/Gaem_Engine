@@ -7,7 +7,6 @@
 class ResourceManager
 {
 public:
-	
 	static ResourceManager& Get();
 
 	GameObject CreateGameObject(std::string objectName, std::string modelName, std::string shaderName);

@@ -68,6 +68,7 @@ void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 	float max = terrain.GetMaxHeight();
 	float* hv = &terrain.GetHeightArray()->at(0);
 	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
+	shape->setScale({terrain.GetScaleX(),1,terrain.GetScaleZ()});
 	Transform transform = Transform::identity();
 	terrain.rigidBody.rbPtr->addCollider(shape, transform);
 }
