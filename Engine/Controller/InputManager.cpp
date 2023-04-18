@@ -109,7 +109,6 @@ float InputManager::GetMouseY() {
 
 float InputManager::GetScrollOffset()
 {
-	
 	float yOffset = scrollOffset;
 	scrollOffset = 0;
 	return yOffset;

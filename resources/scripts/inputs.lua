@@ -7,7 +7,7 @@ input:BindKey("forward",KEY_W);
 input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);
 input:BindKey("right",KEY_D);
-
+input:BindKey("escape",KEY_ESCAPE);
 
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
@@ -15,7 +15,7 @@ mouseSensitivity = 0.1
 Distance = 20.0
 moveSpeed = 100
 
-thirdPerson = true
+thirdPerson = false
 
 function MouseMoveFunc(dt)
 	local camera = scene:GetCamera();
@@ -120,6 +120,13 @@ function TestInputFunc(dt)
 
 	velocity = dt * moveSpeed
 	
+	
+	if(input:GetKeyState("escape"))
+	then
+		--todo:splash screen
+		CloseWindow(true);
+	end
+
 	if(thirdPerson)
 	then
 		if(input:GetKeyState("forward"))

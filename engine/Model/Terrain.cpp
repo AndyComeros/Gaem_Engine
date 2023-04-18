@@ -191,6 +191,7 @@ void Terrain::GenerateModel() {
 	faceNorms.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
 
 	float heightOffset = (maxHeight + minHeight)/2;
+	float xzOffset = (terrainSize - 1) / 2.0f;
 	//create vert data
 	float texCoordScaleX = (float)textureScale / (float)terrainSize;
 	float texCoordScaleY = (float)textureScale / (float)terrainSize;
@@ -201,8 +202,8 @@ void Terrain::GenerateModel() {
 			vertex nVert;
 			nVert.normal = { 0,0,0 };
 			nVert.texCoord = { x * texCoordScaleX, y * texCoordScaleY };
-			nVert.vertex.x = (y - terrainSize/2.0f) * scaleX;
-			nVert.vertex.z = (x - terrainSize/2.0f) * scaleZ;
+			nVert.vertex.x = (x - xzOffset) * scaleX;
+			nVert.vertex.z = (y - xzOffset) * scaleZ;
 			nVert.vertex.y = ((*heightArray)[x + (y * terrainSize)]) - heightOffset;
 
 			vertexData.emplace_back(nVert);
@@ -216,14 +217,14 @@ void Terrain::GenerateModel() {
 		{
 			glm::uvec3 nIndex;
 
-			nIndex.x = (y * terrainSize) + x;
+			nIndex.x = (y * terrainSize) + x + terrainSize;
 			nIndex.y = (y * terrainSize) + x + 1;
-			nIndex.z = (y * terrainSize) + x + terrainSize;
+			nIndex.z = (y * terrainSize) + x;
 			elementsIndexes.emplace_back(nIndex);
 
-			nIndex.x = (y * terrainSize) + x + 1;
+			nIndex.x = (y * terrainSize) + x + terrainSize;
 			nIndex.y = (y * terrainSize) + x + terrainSize + 1;
-			nIndex.z = (y * terrainSize) + x + terrainSize;
+			nIndex.z =  (y * terrainSize) + x + 1;
 			elementsIndexes.emplace_back(nIndex);
 		}
 	}

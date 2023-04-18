@@ -56,6 +56,7 @@ class InputManager
 		float GetMouseY();
 		float GetScrollOffset();
 		void Init(GLFWwindow* window);
+		GLFWwindow* GetWindow() { return _Window; };
 
 	private:
 		InputManager() {}

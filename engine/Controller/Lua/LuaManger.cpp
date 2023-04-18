@@ -40,7 +40,8 @@ void LuaManager::Expose_Engine() {
 		[](const glm::vec3& a, const glm::vec3& b) {return glm::cross(a,b); }
 	);
 
-	
+	luaState["CloseWindow"] = sol::overload([](bool shouldClose) {glfwSetWindowShouldClose(InputManager::Get().GetWindow(), shouldClose); });
+
 	//expose vec2
 	Expose_CPPClass<glm::vec2>("vec2",
 		sol::constructors<glm::vec2(), glm::vec2(float, float)>(),
