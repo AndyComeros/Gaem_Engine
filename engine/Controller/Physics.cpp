@@ -131,18 +131,22 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
 			Transform transform = it.second.rigidBody.rbPtr->getTransform();
 			Vector3 position = transform.getPosition();
 			Quaternion rot = transform.getOrientation();
-			rot.normalize();
+			if (rot.length() > std::numeric_limits<double>::epsilon()) {
+				rot.normalize();
 
-			float w = rot.w;
-			float x = rot.x;
-			float y = rot.y;
-			float z = rot.z;
+				float w = rot.w;
+				float x = rot.x;
+				float y = rot.y;
+				float z = rot.z;
 
-			double roll = atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)) * 57.2957795131;
-			double pitch = asin(2 * (w * y - z * x)) * 57.2957795131;
-			double yaw = atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131;
+				glm::vec3 rotvec;
+				rotvec.x = atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)) * 57.2957795131;
+				rotvec.y = asin(2 * (w * y - z * x)) * 57.2957795131;
+				rotvec.z = atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131;
 
-			it.second.rotation = glm::vec3(roll, pitch, yaw);
+				it.second.rotation = rotvec;
+			}
+
 			it.second.position = glm::vec3(position.x, position.y, position.z);
 		}
 

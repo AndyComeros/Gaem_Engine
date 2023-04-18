@@ -80,8 +80,8 @@ void GameEngine::Run() {
     
 		glfwPollEvents();
 
-		scene.physics.UpdateGameObjects(scene.gameObjects);
 		scene.physics.StepPhysics(deltaTime);
+		scene.physics.UpdateGameObjects(scene.gameObjects);
 		luaManager.RunUpdateMethod(deltaTime);
 
 		inputMngr.KeyActions(deltaTime);

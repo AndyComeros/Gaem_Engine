@@ -64,7 +64,9 @@ void LuaManager::Expose_Engine() {
 		"position", &GameObject::position,
 		"rotation", &GameObject::rotation,
 		"scale", &GameObject::scale,
-		"rigidBody", &GameObject::rigidBody
+		"rigidBody", &GameObject::rigidBody,
+		"SetPosition", &GameObject::SetPosition,
+		"SetRotation", &GameObject::SetRotation
 		);
 
 	//expose terrain

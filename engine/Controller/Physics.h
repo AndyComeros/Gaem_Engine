@@ -3,6 +3,7 @@
 #include <ResourceManager.h>
 #include <map>
 #include <math.h>
+#include <glm/gtx/euler_angles.hpp>
 
 using namespace reactphysics3d;
 

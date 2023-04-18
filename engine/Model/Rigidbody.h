@@ -19,7 +19,7 @@ public:
 
 	void SetUseGravity(bool isGravity);
 	void SetPosition(glm::vec3 newPos);
-
+	void SetRotation(glm::vec3 newRot);
 
 
 	glm::vec3 GetPosition();

@@ -122,28 +122,28 @@ function TestInputFunc(dt)
 	then
 		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(speed);
 		player.rigidBody:ApplyForce(dir)
-		--player.position = AddVectors(dir,player.position);
+		player:SetRotation(vec3:new(0,90,0));
 	end
 		
 	if(input:GetKeyState("backward"))
 	then
 		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(speed*-1);
 		player.rigidBody:ApplyForce(dir)
-		--player.position = AddVectors(dir,player.position);
+		player:SetRotation(vec3:new(0,270,0));
 	end
 		
 	if(input:GetKeyState("left"))
 	then
 		local dir = camera.right:multiply(-speed);
 		player.rigidBody:ApplyForce(dir)
-		--player.position = AddVectors(dir,player.position);
+		player:SetRotation(vec3:new(0,180,0));
 	end
 		
 	if(input:GetKeyState("right"))
 	then
 		local dir = camera.right:multiply(speed);
 		player.rigidBody:ApplyForce(dir)
-		--player.position = AddVectors(dir,player.position);
+		player:SetRotation(vec3:new(0,0,0));
 	end
 	
 end

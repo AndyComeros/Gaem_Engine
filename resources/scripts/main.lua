@@ -40,7 +40,7 @@ function init()
 
 	Player = resources:CreateGameObject("Player", "AE86", "");
 	physics:AddRigidBody(Player,3);
-	local scale = vec3:new(1,1,1)
+	local scale = vec3:new(1.8,0.5,0.8)
 	physics:AddRigidBodyColliderBox(Player,scale);
 
 
@@ -49,6 +49,7 @@ function init()
 		local name = "arcade"..i;
 		go = resources:CreateGameObject(name, "arcade", "");
 		go.position.y = i * 3;
+		go.position.x = 3;
 		physics:AddRigidBody(go,3);
 		local scale = vec3:new(0.5,0.8,0.5)
 		physics:AddRigidBodyColliderBox(go,scale);
@@ -74,6 +75,8 @@ function init()
 end
 
 function update(deltaTime)
+	prot = scene:GetObject("Player").rotation;
+	--print(prot.x.." "..prot.y.." "..prot.z);
 	TestInputFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
 	--print("Update lua" .. deltaTime);

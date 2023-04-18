@@ -34,8 +34,24 @@ void Rigidbody::SetPosition(glm::vec3 newPos)
 {
 	if (!rbPtr)
 		return;
-	rp3d::Transform transform;
 	rbPtr->setTransform(rp3d::Transform({ newPos.x,newPos.y,newPos.z }, rbPtr->getTransform().getOrientation()));
+}
+
+void Rigidbody::SetRotation(glm::vec3 newRot)
+{
+	if (!rbPtr)
+		return;
+	//convert to radians
+	newRot = glm::radians(newRot);
+	rp3d::Quaternion q;
+	if (newRot.length() < std::numeric_limits<double>::epsilon()) {
+		q = rp3d::Quaternion::identity();
+	}
+	else {
+		q = rp3d::Quaternion::fromEulerAngles({ newRot.x,newRot.y,newRot.z });
+	}
+	q.normalize();
+	rbPtr->setTransform(rp3d::Transform(rbPtr->getTransform().getPosition(),q));
 }
 
 glm::vec3 Rigidbody::GetPosition()
