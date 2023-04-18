@@ -7,6 +7,13 @@ void Rigidbody::ApplyForce(glm::vec3 force)
 	rbPtr->applyWorldForceAtCenterOfMass({force.x,force.y,force.z});
 }
 
+void Rigidbody::ApplyTorque(glm::vec3 torque)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->applyLocalTorque({ torque.x, torque.y, torque.z });
+}
+
 void Rigidbody::ModType(int type)
 {
 	switch (type)

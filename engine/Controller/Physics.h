@@ -18,9 +18,7 @@ public:
 	void CreatePhysicsWorld();
 	void DestroyPhysicsWorld();
 
-	//=========RIGIDBODY============START==
 	//add and del rigidbodies
-
 	void AddRigidBody(GameObject &go, int rbType);
 	void DelRigidBody(GameObject &go);
 
@@ -41,13 +39,6 @@ public:
 	//TODO add Model3D to concave function
 	void AddRigidBodyColliderHeightMap(Terrain &terrain);
 
-	
-	//modify rigidbody colliders
-	//TODO add collision filtering
-	//TODO add trigger
-	//MAYBE hinge and motor
-	//=========RIGIDBODY==============END==
-
 	//setter and getter
 	void SetRigidBodyPosition(GameObject &go, Vector3 newPos);
 	Vector3 GetRigidBodyPosition(GameObject& go);
@@ -67,11 +58,8 @@ public:
 	inline Vector3 glm2react(glm::vec3& vec) { return {vec.x, vec.y, vec.z}; }
 	void ToggleDebugDisplay() { isDebug = !isDebug; world->setIsDebugRenderingEnabled(isDebug); }
 
-	//display debug 
-	void DrawDebug(Camera* cam, Shader* shader);
+
 private:
-
-
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
 	PhysicsWorld* world;
@@ -84,6 +72,8 @@ private:
 
 	bool isDebug = false;
 
+	//display debug 
+	void DrawDebug(Camera* cam, Shader* shader);
 	//friend Rigidbody;
 };
 
