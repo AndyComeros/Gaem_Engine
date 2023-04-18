@@ -14,14 +14,13 @@ class Rigidbody
 {
 public:
 	void ApplyForce(glm::vec3 force);
+	void ApplyTorque(glm::vec3 torque);
 
 	void ModType(int type);
 
 	void SetUseGravity(bool isGravity);
+
 	void SetPosition(glm::vec3 newPos);
-
-
-
 	glm::vec3 GetPosition();
 
 
