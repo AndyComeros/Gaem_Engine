@@ -1,5 +1,4 @@
 #include <sol/sol.hpp>
-
 #include <Scene.h>
 #include <GameObject.h>
 #include <ResourceManager.h>

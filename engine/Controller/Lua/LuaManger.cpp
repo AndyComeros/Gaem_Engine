@@ -63,6 +63,7 @@ void LuaManager::Expose_Engine() {
 		sol::constructors<Terrain(), Terrain(std::string&, float, float, float)>(),
 		sol::base_classes, sol::bases<GameObject>(),
 		"GetHeight", &Terrain::GetHeight,
+		"SetTextures",&Terrain::SetTextures,
 		"SetTextureHeights",&Terrain::SetTextureHeights,
 		"GetSize",&Terrain::GetSize,
 		"SetTextureScale",&Terrain::SetTextureScale
@@ -127,7 +128,9 @@ void LuaManager::Expose_Engine() {
 		sol::constructors<PointLight, PointLight(glm::vec3, glm::vec3, glm::vec3,float,float,float)>(),
 		"position", &PointLight::position,
 		"diffuse", &PointLight::diffuse,
-		"quadratic", &PointLight::quadratic
+		"quadratic", &PointLight::quadratic,
+		"linear", &PointLight::linear,
+		"constant", &PointLight::constant
 		);
 	Expose_CPPClass<SpotLight>("SpotLight",
 		sol::constructors<SpotLight, SpotLight(glm::vec3, glm::vec3,float,float, glm::vec3, glm::vec3,float,float,float)>(),

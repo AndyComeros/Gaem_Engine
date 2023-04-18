@@ -1,22 +1,27 @@
 #pragma once
-#include <Physics.h>
+#include <reactphysics3d/reactphysics3d.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+class Physics;
 
 class Rigidbody
 {
 public:
 	void ApplyForce(glm::vec3 force);
 
-	void AddColliderBox(Vector3 scale);
-	void AddColliderSphere(float radius);
-	void AddColliderCapsule(float radius, float height);
+	void ModType(GameObject& go, int type);
 
 	void SetUseGravity(bool isGravity);
 	void SetPosition(glm::vec3 newPos);
 
-	void AddColliderHeightMap(Terrain& terrain);
+
+
+	glm::vec3 GetPosition();
+
 
 	friend class Physics;
 private:
-	Rigidbody* rbPtr = nullptr;
+	rp3d::RigidBody* rbPtr = nullptr;
 };
 

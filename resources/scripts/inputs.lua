@@ -52,7 +52,6 @@ function camDistance()
 	end
 end
 
-
 function FirstPersonCamera( xoffset, yoffset )
 	local camera = scene:GetCamera();
 	xoffset = xoffset * mouseSensitivity

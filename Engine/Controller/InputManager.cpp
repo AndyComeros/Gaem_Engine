@@ -74,12 +74,12 @@ void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yof
 	scrollOffset = yoffset;
 }
 
-void InputManager::SetMouseLock(bool visable)
+void InputManager::SetMouseLock(bool isLock)
 {
 	if (!_Window)
 		return;
 
-	if(visable)
+	if(isLock)
 	{
 		glfwSetInputMode(_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
