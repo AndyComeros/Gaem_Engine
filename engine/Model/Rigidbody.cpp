@@ -4,8 +4,9 @@ void Rigidbody::ApplyForce(glm::vec3 force)
 {
 	if (!rbPtr)
 		return;
-	rbPtr->applyLocalForceAtCenterOfMass({force.x,force.y,force.z});
 
+	std::cout << "applied!\n";
+	rbPtr->applyLocalForceAtCenterOfMass({force.x,force.y,force.z});
 }
 
 void Rigidbody::ModType(int type)

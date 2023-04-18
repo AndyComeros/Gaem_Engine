@@ -26,12 +26,20 @@ void LuaManager::Expose_Engine() {
 	//expose vec3
 	Expose_CPPClass<glm::vec3>("vec3",
 		sol::constructors<glm::vec3(), glm::vec3(float,float,float)>(),
+		sol::meta_function::addition, [](const glm::vec3& a, const glm::vec3& b) {return a + b; },
+		sol::meta_function::subtraction, [](const glm::vec3& a, const glm::vec3& b) {return a - b; },
+		"multiply", [](const glm::vec3& a, const float& b) {return a * b; },
 		"x", &glm::vec3::x,
 		"y", &glm::vec3::y,
 		"z", &glm::vec3::z,
 		"length",&glm::vec3::length
 		);
 		
+
+	luaState["NormalizeVector"] = sol::overload(
+		[](const glm::vec3& a) {return glm::normalize(a); }
+	);
+
 	luaState["AddVectors"] = sol::overload(
 		[](const glm::vec3& a, const glm::vec3& b) {return a + b; }
 	);
@@ -55,7 +63,8 @@ void LuaManager::Expose_Engine() {
 		"name", &GameObject::name,
 		"position", &GameObject::position,
 		"rotation", &GameObject::rotation,
-		"scale", &GameObject::scale
+		"scale", &GameObject::scale,
+		"rigidBody", &GameObject::rigidBody
 		);
 
 	//expose terrain
@@ -187,6 +196,7 @@ void LuaManager::Expose_Engine() {
 		"SetTimeStep", &Physics::SetTimeStep,
 		"ToggleDebugDisplay", &Physics::ToggleDebugDisplay
 		);
+
 	Expose_CPPClass<Rigidbody>("RigidBody",
 		sol::no_constructor,
 		"ApplyForce", &Rigidbody::ApplyForce,

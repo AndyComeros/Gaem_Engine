@@ -27,15 +27,8 @@ function MouseMoveFunc(dt)
 
 	lastX = xPos
 	lastY = yPos
-
-	if(thirdPerson)
-	then
-		camDistance();
-		ThirdPersonCamera(xoffset,yoffset)
-	else
-		FirstPersonCamera(xoffset,yoffset)
-	end
-
+	camDistance();
+	ThirdPersonCamera(xoffset,yoffset);
 	camera:UpdateCameraVectors();
 end
 
@@ -119,65 +112,34 @@ function TestInputFunc(dt)
 
 	velocity = dt * moveSpeed
 	
-	
 	if(input:GetKeyState("escape"))
 	then
 		--todo:splash screen
 		CloseWindow(true);
 	end
 
-	if(thirdPerson)
+	if(input:GetKeyState("forward"))
 	then
-		if(input:GetKeyState("forward"))
-		then
-			player.position.z = player.position.z + velocity
-			player.rotation.y = 90.0
-		end
-		
-		if(input:GetKeyState("backward"))
-		then
-			player.position.z = player.position.z - velocity
-			player.rotation.y = -90.0
-		end
-		
-		if(input:GetKeyState("left"))
-		then
-			player.position.x = player.position.x + velocity
-			player.rotation.y = 180.0
-		end
-		
-		if(input:GetKeyState("right"))
-		then
-			player.position.x = player.position.x - velocity
-			player.rotation.y = 0.0
-		end
-	else
-		if(input:GetKeyState("forward"))
-		then
-			camera.position.x =  camera.position.x + (camera.front.x * velocity);
-			camera.position.y =  camera.position.y + (camera.front.y * velocity);
-			camera.position.z =  camera.position.z + (camera.front.z * velocity);										   
-		end															   
-																	   
-		if(input:GetKeyState("backward"))							   
-		then														   
-			camera.position.x =  camera.position.x - (camera.front.x * velocity);
-			camera.position.y =  camera.position.y - (camera.front.y * velocity);
-			camera.position.z =  camera.position.z - (camera.front.z * velocity);
-		end															   
-																	   
-		if(input:GetKeyState("left"))								   
-		then				
-			camera.position.x =  camera.position.x - (camera.right.x * velocity);
-			camera.position.y =  camera.position.y - (camera.right.y * velocity);
-			camera.position.z =  camera.position.z - (camera.right.z * velocity);
-		end															   
-																	   
-		if(input:GetKeyState("right"))								   
-		then														   
-			camera.position.x =  camera.position.x + (camera.right.x * velocity);
-			camera.position.y =  camera.position.y + (camera.right.y * velocity);
-			camera.position.z =  camera.position.z + (camera.right.z * velocity);
-		end
+		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right));
+		player.position = AddVectors(dir,player.position);
 	end
+		
+	if(input:GetKeyState("backward"))
+	then
+		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(-1);
+		player.position = AddVectors(dir,player.position);
+	end
+		
+	if(input:GetKeyState("left"))
+	then
+		local dir = camera.right:multiply(-1);
+		player.position = AddVectors(dir,player.position);
+	end
+		
+	if(input:GetKeyState("right"))
+	then
+		local dir = camera.right;
+		player.position = AddVectors(dir,player.position);
+	end
+	
 end
