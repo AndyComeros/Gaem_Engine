@@ -175,10 +175,27 @@ void LuaManager::Expose_Engine() {
 		);
 	luaState["input"] = &InputManager::Get();
 
+
+	//expose physics
 	Expose_CPPClass<Physics>("PhysicsManager",
 		sol::no_constructor,
-		"AddRigidBody", &Physics::AddRigidBody
+		"AddRigidBody", &Physics::AddRigidBody,
+		"AddRigidBodyColliderBox", &Physics::AddRigidBodyColliderBox,
+		"AddRigidBodyColliderSphere", &Physics::AddRigidBodyColliderSphere,
+		"AddRigidBodyColliderCapsule", &Physics::AddRigidBodyColliderCapsule,
+		"AddRigidBodyColliderHeightMap", &Physics::AddRigidBodyColliderHeightMap,
+		"SetTimeStep", &Physics::SetTimeStep,
+		"ToggleDebugDisplay", &Physics::ToggleDebugDisplay
 		);
+	Expose_CPPClass<Rigidbody>("RigidBody",
+		sol::no_constructor,
+		"ApplyForce", &Rigidbody::ApplyForce,
+		"SetPosition", &Rigidbody::SetPosition,
+		"GetPosition", &Rigidbody::GetPosition,
+		"ModType", &Rigidbody::ModType,
+		"SetUseGravity", &Rigidbody::SetUseGravity
+		);
+
 
 
 	//Get main update loop

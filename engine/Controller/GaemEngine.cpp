@@ -56,6 +56,7 @@ void GameEngine::Run() {
 	//expose to lua
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("scene", scene);
+	luaManager.Expose_CPPReference("physics", scene.physics);
 	luaManager.RunInitMethod();
 	
 	//set light uniforms

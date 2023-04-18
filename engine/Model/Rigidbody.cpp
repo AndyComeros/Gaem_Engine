@@ -8,6 +8,22 @@ void Rigidbody::ApplyForce(glm::vec3 force)
 
 }
 
+void Rigidbody::ModType(int type)
+{
+	switch (type)
+	{
+	case KINE:
+		rbPtr->setType(rp3d::BodyType::KINEMATIC);
+		break;
+	case STAT:
+		rbPtr->setType(rp3d::BodyType::STATIC);
+		break;
+	case DYNA:
+		rbPtr->setType(rp3d::BodyType::DYNAMIC);
+		break;
+	}
+}
+
 void Rigidbody::SetUseGravity(bool isGravity)
 {
 	if (!rbPtr)

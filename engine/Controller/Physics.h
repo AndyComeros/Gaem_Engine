@@ -6,10 +6,7 @@
 
 using namespace reactphysics3d;
 
-// RigidBody type
-#define KINE 1
-#define STAT 2
-#define DYNA 3
+
 
 class Physics
 {

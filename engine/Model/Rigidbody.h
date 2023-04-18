@@ -3,6 +3,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+// RigidBody type
+#define KINE 1
+#define STAT 2
+#define DYNA 3
+
 class Physics;
 
 class Rigidbody
@@ -10,7 +15,7 @@ class Rigidbody
 public:
 	void ApplyForce(glm::vec3 force);
 
-	void ModType(GameObject& go, int type);
+	void ModType(int type);
 
 	void SetUseGravity(bool isGravity);
 	void SetPosition(glm::vec3 newPos);
