@@ -25,7 +25,7 @@ void Physics::AddRigidBody(GameObject &go, int rbType)
 	Quaternion orientation = Quaternion::fromEulerAngles((float)go.rotation.x, (float)go.rotation.y, (float)go.rotation.z);
 	Transform transform(position, orientation);
 
-	go.rigidBody = world->createRigidBody(transform);
+	go.rigidBody.rbPtr = world->createRigidBody(transform);
 
 	ModRigidBodyType(go,rbType);
 }
@@ -33,7 +33,7 @@ void Physics::AddRigidBody(GameObject &go, int rbType)
 void Physics::DelRigidBody(GameObject &go)
 {
 	//delete rb from simulation
-	world->destroyRigidBody(go.rigidBody);
+	world->destroyRigidBody(go.rigidBody.rbPtr);
 }
 
 void Physics::AddRigidBodyColliderBox(GameObject &go, Vector3 scale)
@@ -41,7 +41,7 @@ void Physics::AddRigidBodyColliderBox(GameObject &go, Vector3 scale)
 	BoxShape* shape = physicsCommon.createBoxShape(scale);
 	Transform transform = Transform::identity();
 
-	go.rigidBody->addCollider(shape, transform); 
+	go.rigidBody.rbPtr->addCollider(shape, transform); 
 }
 
 void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius)
@@ -49,7 +49,7 @@ void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius)
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
 	Transform transform = Transform::identity();
 
-	go.rigidBody->addCollider(shape, transform);
+	go.rigidBody.rbPtr->addCollider(shape, transform);
 }
 
 void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height)
@@ -57,7 +57,7 @@ void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float he
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
 	Transform transform = Transform::identity();
 
-	go.rigidBody->addCollider(shape, transform);
+	go.rigidBody.rbPtr->addCollider(shape, transform);
 }
 
 void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
@@ -69,7 +69,7 @@ void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 	float* hv = &terrain.GetHeightArray()->at(0);
 	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 	Transform transform = Transform::identity();
-	terrain.rigidBody->addCollider(shape, transform);
+	terrain.rigidBody.rbPtr->addCollider(shape, transform);
 }
 
 void Physics::ModRigidBodyType(GameObject &go, int type)
@@ -77,47 +77,47 @@ void Physics::ModRigidBodyType(GameObject &go, int type)
 	switch (type)
 	{
 	case KINE:
-		go.rigidBody->setType(BodyType::KINEMATIC);
+		go.rigidBody.rbPtr->setType(BodyType::KINEMATIC);
 		break;
 	case STAT:
-		go.rigidBody->setType(BodyType::STATIC);
+		go.rigidBody.rbPtr->setType(BodyType::STATIC);
 		break;
 	case DYNA:
-		go.rigidBody->setType(BodyType::DYNAMIC);
+		go.rigidBody.rbPtr->setType(BodyType::DYNAMIC);
 		break;
 	}
 }
 
 void Physics::ModRigidBodyGravity(GameObject &go, bool state)
 {
-	go.rigidBody->enableGravity(state);
+	go.rigidBody.rbPtr->enableGravity(state);
 }
 
 void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force)
 {
-	go.rigidBody->applyLocalForceAtCenterOfMass(force);
+	go.rigidBody.rbPtr->applyLocalForceAtCenterOfMass(force);
 }
 
 void Physics::ApplyRigidBodyForce(GameObject &go, Vector3 force, Vector3 point)
 {
-	go.rigidBody->applyLocalForceAtLocalPosition(force, point);
+	go.rigidBody.rbPtr->applyLocalForceAtLocalPosition(force, point);
 }
 
 void Physics::ApplyRigidBodyTorque(GameObject &go, Vector3 torque)
 {
-	go.rigidBody->applyLocalTorque(torque);
+	go.rigidBody.rbPtr->applyLocalTorque(torque);
 }
 
 void Physics::SetRigidBodyPosition(GameObject &go, Vector3 newPos)
 {
 	Quaternion quat = Quaternion::identity();
 	Transform transform(newPos, quat);
-	go.rigidBody->setTransform(transform);
+	go.rigidBody.rbPtr->setTransform(transform);
 }
 
 Vector3 Physics::GetRigidBodyPosition(GameObject& go)
 {
-	Transform transform = go.rigidBody->getTransform();
+	Transform transform = go.rigidBody.rbPtr->getTransform();
 	Vector3 vec = transform.getPosition();
 	return vec;
 }
@@ -126,8 +126,8 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
 {
 	for (auto& it : goStore) {
 		
-		if (it.second.rigidBody) {
-			Transform transform = it.second.rigidBody->getTransform();
+		if (it.second.rigidBody.rbPtr) {
+			Transform transform = it.second.rigidBody.rbPtr->getTransform();
 			Vector3 position = transform.getPosition();
 			it.second.position = glm::vec3(position.x, position.y, position.z);
 		}
