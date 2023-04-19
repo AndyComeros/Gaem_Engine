@@ -3,6 +3,7 @@
 #include <GameObject.h>
 #include <ResourceManager.h>
 #include <InputManager.h>
+#include <GUIRenderer.h>
 
 class LuaManager
 {

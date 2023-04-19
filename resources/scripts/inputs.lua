@@ -115,8 +115,7 @@ function TestInputFunc(dt)
 
 	if(input:GetKeyState("escape"))
 	then
-		--todo:splash screen
-		CloseWindow(true);
+		GUI:SwitchMenu(1);
 	end
 
 	if(input:GetKeyState("drift"))

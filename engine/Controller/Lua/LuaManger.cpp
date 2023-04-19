@@ -218,6 +218,11 @@ void LuaManager::Expose_Engine() {
 		"SetDampeningLinear", &Rigidbody::SetDampeningLinear
 		);
 
+	Expose_CPPClass<GUIRenderer>("GUIRenderer",
+		sol::no_constructor,
+		"SwitchMenu", &GUIRenderer::SwitchMenu
+		);
+
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");
 	init = GetFunction("init");

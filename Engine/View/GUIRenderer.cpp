@@ -43,9 +43,22 @@ void GUIRenderer::Draw() {
 	
 	ImGui::Begin("window",nullptr,flags);
 
-	//GUI_Exit();
 	switch (currentGUI)
 	{
+	case 0:
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		GUI_InGame();
+		break;
+	case 1:
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		GUI_Exit();
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
 	default:
 		break;
 	}
@@ -59,7 +72,9 @@ void GUIRenderer::SwitchMenu(int nGUI) {
 	currentGUI = nGUI;
 }
 
-void GUIRenderer::GUI_Main() {}
+void GUIRenderer::GUI_Main() {
+
+}
 
 void GUIRenderer::GUI_Settings() {
 
@@ -67,7 +82,7 @@ void GUIRenderer::GUI_Settings() {
 
 void GUIRenderer::GUI_Exit() {
 	
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	
 	//probably do some centering func
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
@@ -92,7 +107,7 @@ void GUIRenderer::GUI_Debug() {}
 
 void GUIRenderer::GUI_InGame()
 {
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);		
+	
 
 }
 

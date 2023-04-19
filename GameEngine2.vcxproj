@@ -212,7 +212,7 @@
     <ClInclude Include="engine\View\Graphics\OpenGL\Texture.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\VAO.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\VBO.h" />
-    <ClInclude Include="engine\Model\Terrain.h" />
+    <ClInclude Include="Engine\Model\Terrain.h" />
     <ClInclude Include="Engine\View\GUIRenderer.h" />
     <ClInclude Include="Engine\View\Renderer.h" />
     <ClInclude Include="engine\Model\Rigidbody.h" />

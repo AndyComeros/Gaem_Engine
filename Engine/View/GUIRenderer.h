@@ -19,7 +19,6 @@ public:
 	void SwitchMenu(int nGUI);
 
 private:
-
 	void GUI_Main();
 	void GUI_Settings();
 	void GUI_Exit();
