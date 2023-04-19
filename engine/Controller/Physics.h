@@ -48,7 +48,7 @@ public:
 	//TODO add Ray casting
 
 	//update GO vector
-	void UpdateGameObjects(std::map<std::string, GameObject>& goStore);
+	void UpdateGameObjects(std::map<std::string, GameObject*>& goStore);
 
 	//simulation settings
 	void SetTimeStep(float time);

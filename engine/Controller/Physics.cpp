@@ -149,12 +149,12 @@ Vector3 Physics::GetRigidBodyPosition(GameObject& go)
 	return vec;
 }
 
-void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
+void Physics::UpdateGameObjects(std::map<std::string, GameObject*>& goStore)
 {
 	for (auto& it : goStore) {
 		
-		if (it.second.rigidBody.rbPtr) {
-			Transform transform = it.second.rigidBody.rbPtr->getTransform();
+		if (it.second->rigidBody.rbPtr) {
+			Transform transform = it.second->rigidBody.rbPtr->getTransform();
 			Vector3 position = transform.getPosition();
 			Quaternion rot = transform.getOrientation();
 			if (rot.length() > std::numeric_limits<double>::epsilon()) {
@@ -170,10 +170,10 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
 				rotvec.y = asin(std::clamp(2 * (w * y - z * x),-1.0f,1.0f)) * 57.2957795131;
 				rotvec.z = atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131;
 
-				it.second.rotation = rotvec;
+				it.second->rotation = rotvec;
 			}
 
-			it.second.position = glm::vec3(position.x, position.y, position.z);
+			it.second->position = glm::vec3(position.x, position.y, position.z);
 		}
 
 	}

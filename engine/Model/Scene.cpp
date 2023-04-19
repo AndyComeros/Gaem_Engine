@@ -5,7 +5,7 @@ Scene::Scene() {}
 Scene::~Scene() {}
 
 void Scene::AddObject(GameObject& gameObject) {
-	gameObjects.insert(std::pair<std::string, GameObject>(gameObject.name, gameObject));
+	gameObjects.insert(std::pair<std::string, GameObject*>(gameObject.name, &gameObject));
 }
 
 void Scene::AddLights(Lights& nLights) {
@@ -25,5 +25,5 @@ Lights& Scene::GetLights() {
 }
 
 GameObject& Scene::GetObject(std::string objName) {
-	return gameObjects.at(objName);
+	return *gameObjects.at(objName);
 }

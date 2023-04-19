@@ -24,7 +24,7 @@ public:
 	CubeMap* skybox = nullptr;
 	Lights lights;
 	Physics physics;
-	std::map<std::string,GameObject> gameObjects;
+	std::map<std::string,GameObject*> gameObjects;
 private:
 	
 

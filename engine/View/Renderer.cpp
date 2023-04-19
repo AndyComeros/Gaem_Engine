@@ -45,7 +45,7 @@ void Renderer::Draw(Scene& scene) {
 
 	for (auto& it : scene.gameObjects) {
 
-		GameObject* obj = &it.second;
+		GameObject* obj = it.second;
 		
 		//set special uniforms
 		obj->SetUniforms();

@@ -165,7 +165,7 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 		
 		for (int i = 0; i < material.diffuseTexture.size(); i++)
 		{
-			material.diffuseTexture[i]->Bind(GL_TEXTURE0);
+			material.diffuseTexture[i]->Bind(curTexture);
 			curIndex++;
 			curTexture++;
 		}
@@ -181,7 +181,7 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 		
 		for (int i = 0; i < material.specularMap.size(); i++)
 		{
-			material.specularMap[i]->Bind(GL_TEXTURE1);
+			material.specularMap[i]->Bind(curTexture);
 			curIndex++;
 			curTexture++;
 		}
@@ -197,7 +197,7 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 		
 		for (int i = 0; i < material.emissionMap.size(); i++)
 		{
-			material.emissionMap[i]->Bind(GL_TEXTURE2);
+			material.emissionMap[i]->Bind(curTexture);
 			curIndex++;
 			curTexture++;
 		}
