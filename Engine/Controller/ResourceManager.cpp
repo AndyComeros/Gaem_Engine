@@ -22,22 +22,22 @@ ResourceManager::ResourceManager(){
 ResourceManager::~ResourceManager(){}
 
 
-GameObject ResourceManager::CreateGameObject(std::string objectName, std::string modelName, std::string shaderName) {
-	GameObject gameObject;
-	gameObject.name = objectName;
-	gameObject.SetID(IDIndex);
+GameObject& ResourceManager::CreateGameObject(std::string objectName, std::string modelName, std::string shaderName) {
+	GameObject* gameObject = new GameObject();
+	gameObject->name = objectName;
+	gameObject->SetID(IDIndex);
 	IDIndex++;
 
-	gameObject.model_data = GetModel(modelName);
+	gameObject->model_data = GetModel(modelName);
 
 	if (!shaderName.empty()) {
-		gameObject.shader = GetShader(shaderName);
+		gameObject->shader = GetShader(shaderName);
 	}
 	else if (shaders.find("default") != shaders.end()) {
-		gameObject.shader = shaders.at("default");
+		gameObject->shader = shaders.at("default");
 	}
 
-	return gameObject;
+	return *gameObject;
 }
 
 Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, float texScale, float scaleX, float scaleY, float scaleZ) {

@@ -12,7 +12,7 @@ input:BindKey("escape",KEY_ESCAPE);
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
 mouseSensitivity = 0.1
-Distance = 200.0
+Distance = 45
 moveSpeed = 100
 
 thirdPerson = false
@@ -109,7 +109,8 @@ function TestInputFunc(dt)
 
 	local player = scene:GetObject("Player");
 	local camera = scene:GetCamera();
-	speed = 1000 * dt;
+	local turnspeed = 2000 * dt;
+	local movespeed = 3000 * dt;
 
 	if(input:GetKeyState("escape"))
 	then
@@ -119,25 +120,25 @@ function TestInputFunc(dt)
 
 	if(input:GetKeyState("forward"))
 	then
-		local dir = vec3:new(1,0,0):multiply(-speed);
+		local dir = vec3:new(1,0,0):multiply(-movespeed);
 		player.rigidBody:ApplyForceLocal(dir)
 	end
 		
 	if(input:GetKeyState("backward"))
 	then
-		local dir = vec3:new(1,0,0):multiply(speed);
+		local dir = vec3:new(1,0,0):multiply(movespeed);
 		player.rigidBody:ApplyForceLocal(dir)
 	end
 		
 	if(input:GetKeyState("left"))
 	then
-		local dir = vec3:new(0,1,0):multiply(speed);
+		local dir = vec3:new(0,1,0):multiply(turnspeed);
 		player.rigidBody:ApplyTorqueLocal(dir)
 	end
 		
 	if(input:GetKeyState("right"))
 	then
-		local dir = vec3:new(0,1,0):multiply(-speed);
+		local dir = vec3:new(0,1,0):multiply(-turnspeed);
 		player.rigidBody:ApplyTorqueLocal(dir)
 	end
 	

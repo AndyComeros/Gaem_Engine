@@ -9,7 +9,7 @@ class ResourceManager
 public:
 	static ResourceManager& Get();
 
-	GameObject CreateGameObject(std::string objectName, std::string modelName, std::string shaderName);
+	GameObject& CreateGameObject(std::string objectName, std::string modelName, std::string shaderName);
 	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName,float texScale, float scaleX, float scaleY, float scaleZ);
 
 	void LoadTexture(std::string resName, std::string fileName);

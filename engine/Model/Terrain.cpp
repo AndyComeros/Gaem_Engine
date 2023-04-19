@@ -161,9 +161,9 @@ void Terrain::SetTextureScale(float nScale) {
 
 void Terrain::SetUniforms()
 {
-	std::cout << "AAAAAAAAAAAA\n";
-	shader->SetUniform("textures", tUnits);
-	shader->SetUniform("textureCount", tCount);
+	if(shader)
+		shader->SetUniform("textures", tUnits);
+		shader->SetUniform("textureCount", tCount);
 }
 
 void Terrain::LoadHeightMap(const std::string& fileName) {

@@ -49,16 +49,28 @@ function init()
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.6)
 	local mass = 500;
-	local bounce = 0.0;
+	local bounce = 0.2;
 	local friction = 0.5;
 	physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
+
+	--Player.rigidBody:SetMass(500);
+	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
+	Player.rigidBody:SetDampeningAngle(10);
+	Player.rigidBody:SetDampeningLinear(1);
+	
 	scene:AddObject(Player);
 
 	--buildings
-	Building1 = resources:CreateGameObject("building1", "building1","");
-	Building1:SetPosition(vec3:new(50, 25, -500));
-	Building1.scale = vec3:new(10,10,10);
-	scene:AddObject(Building1);
+	for i = 0,10,1
+	do
+		local Building1 = resources:CreateGameObject("building"..i, "building1","");
+		Building1:SetPosition(vec3:new(50 * i, 25, -500));
+		Building1.scale = vec3:new(10,10,10);
+		local scale = vec3:new(10,60,10)
+		physics:AddRigidBody(Building1,2);
+		physics:AddRigidBodyColliderBox(Building1,scale, mass,bounce,friction);
+		scene:AddObject(Building1);
+	end
 	
 	--setup camera
 	camera = scene:GetCamera();
@@ -71,14 +83,15 @@ function init()
 	
 
 	--turn on debug mesh
-	--physics:ToggleDebugDisplay();
+	physics:ToggleDebugDisplay();
 	print("End Init");
 end
 
 function update(deltaTime)
 	local Player = scene:GetObject("Player");
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
-	
+
+	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	--print(Player.position.x.." "..Player.position.y.." "..Player.position.z);
 
 	TestInputFunc(deltaTime);
