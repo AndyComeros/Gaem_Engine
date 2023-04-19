@@ -64,12 +64,10 @@ void GameEngine::Run() {
 	auto it = ResourceManager::Get().ShaderBegin();
 	auto end = ResourceManager::Get().ShaderEnd();
 	for (it; it != end; it++) {
-		std::cout << "Set shader: " << it->first << std::endl;
 		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
 
 	isRunning = true;
-
 	//main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -84,7 +82,6 @@ void GameEngine::Run() {
 		scene.physics.StepPhysics(deltaTime);
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		luaManager.RunUpdateMethod(deltaTime);
-
 
 		inputMngr.KeyActions(deltaTime);
 
