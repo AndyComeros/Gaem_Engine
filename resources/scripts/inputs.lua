@@ -8,6 +8,7 @@ input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);
 input:BindKey("right",KEY_D);
 input:BindKey("escape",KEY_ESCAPE);
+input:BindKey("drift",KEY_SPACE);
 
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
@@ -116,6 +117,13 @@ function TestInputFunc(dt)
 	then
 		--todo:splash screen
 		CloseWindow(true);
+	end
+
+	if(input:GetKeyState("drift"))
+	then
+		player.rigidBody:SetDampeningLinear(0);
+	else
+		player.rigidBody:SetDampeningLinear(1);
 	end
 
 	if(input:GetKeyState("forward"))

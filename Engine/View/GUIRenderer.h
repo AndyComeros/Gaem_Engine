@@ -24,6 +24,7 @@ private:
 	void GUI_Settings();
 	void GUI_Exit();
 	void GUI_Debug();
+	void GUI_InGame();
 
 	int currentGUI = 0;
 	ImGuiWindowFlags flags;

@@ -31,6 +31,7 @@ void GUIRenderer::Init(GLFWwindow* nwindow) {
 
 void GUIRenderer::Draw() {
 
+
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
@@ -66,6 +67,7 @@ void GUIRenderer::GUI_Settings() {
 
 void GUIRenderer::GUI_Exit() {
 	
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	//probably do some centering func
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
@@ -87,4 +89,10 @@ void GUIRenderer::GUI_Exit() {
 }
 
 void GUIRenderer::GUI_Debug() {}
+
+void GUIRenderer::GUI_InGame()
+{
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);		
+
+}
 

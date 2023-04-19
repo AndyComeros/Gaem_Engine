@@ -14,7 +14,6 @@ typedef void(*actionPTR)();
 class InputManager
 {
 	public:
-		void InputManagerInitActions();
 
 		static InputManager& Get();
 
