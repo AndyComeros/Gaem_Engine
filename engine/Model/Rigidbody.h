@@ -9,6 +9,7 @@
 #define DYNA 3
 
 class Physics;
+class Terrain;
 
 class Rigidbody
 {
@@ -29,6 +30,7 @@ public:
 	void SetAxisFactor(float x, float y, float z);
 
 	friend class Physics;
+	friend class Terrain;
 private:
 	bool isContact = false;
 	rp3d::RigidBody* rbPtr = nullptr;

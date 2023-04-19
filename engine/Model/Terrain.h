@@ -11,6 +11,7 @@ public:
 	~Terrain();
 
 	float GetHeight(float x, float z);
+	glm::vec3 GetNormal(float x, float z);
 	int GetSize();
 	float GetMaxHeight();
 	float GetMinHeight();

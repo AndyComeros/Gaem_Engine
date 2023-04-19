@@ -35,8 +35,8 @@ function init()
 	--populate scene
 	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.5,5.0);
 	terrain:SetTextureHeights({0,60,80});
-	--physics:AddRigidBody(terrain,2);
-	--physics:AddRigidBodyColliderHeightMap(terrain);
+	physics:AddRigidBody(terrain,2);
+	physics:AddRigidBodyColliderHeightMap(terrain);
 
 	Player = resources:CreateGameObject("Player", "AE86", "");
 	Player.position = vec3:new(0,10,0);
@@ -85,7 +85,8 @@ function update(deltaTime)
 
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 	--print(height);
-	Player:SetPosition(vec3:new(Player.position.x,height,Player.position.z));
+	Player:SetPosition(vec3:new(Player.position.x,height + 1
+	,Player.position.z));
 
 	TestInputFunc(deltaTime);
 	MouseMoveFunc(deltaTime);

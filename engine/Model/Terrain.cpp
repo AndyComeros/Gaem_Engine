@@ -33,9 +33,6 @@ Terrain::~Terrain()
 
 float Terrain::GetHeight(float x, float z) {
 	
-	//x *= -1;
-	//z *= -1;
-
 	x = (x / scaleX + (((float)terrainSize - 1) / 2.0f)) * scaleX;
 	z = (z / scaleZ + (((float)terrainSize - 1) / 2.0f)) * scaleZ;
 
@@ -69,6 +66,36 @@ float Terrain::GetHeight(float x, float z) {
 		height += (triZ2 - triZ3) * (1.0f - sqX);
 	}
 	return height - ((maxHeight + minHeight) / 2.0f);
+}
+
+glm::vec3 Terrain::GetNormal(float x, float z)
+{
+	x = (x / scaleX + (((float)terrainSize - 1) / 2.0f)) * scaleX;
+	z = (z / scaleZ + (((float)terrainSize - 1) / 2.0f)) * scaleZ;
+
+	if (x >= (terrainSize - 1) * scaleX || z >= (terrainSize - 1) * scaleZ || x < 0 || z < 0)
+		return glm::vec3(0,1,0);
+
+	//x + (y * terrainSize)
+	float h00 = (*heightArray)[((int)x) + ((int)z * terrainSize)];
+	float h01 = (*heightArray)[((int)x + 1) + ((int)z * terrainSize)];
+	float h10 = (*heightArray)[((int)x) + (((int)z + 1) * terrainSize)];
+	float h11 = (*heightArray)[((int)x + 1) + (((int)z+1) * terrainSize)];
+
+	// Calculate the vectors from (x, z) to the four corners of the quad.
+	glm::vec3 v00(x, h00, z);
+	glm::vec3 v01(x + 1, h01, z);
+	glm::vec3 v10(x, h10, z + 1);
+	glm::vec3 v11(x + 1, h11, z + 1);
+
+	// Calculate the normal vectors for the two triangles in the quad.
+	glm::vec3 n1 = glm::normalize(glm::cross(v10 - v00, v01 - v00));
+	glm::vec3 n2 = glm::normalize(glm::cross(v01 - v11, v10 - v11));
+
+	// Average the two normal vectors to get the final normal.
+	glm::vec3 normal = glm::normalize(n1 + n2);
+
+	return normal;
 }
 
 int Terrain::GetSize() {
