@@ -26,6 +26,7 @@ void Physics::AddRigidBody(GameObject &go, int rbType)
 	Transform transform(position, orientation);
 
 	go.rigidBody.rbPtr = world->createRigidBody(transform);
+	go.rigidBody.worldPtr = world;
 
 	ModRigidBodyType(go,rbType);
 }
@@ -141,7 +142,7 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject>& goStore)
 
 				glm::vec3 rotvec;
 				rotvec.x = atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)) * 57.2957795131;
-				rotvec.y = asin(2 * (w * y - z * x)) * 57.2957795131;
+				rotvec.y = asin(std::clamp(2 * (w * y - z * x),-1.0f,1.0f)) * 57.2957795131;
 				rotvec.z = atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131;
 
 				it.second.rotation = rotvec;

@@ -120,30 +120,26 @@ function TestInputFunc(dt)
 	speed = 5;
 	if(input:GetKeyState("forward"))
 	then
-		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(speed);
-		player.rigidBody:ApplyForce(dir)
-		player:SetRotation(vec3:new(0,90,0));
+		local dir = vec3:new(1,0,0):multiply(-speed);
+		player.rigidBody:ApplyForceLocal(dir)
 	end
 		
 	if(input:GetKeyState("backward"))
 	then
-		local dir = NormalizeVector(CrossVectors(vec3:new(0,1,0),camera.right)):multiply(speed*-1);
-		player.rigidBody:ApplyForce(dir)
-		player:SetRotation(vec3:new(0,270,0));
+		local dir = vec3:new(1,0,0):multiply(speed);
+		player.rigidBody:ApplyForceLocal(dir)
 	end
 		
 	if(input:GetKeyState("left"))
 	then
-		local dir = camera.right:multiply(-speed);
-		player.rigidBody:ApplyForce(dir)
-		player:SetRotation(vec3:new(0,180,0));
+		local dir = vec3:new(0,1,0):multiply(speed);
+		player.rigidBody:ApplyTorqueLocal(dir)
 	end
 		
 	if(input:GetKeyState("right"))
 	then
-		local dir = camera.right:multiply(speed);
-		player.rigidBody:ApplyForce(dir)
-		player:SetRotation(vec3:new(0,0,0));
+		local dir = vec3:new(0,1,0):multiply(-speed);
+		player.rigidBody:ApplyTorqueLocal(dir)
 	end
 	
 end

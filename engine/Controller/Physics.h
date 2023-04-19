@@ -3,6 +3,7 @@
 #include <ResourceManager.h>
 #include <map>
 #include <math.h>
+#include <algorithm>
 #include <glm/gtx/euler_angles.hpp>
 
 using namespace reactphysics3d;
@@ -58,7 +59,8 @@ public:
 	inline Vector3 glm2react(glm::vec3& vec) { return {vec.x, vec.y, vec.z}; }
 	void ToggleDebugDisplay() { isDebug = !isDebug; world->setIsDebugRenderingEnabled(isDebug); }
 
-
+	//display debug 
+	void DrawDebug(Camera* cam, Shader* shader);
 private:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
@@ -71,9 +73,6 @@ private:
 	float accumulator = 0.0f;
 
 	bool isDebug = false;
-
-	//display debug 
-	void DrawDebug(Camera* cam, Shader* shader);
 	//friend Rigidbody;
 };
 

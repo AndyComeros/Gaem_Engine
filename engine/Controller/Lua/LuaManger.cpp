@@ -202,13 +202,14 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPClass<Rigidbody>("RigidBody",
 		sol::no_constructor,
 		"ApplyForce", &Rigidbody::ApplyForce,
+		"ApplyForceLocal", &Rigidbody::ApplyForceLocal,
+		"ApplyTorqueLocal", &Rigidbody::ApplyTorqueLocal,
 		"SetPosition", &Rigidbody::SetPosition,
 		"GetPosition", &Rigidbody::GetPosition,
 		"ModType", &Rigidbody::ModType,
-		"SetUseGravity", &Rigidbody::SetUseGravity
+		"SetUseGravity", &Rigidbody::SetUseGravity,
+		"SetAxisFactor", &Rigidbody::SetAxisFactor
 		);
-
-
 
 	//Get main update loop
 	LoadScript("resources/scripts/main.lua");

@@ -7,7 +7,14 @@ void Rigidbody::ApplyForce(glm::vec3 force)
 	rbPtr->applyWorldForceAtCenterOfMass({force.x,force.y,force.z});
 }
 
-void Rigidbody::ApplyTorque(glm::vec3 torque)
+void Rigidbody::ApplyForceLocal(glm::vec3 force)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->applyLocalForceAtCenterOfMass({ force.x,force.y,force.z });
+}
+
+void Rigidbody::ApplyTorqueLocal(glm::vec3 torque)
 {
 	if (!rbPtr)
 		return;
@@ -67,4 +74,11 @@ glm::vec3 Rigidbody::GetPosition()
 		return glm::vec3();
 	rp3d::Vector3 pos = rbPtr->getTransform().getPosition();
 	return { pos.x,pos.y,pos.z };
+}
+
+void Rigidbody::SetAxisFactor(float x, float y, float z)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->setLinearLockAxisFactor({ x,y,z });
 }

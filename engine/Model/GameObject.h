@@ -19,7 +19,6 @@ public:
 
 	Model *model_data = nullptr;
 	Rigidbody rigidBody;
-	//rp3d::RigidBody* rigidBody = nullptr;
 	Shader* shader = nullptr;
 
 	std::string name;

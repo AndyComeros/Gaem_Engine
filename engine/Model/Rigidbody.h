@@ -14,7 +14,8 @@ class Rigidbody
 {
 public:
 	void ApplyForce(glm::vec3 force);
-	void ApplyTorque(glm::vec3 torque);
+	void ApplyForceLocal(glm::vec3 force);
+	void ApplyTorqueLocal(glm::vec3 torque);
 
 	void ModType(int type);
 
@@ -25,9 +26,11 @@ public:
 
 	glm::vec3 GetPosition();
 
+	void SetAxisFactor(float x, float y, float z);
 
 	friend class Physics;
 private:
+	bool isContact = false;
 	rp3d::RigidBody* rbPtr = nullptr;
+	rp3d::PhysicsWorld* worldPtr = nullptr;
 };
-

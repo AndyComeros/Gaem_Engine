@@ -33,12 +33,13 @@ function init()
 	lighting:AddDirectionLight(vec3.new( -0.7,0.5,-1),vec3.new( 0.7,0.1,0.5),vec3.new(0.5,0.3,0.05));
 
 	--populate scene
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.0,5.0);
+	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black",5.0,0.5,5.0);
 	terrain:SetTextureHeights({0,60,80});
-	physics:AddRigidBody(terrain,2);
-	physics:AddRigidBodyColliderHeightMap(terrain);
+	--physics:AddRigidBody(terrain,2);
+	--physics:AddRigidBodyColliderHeightMap(terrain);
 
 	Player = resources:CreateGameObject("Player", "AE86", "");
+	Player.position = vec3:new(0,10,0);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.8,0.5,0.8)
 	physics:AddRigidBodyColliderBox(Player,scale);
@@ -68,17 +69,27 @@ function init()
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
 	scene:AddObject(terrain);
 	scene:AddObject(Player);
-	
 
+	--stop the engine from determining the y height of car
+	Player.rigidBody:SetAxisFactor(1,0,1);
+
+	--turn on debug mesh
 	physics:ToggleDebugDisplay();
 	print("End Init");
 end
 
 function update(deltaTime)
-	prot = scene:GetObject("Player").rotation;
-	--print(prot.x.." "..prot.y.." "..prot.z);
+	local Player = scene:GetObject("Player");
+	prot = Player.position;
+	print(prot.x.." "..prot.y.." "..prot.z);
+
+	local height = terrain:GetHeight(Player.position.x,Player.position.z);
+	--print(height);
+	Player:SetPosition(vec3:new(Player.position.x,height,Player.position.z));
+
 	TestInputFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
+
 	--print("Update lua" .. deltaTime);
 end
 
