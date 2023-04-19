@@ -76,6 +76,34 @@ glm::vec3 Rigidbody::GetPosition()
 	return { pos.x,pos.y,pos.z };
 }
 
+void Rigidbody::SetMass(float nMass)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->setMass(nMass);
+}
+
+void Rigidbody::SetCenterOfMass(glm::vec3 center)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->setLocalCenterOfMass({ center.x, center.y, center.z });
+}
+
+void Rigidbody::SetDampeningLinear(float damp)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->setLinearDamping(damp);
+}
+
+void Rigidbody::SetDampeningAngle(float damp)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->setAngularDamping(damp);
+}
+
 void Rigidbody::SetAxisLinearFactor(float x, float y, float z)
 {
 	if (!rbPtr)

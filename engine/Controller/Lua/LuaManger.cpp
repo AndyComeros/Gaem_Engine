@@ -211,10 +211,13 @@ void LuaManager::Expose_Engine() {
 		"ModType", &Rigidbody::ModType,
 		"SetUseGravity", &Rigidbody::SetUseGravity,
 		"SetAxisLinearFactor", &Rigidbody::SetAxisLinearFactor,
-		"SetAxisAngleFactor", &Rigidbody::SetAxisAngleFactor
+		"SetAxisAngleFactor", &Rigidbody::SetAxisAngleFactor,
+		"SetMass", &Rigidbody::SetMass,
+		"SetCenterOfMass", &Rigidbody::SetCenterOfMass,
+		"SetDampeningAngle", &Rigidbody::SetDampeningAngle,
+		"SetDampeningLinear", &Rigidbody::SetDampeningLinear
 		);
 
-	//Get main update loop
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");
 	init = GetFunction("init");

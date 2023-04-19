@@ -34,7 +34,7 @@ function init()
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.2,0.2,0.2);
 	lighting:AddDirectionLight(vec3.new( -0.7,0.5,-1),vec3.new( 0.7,0.1,0.5),vec3.new(0.5,0.3,0.05));
-	lighting:AddDirectionLight(vec3.new( 0.5,0.5,1),vec3.new( 1,1,1),vec3.new(1,1,1));
+	--lighting:AddDirectionLight(vec3.new( 0.5,0.5,1),vec3.new( 1,1,1),vec3.new(1,1,1));
 
 	--populate scene
 	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"specular", 50 , 10.0,0.6,10.0);

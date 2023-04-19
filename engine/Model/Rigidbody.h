@@ -28,6 +28,11 @@ public:
 
 	glm::vec3 GetPosition();
 
+	void SetMass(float nMass);
+	void SetCenterOfMass(glm::vec3 center);
+	void SetDampeningLinear(float damp);
+	void SetDampeningAngle(float damp);
+
 	void SetAxisLinearFactor(float x, float y, float z);
 	void SetAxisAngleFactor(float x, float y, float z);
 
