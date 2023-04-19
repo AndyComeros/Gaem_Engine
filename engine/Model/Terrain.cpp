@@ -157,8 +157,8 @@ void Terrain::SetTextureScale(float nScale) {
 
 	textureScale = nScale;
 
-	//if (heightArray.size() > 0)
-		//GenerateModel();
+	if ((*heightArray).size() > 0)
+		GenerateModel();
 
 }
 

@@ -17,6 +17,8 @@ public:
 	void SetPosition(glm::vec3 nPos);
 	void SetRotation(glm::vec3 nRot);
 
+	void SetUpVec(glm::vec3 nUp);
+
 	glm::vec3 GetUpVec();
 	glm::vec3 GetForwardVec();
 	glm::vec3 GetRightVec();

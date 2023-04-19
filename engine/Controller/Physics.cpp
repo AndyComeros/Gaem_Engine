@@ -37,27 +37,40 @@ void Physics::DelRigidBody(GameObject &go)
 	world->destroyRigidBody(go.rigidBody.rbPtr);
 }
 
-void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale)
+void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, float mass, float bounce, float friction)
 {
+	RigidBody* rb = go.rigidBody.rbPtr;
+
 	BoxShape* shape = physicsCommon.createBoxShape({scale.x,scale.y,scale.z});
 	Transform transform = Transform::identity();
+	rb->addCollider(shape, transform);
 
-	go.rigidBody.rbPtr->addCollider(shape, transform); 
+	rp3d::Material& mat= rb->getCollider(rb->getNbColliders() - 1)->getMaterial();
+	mat.setMassDensity(mass);
+	mat.setBounciness(bounce);
+	mat.setFrictionCoefficient(friction);
 }
 
-void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3 offset)
+void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3 offset, float mass, float bounce, float friction)
 {
+	RigidBody* rb = go.rigidBody.rbPtr;
+
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
 	rp3d::Quaternion q = Quaternion::identity();
 
 	Transform transform({ offset.x,offset.y, offset.z }, q);
 
+	rb->addCollider(shape, transform);
 
-	go.rigidBody.rbPtr->addCollider(shape, transform);
+	rp3d::Material& mat = rb->getCollider(rb->getNbColliders() - 1)->getMaterial();
+	mat.setMassDensity(mass);
+	mat.setBounciness(bounce);
+	mat.setFrictionCoefficient(friction);
 }
 
-void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height, glm::vec3 offset, glm::vec3 rotation)
+void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height, glm::vec3 offset, glm::vec3 rotation,float mass, float bounce, float friction)
 {
+	RigidBody* rb = go.rigidBody.rbPtr;
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
 
 	rotation = glm::radians(rotation);
@@ -65,7 +78,12 @@ void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float he
 
 	Transform transform({offset.x,offset.y, offset.z},q);
 
-	go.rigidBody.rbPtr->addCollider(shape, transform);
+	rb->addCollider(shape, transform);
+
+	rp3d::Material& mat = rb->getCollider(rb->getNbColliders() - 1)->getMaterial();
+	mat.setMassDensity(mass);
+	mat.setBounciness(bounce);
+	mat.setFrictionCoefficient(friction);
 }
 
 void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)

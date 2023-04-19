@@ -109,15 +109,14 @@ function TestInputFunc(dt)
 
 	local player = scene:GetObject("Player");
 	local camera = scene:GetCamera();
+	speed = 1000 * dt;
 
-	velocity = dt * moveSpeed
-	
 	if(input:GetKeyState("escape"))
 	then
 		--todo:splash screen
 		CloseWindow(true);
 	end
-	speed = 5;
+
 	if(input:GetKeyState("forward"))
 	then
 		local dir = vec3:new(1,0,0):multiply(-speed);
