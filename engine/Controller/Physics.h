@@ -34,8 +34,8 @@ public:
 
 	//add and del rigidbody colliders
 	void AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale);
-	void AddRigidBodyColliderSphere(GameObject &go, float radius);
-	void AddRigidBodyColliderCapsule(GameObject &go, float radius, float height);
+	void AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3 offset);
+	void AddRigidBodyColliderCapsule(GameObject& go, float radius, float height, glm::vec3 offset, glm::vec3 rotation);
 	//TODO add Model3D to convex function
 	//TODO add Model3D to concave function
 	void AddRigidBodyColliderHeightMap(Terrain &terrain);

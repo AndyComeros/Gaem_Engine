@@ -45,18 +45,25 @@ void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale)
 	go.rigidBody.rbPtr->addCollider(shape, transform); 
 }
 
-void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius)
+void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3 offset)
 {
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
-	Transform transform = Transform::identity();
+	rp3d::Quaternion q = Quaternion::identity();
+
+	Transform transform({ offset.x,offset.y, offset.z }, q);
+
 
 	go.rigidBody.rbPtr->addCollider(shape, transform);
 }
 
-void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height)
+void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height, glm::vec3 offset, glm::vec3 rotation)
 {
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
-	Transform transform = Transform::identity();
+
+	rotation = glm::radians(rotation);
+	rp3d::Quaternion q = Quaternion::fromEulerAngles({ rotation.x,rotation.y,rotation.z });
+
+	Transform transform({offset.x,offset.y, offset.z},q);
 
 	go.rigidBody.rbPtr->addCollider(shape, transform);
 }

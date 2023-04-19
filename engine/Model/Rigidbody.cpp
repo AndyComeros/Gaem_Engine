@@ -76,9 +76,16 @@ glm::vec3 Rigidbody::GetPosition()
 	return { pos.x,pos.y,pos.z };
 }
 
-void Rigidbody::SetAxisFactor(float x, float y, float z)
+void Rigidbody::SetAxisLinearFactor(float x, float y, float z)
 {
 	if (!rbPtr)
 		return;
 	rbPtr->setLinearLockAxisFactor({ x,y,z });
+}
+
+void Rigidbody::SetAxisAngleFactor(float x, float y, float z)
+{
+	if (!rbPtr)
+		return;
+	rbPtr->setAngularLockAxisFactor({ x,y,z });
 }

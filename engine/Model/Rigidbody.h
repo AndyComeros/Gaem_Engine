@@ -9,6 +9,7 @@
 #define DYNA 3
 
 class Physics;
+class GameObject;
 class Terrain;
 
 class Rigidbody
@@ -27,9 +28,11 @@ public:
 
 	glm::vec3 GetPosition();
 
-	void SetAxisFactor(float x, float y, float z);
+	void SetAxisLinearFactor(float x, float y, float z);
+	void SetAxisAngleFactor(float x, float y, float z);
 
 	friend class Physics;
+	friend class GameObject;
 	friend class Terrain;
 private:
 	bool isContact = false;

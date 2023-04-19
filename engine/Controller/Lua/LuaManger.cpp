@@ -74,6 +74,7 @@ void LuaManager::Expose_Engine() {
 		sol::constructors<Terrain(), Terrain(std::string&, float, float, float)>(),
 		sol::base_classes, sol::bases<GameObject>(),
 		"GetHeight", &Terrain::GetHeight,
+		"GetNormal", &Terrain::GetNormal,
 		"SetTextures",&Terrain::SetTextures,
 		"SetTextureHeights",&Terrain::SetTextureHeights,
 		"GetSize",&Terrain::GetSize,
@@ -208,7 +209,8 @@ void LuaManager::Expose_Engine() {
 		"GetPosition", &Rigidbody::GetPosition,
 		"ModType", &Rigidbody::ModType,
 		"SetUseGravity", &Rigidbody::SetUseGravity,
-		"SetAxisFactor", &Rigidbody::SetAxisFactor
+		"SetAxisLinearFactor", &Rigidbody::SetAxisLinearFactor,
+		"SetAxisAngleFactor", &Rigidbody::SetAxisAngleFactor
 		);
 
 	//Get main update loop
