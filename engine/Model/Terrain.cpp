@@ -248,6 +248,7 @@ void Terrain::GenerateModel() {
 	//create vert data
 	float texCoordScaleX = (float)textureScale / (float)terrainSize;
 	float texCoordScaleY = (float)textureScale / (float)terrainSize;
+	
 	for (int y = 0; y < terrainSize; y++)
 	{
 		for (int x = 0; x < terrainSize; x++)
@@ -306,9 +307,11 @@ void Terrain::GenerateModel() {
 		vertexData[i].normal = glm::normalize(vertexData[i].normal);
 	}
 
-	if (model_data)
-		delete model_data;
-
-	model_data = new Model();
+	if (model_data) {
+		model_data->FreeData();
+	}
+	else {
+		model_data = new Model();
+	}
 	model_data->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
 }	

@@ -40,10 +40,11 @@ GameObject ResourceManager::CreateGameObject(std::string objectName, std::string
 	return gameObject;
 }
 
-Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, float scaleX, float scaleY, float scaleZ) {
+Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, float texScale, float scaleX, float scaleY, float scaleZ) {
 	
 	Terrain terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
 	
+
 	if (shaders.find("terrain") != shaders.end())
 		terrain.shader = shaders.at("terrain");
 
