@@ -10,6 +10,8 @@ public:
 	Terrain(std::vector<float> nHeights);
 	~Terrain();
 
+	virtual void SetUniforms();
+
 	float GetHeight(float x, float z);
 	glm::vec3 GetNormal(float x, float z);
 	int GetSize();
@@ -26,6 +28,7 @@ public:
 	void LoadHeightMap(const std::string& fileName);
 	void LoadHeightMap(Texture* nHeightMap);
 	void LoadHeightMap(std::vector<float> nHeights);
+	
 
 	float GetScaleX();
 	float GetScaleY();
@@ -55,4 +58,7 @@ private:
 	std::vector<float> *heightArray;
 	//height map texture
 	Texture* heightTexture = nullptr;
+
+	std::vector<int> tUnits;
+	int tCount = 0;
 };

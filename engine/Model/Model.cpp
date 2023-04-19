@@ -155,43 +155,58 @@ void Model::SetVertexElements(unsigned int* vertIndexes, int numIndex) {
 void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
 	unsigned int curTexture = GL_TEXTURE0;
+	int curIndex = 0;
 	int diff = 0;
 	int spec = 0;
 	int emis = 0;
+
+	diff = curIndex;
 	if (!material.diffuseTexture.empty()) {
-		diff = curTexture;
+		
 		for (int i = 0; i < material.diffuseTexture.size(); i++)
 		{
-			material.diffuseTexture[i]->Bind(curTexture);
+			material.diffuseTexture[i]->Bind(GL_TEXTURE0);
+			curIndex++;
 			curTexture++;
 		}
 	}else {
 		glActiveTexture(curTexture);
 		glBindTexture(GL_TEXTURE_2D, 0);
+		curIndex++;
+		curTexture++;
 	}
 
+	spec = curIndex;
 	if (!material.specularMap.empty()) {
-		spec = curTexture;
+		
 		for (int i = 0; i < material.specularMap.size(); i++)
 		{
-			material.specularMap[i]->Bind(curTexture);
+			material.specularMap[i]->Bind(GL_TEXTURE1);
+			curIndex++;
 			curTexture++;
 		}
 	}else {
 		glActiveTexture(curTexture);
 		glBindTexture(GL_TEXTURE_2D, 0);
+		curIndex++;
+		curTexture++;
 	}
 
+	emis = curIndex;
 	if (!material.emissionMap.empty()) {
-		emis = curTexture;
+		
 		for (int i = 0; i < material.emissionMap.size(); i++)
 		{
-			material.emissionMap[i]->Bind(curTexture);
+			material.emissionMap[i]->Bind(GL_TEXTURE2);
+			curIndex++;
 			curTexture++;
 		}
-	}else {
+	}
+	else {
 		glActiveTexture(curTexture);
 		glBindTexture(GL_TEXTURE_2D, 0);
+		curIndex++;
+		curTexture++;
 	}
 
 	glm::mat4 view = camera->GetView();
@@ -205,7 +220,7 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 	shader->SetUniform("projection", projection);
 
 	//set shader texture unit numbers
-	shader->SetUniform("material.diffuseTexture", diff);
+	shader->SetUniform("material.diffuseTexture",	diff);
 	shader->SetUniform("material.specularMap", spec);
 	shader->SetUniform("material.emissionMap", emis);
 	shader->SetUniform("material.alpha", material.shine);

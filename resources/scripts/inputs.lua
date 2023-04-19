@@ -12,7 +12,7 @@ input:BindKey("escape",KEY_ESCAPE);
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
 mouseSensitivity = 0.1
-Distance = 20.0
+Distance = 200.0
 moveSpeed = 100
 
 thirdPerson = false
@@ -39,9 +39,9 @@ function camDistance()
 	then
 		Distance = 3.0;
 	end
-	if (Distance > 45.0)
+	if (Distance > 300.0)
 	then
-		Distance = 45.0;
+		Distance = 300.0;
 	end
 end
 

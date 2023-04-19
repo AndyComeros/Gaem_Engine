@@ -84,6 +84,7 @@ void GameEngine::Run() {
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		luaManager.RunUpdateMethod(deltaTime);
 
+
 		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene);

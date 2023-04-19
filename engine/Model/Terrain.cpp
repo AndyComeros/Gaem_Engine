@@ -122,8 +122,6 @@ void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
 		return;
 	}
 		
-	std::vector<int> tUnits;
-	int tCount = 0;
 	int i;
 	for (i = 0; i < textures.size(); i++) {
 		model_data->SetDiffuseTexture(textures[i]);
@@ -138,8 +136,7 @@ void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
 	for (i = tCount; i < MAX_TERRAIN_TEXTURES; i++)
 		tUnits.push_back(0);
 
-	shader->SetUniform("textures", tUnits);
-	shader->SetUniform("textureCount", tCount);
+	SetUniforms();
 }
 
 
@@ -160,6 +157,13 @@ void Terrain::SetTextureScale(float nScale) {
 	if ((*heightArray).size() > 0)
 		GenerateModel();
 
+}
+
+void Terrain::SetUniforms()
+{
+	std::cout << "AAAAAAAAAAAA\n";
+	shader->SetUniform("textures", tUnits);
+	shader->SetUniform("textureCount", tCount);
 }
 
 void Terrain::LoadHeightMap(const std::string& fileName) {

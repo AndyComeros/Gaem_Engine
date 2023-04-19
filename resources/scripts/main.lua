@@ -49,7 +49,7 @@ function init()
 	local scale = vec3:new(1.5,0.2,0.6)
 	local mass = 500;
 	local bounce = 0.0;
-	local friction = 0.4;
+	local friction = 0.5;
 	physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
 
 	--buildings
@@ -77,7 +77,7 @@ function update(deltaTime)
 	local Player = scene:GetObject("Player");
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 	
-	print(Player.position.x.." "..Player.position.y.." "..Player.position.z);
+	--print(Player.position.x.." "..Player.position.y.." "..Player.position.z);
 
 	TestInputFunc(deltaTime);
 	MouseMoveFunc(deltaTime);

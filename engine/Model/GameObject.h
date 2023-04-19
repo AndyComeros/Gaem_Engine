@@ -18,10 +18,13 @@ public:
 	void SetRotation(glm::vec3 nRot);
 
 	void SetUpVec(glm::vec3 nUp);
+	virtual void SetUniforms();
+
 
 	glm::vec3 GetUpVec();
 	glm::vec3 GetForwardVec();
 	glm::vec3 GetRightVec();
+	
 
 
 	glm::vec3 position = {0,0,0};

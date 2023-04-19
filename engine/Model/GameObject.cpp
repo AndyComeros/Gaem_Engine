@@ -43,6 +43,11 @@ void GameObject::SetUpVec(glm::vec3 nUp)
 
 }
 
+void GameObject::SetUniforms()
+{
+
+}
+
 glm::vec3 GameObject::GetUpVec()
 {
 	glm::mat4 rotationMatrix(1.0f);
