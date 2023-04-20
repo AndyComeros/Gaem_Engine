@@ -70,13 +70,13 @@ function CalaulateCamPos()
 	yaw = camera.Yaw - 90.0;
 
 	pitch = -camera.Pitch;
-
+	-- calaulate camera using camera pitch and yaw
 	x = Distance * math.cos(math.rad(pitch)) * math.sin(math.rad(-yaw));
 	y = Distance * math.sin(math.rad(pitch));
 	z = Distance * math.cos(math.rad(pitch)) * math.cos(math.rad(yaw));
 
 	local player = scene:GetObject("Player")
-	
+	--add player/target location to camera position to move the camera with it
 	camera.position.x = player.position.x + -x;
 	camera.position.y = player.position.y + y;
 	camera.position.z = player.position.z + -z;
