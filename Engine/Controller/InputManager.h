@@ -31,23 +31,12 @@ class InputManager
 		void EnableKey(int key);
 		void DisableKey(int key);
 
-		static void GlfwMouseCallback(GLFWwindow* window, double xpos, double ypos)
-		{
-			Get().mouseCallback(window, xpos, ypos);
-		}
-
-		static void GlfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-			Get().GlfwKeyCallbackDispatch(window, key, scancode, action, mods);
-		}
-
-		void mouseCallback(GLFWwindow* window, double xpos, double ypos);
-
-		static void GlfwScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
-		{
-			Get().ScrollCallback(window, xoffset, yoffset);
-		}
-
+		static void GlfwMouseCallback(GLFWwindow* window, double xpos, double ypos);
+		static void GlfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void GlfwScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+		
 		void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+		void mouseCallback(GLFWwindow* window, double xpos, double ypos);
 
 		void SetMouseLock(bool visible);
 		glm::vec2 GetMousePostion();

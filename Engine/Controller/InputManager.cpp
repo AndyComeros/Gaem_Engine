@@ -69,6 +69,11 @@ void InputManager::mouseCallback(GLFWwindow* window, double xPos, double yPos)
 	lastY = yPos;
 }
 
+void InputManager::GlfwScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	Get().ScrollCallback(window, xoffset, yoffset);
+}
+
 void InputManager::ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	scrollOffset = yoffset;
@@ -140,6 +145,16 @@ void InputManager::DisableKey(int key)
 		if (bind.key == key)
 			bind.state = false;
 	}
+}
+
+void InputManager::GlfwMouseCallback(GLFWwindow* window, double xpos, double ypos)
+{
+		Get().mouseCallback(window, xpos, ypos);
+}
+
+void InputManager::GlfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	Get().GlfwKeyCallbackDispatch(window, key, scancode, action, mods);
 }
 
 void InputManager::Init(GLFWwindow* window) {

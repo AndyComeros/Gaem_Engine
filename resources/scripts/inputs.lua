@@ -9,6 +9,7 @@ input:BindKey("left",KEY_A);
 input:BindKey("right",KEY_D);
 input:BindKey("escape",KEY_ESCAPE);
 input:BindKey("drift",KEY_SPACE);
+input:BindKey("debug",KEY_F1)
 
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
@@ -28,46 +29,7 @@ function MouseMoveFunc(dt)
 
 	lastX = xPos
 	lastY = yPos
-	camDistance();
-	ThirdPersonCamera(xoffset,yoffset);
-	camera:UpdateCameraVectors();
-end
 
-function camDistance()
-	scrollOffset = input:GetScrollOffset();
-	Distance = Distance - scrollOffset;
-	if (Distance < 3.0)
-	then
-		Distance = 3.0;
-	end
-	if (Distance > 300.0)
-	then
-		Distance = 300.0;
-	end
-end
-
-function FirstPersonCamera( xoffset, yoffset )
-	local camera = scene:GetCamera();
-	xoffset = xoffset * mouseSensitivity
-	yoffset = yoffset * mouseSensitivity
-
-	camera.Yaw =  camera.Yaw + xoffset
-	camera.Pitch = camera.Pitch + yoffset
-
-	if(camera.Pitch > 89.0)
-	then
-		camera.Pitch = 89.0
-	end
-	if(camera.Pitch < -89.0)
-	then
-		camera.Pitch = -89.0
-	end
-
-end
-
-
-function ThirdPersonCamera(xoffset, yoffset)
-	local camera = scene:GetCamera();
 	xoffset = xoffset * mouseSensitivity
 	yoffset = yoffset * mouseSensitivity
 
@@ -84,7 +46,22 @@ function ThirdPersonCamera(xoffset, yoffset)
 		camera.Pitch = 0.0;
 	end
 
+	camDistance();
 	CalaulateCamPos();
+	camera:UpdateCameraVectors();
+end
+
+function camDistance()
+	scrollOffset = input:GetScrollOffset();
+	Distance = Distance - scrollOffset;
+	if (Distance < 3.0)
+	then
+		Distance = 3.0;
+	end
+	if (Distance > 300.0)
+	then
+		Distance = 300.0;
+	end
 end
 
 
@@ -105,8 +82,8 @@ function CalaulateCamPos()
 	camera.position.z = player.position.z + -z;
 end
 
-
-function TestInputFunc(dt)
+local debugPress = false;
+function KeyPressFunc(dt)
 
 	local player = scene:GetObject("Player");
 	local camera = scene:GetCamera();
@@ -116,6 +93,19 @@ function TestInputFunc(dt)
 	if(input:GetKeyState("escape"))
 	then
 		GUI:SwitchMenu(1);
+	end
+
+
+	if(input:GetKeyState("debug") and (not debugPress))
+	then
+		debugPress = true;
+		physics:ToggleDebugDisplay();
+
+	elseif(input:GetKeyState("debug"))
+	then
+		debugPress = true;
+	else
+		debugPress = false;
 	end
 
 	if(input:GetKeyState("drift"))

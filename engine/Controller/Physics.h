@@ -57,7 +57,7 @@ public:
 	//misc
 	inline glm::vec3 react2glm(const Vector3& vec){return { vec.x, vec.y, vec.z };}
 	inline Vector3 glm2react(glm::vec3& vec) { return {vec.x, vec.y, vec.z}; }
-	void ToggleDebugDisplay() { isDebug = !isDebug; world->setIsDebugRenderingEnabled(isDebug); }
+	void ToggleDebugDisplay();
 
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
@@ -73,6 +73,5 @@ private:
 	float accumulator = 0.0f;
 
 	bool isDebug = false;
-	//friend Rigidbody;
 };
 

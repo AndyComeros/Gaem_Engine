@@ -42,14 +42,15 @@ function init()
 	lighting:AddDirectionLight(vec3.new( -0.7,0.5,-1),vec3.new( 0.7,0.1,0.5),vec3.new(0.5,0.3,0.05));
 	--lighting:AddDirectionLight(vec3.new( 0.5,0.5,1),vec3.new( 1,1,1),vec3.new(1,1,1));
 
-	--populate scene
+	--Load terrain
 	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black", 50 , 10.0,0.6,10.0);
 	terrain:SetTextureScale(20);
 	terrain:SetTextureHeights({-30,-5,40});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
+	scene:AddObject(terrain);
 
-	--Player
+	--Setup Player
 	Player = resources:CreateGameObject("Player", "AE86", "");
 	Player.position = vec3:new(0,5,0);
 	physics:AddRigidBody(Player,3);
@@ -101,14 +102,11 @@ function init()
 		scene:AddObject(Arcade);
 	end
 	
-	--setup camera
+	--setup camera 
 	camera = scene:GetCamera();
 	camera.farPlane = 10000;
-	camera.position.x = 0;
-	camera.position.y = 5;
-
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
-	scene:AddObject(terrain);
+	
 	
 
 	--turn on debug mesh
@@ -121,9 +119,8 @@ function update(deltaTime)
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-	--print(Player.position.x.." "..Player.position.y.." "..Player.position.z);
 
-	TestInputFunc(deltaTime);
+	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
 end
 

@@ -198,6 +198,12 @@ void Physics::StepPhysics(float deltaTime)
 	}
 }
 
+void Physics::ToggleDebugDisplay()
+{
+	isDebug = !isDebug;
+	world->setIsDebugRenderingEnabled(isDebug);
+}
+
 void Physics::DrawDebug(Camera* cam, Shader* shader)
 {
 	if (isDebug) {
