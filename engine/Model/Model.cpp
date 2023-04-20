@@ -6,7 +6,7 @@ vertCount(0),
 instanceCount(1), 
 modelData(nullptr) {}
 
-Model::Model(const char* fileName): instanceCount(0) {
+Model::Model(const char* fileName): instanceCount(1) {
 	ReadOBJ(fileName);
 }
 
