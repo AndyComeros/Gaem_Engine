@@ -90,6 +90,7 @@ void GameEngine::Run() {
 		guirenderer.Draw();
 		glfwSwapBuffers(window);
 	}
+	isRunning = false;
 
 	//cleanup
 	glfwDestroyWindow(window);

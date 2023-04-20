@@ -4,8 +4,6 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 #include <GUIRenderer.h>
-
-
 /**
 *	@Class LuaManager
 *	@brief Provided an interface to expose data, classes and functions
