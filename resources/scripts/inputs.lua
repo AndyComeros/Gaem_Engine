@@ -7,9 +7,10 @@ input:BindKey("forward",KEY_W);
 input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);
 input:BindKey("right",KEY_D);
-input:BindKey("escape",KEY_ESCAPE);
+input:BindKey("escape",KEY_X);
 input:BindKey("drift",KEY_SPACE);
-input:BindKey("debug",KEY_F1)
+input:BindKey("debug",KEY_K);
+input:BindKey("toggleControlMenu",KEY_M)
 
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
@@ -107,6 +108,13 @@ function KeyPressFunc(dt)
 	else
 		debugPress = false;
 	end
+
+	if(input:GetKeyState("toggleControlMenu"))
+	then
+		controlPress = true;
+		GUI:SwitchMenu(2);
+	end
+
 
 	if(input:GetKeyState("drift"))
 	then
