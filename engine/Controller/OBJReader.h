@@ -8,7 +8,8 @@
 #include <unordered_map>
 	/**
 	*	@struct vertex
-	*	@brief stores vertex data from an obj file
+	*	@brief Used to store vertex information of
+	*	3D model data
 	*/
 struct vertex {
 	glm::vec3 vertex;
@@ -18,7 +19,8 @@ struct vertex {
 };
 	/**
 	*	@struct OBJData
-	*	@brief stores all obj data
+	*	@brief Used to store .obj file vertex
+	*	data. currently does not support .mtl files
 	*/
 struct OBJData
 {
@@ -26,6 +28,8 @@ struct OBJData
 	std::vector<vertex> vertexData;
 };
 	/*
-	*	@brief reads an OBJ file and retuns its vertex data in an OBJData struct
+	*	@brief Reads in vertex information and returns and OBJ data
+	*	struct.
+	*	@return reference to heap allocated obj data struct
 	*/
 OBJData* ReadObjFile(const char* fileName);
