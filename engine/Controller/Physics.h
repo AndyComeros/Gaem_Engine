@@ -8,8 +8,6 @@
 
 using namespace reactphysics3d;
 
-
-
 class Physics
 {
 public:

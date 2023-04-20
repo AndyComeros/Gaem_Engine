@@ -72,7 +72,7 @@ void GameEngine::Run() {
 	while (!glfwWindowShouldClose(window))
 	{
 		// timer
-		long double currentFrameTime = glfwGetTime();
+		double currentFrameTime = glfwGetTime();
 		deltaTime = currentFrameTime - previousFrameTime;
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;

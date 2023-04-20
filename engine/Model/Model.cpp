@@ -1,24 +1,19 @@
 #include "Model.h"
 #include <vector>
 
-Model::Model(void) {
-	elementCount = 0;
-	vertCount = 0;
-	instanceCount = 1;
-	modelData = nullptr;
-}
+Model::Model(void): elementCount(0),
+vertCount(0), 
+instanceCount(1), 
+modelData(nullptr) {}
 
-Model::Model(const char* fileName) {
-
+Model::Model(const char* fileName): instanceCount(0) {
 	ReadOBJ(fileName);
-	instanceCount = 1;
 }
 
 Model::~Model() {}
 
 Model::Model(const char* fileName, std::vector<glm::mat4> nMatrix) {
 
-	FreeData();
 	modelData = ReadObjFile(fileName);
 	vertCount = (int)modelData->vertexData.size();
 	elementCount = (int)modelData->elements.size();
@@ -212,15 +207,15 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 	glm::mat4 view = camera->GetView();
 	glm::mat4 projection = camera->GetProjection();
 
-	//camera pos
+	//Set camera position
 	shader->SetUniform("cameraPos", camera->position);
 
-	//basic postion matricies
+	//Set view and projection matricies
 	shader->SetUniform("view", view);
 	shader->SetUniform("projection", projection);
 
-	//set shader texture unit numbers
-	shader->SetUniform("material.diffuseTexture",	diff);
+	//Set texure unit numbers
+	shader->SetUniform("material.diffuseTexture",diff);
 	shader->SetUniform("material.specularMap", spec);
 	shader->SetUniform("material.emissionMap", emis);
 	shader->SetUniform("material.alpha", material.shine);

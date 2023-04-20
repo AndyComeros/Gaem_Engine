@@ -4,6 +4,7 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 #include <GUIRenderer.h>
+
 /**
 *	@Class LuaManager
 *	@brief Provided an interface to expose data, classes and functions
@@ -33,29 +34,34 @@ public:
 		*	@return void
 		*/
 	void RunInitMethod();
+
 		/**
 		*	@brief Runs the update(deltaTime) method extracted from lua
 		*	@param dt deltaTime value used by the lua update function
 		*	@return void
 		*/
 	void RunUpdateMethod(double dt);
+
 		/**
 		*	@brief Exposes The Gaem Engine API to the lua state
 		*	@return void
 		*/
 	void Expose_Engine();
+
 		/**
 		*	@brief Loads a lua scrpit file into the main luastate 
 		*	@param fileName file path of lua script
 		*	@return void
 		*/
 	void LoadScript(const std::string& fileName);
+
 		/**
 		*	@brief Attempts to collect a lua function from the main luastate
 		*	@param luaName name of the function being extracted
 		*	@return sol function extracted
 		*/
 	sol::function GetFunction(const char* luaName);
+
 		/**
 		*	@brief extract variable from the lua state
 		*	@param luaName name of varaible to extract
@@ -71,6 +77,7 @@ public:
 			return T();
 		}
 	}
+
 		/**
 		*	@brief expose data from cpp to luastate
 		*	@param luaName name of the varaible in the lua state
@@ -81,6 +88,7 @@ public:
 	void Expose_CPPVariable(const char* luaName, T cppData) {
 		luaState.set(luaName, cppData);
 	}
+
 		/**
 		*	@brief Expose a reference to data/object from cpp to lua
 		*	@param luaName name of data in the lua state
@@ -91,6 +99,7 @@ public:
 	void Expose_CPPReference(const char* luaName, T &cppData) {
 		luaState[luaName] = &cppData;
 	}
+
 		/**
 		*	@brief Expose a cpp function to the lua state
 		*	@param luaName name of the function in the lua state
@@ -102,6 +111,7 @@ public:
 	void Expose_CPPFunction(const char* luaName, Func cppFunc, Args... args) {
 		luaState.set_function(luaName, cppFunc, args);
 	}
+
 		/**
 		*	@brief Expose a cpp class to the lua state
 		*	@param luaName name of the class in the lua state

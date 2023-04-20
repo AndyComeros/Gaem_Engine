@@ -166,9 +166,9 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject*>& goStore)
 				float z = rot.z;
 
 				glm::vec3 rotvec;
-				rotvec.x = atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)) * 57.2957795131;
-				rotvec.y = asin(std::clamp(2 * (w * y - z * x),-1.0f,1.0f)) * 57.2957795131;
-				rotvec.z = atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131;
+				rotvec.x = atan2(2.0f * (w * x + y * z), 1 - 2 * (x * x + y * y)) * 57.2957795131f;
+				rotvec.y = asin(std::clamp(2.0f * (w * y - z * x),-1.0f,1.0f)) * 57.2957795131f;
+				rotvec.z = atan2(2.0f * (w * z + x * y), 1 - 2 * (y * y + z * z)) * 57.2957795131f;
 
 				it.second->rotation = rotvec;
 			}

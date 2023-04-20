@@ -23,6 +23,7 @@ public:
 		*	@return The singleton instance of ResourceManager
 		*/
 	static ResourceManager& Get();
+
 		/**
 		*	@brief Abstract factory method for creating game objects
 		*	@param objectName name of created game object
@@ -31,6 +32,7 @@ public:
 		*	@return a game object created using the selected parameters
 		*/
 	GameObject& CreateGameObject(std::string objectName, std::string modelName, std::string shaderName);
+		
 		/**
 		*	@brief Abstract factory method for creating terrain game objects
 		*	@param terrainName name of created game object
@@ -44,6 +46,7 @@ public:
 		*	@return a game object created using the selected parameters
 		*/
 	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName,float texScale, float scaleX, float scaleY, float scaleZ);
+
 		/**
 		*	@brief loads a texture into storage
 		*	@param	resName name key to assign to this resource
@@ -51,6 +54,7 @@ public:
 		*	@return void
 		*/
 	void LoadTexture(std::string resName, std::string fileName);
+
 		/**
 		*	@brief loads a model into storage
 		*	@param	resName name key to assign to this resource
@@ -61,6 +65,7 @@ public:
 		*	@return void 
 		*/
 	void LoadModel	(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName);
+
 		/**
 		*	@brief loads a shader into storage
 		*	@param	resName name key to assign to this resource
@@ -71,6 +76,7 @@ public:
 		*	@return void
 		*/
 	void LoadShader	(std::string resName, std::string vertPath, std::string fragPath, std::string geomPath);
+
 		/**
 		*	@brief loads a cubemap into storage
 		*	@param	resName name key to assign to this resource
@@ -84,24 +90,28 @@ public:
 		*	@return void
 		*/
 	void LoadCubemap(std::string resName, std::string right, std::string left, std::string top, std::string bottom, std::string front, std::string back);
+
 		/**
 		*	@brief Retrieve a texture from storage
 		*	@param resName name key of resource
 		*	@return a texture pointer
 		*/
 	Texture* GetTexture(std::string resName);
+
 		/**
 		*	@brief Retrieve a model from storage
 		*	@param resName name key of resource
 		*	@return model pointer
 		*/
 	Model* GetModel(std::string resName);
+
 		/**
 		*	@brief Retrieve a shader from storage
 		*	@param resName name key of resource
 		*	@return shader pointer
 		*/
 	Shader* GetShader(std::string resName);
+
 		/**
 		*	@brief Retrieve a cubbemap from storage
 		*	@param resName name key of resource
@@ -129,6 +139,7 @@ public:
 		///Get itterator for cubemap resources
 	auto CubeMapEnd() { return cubemaps.end(); }
 private:
+
 		///ID of next game object created
 	unsigned int IDIndex = 1;
 		///Default constructor. Private because singleton

@@ -17,21 +17,25 @@
 class GameEngine
 {
 public:
+
 		/**
 		*	@brief Get the singleton instance of GameEngine
 		*	@return The singleton instance of GameEngine
 		*/
 	static GameEngine& Get();
+
 		/**
 		*	@brief Runs the main game loop
 		*	@return void
 		*/
 	void Run();
+
 		/**
 		*	@brief Calculates and returns time since last frame
 		*	@return time since last frame
 		*/
 	double DeltaTime();
+
 		/**
 		*	@brief GLFW callback for window resizing. recalulates camera properties and viewport
 		*	@param width new window width
@@ -62,11 +66,11 @@ private:
 		///updates per second
 	decimal timeStep = 0.0f;
 		///time since last update
-	float accumulator = 0.0f;
+	double accumulator = 0.0f;
 		///previous time between frames
-	float previousFrameTime = 0.0f;
+	double previousFrameTime = 0.0f;
 		///time since last frame
-	float deltaTime = 0.0f;
+	double deltaTime = 0.0f;
 		///whether main loop is running
 	bool isRunning = false;
 		

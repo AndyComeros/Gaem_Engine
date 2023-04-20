@@ -46,14 +46,12 @@ void Camera::LookAt(glm::vec3 lookPos) {
 
 glm::mat4 Camera::GetView() 
 {
-	//UpdateCameraVectors();
 	return glm::lookAt(position, position + front, up);
 }
 
 glm::mat4 Camera::GetProjection() {
 
-	glm::mat4 projection = glm::perspective(glm::radians(FOV), aspectRatio, nearPlane, farPlane);
-	return projection;
+	return glm::perspective(glm::radians(FOV), aspectRatio, nearPlane, farPlane);
 }
 
 void Camera::UpdateCameraVectors()

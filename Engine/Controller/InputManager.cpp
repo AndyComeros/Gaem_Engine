@@ -23,6 +23,7 @@ bool InputManager::GetKeyState(std::string action)
 	{
 		return it->second.state;
 	}
+	return false;
 }
 
 void InputManager::BindAction(std::string action, actionPTR actionFunc)
@@ -62,8 +63,8 @@ void InputManager::mouseCallback(GLFWwindow* window, double xPos, double yPos)
 		firstMouse = false;
 	}
 
-	float xoffset = xPos - lastX;
-	float yoffset = lastY - yPos;
+	double xoffset = xPos - lastX;
+	double yoffset = lastY - yPos;
 
 	lastX = xPos;
 	lastY = yPos;
@@ -114,7 +115,7 @@ float InputManager::GetMouseY() {
 
 float InputManager::GetScrollOffset()
 {
-	float yOffset = scrollOffset;
+	double yOffset = scrollOffset;
 	scrollOffset = 0;
 	return yOffset;
 }
