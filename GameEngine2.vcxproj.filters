@@ -20,7 +20,6 @@
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="engine\Model\Terrain.cpp" />
     <ClCompile Include="engine\Controller\TerrainManager.cpp" />
-    <ClCompile Include="engine\Controller\GameAssetFactory.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="Engine\Controller\InputManager.cpp" />
     <ClCompile Include="Engine\Controller\Physics.cpp" />
@@ -54,9 +53,6 @@
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
     <ClInclude Include="Engine\Model\Terrain.h" />
     <ClInclude Include="engine\Controller\TerrainManager.h" />
-    <ClInclude Include="engine\Controller\readFile.h" />
-    <ClInclude Include="engine\Controller\GameAssetFactory.h" />
-    <ClInclude Include="engine\Model\Asset.h" />
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Model\Material.h" />
     <ClInclude Include="engine\View\Graphics\Graphics.h" />

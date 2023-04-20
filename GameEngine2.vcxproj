@@ -162,7 +162,6 @@
     <ClCompile Include="engine\Model\Camera.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\CubeMap.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\EBO.cpp" />
-    <ClCompile Include="engine\Controller\GameAssetFactory.cpp" />
     <ClCompile Include="engine\Model\Model.cpp" />
     <ClCompile Include="engine\Controller\OBJReader.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\Shader.cpp" />
@@ -195,9 +194,6 @@
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="engine\Controller\TerrainManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
-    <ClInclude Include="engine\Model\Asset.h" />
-    <ClInclude Include="engine\Controller\GameAssetFactory.h" />
-    <ClInclude Include="engine\Controller\readFile.h" />
     <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="engine\Model\Material.h" />
     <ClInclude Include="Engine\Model\Scene.h" />
