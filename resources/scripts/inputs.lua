@@ -15,7 +15,7 @@ input:BindKey("toggleControlMenu",KEY_M)
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
 mouseSensitivity = 0.1
-Distance = 45
+Distance = 10
 moveSpeed = 100
 
 thirdPerson = false
