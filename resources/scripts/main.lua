@@ -1,5 +1,3 @@
-
-
 dofile("resources/scripts/inputs.lua")
 
 function init()
@@ -11,10 +9,11 @@ function init()
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
 	resources:LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
 	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap256.png");
-	resources:LoadTexture("specular","resources/textures/tile_Specular.png");
+	resources:LoadTexture("specular","resources/textures/tile_Specular2.png");
 	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
 	resources:LoadTexture("AE86Diff","resources/textures/AE86.png");
-	resources:LoadTexture("AE86Emiss","resources/textures/AE86Emissive.png");
+	resources:LoadTexture("AE86Emis","resources/textures/AE86Emissive.png");
+	resources:LoadTexture("AE86Spec","resources/textures/AE86Specular.png");
 	resources:LoadTexture("buildingDiff","resources/textures/Untitled2022/buildingDiffuse.png");
 	resources:LoadTexture("buildingEmiss","resources/textures/Untitled2022/buildingEmissive.png");
 	resources:LoadCubemap("skybox",
@@ -34,16 +33,16 @@ function init()
 	resources:LoadModel("building4", "resources/models/untitled2022/CyberBuilding4.obj","buildingDiff","buildingEmiss","");
 	resources:LoadModel("building5", "resources/models/untitled2022/CyberBuilding5.obj","buildingDiff","buildingEmiss","");
 	resources:LoadModel("building6", "resources/models/untitled2022/CyberBuilding6.obj","buildingDiff","buildingEmiss","");
-	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86Diff", "AE86Emiss", "");
+	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86Diff", "AE86Emis", "AE86Spec");
 
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
-	lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.6,0.6,0.6),vec3.new(1,0,0));
+	lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.4,0.4,0.4),vec3.new(1,1,1));
 
 
 	--Load terrain
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"detailMap", 50 , 10.0,0.6,10.0);
+	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 50 , 10.0,0.6,10.0);
 
 	terrain:SetTextureScale(50);
 	terrain:SetTextureHeights({-30,-5,40});

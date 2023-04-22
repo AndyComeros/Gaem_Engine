@@ -39,13 +39,15 @@ public:
 		*	@param heightMap name key of texture used as a heightmap
 		*	@param layerTextures array of names used for each layer in terrain texture
 		*	@param detailName name key of detail map of this terrain
+		*	@param emissiveName name key of emmissive texture of this terrain
+		*	@param pecularName name key of specular texture of this terrain
 		*	@param texScale texture scale of terrain
 		*	@param scaleX x axis scaling
 		*	@param scaleY y axis scaling
 		*	@param scaleZ z axis scaling
 		*	@return a game object created using the selected parameters
 		*/
-	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName,float texScale, float scaleX, float scaleY, float scaleZ);
+	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
 
 		/**
 		*	@brief loads a texture into storage
