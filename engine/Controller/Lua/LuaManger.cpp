@@ -5,6 +5,7 @@ LuaManager::LuaManager()
 	luaState;
 	luaState.open_libraries(sol::lib::base);
 	luaState.open_libraries(sol::lib::math);
+	luaState.open_libraries(sol::lib::os);
 }
 
 LuaManager::~LuaManager()
@@ -144,6 +145,7 @@ void LuaManager::Expose_Engine() {
 		"linear", &PointLight::linear,
 		"constant", &PointLight::constant
 		);
+
 	Expose_CPPClass<SpotLight>("SpotLight",
 		sol::constructors<SpotLight, SpotLight(glm::vec3, glm::vec3,float,float, glm::vec3, glm::vec3,float,float,float)>(),
 		"position", &SpotLight::position,
@@ -187,7 +189,6 @@ void LuaManager::Expose_Engine() {
 		);
 	luaState["input"] = &InputManager::Get();
 
-
 	//expose physics
 	Expose_CPPClass<Physics>("PhysicsManager",
 		sol::no_constructor,
@@ -220,6 +221,11 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPClass<GUIRenderer>("GUIRenderer",
 		sol::no_constructor,
 		"SwitchMenu", &GUIRenderer::SwitchMenu
+		);
+
+	Expose_CPPClass<Renderer>("Renderer",
+		sol::no_constructor,
+		"ToggleWireFrame", &Renderer::ToggleWireFrame
 		);
 
 	LoadScript("resources/scripts/main.lua");

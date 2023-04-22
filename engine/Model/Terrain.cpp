@@ -247,7 +247,7 @@ void Terrain::GenerateModel() {
 	elementsIndexes.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
 	faceNorms.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
 
-	float heightOffset = (maxHeight + minHeight)/2;
+	float heightOffset = ((maxHeight + minHeight)/2) + 1;
 	float xzOffset = (terrainSize - 1) / 2.0f;
 	//create vert data
 	float texCoordScaleX = (float)textureScale / (float)terrainSize;

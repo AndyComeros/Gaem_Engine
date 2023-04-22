@@ -12,7 +12,7 @@ function init()
 	resources:LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
 	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap256.png");
 	resources:LoadTexture("specular","resources/textures/tile_Specular.png");
-	resources:LoadTexture("black","resources/textures/terrain/black.png");
+	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
 	resources:LoadTexture("AE86Diff","resources/textures/AE86.png");
 	resources:LoadTexture("AE86Emiss","resources/textures/AE86Emissive.png");
 	resources:LoadTexture("buildingDiff","resources/textures/Untitled2022/buildingDiffuse.png");
@@ -39,12 +39,13 @@ function init()
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
-	lighting:AddDirectionLight(vec3.new( -0.7,0.5,-1),vec3.new( 0.7,0.1,0.5),vec3.new(0.5,0.3,0.05));
-	--lighting:AddDirectionLight(vec3.new( 0.5,0.5,1),vec3.new( 1,1,1),vec3.new(1,1,1));
+	lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.6,0.6,0.6),vec3.new(1,0,0));
+
 
 	--Load terrain
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"black", 50 , 10.0,0.6,10.0);
-	terrain:SetTextureScale(20);
+	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"detailMap", 50 , 10.0,0.6,10.0);
+
+	terrain:SetTextureScale(50);
 	terrain:SetTextureHeights({-30,-5,40});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
@@ -71,7 +72,7 @@ function init()
 	for i = 1,6,1
 	do
 		Building1 = resources:CreateGameObject("building"..i, "building1","");
-		Building1:SetPosition(vec3:new(50 * i, 25, -500));
+		Building1:SetPosition(vec3:new(50 * i, 10, -500));
 		Building1.scale = vec3:new(10,10,10);
 		local scale = vec3:new(10,60,10)
 		physics:AddRigidBody(Building1,2);
@@ -82,20 +83,30 @@ function init()
 	for i = 1,6,1
 	do
 		Building2 = resources:CreateGameObject("building"..i+6, "building3","");
-		Building2:SetPosition(vec3:new(50 * i, 25, -400));
+		Building2:SetPosition(vec3:new(50 * i, 12, -400));
 		Building2.scale = vec3:new(10,10,10);
 		local scale = vec3:new(10,60,10)
 		physics:AddRigidBody(Building2,2);
 		physics:AddRigidBodyColliderBox(Building2,scale, mass,bounce,friction);
 		scene:AddObject(Building2);
 	end
+	
 
-	for i = 1,6,1
+	--NPC spawning
+	math.randomseed(os.time());
+	local tSize = terrain:GetSize() * 10;
+	for i = 1,100,1
 	do
+		
+		local xpos = math.random(1,tSize) - tSize/2;
+		local zpos = math.random(1,tSize) - tSize/2;
+		local ypos = terrain:GetHeight(xpos,zpos) + 5;
+		
 		Arcade = resources:CreateGameObject("arcade"..i, "arcade","");
-		Arcade:SetPosition(vec3:new(50 + (5 * i), 27, -350));
-		Arcade.scale = vec3:new(2,2,2);
-		local scale = vec3:new(0.5,1,0.5);
+
+		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
+		Arcade.scale = vec3:new(5,5,5);
+		local scale = vec3:new(0.5,1,0.5):multiply(3);
 		physics:AddRigidBody(Arcade,3);
 		physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		Arcade.rigidBody:SetMass(1);
@@ -107,10 +118,6 @@ function init()
 	camera.farPlane = 10000;
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
 	
-	
-
-	--turn on debug mesh
-	--physics:ToggleDebugDisplay();
 	print("End Init");
 end
 

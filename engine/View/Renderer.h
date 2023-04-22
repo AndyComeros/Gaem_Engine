@@ -73,9 +73,13 @@ public:
 		*	@return void
 		*/
 	Shader& GetShader();
-		///Whether to draw in wireframe mode or not
-	bool wireFrame = false;
+
+
+	void ToggleWireFrame();
 private:
+
+	///Whether to draw in wireframe mode or not
+	bool wireFrame = false;
 		///main window
 	GLFWwindow* mainWindow;
 		///default shader

@@ -40,8 +40,6 @@ void Renderer::Draw(Scene& scene) {
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//set appropriate uniforms.
-	mainShader.SetUniform("wireframe", wireFrame);
 
 	for (auto& it : scene.gameObjects) {
 		if (it.second) {
@@ -49,6 +47,7 @@ void Renderer::Draw(Scene& scene) {
 
 			//set special uniforms
 			obj->SetUniforms();
+			obj->shader->SetUniform("wireframe", wireFrame);
 
 			//set model matrix uniforms
 			glm::mat4 modelMat(1.0f);
@@ -177,5 +176,10 @@ void Renderer::SetSpotLightUniforms(Lights& sLights, Shader& sShader) {
 
 Shader& Renderer::GetShader() {
 	return mainShader;
+}
+
+void Renderer::ToggleWireFrame()
+{
+	wireFrame = !wireFrame;
 }
 

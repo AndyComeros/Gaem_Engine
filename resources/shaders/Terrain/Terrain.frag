@@ -13,6 +13,8 @@ struct Material {
     float alpha;
 };
 
+float alpha = 200; 
+
 struct PointLight{
 	vec3 position;
     vec3 diffuse;
@@ -132,7 +134,7 @@ vec3 calcPointLight(PointLight light,vec3 fragNormal,vec3 viewDirection){
 	
 	//specualar
 	vec3 reflectDir = reflect(-lightDir, fragNormal); 
-	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), material.alpha);
+	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), alpha);
 	specular = light.specular * vec3(texture(material.specularMap,textureCoord) * spec);  
 	
 	//attenuation
@@ -168,7 +170,7 @@ vec3 calcSpotLight(SpotLight light,vec3 fragNormal,vec3 viewDirection){
 	
 		//specualar
 		vec3 reflectDir = reflect(-lightDir, fragNormal); 
-		float spec = pow(max(dot(viewDirection, reflectDir), 0.0), material.alpha);
+		float spec = pow(max(dot(viewDirection, reflectDir), 0.0), alpha);
 		specular = light.specular * vec3(texture(material.specularMap,textureCoord) * spec);  
 
 		//feather effect
@@ -202,7 +204,7 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 	
 	//specualar
 	vec3 reflectDir = reflect(-light.direction, fragNormal); 
-	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), material.alpha);
+	float spec = pow(max(dot(viewDirection, reflectDir), 0.0),alpha);
 	specular = light.specular * vec3(texture(material.specularMap,textureCoord) * spec);  
 	
 	vec3 result = (diffuse + specular) ;

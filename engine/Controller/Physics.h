@@ -33,7 +33,6 @@ public:
 	*/
 	void DestroyPhysicsWorld();
 
-	//add and del rigidbodies
 	/**
 	*	@brief attaches rigidbody to provided gameobject
 	*   @param go containing rigidbody

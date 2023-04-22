@@ -100,7 +100,8 @@ function KeyPressFunc(dt)
 	if(input:GetKeyState("debug") and (not debugPress))
 	then
 		debugPress = true;
-		physics:ToggleDebugDisplay();
+		renderer:ToggleWireFrame();
+		--physics:ToggleDebugDisplay();
 
 	elseif(input:GetKeyState("debug"))
 	then

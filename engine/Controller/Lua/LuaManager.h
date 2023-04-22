@@ -4,6 +4,7 @@
 #include <ResourceManager.h>
 #include <InputManager.h>
 #include <GUIRenderer.h>
+#include <Renderer.h>
 
 /**
 *	@Class LuaManager

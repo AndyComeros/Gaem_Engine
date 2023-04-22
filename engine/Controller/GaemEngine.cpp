@@ -57,6 +57,7 @@ void GameEngine::Run() {
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("scene", scene);
 	luaManager.Expose_CPPReference("physics", scene.physics);
+	luaManager.Expose_CPPReference("renderer",	renderer);
 	luaManager.Expose_CPPReference("GUI", guirenderer);
 	luaManager.RunInitMethod();
 	
