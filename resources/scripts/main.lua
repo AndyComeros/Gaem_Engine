@@ -42,7 +42,7 @@ function init()
 
 
 	--Load terrain
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","specular", 50 , 10.0,0.6,10.0);
+	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 50 , 10.0,0.6,10.0);
 
 	terrain:SetTextureScale(50);
 	terrain:SetTextureHeights({-30,-5,40});
