@@ -40,11 +40,15 @@ GameObject& ResourceManager::CreateGameObject(std::string objectName, std::strin
 	return *gameObject;
 }
 
-Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, float texScale, float scaleX, float scaleY, float scaleZ) {
+Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ) {
 	
 	Terrain terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
 	
-
+	if(GetTexture(emissiveName))
+		terrain.model_data->SetEmissionTexture(GetTexture(emissiveName));
+	if(GetTexture(specularName))
+		terrain.model_data->SetSpecularTexture(GetTexture(specularName));
+	
 	if (shaders.find("terrain") != shaders.end())
 		terrain.shader = shaders.at("terrain");
 
@@ -120,7 +124,7 @@ void ResourceManager::LoadCubemap(std::string resName, std::string right, std::s
 }
 
 Texture* ResourceManager::GetTexture(std::string resName) {
-	Texture* texture;
+	Texture* texture = nullptr;
 	try
 	{
 		texture = textures.at(resName);
@@ -134,7 +138,7 @@ Texture* ResourceManager::GetTexture(std::string resName) {
 }
 
 Model* ResourceManager::GetModel(std::string resName) {
-	Model* model;
+	Model* model = nullptr;
 	try
 	{
 		model = models.at(resName);
@@ -148,7 +152,7 @@ Model* ResourceManager::GetModel(std::string resName) {
 }
 
 Shader* ResourceManager::GetShader(std::string resName) {
-	Shader* shader;
+	Shader* shader = nullptr;
 	try
 	{
 		shader = shaders.at(resName);
@@ -162,7 +166,7 @@ Shader* ResourceManager::GetShader(std::string resName) {
 }
 
 CubeMap* ResourceManager::GetCubeMap(std::string resName) {
-	CubeMap* cubemap;
+	CubeMap* cubemap = nullptr;
 	try
 	{
 		cubemap = cubemaps.at(resName);
