@@ -39,6 +39,13 @@ public:
         */
     Model(const char* fileName, std::vector<glm::mat4> nMatrix);
 
+        /**
+        *	@brief change the vertex buffer to next animation frame
+        *   @param fileName path to .obj file
+        *   @param nMatrix vector of transforms for instances of this model
+        */
+    void Animate(unsigned int startFrame, unsigned int endFrame);
+
         /*
         *   @brief sets the model data based on obj file
         *   @param fileName file path to obj file
