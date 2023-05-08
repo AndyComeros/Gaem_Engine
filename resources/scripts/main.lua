@@ -64,6 +64,8 @@ function init()
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
 	Player.rigidBody:SetDampeningAngle(10);
 	Player.rigidBody:SetDampeningLinear(1);
+
+	Player.rigidBody:ToggleColliderListener();
 	
 	scene:AddObject(Player);
 

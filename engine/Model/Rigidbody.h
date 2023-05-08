@@ -21,6 +21,36 @@ class Terrain;
 */
 
 
+class CollisionListener : public rp3d::EventListener
+{
+public:
+	virtual void onContact(const CollisionCallback::CallbackData& callbackData) override
+	{
+		if (contactListenerState)
+		{
+			CollisionCallback::ContactPair contactPair = callbackData.getContactPair(0);
+			
+			if (contactPair.getEventType() == CollisionCallback::ContactPair::EventType::ContactStart)
+			{
+				//std::cout << "contact hit" << std::endl;
+				isContact = true;
+			}
+
+			if (contactPair.getEventType() == CollisionCallback::ContactPair::EventType::ContactExit)
+			{
+				//std::cout << "contact leave" << std::endl;
+				isContact = false;
+			}
+		}
+	}
+
+	void ToggleState() {contactListenerState = !contactListenerState;}
+
+	bool isContact = false;
+private:
+	bool contactListenerState = false;
+};
+
 class Rigidbody
 {
 public:
@@ -118,11 +148,31 @@ public:
 	*/
 	void SetAxisAngleFactor(float x, float y, float z);
 
+	rp3d::Vector3 GetLinearVelocty();
+	rp3d::Vector3 GetAngularVelocity();
+
+	void ToggleContactListenState()
+	{
+		if (!registered)
+			worldPtr->setEventListener(&collideListen);
+
+		collideListen.ToggleState();
+	}
+	
+	bool GetIsContact() 
+	{
+		return collideListen.isContact;
+	}
+
 	friend class Physics;
 	friend class GameObject;
 	friend class Terrain;
+
 private:
 	bool isContact = false;
 	rp3d::RigidBody* rbPtr = nullptr;
 	rp3d::PhysicsWorld* worldPtr = nullptr;
+
+	bool registered = false;
+	CollisionListener collideListen;
 };

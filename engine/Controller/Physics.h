@@ -182,6 +182,7 @@ public:
 
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
+
 private:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
@@ -195,4 +196,3 @@ private:
 
 	bool isDebug = false;
 };
-
