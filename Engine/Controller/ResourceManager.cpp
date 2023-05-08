@@ -44,9 +44,9 @@ Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heig
 	
 	Terrain terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
 	
-	if(GetTexture(emissiveName))
+	if(textures.find(emissiveName) != textures.end())
 		terrain.model_data->SetEmissionTexture(GetTexture(emissiveName));
-	if(GetTexture(specularName))
+	if(textures.find(specularName) != textures.end())
 		terrain.model_data->SetSpecularTexture(GetTexture(specularName));
 	
 	if (shaders.find("terrain") != shaders.end())
