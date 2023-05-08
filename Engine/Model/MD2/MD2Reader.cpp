@@ -79,7 +79,7 @@ void md2_model_t::Render(Camera* camera, Shader* shader, bool isElements = false
     if (!visible)
         return;
 
-    BindMaterial();
+    BindMaterial(shader);
 
     glm::mat4 view = camera->GetView();
     glm::mat4 projection = camera->GetProjection();
@@ -88,11 +88,6 @@ void md2_model_t::Render(Camera* camera, Shader* shader, bool isElements = false
     shader->SetUniform("view", view);
     shader->SetUniform("projection", projection);
 
-    //set textures
-    shader->SetUniform("material.diffuseTexture", 0);
-    shader->SetUniform("material.specularMap", 1);
-    shader->SetUniform("material.emissionMap", 2);
-    shader->SetUniform("material.alpha", 1.0f);
     vao.Bind();
 
     glDrawArrays(GL_TRIANGLES, 0, header.num_tris * 3);

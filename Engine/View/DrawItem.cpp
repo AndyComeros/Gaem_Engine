@@ -37,7 +37,7 @@ Texture* DrawItem::GetDiffuseTexture(int index)  { return material.diffuseTextur
 Texture* DrawItem::GetSpecularTexture(int index) { return material.specularMap	 [index]; }
 Texture* DrawItem::GetEmissionTexture(int index) { return material.emissionMap	 [index]; }
 
-void DrawItem::BindMaterial()
+void DrawItem::BindMaterial(Shader* shader)
 {
 	unsigned int curTexture = GL_TEXTURE0;
 	int curIndex = 0;
@@ -95,4 +95,10 @@ void DrawItem::BindMaterial()
 		curIndex++;
 		curTexture++;
 	}
+
+	//Set texure unit numbers
+	shader->SetUniform("material.diffuseTexture", diff);
+	shader->SetUniform("material.specularMap", spec);
+	shader->SetUniform("material.emissionMap", emis);
+	shader->SetUniform("material.alpha", material.shine);
 }

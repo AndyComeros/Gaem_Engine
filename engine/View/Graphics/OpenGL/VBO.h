@@ -39,4 +39,12 @@ public:
 		*	@return void
 		*/
 	void Delete();
+		/**
+		*	@breif replace part of this buffers data
+		*	@param offset where data subbing begins
+		*	@param size size in bytes being replaced
+		*	@param data pointer to data being subbed
+		*	@return void
+		*/
+	void SubData(int offset, int size, void* data);
 };

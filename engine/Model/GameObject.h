@@ -78,7 +78,7 @@ public:
 	glm::vec3 rotation = {0,0,0};
 
 		///3D model data
-	Model *model_data = nullptr;
+	DrawItem *model_data = nullptr;
 		///Rigidbody physics information for this object
 	Rigidbody rigidBody;
 		///Custom shader

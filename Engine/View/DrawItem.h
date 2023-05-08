@@ -79,7 +79,7 @@ protected:
         *   @brief Binds current material
         *   @return void
         */
-    void BindMaterial();
+    void BindMaterial(Shader* shader);
 
     Material material;
 };
