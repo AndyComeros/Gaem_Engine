@@ -134,7 +134,7 @@ void GUIRenderer::GUI_Debug() {
 void GUIRenderer::GUI_InGame()
 {
 	ImGui::Begin("window", nullptr, flags | ImGuiWindowFlags_NoBackground);
-
+	//ImGui::Text("Hello");
 	ImGui::End();
 }
 

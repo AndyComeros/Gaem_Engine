@@ -1,4 +1,6 @@
 #include "GaemEngine.h"
+#include <string.h>
+#include <iostream>
 
 GameEngine& GameEngine::Get() {
 
@@ -77,6 +79,18 @@ void GameEngine::Run() {
 		deltaTime = currentFrameTime - previousFrameTime;
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;
+
+		//fps counter
+		double differenceTime = currentFrameTime - lastTime;
+		numFrames++;
+		if (differenceTime >= 1.0 / 30.0)
+		{
+			fps = (1 / differenceTime) * numFrames;
+			lastTime = currentFrameTime;
+			numFrames = 0;
+		}
+		glfwSetWindowTitle(window, std::to_string(fps).c_str());
+
     
 		glfwPollEvents();
 
@@ -90,6 +104,7 @@ void GameEngine::Run() {
 		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
 		guirenderer.Draw();
 		glfwSwapBuffers(window);
+
 	}
 	isRunning = false;
 
@@ -99,6 +114,11 @@ void GameEngine::Run() {
 
 double GameEngine::DeltaTime() {
 	return deltaTime;
+}
+
+double GameEngine::GetFPS()
+{
+	return fps;
 }
 
 void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
