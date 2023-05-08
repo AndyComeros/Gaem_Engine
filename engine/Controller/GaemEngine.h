@@ -53,7 +53,7 @@ public:
 	GLFWwindow* window;
 		
 		///Main Renderer
-	Renderer renderer;
+	Renderer& renderer = Renderer::Get();
 		///Main GUI Renderer
 	GUIRenderer guirenderer;
 		///Main Lua Manager

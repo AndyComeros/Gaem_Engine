@@ -12,16 +12,12 @@
 class Renderer
 {
 public:
-		/**
-		*	@brief default constructor
-		*/
-	Renderer();
 
 		/**
-		*	@brief destructor
+		*	@brief Get the singleton instance of Renderer
+		*	@return The singleton instance of Renderer
 		*/
-	~Renderer();
-
+	static Renderer& Get();
 		/**
 		*	@brief initalize OpenGL
 		*	@param window window being drawn
@@ -83,7 +79,16 @@ public:
 	void ToggleWireFrame();
 private:
 
-	///Whether to draw in wireframe mode or not
+		///Default constructor. Private becuase singleton
+	Renderer();
+		///Default Destructor.
+	~Renderer();
+		///Assignment operator. Private becuase singleton
+	Renderer& operator =(const Renderer&) = delete;
+		///Copy constructor. Private becuase singleton
+	Renderer(const Renderer&) = delete;
+
+		///Whether to draw in wireframe mode or not
 	bool wireFrame = false;
 		///main window
 	GLFWwindow* mainWindow;

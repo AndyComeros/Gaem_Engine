@@ -4,6 +4,12 @@ Renderer::Renderer() {}
 
 Renderer::~Renderer() {}
 
+Renderer& Renderer::Get()
+{
+	static Renderer e_instance;
+	return e_instance;
+}
+
 void Renderer::Init(GLFWwindow* window) {
 
 	mainWindow = window;

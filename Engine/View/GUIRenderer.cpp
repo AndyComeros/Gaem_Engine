@@ -71,7 +71,6 @@ void GUIRenderer::SwitchMenu(int nGUI) {
 
 void GUIRenderer::GUI_Main() {
 	ImGui::Begin("window", nullptr, flags);
-
 	ImGui::End();
 }
 
@@ -134,11 +133,11 @@ void GUIRenderer::GUI_Debug() {
 void GUIRenderer::GUI_InGame()
 {
 	ImGui::Begin("window", nullptr, flags | ImGuiWindowFlags_NoBackground);
-	//ImGui::Text("Hello");
+	char str[20];
+	sprintf(str, "%.2f", Renderer::Get().GetFPS());
+	ImGui::Text(str);
 	ImGui::End();
 }
-
-
 
 void GUIRenderer::TextCenteredOnLine(const char* label, float alignment) {
 	ImGuiStyle& style = ImGui::GetStyle();
