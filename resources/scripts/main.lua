@@ -35,6 +35,9 @@ function init()
 	resources:LoadModel("building6", "resources/models/untitled2022/CyberBuilding6.obj","buildingDiff","buildingEmiss","");
 	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86Diff", "AE86Emis", "AE86Spec");
 
+	resources:LoadTexture("solider","resources/models/md2/cipher.png");
+	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
+
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
@@ -51,7 +54,7 @@ function init()
 	scene:AddObject(terrain);
 
 	--Setup Player
-	Player = resources:CreateGameObject("Player", "AE86", "");
+	Player = resources:CreateGameObject("Player", "solider", "");
 	Player.position = vec3:new(0,5,0);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.7)

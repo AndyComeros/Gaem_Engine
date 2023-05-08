@@ -134,7 +134,7 @@ private:
 	int prevFrame = 0;
 	float curInterpolation = 0.0f;
 	int startFrame = 0;
-	int endFrame = 0;
+	int endFrame = 200;
 
 	//current interpolated verts
 	pos_normal_vert* currentVerts;

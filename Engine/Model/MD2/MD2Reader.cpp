@@ -129,9 +129,9 @@ void md2_model_t::CreateModel(int n)
             nVert.normal = { anorms_table[pvert->normalIndex][0],anorms_table[pvert->normalIndex][1],anorms_table[pvert->normalIndex][2] };
 
             /* Calculate vertex real position */
-            nVert.vertex.x = (pframe->scale[0] * pvert->v[0]) + pframe->translate[0];
+            nVert.vertex.z = (pframe->scale[0] * pvert->v[0]) + pframe->translate[0];
             nVert.vertex.y = (pframe->scale[1] * pvert->v[1]) + pframe->translate[1];
-            nVert.vertex.z = (pframe->scale[2] * pvert->v[2]) + pframe->translate[2];
+            nVert.vertex.x = (pframe->scale[2] * pvert->v[2]) + pframe->translate[2];
 
             vertbuff.push_back(nVert);
             uvbuff.push_back(nUV);
@@ -237,9 +237,9 @@ void md2_model_t::Update(float deltaTime)
             };
 
             //interpolate and scale verts
-            currentVerts[(i * 3)+j].vertex.x = lerp((pframe->scale[0] * (float)pvert->v[0]) + pframe->translate[0], (nframe->scale[0] * (float)nvert->v[0]) + nframe->translate[0], curInterpolation);
+            currentVerts[(i * 3)+j].vertex.z = lerp((pframe->scale[0] * (float)pvert->v[0]) + pframe->translate[0], (nframe->scale[0] * (float)nvert->v[0]) + nframe->translate[0], curInterpolation);
             currentVerts[(i * 3)+j].vertex.y = lerp((pframe->scale[1] * (float)pvert->v[1]) + pframe->translate[1], (nframe->scale[1] * (float)nvert->v[1]) + nframe->translate[1], curInterpolation);
-            currentVerts[(i * 3)+j].vertex.z = lerp((pframe->scale[2] * (float)pvert->v[2]) + pframe->translate[2], (nframe->scale[2] * (float)nvert->v[2]) + nframe->translate[2], curInterpolation);
+            currentVerts[(i * 3)+j].vertex.x = lerp((pframe->scale[2] * (float)pvert->v[2]) + pframe->translate[2], (nframe->scale[2] * (float)nvert->v[2]) + nframe->translate[2], curInterpolation);
         }
     }
     
