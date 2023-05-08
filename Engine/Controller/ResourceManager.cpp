@@ -76,6 +76,29 @@ void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 	}
 }
 
+void ResourceManager::LoadAnimatedModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName)
+{
+	try
+	{
+		md2_model_t* model = new md2_model_t(fileName.c_str());
+
+		//textures
+		if (textures.find(diffName) != textures.end())
+			model->SetDiffuseTexture(textures.at(diffName));
+		if (textures.find(emisName) != textures.end())
+			model->SetEmissionTexture(textures.at(emisName));
+		if (textures.find(specName) != textures.end())
+			model->SetSpecularTexture(textures.at(specName));
+
+		//model
+		models.emplace(resName, model);
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Error: Could not create: " << resName << std::endl;
+	}
+}
+
 void ResourceManager::LoadModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName) {
 	try
 	{
@@ -137,8 +160,8 @@ Texture* ResourceManager::GetTexture(std::string resName) {
 	return texture;
 }
 
-Model* ResourceManager::GetModel(std::string resName) {
-	Model* model = nullptr;
+DrawItem* ResourceManager::GetModel(std::string resName) {
+	DrawItem* model = nullptr;
 	try
 	{
 		model = models.at(resName);

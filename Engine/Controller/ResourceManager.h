@@ -1,9 +1,9 @@
 #pragma once
 #include <map>
 #include <Gameobject.h>
+#include <Model.h>
+#include <MD2/MD2Reader.h>
 #include <Terrain.h>
-
-
 /**
 *	@Class ResourceManager
 *	@brief  Utilises the Abstract factory method for game object creation.
@@ -56,7 +56,16 @@ public:
 		*	@return void
 		*/
 	void LoadTexture(std::string resName, std::string fileName);
-
+		/**
+		*	@brief loads a md2 file into storage
+		*	@param	resName name key to assign to this resource
+		*	@param	fileName file path of this resource
+		*	@param	diffName name of diffuse texture to use
+		*	@param	emisName name of emissive texture to use
+		*	@param	specName name of specular texture to use
+		*	@return void
+		*/
+	void LoadAnimatedModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName);
 		/**
 		*	@brief loads a model into storage
 		*	@param	resName name key to assign to this resource
@@ -66,7 +75,7 @@ public:
 		*	@param	specName name of specular texture to use
 		*	@return void 
 		*/
-	void LoadModel	(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName);
+	void LoadModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName);
 
 		/**
 		*	@brief loads a shader into storage
@@ -105,7 +114,7 @@ public:
 		*	@param resName name key of resource
 		*	@return model pointer
 		*/
-	Model* GetModel(std::string resName);
+	DrawItem* GetModel(std::string resName);
 
 		/**
 		*	@brief Retrieve a shader from storage
@@ -156,7 +165,7 @@ private:
 		///texture storage
 	std::map<std::string, Texture*> textures;
 		///model storage
-	std::map<std::string, Model*> models;
+	std::map<std::string, DrawItem*> models;
 		///shader storage
 	std::map<std::string, Shader*> shaders;
 		///cubemap storage

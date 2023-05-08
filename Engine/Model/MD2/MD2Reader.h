@@ -89,7 +89,7 @@ class md2_model_t : public DrawItem{
 public:
 	
 	//constructor
-	md2_model_t(const char* md2File,const char* textureFile);
+	md2_model_t(const char* md2File);
 
 	//update animation
 	void Update(float deltaTime);
