@@ -25,11 +25,21 @@ void Renderer::Init(GLFWwindow* window) {
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 }
 
 //may want to make several "draw queues" to seperate shaders and opacity
 void Renderer::Draw(Scene& scene, double deltaTime) {
+
+	//fps counter
+	double currentFrameTime = glfwGetTime();
+	double differenceTime = currentFrameTime - lastTime;
+	numFrames++;
+	if (differenceTime >= 1.0 / 30.0)
+	{
+		fps = (1 / differenceTime) * numFrames;
+		lastTime = currentFrameTime;
+		numFrames = 0;
+	}
 
 	//Set render mode
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -184,3 +194,7 @@ void Renderer::ToggleWireFrame()
 	wireFrame = !wireFrame;
 }
 
+double Renderer::GetFPS()
+{
+	return fps;
+}

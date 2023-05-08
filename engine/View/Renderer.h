@@ -74,6 +74,11 @@ public:
 		*/
 	Shader& GetShader();
 
+		/**
+		*	@brief Calculates current FPS and returns value
+		*	@return average Frame per second
+		*/
+	double GetFPS();
 
 	void ToggleWireFrame();
 private:
@@ -84,5 +89,12 @@ private:
 	GLFWwindow* mainWindow;
 		///default shader
 	Shader mainShader;
+
+		//frames since last fps check
+	int numFrames = 0;
+		//current frame rate
+	double fps = 0.0;
+		//time since last fps update
+	double lastTime = 0.0;
 
 };
