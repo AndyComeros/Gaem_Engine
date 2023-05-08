@@ -183,6 +183,10 @@ float md2_model_t::lerp(float start, float end, float factor)
 }
 
 
+md2_model_t::md2_model_t()
+{
+}
+
 md2_model_t::md2_model_t(const char* md2File)
 {
     ReadMD2Model(md2File);
