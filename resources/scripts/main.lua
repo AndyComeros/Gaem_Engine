@@ -54,7 +54,7 @@ function init()
 	scene:AddObject(terrain);
 
 	--Setup Player
-	Player = resources:CreateGameObject("Player", "solider", "");
+	Player = resources:CreateGameObject("Player", "AE86", "");
 	Player.position = vec3:new(0,5,0);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.7)
@@ -104,7 +104,7 @@ function init()
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateGameObject("arcade"..i, "arcade","");
+		Arcade = resources:CreateGameObject("arcade"..i, "solider","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(5,5,5);

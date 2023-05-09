@@ -36,12 +36,6 @@ struct md2Header
 /* Vector */
 typedef float vec3_t[3];
 
-/* Texture name */
-struct md2_skin_t
-{
-	char name[64];              
-};
-
 /* Texture coords */
 struct md2_texCoord_t
 {
@@ -92,6 +86,8 @@ public:
 	md2_model_t();
 	md2_model_t(const char* md2File);
 
+	md2_model_t(md2_model_t& old);
+
 	//update animation
 	void Update(float deltaTime);
 	
@@ -124,7 +120,6 @@ private:
 	std::map<std::string,md2_animation> animations;
 
 	md2Header header;
-	md2_skin_t* skins;
 	md2_texCoord_t* texcoords;
 	md2_triangle_t* triangles;
 	md2_frame_t* frames;

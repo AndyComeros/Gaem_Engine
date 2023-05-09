@@ -28,8 +28,6 @@ int md2_model_t::ReadMD2Model(const char* filename)
     }
 
     /* Memory allocations */
-    skins = (struct md2_skin_t*)
-        malloc(sizeof(struct md2_skin_t) * header.num_skins);
     texcoords = (struct md2_texCoord_t*)
         malloc(sizeof(struct md2_texCoord_t) * header.num_st);
     triangles = (struct md2_triangle_t*)
@@ -38,10 +36,6 @@ int md2_model_t::ReadMD2Model(const char* filename)
         malloc(sizeof(struct md2_frame_t) * header.num_frames);
 
     /* Read model data */
-    fseek(fp, header.offset_skins, SEEK_SET);
-    fread(skins, sizeof(struct md2_skin_t),
-       header.num_skins, fp);
-
     fseek(fp, header.offset_st, SEEK_SET);
     fread(texcoords, sizeof(struct md2_texCoord_t),
         header.num_st, fp);
@@ -190,6 +184,22 @@ md2_model_t::md2_model_t()
 md2_model_t::md2_model_t(const char* md2File)
 {
     ReadMD2Model(md2File);
+}
+
+md2_model_t::md2_model_t(md2_model_t& other) :
+    DrawItem(other), // call base class copy constructor
+    animations(other.animations),
+    header(other.header),
+    texcoords(other.texcoords),
+    triangles(other.triangles),
+    frames(other.frames),
+    animSpeed(other.animSpeed),
+    prevFrame(other.prevFrame),
+    curInterpolation(other.curInterpolation),
+    startFrame(other.startFrame),
+    endFrame(other.endFrame)
+{
+    CreateModel(0);
 }
 
 void md2_model_t::Update(float deltaTime)

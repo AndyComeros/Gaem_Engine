@@ -166,9 +166,8 @@ DrawItem* ResourceManager::GetModel(std::string resName) {
 	{
 		//animated model is a copy.//both copies have the same model data but hold different animation frame states
 		//so model data is shared but they are animated seperatley.
-		if (dynamic_cast<md2_model_t*>(model) != nullptr) {
-			model = new md2_model_t();
-			*model = *models.at(resName);
+		if (dynamic_cast<md2_model_t*>(models.at(resName)) != nullptr) {
+			model = new md2_model_t(*dynamic_cast<md2_model_t*>(models.at(resName)));
 		}else{
 			model = models.at(resName);
 		}
