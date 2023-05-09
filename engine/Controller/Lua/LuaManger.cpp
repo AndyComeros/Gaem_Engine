@@ -91,6 +91,7 @@ void LuaManager::Expose_Engine() {
 		"CreateTerrain", &ResourceManager::CreateTerrain,
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,
+		"LoadAnimatedModel", &ResourceManager::LoadAnimatedModel,
 		"LoadShader", &ResourceManager::LoadShader,
 		"LoadCubemap", &ResourceManager::LoadCubemap,
 

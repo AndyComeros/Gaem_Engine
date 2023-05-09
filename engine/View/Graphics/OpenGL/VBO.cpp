@@ -28,3 +28,9 @@ void VBO::UnBind() {
 void VBO::Delete() {
 	glDeleteBuffers(1, &ID);
 }
+
+void VBO::SubData(int offset, int size, void* data)
+{
+	Bind();
+	glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+}

@@ -44,9 +44,9 @@ Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heig
 	
 	Terrain terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
 	
-	if(GetTexture(emissiveName))
+	if(textures.find(emissiveName) != textures.end())
 		terrain.model_data->SetEmissionTexture(GetTexture(emissiveName));
-	if(GetTexture(specularName))
+	if(textures.find(specularName) != textures.end())
 		terrain.model_data->SetSpecularTexture(GetTexture(specularName));
 	
 	if (shaders.find("terrain") != shaders.end())
@@ -69,6 +69,29 @@ void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 	try
 	{
 		textures.emplace(resName, new Texture(fileName.c_str()));
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Error: Could not create: " << resName << std::endl;
+	}
+}
+
+void ResourceManager::LoadAnimatedModel(std::string resName, std::string fileName, std::string diffName, std::string emisName, std::string specName)
+{
+	try
+	{
+		md2_model_t* model = new md2_model_t(fileName.c_str());
+
+		//textures
+		if (textures.find(diffName) != textures.end())
+			model->SetDiffuseTexture(textures.at(diffName));
+		if (textures.find(emisName) != textures.end())
+			model->SetEmissionTexture(textures.at(emisName));
+		if (textures.find(specName) != textures.end())
+			model->SetSpecularTexture(textures.at(specName));
+
+		//model
+		models.emplace(resName, model);
 	}
 	catch (const std::exception&)
 	{
@@ -137,11 +160,17 @@ Texture* ResourceManager::GetTexture(std::string resName) {
 	return texture;
 }
 
-Model* ResourceManager::GetModel(std::string resName) {
-	Model* model = nullptr;
+DrawItem* ResourceManager::GetModel(std::string resName) {
+	DrawItem* model = nullptr;
 	try
 	{
-		model = models.at(resName);
+		//animated model is a copy.//both copies have the same model data but hold different animation frame states
+		//so model data is shared but they are animated seperatley.
+		if (dynamic_cast<md2_model_t*>(models.at(resName)) != nullptr) {
+			model = new md2_model_t(*dynamic_cast<md2_model_t*>(models.at(resName)));
+		}else{
+			model = models.at(resName);
+		}
 	}
 	catch (const std::exception& e)
 	{

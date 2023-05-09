@@ -12,16 +12,12 @@
 class Renderer
 {
 public:
-		/**
-		*	@brief default constructor
-		*/
-	Renderer();
 
 		/**
-		*	@brief destructor
+		*	@brief Get the singleton instance of Renderer
+		*	@return The singleton instance of Renderer
 		*/
-	~Renderer();
-
+	static Renderer& Get();
 		/**
 		*	@brief initalize OpenGL
 		*	@param window window being drawn
@@ -34,7 +30,7 @@ public:
 		*	@param scene scene to be drawn
 		*	@return void
 		*/
-	void Draw(Scene& scene);
+	void Draw(Scene& scene, double deltaTime);
 
 		/**
 		*	@brief Set uniforms for All lights in a scene
@@ -74,15 +70,36 @@ public:
 		*/
 	Shader& GetShader();
 
+		/**
+		*	@brief Calculates current FPS and returns value
+		*	@return average Frame per second
+		*/
+	double GetFPS();
 
 	void ToggleWireFrame();
 private:
 
-	///Whether to draw in wireframe mode or not
+		///Default constructor. Private becuase singleton
+	Renderer();
+		///Default Destructor.
+	~Renderer();
+		///Assignment operator. Private becuase singleton
+	Renderer& operator =(const Renderer&) = delete;
+		///Copy constructor. Private becuase singleton
+	Renderer(const Renderer&) = delete;
+
+		///Whether to draw in wireframe mode or not
 	bool wireFrame = false;
 		///main window
 	GLFWwindow* mainWindow;
 		///default shader
 	Shader mainShader;
+
+		//frames since last fps check
+	int numFrames = 0;
+		//current frame rate
+	double fps = 0.0;
+		//time since last fps update
+	double lastTime = 0.0;
 
 };

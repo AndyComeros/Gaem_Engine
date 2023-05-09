@@ -1,4 +1,6 @@
 #include "GaemEngine.h"
+#include <string.h>
+#include <iostream>
 
 GameEngine& GameEngine::Get() {
 
@@ -86,10 +88,11 @@ void GameEngine::Run() {
 
 		inputMngr.KeyActions(deltaTime);
 
-		renderer.Draw(scene);
+		renderer.Draw(scene, deltaTime);
 		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
 		guirenderer.Draw();
 		glfwSwapBuffers(window);
+
 	}
 	isRunning = false;
 
@@ -106,5 +109,5 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	Scene& s = GameEngine::Get().scene;
 	s.camera.aspectRatio = (float)width / (float)height;
 	glViewport(0, 0, width, height);
-	GameEngine::Get().renderer.Draw(s);
+	GameEngine::Get().renderer.Draw(s, GameEngine::Get().deltaTime);
   }

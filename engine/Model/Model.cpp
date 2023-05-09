@@ -58,32 +58,6 @@ void Model::SetInstanceMatrix(std::vector<glm::mat4> nMatrix) {
 	ivbo.Delete();
 }
 
-void Model::SetDiffuseTexture(Texture* nTexture) {
-	material.diffuseTexture.push_back(nTexture);
-}
-void Model::SetSpecularTexture(Texture* nTexture) {
-	material.specularMap.push_back(nTexture);
-}
-void Model::SetEmissionTexture(Texture* nTexture) {
-	material.emissionMap.push_back(nTexture);
-}
-
-void Model::SetDiffuseTexture(const char* fileName) {
-	material.diffuseTexture.push_back(new Texture(fileName));
-}
-
-void Model::SetSpecularTexture(const char* fileName) {
-	material.specularMap.push_back(new Texture(fileName));
-}
-
-void Model::SetEmissionTexture(const char* fileName) {
-	material.emissionMap.push_back(new Texture(fileName));
-}
-
-Texture* Model::GetDiffuseTexture(int index)  { return material.diffuseTexture[index]; }
-Texture* Model::GetSpecularTexture(int index) { return material.specularMap[index]; }
-Texture* Model::GetEmissionTexture(int index) { return material.emissionMap[index]; }
-
 OBJData* Model::GetModelData() { return modelData; }
 
 std::vector<glm::mat4>* Model::getInstanceMatrix() { return &instanceMatrixes; }
@@ -149,60 +123,7 @@ void Model::SetVertexElements(unsigned int* vertIndexes, int numIndex) {
 //isElements specifies if using glDrawElements instead of arrays. 
 void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigned int primative = GL_TRIANGLES) {
 
-	unsigned int curTexture = GL_TEXTURE0;
-	int curIndex = 0;
-	int diff = 0;
-	int spec = 0;
-	int emis = 0;
-
-	diff = curIndex;
-	if (!material.diffuseTexture.empty()) {
-		
-		for (int i = 0; i < material.diffuseTexture.size(); i++)
-		{
-			material.diffuseTexture[i]->Bind(curTexture);
-			curIndex++;
-			curTexture++;
-		}
-	}else {
-		glActiveTexture(curTexture);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		curIndex++;
-		curTexture++;
-	}
-
-	spec = curIndex;
-	if (!material.specularMap.empty()) {
-		
-		for (int i = 0; i < material.specularMap.size(); i++)
-		{
-			material.specularMap[i]->Bind(curTexture);
-			curIndex++;
-			curTexture++;
-		}
-	}else {
-		glActiveTexture(curTexture);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		curIndex++;
-		curTexture++;
-	}
-
-	emis = curIndex;
-	if (!material.emissionMap.empty()) {
-		
-		for (int i = 0; i < material.emissionMap.size(); i++)
-		{
-			material.emissionMap[i]->Bind(curTexture);
-			curIndex++;
-			curTexture++;
-		}
-	}
-	else {
-		glActiveTexture(curTexture);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		curIndex++;
-		curTexture++;
-	}
+	BindMaterial(shader);
 
 	glm::mat4 view = camera->GetView();
 	glm::mat4 projection = camera->GetProjection();
@@ -214,11 +135,6 @@ void Model::Render(Camera* camera, Shader* shader,bool isElements = true,unsigne
 	shader->SetUniform("view", view);
 	shader->SetUniform("projection", projection);
 
-	//Set texure unit numbers
-	shader->SetUniform("material.diffuseTexture",diff);
-	shader->SetUniform("material.specularMap", spec);
-	shader->SetUniform("material.emissionMap", emis);
-	shader->SetUniform("material.alpha", material.shine);
 	vao.Bind();
 
 	if (instanceCount == 1) {

@@ -6,6 +6,7 @@
 #include <iostream>
 #include "OBJReader.h"
 #include <lighting.h>
+#include <DrawItem.h>
 
 /**
 *	@Class Model
@@ -16,7 +17,7 @@
 *	@version 2.0
 *	@date 15/04/2023
 */
-class Model {
+class Model : public DrawItem {
 public:
         /**
         *	@brief default constructor
@@ -95,52 +96,7 @@ public:
         *   @return void
         */
     void SetInstanceMatrix(std::vector<glm::mat4> nMatrix);
-
-        /*
-        *   @brief set Diffuse Texture
-        *   @param nTexture, pointer to texture object being used,
-        *   @return void
-        */
-	void SetDiffuseTexture (Texture* nTexture);
-
-        /*
-        *   @brief set Specular Texture
-        *   @param nTexture, pointer to texture object being used,
-        *   @return void
-        */
-	void SetSpecularTexture(Texture* nTexture);
-
-        /*
-        *   @brief set Emission Texture
-        *   @param nTexture, pointer to texture object being used,
-        *   @return void
-        */
-	void SetEmissionTexture(Texture* nTexture);
-
-        /*
-        *   @brief set Diffuse Texture
-        *   @param fileName, pointer to texture file
-        *   @return void
-        */
-    void SetDiffuseTexture (const char* fileName);
-
-        /*
-        *   @brief set Specular Texture
-        *   @param fileName, pointer to texture file
-        *   @return void
-        */
-    void SetSpecularTexture(const char* fileName);
-
-        /*
-        *   @brief set Emission Texture
-        *   @param fileName, pointer to texture file
-        *   @return void
-        */
-    void SetEmissionTexture(const char* fileName);
         
-    Texture* GetDiffuseTexture (int index);
-    Texture* GetSpecularTexture(int index);
-    Texture* GetEmissionTexture(int index);
     OBJData* GetModelData();
     std::vector<glm::mat4>* getInstanceMatrix();
     
@@ -155,8 +111,6 @@ private:
     EBO ebo;
 
     OBJData* modelData;
-
-    Material material;
 
     std::vector<glm::mat4> instanceMatrixes;
     int instanceCount;

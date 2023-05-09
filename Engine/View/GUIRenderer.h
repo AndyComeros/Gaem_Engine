@@ -4,6 +4,7 @@
 #include <imgui/imgui_impl_opengl3.h>
 #include <Graphics/Graphics.h>
 #include <ResourceManager.h>
+#include <Renderer.h>
 #include <map>
 #include <string>
 /**

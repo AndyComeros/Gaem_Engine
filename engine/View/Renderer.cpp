@@ -4,6 +4,12 @@ Renderer::Renderer() {}
 
 Renderer::~Renderer() {}
 
+Renderer& Renderer::Get()
+{
+	static Renderer e_instance;
+	return e_instance;
+}
+
 void Renderer::Init(GLFWwindow* window) {
 
 	mainWindow = window;
@@ -25,11 +31,21 @@ void Renderer::Init(GLFWwindow* window) {
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 }
 
 //may want to make several "draw queues" to seperate shaders and opacity
-void Renderer::Draw(Scene& scene) {
+void Renderer::Draw(Scene& scene, double deltaTime) {
+
+	//fps counter
+	double currentFrameTime = glfwGetTime();
+	double differenceTime = currentFrameTime - lastTime;
+	numFrames++;
+	if (differenceTime >= 1.0 / 30.0)
+	{
+		fps = (1 / differenceTime) * numFrames;
+		lastTime = currentFrameTime;
+		numFrames = 0;
+	}
 
 	//Set render mode
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -39,7 +55,6 @@ void Renderer::Draw(Scene& scene) {
 	//Clear Buffers
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 	for (auto& it : scene.gameObjects) {
 		if (it.second) {
@@ -69,6 +84,8 @@ void Renderer::Draw(Scene& scene) {
 				mainShader.SetUniform("model", modelMat);
 				obj->model_data->Render(&scene.camera, &mainShader, true, GL_TRIANGLES);
 			}
+
+			obj->model_data->Update(deltaTime);
 		}
 	}
 
@@ -183,3 +200,7 @@ void Renderer::ToggleWireFrame()
 	wireFrame = !wireFrame;
 }
 
+double Renderer::GetFPS()
+{
+	return fps;
+}

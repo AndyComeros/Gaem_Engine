@@ -311,11 +311,11 @@ void Terrain::GenerateModel() {
 		vertexData[i].normal = glm::normalize(vertexData[i].normal);
 	}
 
-	if (model_data) {
-		model_data->FreeData();
+	if ((Model*)model_data) {
+		((Model*)model_data)->FreeData();
 	}
 	else {
 		model_data = new Model();
 	}
-	model_data->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
+	((Model*)model_data)->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
 }	

@@ -35,6 +35,9 @@ function init()
 	resources:LoadModel("building6", "resources/models/untitled2022/CyberBuilding6.obj","buildingDiff","buildingEmiss","");
 	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86Diff", "AE86Emis", "AE86Spec");
 
+	resources:LoadTexture("solider","resources/models/md2/cipher.png");
+	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
+
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
@@ -101,7 +104,7 @@ function init()
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateGameObject("arcade"..i, "arcade","");
+		Arcade = resources:CreateGameObject("arcade"..i, "solider","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(5,5,5);

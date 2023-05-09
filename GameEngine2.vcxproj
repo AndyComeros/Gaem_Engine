@@ -159,6 +159,8 @@
     <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
+    <ClCompile Include="Engine\Model\MD2\MD2Reader.cpp" />
+    <ClCompile Include="Engine\View\DrawItem.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\CubeMap.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\EBO.cpp" />
     <ClCompile Include="engine\Model\Model.cpp" />
@@ -189,13 +191,17 @@
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
+    <ClInclude Include="Engine\Controller\md2Reader.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="engine\Model\Material.h" />
+    <ClInclude Include="Engine\Model\MD2\anorms.h" />
+    <ClInclude Include="Engine\Model\MD2\MD2Reader.h" />
     <ClInclude Include="Engine\Model\Scene.h" />
     <ClInclude Include="engine\Model\Camera.h" />
+    <ClInclude Include="Engine\View\DrawItem.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\CubeMap.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\EBO.h" />
     <ClInclude Include="engine\View\Graphics\Graphics.h" />

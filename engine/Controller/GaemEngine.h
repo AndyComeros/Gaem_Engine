@@ -35,7 +35,6 @@ public:
 		*	@return time since last frame
 		*/
 	double DeltaTime();
-
 		/**
 		*	@brief GLFW callback for window resizing. recalulates camera properties and viewport
 		*	@param width new window width
@@ -54,7 +53,7 @@ public:
 	GLFWwindow* window;
 		
 		///Main Renderer
-	Renderer renderer;
+	Renderer& renderer = Renderer::Get();
 		///Main GUI Renderer
 	GUIRenderer guirenderer;
 		///Main Lua Manager
