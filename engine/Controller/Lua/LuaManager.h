@@ -69,15 +69,7 @@ public:
 		*	@return variable from the luastate
 		*/
 	template<typename T>
-	T GetData(const char* luaName) {
-		try {
-			return luaState.get<T>(luaName);
-		}
-		catch (const sol::error& e) {
-			std::cout << "ERROR: could not get data: " << e.what() << std::endl;
-			return T();
-		}
-	}
+	T GetData(const char* luaName);
 
 		/**
 		*	@brief expose data from cpp to luastate
@@ -86,9 +78,7 @@ public:
 		*	@return void
 		*/
 	template<typename T>
-	void Expose_CPPVariable(const char* luaName, T cppData) {
-		luaState.set(luaName, cppData);
-	}
+	void Expose_CPPVariable(const char* luaName, T cppData);
 
 		/**
 		*	@brief Expose a reference to data/object from cpp to lua
@@ -97,9 +87,7 @@ public:
 		*	@return void
 		*/
 	template<typename T>
-	void Expose_CPPReference(const char* luaName, T &cppData) {
-		luaState[luaName] = &cppData;
-	}
+	void Expose_CPPReference(const char* luaName, T& cppData);
 
 		/**
 		*	@brief Expose a cpp function to the lua state
@@ -109,9 +97,7 @@ public:
 		*	@return void
 		*/
 	template<typename Func, typename... Args>
-	void Expose_CPPFunction(const char* luaName, Func cppFunc, Args... args) {
-		luaState.set_function(luaName, cppFunc, args);
-	}
+	void Expose_CPPFunction(const char* luaName, Func cppFunc, Args... args);
 
 		/**
 		*	@brief Expose a cpp class to the lua state
@@ -120,9 +106,7 @@ public:
 		*	@return void
 		*/
 	template<typename Class, typename... Args>
-	void Expose_CPPClass(const char* luaName, Args... args) {
-		luaState.new_usertype<Class>(luaName, args...);
-	}
+	void Expose_CPPClass(const char* luaName, Args... args);
 
 private:
 		///Main lua state
@@ -132,4 +116,40 @@ private:
 		///Init function extracted from main.lua
 	sol::function init;
 };
+
+template<typename T>
+inline T LuaManager::GetData(const char* luaName)
+{
+	try {
+		return luaState.get<T>(luaName);
+	}
+	catch (const sol::error& e) {
+		std::cout << "ERROR: could not get data: " << e.what() << std::endl;
+		return T();
+	}
+}
+
+template<typename T>
+inline void LuaManager::Expose_CPPVariable(const char* luaName, T cppData)
+{
+	luaState.set(luaName, cppData);
+}
+
+template<typename T>
+inline void LuaManager::Expose_CPPReference(const char* luaName, T& cppData)
+{
+	luaState[luaName] = &cppData;
+}
+
+template<typename Func, typename ...Args>
+inline void LuaManager::Expose_CPPFunction(const char* luaName, Func cppFunc, Args ...args)
+{
+	luaState.set_function(luaName, cppFunc, args);
+}
+
+template<typename Class, typename ...Args>
+inline void LuaManager::Expose_CPPClass(const char* luaName, Args ...args)
+{
+	luaState.new_usertype<Class>(luaName, args...);
+}
 

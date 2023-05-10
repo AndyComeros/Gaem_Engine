@@ -153,6 +153,7 @@
     <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Engine\Controller\AI\StateMachine.cpp" />
+    <ClCompile Include="Engine\Controller\AI\States\ScriptableState.cpp" />
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
@@ -190,7 +191,8 @@
     <ClInclude Include="dependencies\include\imgui\imstb_textedit.h" />
     <ClInclude Include="dependencies\include\imgui\imstb_truetype.h" />
     <ClInclude Include="Engine\Controller\AI\StateMachine.h" />
-    <ClInclude Include="Engine\Controller\AI\State.h" />
+    <ClInclude Include="Engine\Controller\AI\States\ScriptableState.h" />
+    <ClInclude Include="Engine\Controller\AI\States\State.h" />
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />

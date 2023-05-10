@@ -258,3 +258,4 @@ sol::function LuaManager::GetFunction(const char* luaName) {
 	}
 
 }
+

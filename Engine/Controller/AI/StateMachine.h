@@ -1,32 +1,27 @@
 #pragma once
-#include "State.h"
+#include "States/State.h"
 
-template<class entity_type>
+class GameObject;
+
 class StateMachine
 {
 public:
-	StateMachine(entity_type* nOwner):
-	owner(nOwner),
-	currentState(nullptr),
-	globalState(nullptr),
-	previousState(nullptr)
-	{}
+	StateMachine(GameObject* nOwner);
+
 	~StateMachine() {}
-	void ChangeState(State<entity_type>* nState);
-	void ChangeGlobalState(State<entity_type>* nState);
+	void ChangeState(State* nState);
+	void ChangeGlobalState(State* nState);
 	void RevertState();
 
-	void Update();
+	void Update(double dt);
 
-	
-
-	State<entity_type>* GetState();
-	State<entity_type>* GetGlobalState();
-	State<entity_type>* GetPreviousState();
+	State* GetState();
+	State* GetGlobalState();
+	State* GetPreviousState();
 
 private:
-	entity_type* owner;
-	State<entity_type>* currentState;
-	State<entity_type>* globalState;
-	State<entity_type>* previousState;
+	GameObject* owner;
+	State* currentState;
+	State* globalState;
+	State* previousState;
 };

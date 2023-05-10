@@ -1,48 +1,48 @@
 #include "StateMachine.h"
 
-template<class entity_type>
-inline void StateMachine<entity_type>::ChangeState(State<entity_type>* nState)
+StateMachine::StateMachine(GameObject* nOwner) :
+	owner(nOwner),
+	currentState(nullptr),
+	globalState(nullptr),
+	previousState(nullptr)
+{}
+
+void StateMachine::ChangeState(State* nState)
 {
 	currentState = nState;
 	if(previousState != currentState)
-		currentState->Enter(owner);
+		currentState->Enter(*owner);
 }
 
-template<class entity_type>
-void StateMachine<entity_type>::ChangeGlobalState(State<entity_type>* nState)
+void StateMachine::ChangeGlobalState(State* nState)
 {
 	globalState = nState;
-	globalState->Enter(owner);
+	globalState->Enter(*owner);
 }
 
-template<class entity_type>
-void StateMachine<entity_type>::RevertState()
+void StateMachine::RevertState()
 {
 	if (previousState)
 		ChangeState(previousState);
 }
 
-template<class entity_type>
-inline void StateMachine<entity_type>::Update()
+void StateMachine::Update(double dt)
 {
 	if(currentState)
-		currentState->Update(owner);
+		currentState->Update(*owner, dt);
 }
 
-template<class entity_type>
-inline State<entity_type>* StateMachine<entity_type>::GetState()
+State* StateMachine::GetState()
 {
 	return currentState;
 }
 
-template<class entity_type>
-inline State<entity_type>* StateMachine<entity_type>::GetGlobalState()
+State* StateMachine::GetGlobalState()
 {
 	return globalState;
 }
 
-template<class entity_type>
-inline State<entity_type>* StateMachine<entity_type>::GetPreviousState()
+State* StateMachine::GetPreviousState()
 {
 	return previousState;
 }
