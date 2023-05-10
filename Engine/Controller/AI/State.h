@@ -1,15 +1,14 @@
 #pragma once
 
-class StateMachine;
+template<class entity_type>
 class State
 {
 public:
-	State() {};
-	~State() {};
+	virtual ~State() {};
 
-	void Enter(StateMachine& ent) = 0;
-	void Update(StateMachine& ent) = 0;
-	void Exit(StateMachine& ent) = 0;
+	virtual void Enter(entity_type* ent) = 0;
+	virtual void Update(entity_type* ent) = 0;
+	virtual void Exit(entity_type* ent) = 0;
 
 private:
 
