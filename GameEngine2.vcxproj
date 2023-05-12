@@ -152,6 +152,7 @@
     <ClCompile Include="dependencies\include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Engine\Controller\AI\AIManager.cpp" />
     <ClCompile Include="Engine\Controller\AI\Message\Message.cpp" />
     <ClCompile Include="Engine\Controller\AI\Message\MessageDispatcher.cpp" />
     <ClCompile Include="Engine\Controller\AI\StateMachine.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
     <ClCompile Include="Engine\Model\MD2\MD2Reader.cpp" />
+    <ClCompile Include="Engine\Controller\Timer.cpp" />
     <ClCompile Include="Engine\View\DrawItem.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\CubeMap.cpp" />
     <ClCompile Include="engine\View\Graphics\OpenGL\EBO.cpp" />
@@ -192,6 +194,7 @@
     <ClInclude Include="dependencies\include\imgui\imstb_rectpack.h" />
     <ClInclude Include="dependencies\include\imgui\imstb_textedit.h" />
     <ClInclude Include="dependencies\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="Engine\Controller\AI\AIManager.h" />
     <ClInclude Include="Engine\Controller\AI\Message\Message.h" />
     <ClInclude Include="Engine\Controller\AI\Message\MessageDispatcher.h" />
     <ClInclude Include="Engine\Controller\AI\StateMachine.h" />
@@ -203,6 +206,7 @@
     <ClInclude Include="Engine\Controller\md2Reader.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
+    <ClInclude Include="Engine\Controller\Timer.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Lighting.h" />
     <ClInclude Include="engine\Model\Material.h" />

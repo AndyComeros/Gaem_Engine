@@ -37,7 +37,7 @@ GameEngine::GameEngine()
 	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
-	
+	aiManager.Init(&scene);
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
@@ -82,10 +82,12 @@ void GameEngine::Run() {
     
 		glfwPollEvents();
 
+
 		scene.physics.StepPhysics(deltaTime);
 		scene.physics.UpdateGameObjects(scene.gameObjects);
+		
+		aiManager.UpdateAgents(deltaTime);
 		luaManager.RunUpdateMethod(deltaTime);
-
 		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene, deltaTime);

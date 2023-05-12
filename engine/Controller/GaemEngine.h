@@ -3,6 +3,7 @@
 #include <Renderer.h>
 #include <GUIRenderer.h>
 #include <InputManager.h>
+#include <AI/AIManager.h>
 #include <Physics.h>
 #include <Lua/LuaManager.h>
 /**
@@ -66,6 +67,8 @@ public:
 	LuaManager luaManager;
 		///Reference to input manager
 	InputManager& inputMngr = InputManager::Get();
+		///Reference to AI manager
+	AIManager& aiManager = AIManager::Get();
 
 private:
 		///updates per second

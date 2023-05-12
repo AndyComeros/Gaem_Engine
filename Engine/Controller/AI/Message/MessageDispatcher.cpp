@@ -8,6 +8,11 @@ Dispatcher& Dispatcher::Get()
 
 void Dispatcher::SendMessage(double delay, int sender, int receiver, int type, void* data)
 {
+	if (!scene) {
+		std::cerr << "No Scene assigned in message dispatcher!" << std::endl;
+		return;
+	}
+
 	GameObject* nReceiver = scene->GetObjectByID(receiver);
 
 	if (nReceiver) {
@@ -21,14 +26,14 @@ void Dispatcher::SendMessage(double delay, int sender, int receiver, int type, v
 		nReceiver->stateMacine.ReceiveMessage(&message);
 	}
 	else {
-		message.dispatchTime = delay + GameEngine::Get().Time();
+		message.dispatchTime = delay + Timer::Get().Time();
 		msgQueue.insert(message);
 	}
 }
 
 void Dispatcher::SendMsgQueue()
 {
-	double time = GameEngine::Get().Time();
+	double time = Timer::Get().Time();
 	while (!msgQueue.empty() && msgQueue.begin()->dispatchTime < time)
 	{
 		GameObject* rec = scene->GetObjectByID(msgQueue.begin()->receiverID);
@@ -38,9 +43,14 @@ void Dispatcher::SendMsgQueue()
 	}
 }
 
+void Dispatcher::SetScene(Scene* nScene)
+{
+	scene = nScene;
+}
+
 Dispatcher::Dispatcher()
 {
-	scene = &GameEngine::Get().scene;
+
 }
 
 Dispatcher::~Dispatcher()
