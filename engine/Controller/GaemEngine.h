@@ -64,7 +64,7 @@ public:
 		///Main GUI Renderer
 	GUIRenderer guirenderer;
 		///Main Lua Manager
-	LuaManager luaManager;
+	LuaManager& luaManager = LuaManager::Get();
 		///Reference to input manager
 	InputManager& inputMngr = InputManager::Get();
 		///Reference to AI manager

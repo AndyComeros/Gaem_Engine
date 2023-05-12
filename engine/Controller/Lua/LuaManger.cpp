@@ -13,6 +13,12 @@ LuaManager::~LuaManager()
 	luaState.collect_garbage();
 }
 
+LuaManager& LuaManager::Get()
+{
+	static LuaManager l_instance;
+	return l_instance;
+}
+
 void LuaManager::RunInitMethod() {
 	if (init.valid())
 		init();

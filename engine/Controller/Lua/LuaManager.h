@@ -18,18 +18,11 @@
 class LuaManager
 {
 public:
-
 		/**
-		*	Default Constructor. Creates the main lua state and
-		*	opens all required lua libraries.
+		*	@brief Get the singleton instance
+		*	@return the singleton instance
 		*/
-	LuaManager();
-
-		/**
-		*	Destructor. Frees LuaState data
-		*/
-	~LuaManager();
-	
+	static LuaManager& Get();
 		/**
 		*	@brief Runs the init() function extracted from lua
 		*	@return void
@@ -109,6 +102,18 @@ public:
 	void Expose_CPPClass(const char* luaName, Args... args);
 
 private:
+		/**
+		*	Default Constructor. Creates the main lua state and
+		*	opens all required lua libraries.
+		*/
+	LuaManager();
+		/**
+		*	Destructor. Frees LuaState data
+		*/
+	~LuaManager();
+	LuaManager(const LuaManager&) = delete;
+	LuaManager& operator = (const LuaManager&) = delete;
+
 		///Main lua state
 	sol::state luaState;
 		///Update function extracted from main.lua
