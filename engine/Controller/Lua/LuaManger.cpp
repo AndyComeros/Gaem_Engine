@@ -72,6 +72,7 @@ void LuaManager::Expose_Engine() {
 		"rotation", &GameObject::rotation,
 		"scale", &GameObject::scale,
 		"rigidBody", &GameObject::rigidBody,
+		"stateMacine", &GameObject::stateMacine,
 		"SetPosition", &GameObject::SetPosition,
 		"SetRotation", &GameObject::SetRotation
 		);
@@ -233,6 +234,14 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPClass<Renderer>("Renderer",
 		sol::no_constructor,
 		"ToggleWireFrame", &Renderer::ToggleWireFrame
+		);
+
+	//expose game object
+	Expose_CPPClass<StateMachine>("StateMachine",
+		sol::constructors<StateMachine()>(),
+		"ChangeState", &StateMachine::ChangeState,
+		"ChangeGlobalState", &StateMachine::ChangeGlobalState,
+		"RevertState", &StateMachine::RevertState
 		);
 
 	LoadScript("resources/scripts/main.lua");

@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include <GameObject.h>
 
 class State_wander : public State 
 {
