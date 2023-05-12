@@ -104,7 +104,7 @@ function init()
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateGameObject("arcade"..i, "solider","");
+		Arcade = resources:CreateGameObject("arcade"..i, "arcade","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(5,5,5);
@@ -113,8 +113,6 @@ function init()
 		physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		Arcade.rigidBody:SetMass(1);
 
-		--print(scene);
-		print(state_wander);
 		Arcade.stateMachine:ChangeState(state_wander);
 
 		scene:AddObject(Arcade);

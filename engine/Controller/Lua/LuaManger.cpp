@@ -236,7 +236,6 @@ void LuaManager::Expose_Engine() {
 		"ToggleWireFrame", &Renderer::ToggleWireFrame
 		);
 
-	//expose game object
 	Expose_CPPClass<StateMachine>("StateMachine",
 		sol::no_constructor,
 		"ChangeState", &StateMachine::ChangeState,
@@ -244,8 +243,15 @@ void LuaManager::Expose_Engine() {
 		"RevertState", &StateMachine::RevertState
 		);
 
-	State_wander* stateWander = new State_wander;
-	//Expose_CPPReference("state_wander", stateWander);
+	Expose_CPPClass<State>("State",
+		sol::no_constructor,
+		"Enter", &State::Enter,
+		"Exit", &State::Exit,
+		"Update", &State::Update,
+		"ProcessMessage", &State::ProcessMessage
+		);
+
+	State* stateWander = new State_wander;
 	Expose_CPPReference("state_wander", *stateWander);
 
 	LoadScript("resources/scripts/main.lua");

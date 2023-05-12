@@ -1,5 +1,4 @@
 #include "state_wander.h"
-#include <iostream>
 State_wander::State_wander()
 {
 
@@ -12,12 +11,13 @@ State_wander::~State_wander()
 
 inline void State_wander::Enter(GameObject& ent)
 {
-	std::cout << ent.name << " says ENTER WANDER!!\n";
+	
 }
 
 inline void State_wander::Update(GameObject& ent, double dt)
 {	
-	std::cout << ent.name << " says ima wanderin!\n";
+	//ent.rigidBody.ApplyForce(glm::vec3(10, 0, 0));
+	ent.SetPosition({ ent.position.x + (4 * dt), ent.position.y, ent.position.z});
 }
 
 inline void State_wander::Exit(GameObject& ent)
