@@ -16,5 +16,4 @@ private:
 	sol::function* enterFunc;
 	sol::function* updateFunc;
 	sol::function* exitFunc;
-
 };

@@ -11,5 +11,4 @@ public:
 	virtual void Exit(GameObject& ent) = 0;
 
 private:
-
 };

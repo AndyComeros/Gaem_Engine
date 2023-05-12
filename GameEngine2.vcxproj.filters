@@ -36,6 +36,8 @@
     <ClCompile Include="Engine\Model\MD2\MD2Reader.cpp" />
     <ClCompile Include="Engine\Controller\AI\StateMachine.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\ScriptableState.cpp" />
+    <ClCompile Include="Engine\Controller\AI\Message\Message.cpp" />
+    <ClCompile Include="Engine\Controller\AI\Message\MessageDispatcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -79,6 +81,8 @@
     <ClInclude Include="Engine\Controller\AI\States\State.h" />
     <ClInclude Include="Engine\Controller\AI\StateMachine.h" />
     <ClInclude Include="Engine\Controller\AI\States\ScriptableState.h" />
+    <ClInclude Include="Engine\Controller\AI\Message\Message.h" />
+    <ClInclude Include="Engine\Controller\AI\Message\MessageDispatcher.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />

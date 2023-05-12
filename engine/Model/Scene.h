@@ -66,6 +66,13 @@ public:
 		*/
 	GameObject& GetObject(std::string objName);
 
+		/**
+		*	@brief Get an object in the scene based on its ID
+		*	@param objID ID of object to be retrieved
+		*	@return Game object pointer with name objID
+		*/
+	GameObject* GetObjectByID(int objID);
+
 		///This scenes camera
 	Camera camera;
 		///This scene skybox
@@ -76,5 +83,7 @@ public:
 	Physics physics;
 		///All game objects in this scene
 	std::map<std::string,GameObject*> gameObjects;
+		///same as gameObjects but by key is ID.
+	std::map<int, GameObject*> gameObjectsID;
 private:
 };

@@ -26,7 +26,7 @@ void ScriptableState::Update(GameObject& ent, double dt)
 {
 	try
 	{
-		(*updateFunc)(ent);
+		(*updateFunc)(ent, dt);
 	}
 	catch (const std::exception& e)
 	{
