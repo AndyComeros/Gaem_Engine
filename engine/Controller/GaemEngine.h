@@ -31,6 +31,12 @@ public:
 	void Run();
 
 		/**
+		*	@brief returns current game time
+		*	@return time since start of game
+		*/
+	double Time();
+
+		/**
 		*	@brief Calculates and returns time since last frame
 		*	@return time since last frame
 		*/

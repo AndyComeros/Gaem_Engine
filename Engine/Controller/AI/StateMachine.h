@@ -15,6 +15,8 @@ public:
 
 	void Update(double dt);
 
+	void ReceiveMessage(const Message* message);
+
 	State* GetState();
 	State* GetGlobalState();
 	State* GetPreviousState();

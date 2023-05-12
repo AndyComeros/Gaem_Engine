@@ -32,6 +32,12 @@ void StateMachine::Update(double dt)
 		currentState->Update(*owner, dt);
 }
 
+void StateMachine::ReceiveMessage(const Message* message)
+{
+	currentState->ProcessMessage(owner, message);
+	globalState->ProcessMessage(owner, message);
+}
+
 State* StateMachine::GetState()
 {
 	return currentState;

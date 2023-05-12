@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject() {}
+GameObject::GameObject() : stateMacine(this) {}
 
 GameObject::~GameObject() {}
 

@@ -1,8 +1,9 @@
 #pragma once
 #include <set>
 #include "Message.h"
-#include <AI/StateMachine.h>
 #include <GaemEngine.h>
+#include <AI/StateMachine.h>
+
 
 class Dispatcher
 {
@@ -14,9 +15,6 @@ public:
 	void SendMsgQueue();
 
 private:
-
-	DispatchMessage();
-
 	//messages with delays
 	std::set<Message> msgQueue;
 	

@@ -1,9 +1,10 @@
 #include "ScriptableState.h"
 
-ScriptableState::ScriptableState(sol::function& nEnter, sol::function& nUpdate, sol::function& nExit){
+ScriptableState::ScriptableState(sol::function& nEnter, sol::function& nUpdate, sol::function& nExit, sol::function& message){
 	enterFunc = &nEnter;
 	updateFunc = &nUpdate;
 	exitFunc = &nExit;
+	messageFunc = &message;
 }
 
 ScriptableState::~ScriptableState()
@@ -43,6 +44,18 @@ void ScriptableState::Exit(GameObject& ent)
 	catch (const std::exception& e)
 	{
 		std::cout << "ERROR: Scripted State Exit() failed: " << e.what() << std::endl;
+	}
+}
+
+void ScriptableState::ProcessMessage(GameObject* ent,const Message* message)
+{
+	try
+	{
+		(*messageFunc)(ent, message);
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "ERROR: Scripted State ProcessMessage() failed: " << e.what() << std::endl;
 	}
 }
 

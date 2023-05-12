@@ -100,6 +100,11 @@ void GameEngine::Run() {
 	glfwDestroyWindow(window);
 }
 
+double GameEngine::Time()
+{
+	return glfwGetTime();
+}
+
 double GameEngine::DeltaTime() {
 	return deltaTime;
 }
