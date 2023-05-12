@@ -12,7 +12,7 @@ State_wander::~State_wander()
 
 inline void State_wander::Enter(GameObject& ent)
 {
-
+	std::cout << ent.name << " says ENTER WANDER!!\n";
 }
 
 inline void State_wander::Update(GameObject& ent, double dt)

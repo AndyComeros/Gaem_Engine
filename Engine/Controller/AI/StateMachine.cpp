@@ -1,5 +1,5 @@
 #include "StateMachine.h"
-
+#include <iostream>
 StateMachine::StateMachine(GameObject* nOwner) :
 	owner(nOwner),
 	currentState(nullptr),
@@ -7,11 +7,14 @@ StateMachine::StateMachine(GameObject* nOwner) :
 	previousState(nullptr)
 {}
 
-void StateMachine::ChangeState(State* nState)
+void StateMachine::ChangeState(State& nState)
 {
-	currentState = nState;
-	if(previousState != currentState)
+	std::cout << "Chaning state!\n";
+	if (previousState != &nState) {
+		previousState = currentState;
+		currentState = &nState;
 		currentState->Enter(*owner);
+	}
 }
 
 void StateMachine::ChangeGlobalState(State* nState)
@@ -22,8 +25,9 @@ void StateMachine::ChangeGlobalState(State* nState)
 
 void StateMachine::RevertState()
 {
+	std::cout << "revert func!\n";
 	if (previousState)
-		ChangeState(previousState);
+		ChangeState(*previousState);
 }
 
 void StateMachine::Update(double dt)

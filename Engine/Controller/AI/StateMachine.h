@@ -9,7 +9,7 @@ public:
 	StateMachine(GameObject* nOwner);
 
 	~StateMachine() {}
-	void ChangeState(State* nState);
+	void ChangeState(State& nState);
 	void ChangeGlobalState(State* nState);
 	void RevertState();
 

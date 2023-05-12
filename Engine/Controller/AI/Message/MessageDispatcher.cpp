@@ -23,7 +23,7 @@ void Dispatcher::SendMessage(double delay, int sender, int receiver, int type, v
 	Message message(0.0,sender,receiver,type,data);
 
 	if (delay < 0.1) {
-		nReceiver->stateMacine.ReceiveMessage(&message);
+		nReceiver->stateMachine.ReceiveMessage(&message);
 	}
 	else {
 		message.dispatchTime = delay + Timer::Get().Time();
@@ -38,7 +38,7 @@ void Dispatcher::SendMsgQueue()
 	{
 		GameObject* rec = scene->GetObjectByID(msgQueue.begin()->receiverID);
 		if(rec)
-			rec->stateMacine.ReceiveMessage(&*msgQueue.begin());
+			rec->stateMachine.ReceiveMessage(&*msgQueue.begin());
 		msgQueue.erase(msgQueue.begin());
 	}
 }

@@ -16,7 +16,7 @@ void AIManager::UpdateAgents(double deltaTime)
 	for (auto& it: scene->gameObjects)
 	{
 		if (it.second) {
-			it.second->stateMacine.Update(deltaTime);
+			it.second->stateMachine.Update(deltaTime);
 		}
 	}
 }

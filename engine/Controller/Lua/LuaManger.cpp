@@ -72,7 +72,7 @@ void LuaManager::Expose_Engine() {
 		"rotation", &GameObject::rotation,
 		"scale", &GameObject::scale,
 		"rigidBody", &GameObject::rigidBody,
-		"stateMacine", &GameObject::stateMacine,
+		"stateMachine", &GameObject::stateMachine,
 		"SetPosition", &GameObject::SetPosition,
 		"SetRotation", &GameObject::SetRotation
 		);
@@ -238,11 +238,15 @@ void LuaManager::Expose_Engine() {
 
 	//expose game object
 	Expose_CPPClass<StateMachine>("StateMachine",
-		sol::constructors<StateMachine()>(),
+		sol::no_constructor,
 		"ChangeState", &StateMachine::ChangeState,
 		"ChangeGlobalState", &StateMachine::ChangeGlobalState,
 		"RevertState", &StateMachine::RevertState
 		);
+
+	State_wander* stateWander = new State_wander;
+	//Expose_CPPReference("state_wander", stateWander);
+	Expose_CPPReference("state_wander", *stateWander);
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");

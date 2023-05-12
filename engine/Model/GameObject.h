@@ -92,7 +92,7 @@ public:
 		///Set this objects ID  
 	void SetID(int id) { ID = id; };
 		///FSM for AI and sending/receiving messages
-	StateMachine stateMacine;
+	StateMachine stateMachine;
 private:
 		///Unique identifier
 	unsigned int ID = 0;

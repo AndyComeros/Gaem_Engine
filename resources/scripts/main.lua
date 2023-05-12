@@ -112,6 +112,11 @@ function init()
 		physics:AddRigidBody(Arcade,3);
 		physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		Arcade.rigidBody:SetMass(1);
+
+		--print(scene);
+		print(state_wander);
+		Arcade.stateMachine:ChangeState(state_wander);
+
 		scene:AddObject(Arcade);
 	end
 	
