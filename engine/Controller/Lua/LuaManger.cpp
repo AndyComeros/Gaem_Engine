@@ -95,6 +95,7 @@ void LuaManager::Expose_Engine() {
 		"Get", &ResourceManager::Get,
 
 		"CreateGameObject", &ResourceManager::CreateGameObject,
+		"CreateNPCObject", &ResourceManager::CreateNPCObject,
 		"CreateTerrain", &ResourceManager::CreateTerrain,
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,

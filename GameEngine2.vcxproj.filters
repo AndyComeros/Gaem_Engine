@@ -41,6 +41,7 @@
     <ClCompile Include="Engine\Controller\AI\AIManager.cpp" />
     <ClCompile Include="Engine\Controller\Timer.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_wander.cpp" />
+    <ClCompile Include="Engine\Model\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
