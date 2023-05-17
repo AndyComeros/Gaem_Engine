@@ -10,8 +10,11 @@ NPC::~NPC()
 
 void NPC::AddData(const std::string& dataName, float value)
 {
-	data.insert({ dataName, value });
+	data[dataName] = value;
+	//data.insert({ dataName, value });
 }
+
+
 
 float NPC::GetData(const std::string& dataName)
 {

@@ -111,9 +111,9 @@ function init()
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(5,5,5);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);
-		physics:AddRigidBody(Arcade,3);
-		physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
-		Arcade.rigidBody:SetMass(1);
+		--physics:AddRigidBody(Arcade,3);
+		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
+		--Arcade.rigidBody:SetMass(1);
 
 		Arcade.stateMachine:ChangeState(state_wander);
 
