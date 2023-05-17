@@ -172,16 +172,17 @@ void Physics::UpdateGameObjects(std::map<std::string, GameObject*>& goStore)
 
 				it.second->rotation = rotvec;
 			}
-
 			it.second->position = glm::vec3(position.x, position.y, position.z);
 		}
-
 	}
 }
 
 void Physics::SetTimeStep(float time)
 {
-	timeStep = 1.0f / time;
+	timeStep = 1.0f / time; 
+	//30: 0.0333333333
+	//60: 0.0166666666
+	//144: 0.006944444
 }
 
 void Physics::StepPhysics(float deltaTime)
@@ -194,7 +195,8 @@ void Physics::StepPhysics(float deltaTime)
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
 		// Decrease the accumulated time 
-		accumulator -= timeStep;
+		accumulator -= deltaTime;
+		//accumulator -= timeStep;
 	}
 }
 

@@ -55,7 +55,7 @@ function init()
 
 	--Setup Player
 	Player = resources:CreateGameObject("Player", "AE86", "");
-	Player.position = vec3:new(0,5,0);
+	Player.position = vec3:new(0,35,0);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.7)
 	local mass = 500;
@@ -67,6 +67,8 @@ function init()
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
 	Player.rigidBody:SetDampeningAngle(10);
 	Player.rigidBody:SetDampeningLinear(1);
+
+	Player.rigidBody:ToggleColliderListener();
 	
 	scene:AddObject(Player);
 
