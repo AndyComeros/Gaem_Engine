@@ -148,7 +148,16 @@ public:
 	*/
 	void SetAxisAngleFactor(float x, float y, float z);
 
+	/**
+	*	@brief returns the rigidbodies velocity along the x,y and z axis
+	*	@return vec3 - Current linear velocity
+	*/
 	glm::vec3 GetLinearVelocty();
+
+	/**
+	*	@brief returns the rigidbodies rotation velocity along the x,y and z axis
+	*	@return vec3 - Current angular velocity
+	*/
 	glm::vec3 GetAngularVelocity();
 
 	void ToggleContactListenState()
