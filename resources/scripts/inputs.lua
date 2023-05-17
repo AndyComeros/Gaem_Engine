@@ -117,35 +117,40 @@ function KeyPressFunc(dt)
 	end
 
 
-	if(input:GetKeyState("drift"))
-	then
-		player.rigidBody:SetDampeningLinear(0);
-	else
-		player.rigidBody:SetDampeningLinear(1);
-	end
+	if(player.rigidBody:GetIsContact())
+	then 
 
-	if(input:GetKeyState("forward"))
-	then
-		local dir = vec3:new(1,0,0):multiply(-movespeed);
-		player.rigidBody:ApplyForceLocal(dir)
-	end
+		if(input:GetKeyState("drift"))
+		then
+			player.rigidBody:SetDampeningLinear(0);
+		else
+			player.rigidBody:SetDampeningLinear(1);
+		end
+
+		if(input:GetKeyState("forward"))
+		then
+			local dir = vec3:new(1,0,0):multiply(-movespeed);
+			player.rigidBody:ApplyForceLocal(dir)
+		end
 		
-	if(input:GetKeyState("backward"))
-	then
-		local dir = vec3:new(1,0,0):multiply(movespeed);
-		player.rigidBody:ApplyForceLocal(dir)
-	end
+		if(input:GetKeyState("backward"))
+		then
+			local dir = vec3:new(1,0,0):multiply(movespeed);
+			player.rigidBody:ApplyForceLocal(dir)
+		end
 		
-	if(input:GetKeyState("left"))
-	then
-		local dir = vec3:new(0,1,0):multiply(turnspeed);
-		player.rigidBody:ApplyTorqueLocal(dir)
-	end
+		if(input:GetKeyState("left"))
+		then
+			local dir = vec3:new(0,1,0):multiply(turnspeed);
+			player.rigidBody:ApplyTorqueLocal(dir)
+		end
 		
-	if(input:GetKeyState("right"))
-	then
-		local dir = vec3:new(0,1,0):multiply(-turnspeed);
-		player.rigidBody:ApplyTorqueLocal(dir)
+		if(input:GetKeyState("right"))
+		then
+			local dir = vec3:new(0,1,0):multiply(-turnspeed);
+			player.rigidBody:ApplyTorqueLocal(dir)
+		end
+
 	end
 	
 end

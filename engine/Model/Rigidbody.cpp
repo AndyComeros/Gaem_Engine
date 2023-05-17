@@ -117,3 +117,23 @@ void Rigidbody::SetAxisAngleFactor(float x, float y, float z)
 		return;
 	rbPtr->setAngularLockAxisFactor({ x,y,z });
 }
+
+glm::vec3 Rigidbody::GetLinearVelocty()
+{
+	if (!rbPtr)
+		return glm::vec3(0);
+
+	rp3d::Vector3 rVal = rbPtr->getLinearVelocity();
+
+	return { rVal.x,rVal.y,rVal.z };
+}
+
+glm::vec3 Rigidbody::GetAngularVelocity()
+{
+	if (!rbPtr)
+		return glm::vec3(0);
+
+	rp3d::Vector3 rVal = rbPtr->getAngularVelocity();
+
+	return { rVal.x,rVal.y,rVal.z};
+}
