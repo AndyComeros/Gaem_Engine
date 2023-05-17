@@ -16,6 +16,9 @@ function init()
 	resources:LoadTexture("AE86Spec","resources/textures/AE86Specular.png");
 	resources:LoadTexture("buildingDiff","resources/textures/Untitled2022/buildingDiffuse.png");
 	resources:LoadTexture("buildingEmiss","resources/textures/Untitled2022/buildingEmissive.png");
+	resources:LoadTexture("water","resources/textures/Water/water.png");
+	resources:LoadTexture("flowMap","resources/textures/Water/flow-speed-noise.png");
+	resources:LoadTexture("DerivHeightMap","resources/textures/Water/water-derivative-height.png");
 	resources:LoadCubemap("skybox",
 		"resources/textures/skybox/Synthwave2/Right.png",
 		"resources/textures/skybox/Synthwave2/Left.png",
@@ -52,6 +55,11 @@ function init()
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
 	scene:AddObject(terrain);
+
+	--loadWater
+	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 1, 1, 1);
+	water:SetTextureScale(50);
+	scene:AddObject(water);
 
 	--Setup Player
 	Player = resources:CreateGameObject("Player", "AE86", "");

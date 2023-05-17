@@ -4,6 +4,7 @@
 #include <Model.h>
 #include <MD2/MD2Reader.h>
 #include <Terrain.h>
+
 /**
 *	@Class ResourceManager
 *	@brief  Utilises the Abstract factory method for game object creation.
@@ -48,6 +49,8 @@ public:
 		*	@return a game object created using the selected parameters
 		*/
 	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
+
+	Terrain CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ);
 
 		/**
 		*	@brief loads a texture into storage

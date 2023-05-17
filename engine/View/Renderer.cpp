@@ -58,17 +58,18 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 
 	for (auto& it : scene.gameObjects) {
 		if (it.second) {
+			
 			GameObject* obj = it.second;
-
 			//set special uniforms
 			obj->SetUniforms();
 			obj->shader->SetUniform("wireframe", wireFrame);
+			obj->shader->SetUniform("_Time", (float) glfwGetTime());
 
 			//set model matrix uniforms
 			glm::mat4 modelMat(1.0f);
 			modelMat = glm::translate(modelMat, obj->position);
 			modelMat = glm::scale(modelMat, obj->scale);
-
+		
 			//pitch roll and yaw rotationss
 			modelMat = glm::rotate(modelMat, glm::radians(obj->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 
