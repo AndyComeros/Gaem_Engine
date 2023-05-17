@@ -120,10 +120,14 @@ void Rigidbody::SetAxisAngleFactor(float x, float y, float z)
 
 rp3d::Vector3 Rigidbody::GetLinearVelocty()
 {
+	if (!rbPtr)
+		return;
 	return rbPtr->getLinearVelocity();
 }
 
 rp3d::Vector3 Rigidbody::GetAngularVelocity()
 {
+	if (!rbPtr)
+		return;
 	return rbPtr->getAngularVelocity();
 }
