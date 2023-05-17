@@ -57,7 +57,7 @@ public:
 		*	@param scaleZ z axis scaling
 		*	@return a game object created using the selected parameters
 		*/
-	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
+	Terrain& CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
 
 		/**
 		*	@brief loads a texture into storage
@@ -140,6 +140,13 @@ public:
 		*/
 	CubeMap* GetCubeMap(std::string resName);
 
+		/**
+		*	@brief Retrieve a gameobject from storage
+		*	@param resName name key of resource
+		*	@return gameobject pointer
+		*/
+	GameObject* GetGameObject(std::string resName);
+
 		///Get itterator for texture resources
 	auto TextureBegin() { return textures.begin(); }
 		///Get itterator for texture resources
@@ -180,5 +187,7 @@ private:
 	std::map<std::string, Shader*> shaders;
 		///cubemap storage
 	std::map<std::string, CubeMap*> cubemaps;
+		///gameobject storage
+	std::map<std::string, GameObject*> objects;
 };
 

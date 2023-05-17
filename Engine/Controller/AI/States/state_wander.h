@@ -1,7 +1,6 @@
 #pragma once
 #include "State.h"
-#include <GameObject.h>
-#include <NPC.h>
+#include <ResourceManager.h>
 
 class State_wander : public State 
 {

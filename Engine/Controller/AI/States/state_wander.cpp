@@ -27,10 +27,6 @@ inline void State_wander::Enter(GameObject& ent)
 	npc->AddData("isIdle", 0.0f);
 	npc->AddData("timer", 0.0f);
 
-	npc->AddData("tarX", 0.0f);
-	npc->AddData("tarY", 0.0f);
-	npc->AddData("tarZ", 0.0f);
-
 }
 
 inline void State_wander::Update(GameObject& ent, double dt)
@@ -44,7 +40,10 @@ inline void State_wander::Update(GameObject& ent, double dt)
 	//if not idle
 	if (npc->GetData("isIdle") < 0.5f) {
 		//move forward
-		npc->SetPosition(npc->position + (npc->GetForwardVec() * moveSpeed));
+
+		glm::vec3 npos = npc->position + (npc->GetForwardVec() * moveSpeed);
+		npos.y = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npos.x,npos.z) + 1.0f;
+		npc->SetPosition(npos);
 
 		//if been walking too long
 		if (npc->GetData("timer") > npc->GetData("wanderTime")) {
@@ -61,6 +60,7 @@ inline void State_wander::Update(GameObject& ent, double dt)
 			npc->AddData("timer", 0.0f);
 			npc->AddData("idleTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxIdle"))));
 
+			//pick new direction
 			glm::vec3 rot = npc->rotation;
 			rot.y += -360.0f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (360.0f - (-360.0f))));
 			npc->SetRotation(rot);
@@ -69,7 +69,6 @@ inline void State_wander::Update(GameObject& ent, double dt)
 	}
 
 	//increment timer
-	//std::cout << "time: " << npc->GetData("timer") << "\n";
 	npc->AddData("timer", npc->GetData("timer") + dt);
 
 }
