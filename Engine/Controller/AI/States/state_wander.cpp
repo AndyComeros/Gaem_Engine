@@ -20,10 +20,12 @@ inline void State_wander::Enter(GameObject& ent)
 	npc->AddData("wanderDistance", 20.0f);
 	npc->AddData("wanderSpeed", 20.0f);
 
-	npc->AddData("wanderTime", 5.0f);
 	npc->AddData("maxWander", 10.0f);
-	npc->AddData("idleTime", 5.0f);
 	npc->AddData("maxIdle", 10.0f);
+
+	npc->AddData("wanderTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxWander"))));
+	npc->AddData("idleTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxIdle"))));
+
 	npc->AddData("isIdle", 0.0f);
 	npc->AddData("timer", 0.0f);
 
@@ -75,7 +77,13 @@ inline void State_wander::Update(GameObject& ent, double dt)
 
 inline void State_wander::Exit(GameObject& ent)
 {
+	NPC* npc = dynamic_cast<NPC*>(&ent);
+	if (npc == nullptr)
+		return;
 
+	npc->AddData("timer", 0.0f);
+	npc->AddData("wanderTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxWander"))));
+	npc->AddData("idleTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxIdle"))));
 }
 
 inline void State_wander::ProcessMessage(GameObject* ent, const Message* message)
