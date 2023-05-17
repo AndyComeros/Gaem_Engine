@@ -8,17 +8,22 @@ NPC::~NPC()
 {
 }
 
-void NPC::AddData(std::string& dataName, float value)
+void NPC::AddData(const std::string& dataName, float value)
 {
 	data.insert({ dataName, value });
 }
 
-float NPC::GetData(std::string& dataName)
+float NPC::GetData(const std::string& dataName)
 {
-	return data.at(dataName);
+	if (data.find(dataName) != data.end()) {
+		return data.at(dataName);
+	}
+	else {
+		return 0.0f;
+	}
 }
 
-bool NPC::HasData(std::string& dataName)
+bool NPC::HasData(const std::string& dataName)
 {
 	if (data.find(dataName) != data.end()) {
 		return true;

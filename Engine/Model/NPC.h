@@ -10,9 +10,9 @@ public:
 	NPC();
 	~NPC();
 	
-	void AddData(std::string& dataName, float value);
-	float GetData(std::string& dataName);
-	bool HasData(std::string& dataName);
+	void AddData(const std::string& dataName, float value);
+	float GetData(const std::string& dataName);
+	bool HasData(const std::string& dataName);
 private:
 
 	std::map<std::string, float> data;

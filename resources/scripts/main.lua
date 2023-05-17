@@ -104,7 +104,7 @@ function init()
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateGameObject("arcade"..i, "arcade","");
+		Arcade = resources:CreateNPCObject("arcade"..i, "arcade","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(5,5,5);
