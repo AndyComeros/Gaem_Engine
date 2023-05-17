@@ -148,8 +148,8 @@ public:
 	*/
 	void SetAxisAngleFactor(float x, float y, float z);
 
-	rp3d::Vector3 GetLinearVelocty();
-	rp3d::Vector3 GetAngularVelocity();
+	glm::vec3 GetLinearVelocty();
+	glm::vec3 GetAngularVelocity();
 
 	void ToggleContactListenState()
 	{
