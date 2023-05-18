@@ -256,8 +256,10 @@ void LuaManager::Expose_Engine() {
 		"ProcessMessage", &State::ProcessMessage
 		);
 
-	State* stateWander = new State_wander;
+	State* stateWander = new State_Wander;
 	Expose_CPPReference("state_wander", *stateWander);
+	State* stateChase = new State_Chase;
+	Expose_CPPReference("state_chase", *stateChase);
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");

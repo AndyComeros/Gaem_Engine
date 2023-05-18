@@ -19,8 +19,12 @@ void GameObject::SetRotation(glm::vec3 nRot)
 
 void GameObject::SetUniforms()
 {
-
 }
+
+void GameObject::Update(double dt)
+{
+}
+
 
 glm::vec3 GameObject::GetUpVec()
 {

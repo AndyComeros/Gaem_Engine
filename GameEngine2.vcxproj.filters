@@ -42,6 +42,7 @@
     <ClCompile Include="Engine\Controller\Timer.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_wander.cpp" />
     <ClCompile Include="Engine\Model\NPC.cpp" />
+    <ClCompile Include="Engine\Controller\AI\States\state_chase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Engine\Controller\AI\States\global_states.h" />
     <ClInclude Include="Engine\Controller\AI\Singleton.h" />
     <ClInclude Include="Engine\Model\NPC.h" />
+    <ClInclude Include="Engine\Controller\AI\States\state_chase.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />

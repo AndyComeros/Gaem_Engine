@@ -1,6 +1,10 @@
 #include "NPC.h"
 
-NPC::NPC()
+NPC::NPC() : 
+targetPos({ 0.0f,0.0f,0.0f }),
+moveSpeed(0.0f),
+moveOffset(0.0f),
+isTargeting(false)
 {
 }
 
@@ -34,4 +38,32 @@ bool NPC::HasData(const std::string& dataName)
 	else {
 		return false;
 	}
+}
+
+void NPC::Update(double dt)
+{
+	if (!isTargeting)
+		return;
+
+	glm::vec3 toTarget = targetPos - position;
+	toTarget = glm::normalize(toTarget);
+	glm::vec3 newPos = position + (toTarget) * (float)(moveSpeed * dt);
+
+	//check if overshooting target
+	glm::vec3 offsetPos = targetPos - toTarget * moveOffset;
+	glm::vec3 toOffset = offsetPos - newPos;
+	if (glm::dot(toOffset, toTarget) < 0.0f) {
+		newPos = offsetPos;
+		isTargeting = false;
+	}
+
+	position = newPos;
+}
+
+void NPC::MoveTo(glm::vec3 nPos, float speed, float offset)
+{
+	isTargeting = true;
+	targetPos = nPos;
+	moveSpeed = speed;
+	moveOffset = offset;
 }

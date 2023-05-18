@@ -39,6 +39,7 @@ public:
 		*	@return void
 		*/
 	void SetPosition(glm::vec3 nPos);
+
 		/**
 		*	@brief Set the current rotation in world space, also updates
 		*	the rigidbody rotation data.
@@ -52,6 +53,12 @@ public:
 		*	@return void
 		*/
 	virtual void SetUniforms();
+
+		/**
+		*	@brief runs every update loop. used to give special behaviors to subclasses
+		*	@return void
+		*/
+	virtual void Update(double dt);
 
 		/**
 		*	@brief calculates this objects up vector.

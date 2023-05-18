@@ -1,12 +1,14 @@
 #pragma once
+
 #include "State.h"
 #include <ResourceManager.h>
 
-class State_Wander : public State 
+class State_Chase : public State
 {
 public:
-	State_Wander();
-	~State_Wander();
+	State_Chase();
+	State_Chase(std::string& );
+	~State_Chase();
 
 	void Enter(GameObject& ent);
 	void Update(GameObject& ent, double dt);
@@ -14,5 +16,6 @@ public:
 	void ProcessMessage(GameObject* ent, const Message* message);
 
 private:
-
+	GameObject* target;
+	std::string targetName;
 };

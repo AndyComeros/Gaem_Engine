@@ -1,17 +1,16 @@
 #include "state_wander.h"
-#include <random>
 
-State_wander::State_wander()
+State_Wander::State_Wander()
 {
 
 }
 
-State_wander::~State_wander()
+State_Wander::~State_Wander()
 {
 
 }
 
-inline void State_wander::Enter(GameObject& ent)
+inline void State_Wander::Enter(GameObject& ent)
 {
 	NPC* npc = dynamic_cast<NPC*>(&ent);
 	if (npc == nullptr)
@@ -31,7 +30,7 @@ inline void State_wander::Enter(GameObject& ent)
 
 }
 
-inline void State_wander::Update(GameObject& ent, double dt)
+inline void State_Wander::Update(GameObject& ent, double dt)
 {	
 	NPC* npc = dynamic_cast<NPC*>(&ent);
 	if (npc == nullptr)
@@ -66,7 +65,6 @@ inline void State_wander::Update(GameObject& ent, double dt)
 			glm::vec3 rot = npc->rotation;
 			rot.y += -360.0f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (360.0f - (-360.0f))));
 			npc->SetRotation(rot);
-
 		}
 	}
 
@@ -75,7 +73,7 @@ inline void State_wander::Update(GameObject& ent, double dt)
 
 }
 
-inline void State_wander::Exit(GameObject& ent)
+inline void State_Wander::Exit(GameObject& ent)
 {
 	NPC* npc = dynamic_cast<NPC*>(&ent);
 	if (npc == nullptr)
@@ -86,7 +84,7 @@ inline void State_wander::Exit(GameObject& ent)
 	npc->AddData("idleTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxIdle"))));
 }
 
-inline void State_wander::ProcessMessage(GameObject* ent, const Message* message)
+inline void State_Wander::ProcessMessage(GameObject* ent, const Message* message)
 {
 
 }
