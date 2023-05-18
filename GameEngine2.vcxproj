@@ -158,6 +158,7 @@
     <ClCompile Include="Engine\Controller\AI\StateMachine.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\ScriptableState.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_chase.cpp" />
+    <ClCompile Include="Engine\Controller\AI\States\state_pursuit.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_wander.cpp" />
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Engine\Controller\AI\States\ScriptableState.h" />
     <ClInclude Include="Engine\Controller\AI\States\State.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_chase.h" />
+    <ClInclude Include="Engine\Controller\AI\States\state_pursuit.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_wander.h" />
     <ClInclude Include="engine\Controller\GaemEngine.h" />
     <ClInclude Include="engine\Controller\InputManager.h" />

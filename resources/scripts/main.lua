@@ -116,7 +116,8 @@ function init()
 		--Arcade.rigidBody:SetMass(1);
 
 		--Arcade.stateMachine:ChangeState(state_wander);
-		Arcade.stateMachine:ChangeState(state_chase);
+		--Arcade.stateMachine:ChangeState(state_chase);
+		Arcade.stateMachine:ChangeState(state_pursuit);
 
 		scene:AddObject(Arcade);
 	end

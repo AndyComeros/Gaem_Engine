@@ -260,6 +260,8 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPReference("state_wander", *stateWander);
 	State* stateChase = new State_Chase;
 	Expose_CPPReference("state_chase", *stateChase);
+	State* statepursuit = new State_Pursuit;
+	Expose_CPPReference("state_pursuit", *statepursuit);
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");
