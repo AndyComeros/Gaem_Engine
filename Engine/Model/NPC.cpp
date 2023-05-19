@@ -30,6 +30,21 @@ float NPC::GetData(const std::string& dataName)
 	}
 }
 
+void NPC::AddPointer(const std::string& dataName, void* ptr)
+{
+	pointers[dataName] = ptr;
+}
+
+bool NPC::HasPointer(const std::string& dataName)
+{
+	if (pointers.find(dataName) != pointers.end()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 bool NPC::HasData(const std::string& dataName)
 {
 	if (data.find(dataName) != data.end()) {

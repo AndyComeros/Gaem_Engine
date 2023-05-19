@@ -160,6 +160,7 @@
     <ClCompile Include="Engine\Controller\AI\States\state_chase.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_evade.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_flee.cpp" />
+    <ClCompile Include="Engine\Controller\AI\States\state_patrol.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_pursuit.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_wander.cpp" />
     <ClCompile Include="engine\Controller\GaemEngine.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Engine\Controller\AI\States\state_chase.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_evade.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_flee.h" />
+    <ClInclude Include="Engine\Controller\AI\States\state_patrol.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_pursuit.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_wander.h" />
     <ClInclude Include="engine\Controller\GaemEngine.h" />

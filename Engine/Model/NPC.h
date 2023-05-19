@@ -11,9 +11,23 @@ public:
 	~NPC();
 	
 	void AddData(const std::string& dataName, float value);
-	float GetData(const std::string& dataName);
 	bool HasData(const std::string& dataName);
-	
+	float GetData(const std::string& dataName);
+
+	void AddPointer(const std::string& dataName, void* ptr);
+	bool HasPointer(const std::string& dataName);
+
+	template<typename T>
+	T* GetPointer(const std::string& dataName) {
+
+		if (pointers.find(dataName) != pointers.end()) {
+			return pointers.at(dataName);
+		}
+		else {
+			return nullptr;
+		}
+	}
+
 	void Update(double dt);
 
 	//npc will move to position at speed
@@ -29,7 +43,10 @@ private:
 	float moveOffset;
 	bool isTargeting;
 
-
+		//stores values
 	std::map<std::string, float> data;
+
+		//stores arbitrary data
+	std::map<std::string, void*> pointers;
 
 };
