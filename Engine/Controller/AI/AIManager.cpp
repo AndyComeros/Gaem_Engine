@@ -28,6 +28,21 @@ void AIManager::Init(Scene* nScene)
 	msgDispatcher->SetScene(nScene);
 }
 
+void AIManager::AddState(std::string& stateName, State* nState)
+{
+	states.insert({stateName,nState});
+}
+
+State* AIManager::GetState(std::string& stateName)
+{
+	State* rState = states[stateName];
+
+	if (rState != nullptr)
+		return rState;
+
+	return nullptr;
+}
+
 AIManager::AIManager()
 {
 	msgDispatcher = &Dispatcher::Get();

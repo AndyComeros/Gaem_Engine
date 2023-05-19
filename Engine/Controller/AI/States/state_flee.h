@@ -2,12 +2,12 @@
 #include "State.h"
 #include <ResourceManager.h>
 
-class State_Chase : public State
+class State_Flee : public State
 {
 public:
-	State_Chase();
-	State_Chase(std::string& );
-	~State_Chase();
+	State_Flee();
+	State_Flee(std::string&);
+	~State_Flee();
 
 	void Enter(GameObject& ent);
 	void Update(GameObject& ent, double dt);
