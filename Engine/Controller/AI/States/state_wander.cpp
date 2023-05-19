@@ -28,6 +28,7 @@ inline void State_Wander::Enter(GameObject& ent)
 	npc->AddData("isIdle", 0.0f);
 	npc->AddData("timer", 0.0f);
 
+	npc->StopMoving();
 }
 
 inline void State_Wander::Update(GameObject& ent, double dt)

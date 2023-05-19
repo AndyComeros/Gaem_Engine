@@ -19,6 +19,7 @@ public:
 	//npc will move to position at speed
 	//offset is how close to get to target before stopping
 	void MoveTo(glm::vec3 nPos, float speed, float offset);
+	void StopMoving();
 
 private:
 

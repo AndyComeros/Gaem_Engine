@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include <ResourceManager.h>
+#include <AI/AIManager.h>
 
 class State_Flee : public State
 {
@@ -17,4 +18,5 @@ public:
 private:
 	GameObject* target;
 	std::string targetName;
+	State* stateWander;
 };

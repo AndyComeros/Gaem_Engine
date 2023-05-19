@@ -5,7 +5,7 @@
 #include <InputManager.h>
 #include <GUIRenderer.h>
 #include <Renderer.h>
-#include <AI/States/global_states.h>
+#include <AI/States/State.h>
 
 /**
 *	@Class LuaManager

@@ -67,3 +67,8 @@ void NPC::MoveTo(glm::vec3 nPos, float speed, float offset)
 	moveSpeed = speed;
 	moveOffset = offset;
 }
+
+void NPC::StopMoving()
+{
+	isTargeting = false;
+}

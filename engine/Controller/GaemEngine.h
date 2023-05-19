@@ -5,6 +5,7 @@
 #include <InputManager.h>
 #include <AI/AIManager.h>
 #include <Physics.h>
+#include <AI/States/global_states.h>
 
 /**
 *	@Class GameEngine
