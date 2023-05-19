@@ -5,7 +5,7 @@
 #include <InputManager.h>
 #include <AI/AIManager.h>
 #include <Physics.h>
-#include <Lua/LuaManager.h>
+
 /**
 *	@Class GameEngine
 *	@brief Used to manage the engine, windowing, controllers and run the main loop.

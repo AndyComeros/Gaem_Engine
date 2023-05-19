@@ -256,6 +256,8 @@ void LuaManager::Expose_Engine() {
 		"ProcessMessage", &State::ProcessMessage
 		);
 
+
+
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");
 	init = GetFunction("init");
