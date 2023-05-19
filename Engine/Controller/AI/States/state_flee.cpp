@@ -46,7 +46,7 @@ void State_Flee::Update(GameObject& ent, double dt)
 	glm::vec3 toTarget = npc->position - target->position;
 
 	if (toTarget.length() > npc->GetData("fleeDistance")) {
-		
+		//npc->stateMachine.
 	}
 
 }

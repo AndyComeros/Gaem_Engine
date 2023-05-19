@@ -1,5 +1,6 @@
 #pragma once
 #include <AI/Message/MessageDispatcher.h>
+#include <lua/LuaManager.h>
 
 class AIManager
 {
@@ -10,9 +11,9 @@ public:
 
 	void Init(Scene* nScene);
 
-	void AddState(std::string& stateName, State*  nState);
+	void AddState(const std::string& stateName, State*  nState);
 
-	State* GetState(std::string& stateName);
+	State* GetState(const std::string& stateName);
 private:
 
 	Dispatcher* msgDispatcher;

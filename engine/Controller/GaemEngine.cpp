@@ -44,6 +44,30 @@ GameEngine::GameEngine()
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window, ResizeCallback);
+
+
+	//expose to lua
+	luaManager.Expose_Engine();
+	luaManager.Expose_CPPReference("scene", scene);
+	luaManager.Expose_CPPReference("physics", scene.physics);
+	luaManager.Expose_CPPReference("renderer", renderer);
+	luaManager.Expose_CPPReference("GUI", guirenderer);
+
+	//add generic built in states
+	aiManager.AddState("state_wander", new State_Wander);
+	aiManager.AddState("state_chase", new State_Chase);
+	aiManager.AddState("state_pursuit", new State_Pursuit);
+	aiManager.AddState("state_flee", new State_Flee);
+
+	luaManager.RunInitMethod();
+
+	//set light uniforms
+	auto it = ResourceManager::Get().ShaderBegin();
+	auto end = ResourceManager::Get().ShaderEnd();
+	for (it; it != end; it++) {
+		Renderer::SetLightUniforms(scene.lights, *it->second);
+	}
+
 }
 
 GameEngine::~GameEngine() {
@@ -54,21 +78,6 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-
-	//expose to lua
-	luaManager.Expose_Engine();
-	luaManager.Expose_CPPReference("scene", scene);
-	luaManager.Expose_CPPReference("physics", scene.physics);
-	luaManager.Expose_CPPReference("renderer",	renderer);
-	luaManager.Expose_CPPReference("GUI", guirenderer);
-	luaManager.RunInitMethod();
-	
-	//set light uniforms
-	auto it = ResourceManager::Get().ShaderBegin();
-	auto end = ResourceManager::Get().ShaderEnd();
-	for (it; it != end; it++) {
-		Renderer::SetLightUniforms(scene.lights, *it->second);
-	}
 
 	isRunning = true;
 	//main loop
