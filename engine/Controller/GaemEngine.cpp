@@ -58,6 +58,7 @@ GameEngine::GameEngine()
 	aiManager.AddState("state_chase", new State_Chase);
 	aiManager.AddState("state_pursuit", new State_Pursuit);
 	aiManager.AddState("state_flee", new State_Flee);
+	aiManager.AddState("state_evade", new State_Evade);
 
 	luaManager.RunInitMethod();
 
