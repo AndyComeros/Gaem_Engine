@@ -38,7 +38,7 @@ function init()
 	resources:LoadTexture("solider","resources/models/md2/cipher.png");
 	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
 
-	soliderModel = resources:GetModel("solider")
+	soliderModel = resources:GetModel("solider");
 	soliderModel:SetAnimation("stand"	, 0		, 39	, 10);
 	soliderModel:SetAnimation("run"		, 40	, 45	, 10);
 	soliderModel:SetAnimation("attack"	, 46	, 53	, 10);

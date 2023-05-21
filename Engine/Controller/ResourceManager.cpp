@@ -9,7 +9,7 @@ ResourceManager& ResourceManager::Get() {
 
 DrawItem& ResourceManager::GetDrawItemReference(std::string resName)
 {
-	return *GetModel(resName);
+	return *models.at(resName);
 }
 
 ResourceManager::ResourceManager(){

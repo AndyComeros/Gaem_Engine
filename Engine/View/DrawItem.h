@@ -91,13 +91,13 @@ public:
     Texture* GetEmissionTexture(int index);
 
         //Set an animation cycle and its name
-    void SetAnimation(const std::string& animName, int start, int end, float speed);
+    virtual void SetAnimation(const std::string& animName, int start, int end, float speed);
 
         //animate a specific animation cycle
-    void Animate(const std::string& animation);
+    virtual void Animate(const std::string& animation);
 
         //set how fast animations are played
-    void SetAnimationSpeed(float speed);
+    virtual  void SetAnimationSpeed(float speed);
 
     bool visible = true;
 

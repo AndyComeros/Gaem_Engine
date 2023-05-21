@@ -28,6 +28,8 @@ void State_Patrol::Enter(GameObject& ent)
 	if (!npc->HasData("speed"))
 		npc->AddData("speed",40);
 
+	npc->GetDrawItem().Animate("run");
+
 	npc->LookAt(waypoints[(int)npc->GetData("curWaypoint")]);
 	npc->MoveTo2D(waypoints[(int)npc->GetData("curWaypoint")], npc->GetData("speed"), 0);
 }
@@ -48,7 +50,7 @@ void State_Patrol::Update(GameObject& ent, double dt)
 		npc->LookAt(waypoints[(int)npc->GetData("curWaypoint")]);
 		npc->MoveTo2D(waypoints[(int)npc->GetData("curWaypoint")], npc->GetData("speed"), 0);
 	}
-
+	npc->GetDrawItem().Animate("run");
 
 	//lock to terrain height
 	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;

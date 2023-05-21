@@ -275,7 +275,6 @@ void md2_model_t::Animate(const std::string& animname)
         visible = false;
         return;
     }
-
     visible = true;
     animation& anim = animations.at(animname);
 
