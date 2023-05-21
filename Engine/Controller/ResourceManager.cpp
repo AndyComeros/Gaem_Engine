@@ -36,33 +36,55 @@ GameObject& ResourceManager::CreateGameObject(std::string objectName, std::strin
 	else if (shaders.find("default") != shaders.end()) {
 		gameObject->shader = shaders.at("default");
 	}
+	objects.insert({objectName, gameObject});
 
 	return *gameObject;
 }
 
-Terrain ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ) {
+GameObject& ResourceManager::CreateNPCObject(std::string objectName, std::string modelName, std::string shaderName)
+{
+	NPC* gameObject = new NPC();
+	gameObject->name = objectName;
+	gameObject->SetID(IDIndex);
+	IDIndex++;
+
+	gameObject->model_data = GetModel(modelName);
+
+	if (!shaderName.empty()) {
+		gameObject->shader = GetShader(shaderName);
+	}
+	else if (shaders.find("default") != shaders.end()) {
+		gameObject->shader = shaders.at("default");
+	}
+
+	objects.insert({ objectName, gameObject });
+	return *gameObject;
+}
+
+Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ) {
 	
-	Terrain terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
+	Terrain* terrain = new Terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
 	
 	if(textures.find(emissiveName) != textures.end())
-		terrain.model_data->SetEmissionTexture(GetTexture(emissiveName));
+		terrain->model_data->SetEmissionTexture(GetTexture(emissiveName));
 	if(textures.find(specularName) != textures.end())
-		terrain.model_data->SetSpecularTexture(GetTexture(specularName));
+		terrain->model_data->SetSpecularTexture(GetTexture(specularName));
 	
 	if (shaders.find("terrain") != shaders.end())
-		terrain.shader = shaders.at("terrain");
+		terrain->shader = shaders.at("terrain");
 
 	std::vector<Texture*> layers;
 	for (int i = 0; i < layerTextures.size(); i++)
 		layers.emplace_back(textures.at(layerTextures[i]));
 
-	terrain.SetTextures(layers,textures.at(detailName));
+	terrain->SetTextures(layers,textures.at(detailName));
 
-	terrain.name = terrainName;
-	terrain.SetID(IDIndex);
+	terrain->name = terrainName;
+	terrain->SetID(IDIndex);
 	IDIndex++;
 
-	return terrain;
+	objects.insert({ terrainName, terrain });
+	return *terrain;
 }
 
 void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
@@ -207,4 +229,19 @@ CubeMap* ResourceManager::GetCubeMap(std::string resName) {
 	}
 	return cubemap;
 
+}
+
+GameObject* ResourceManager::GetGameObject(std::string resName)
+{
+	GameObject* gameObject = nullptr;
+	try
+	{
+		gameObject = objects.at(resName);
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "ERROR: gameObject: '" << resName << "' does not exist: " << e.what() << std::endl;
+		gameObject = nullptr;
+	}
+	return gameObject;
 }

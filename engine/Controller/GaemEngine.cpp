@@ -37,13 +37,39 @@ GameEngine::GameEngine()
 	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
-	
+	aiManager.Init(&scene);
 
 	//scene camera settings
 	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window, ResizeCallback);
+
+
+	//expose to lua
+	luaManager.Expose_Engine();
+	luaManager.Expose_CPPReference("scene", scene);
+	luaManager.Expose_CPPReference("physics", scene.physics);
+	luaManager.Expose_CPPReference("renderer", renderer);
+	luaManager.Expose_CPPReference("GUI", guirenderer);
+
+	//add generic built in states
+	aiManager.AddState("state_wander", new State_Wander);
+	aiManager.AddState("state_chase", new State_Chase);
+	aiManager.AddState("state_pursuit", new State_Pursuit);
+	aiManager.AddState("state_flee", new State_Flee);
+	aiManager.AddState("state_evade", new State_Evade);
+	aiManager.AddState("state_patrol", new State_Patrol);
+
+	luaManager.RunInitMethod();
+
+	//set light uniforms
+	auto it = ResourceManager::Get().ShaderBegin();
+	auto end = ResourceManager::Get().ShaderEnd();
+	for (it; it != end; it++) {
+		Renderer::SetLightUniforms(scene.lights, *it->second);
+	}
+
 }
 
 GameEngine::~GameEngine() {
@@ -54,21 +80,6 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-
-	//expose to lua
-	luaManager.Expose_Engine();
-	luaManager.Expose_CPPReference("scene", scene);
-	luaManager.Expose_CPPReference("physics", scene.physics);
-	luaManager.Expose_CPPReference("renderer",	renderer);
-	luaManager.Expose_CPPReference("GUI", guirenderer);
-	luaManager.RunInitMethod();
-	
-	//set light uniforms
-	auto it = ResourceManager::Get().ShaderBegin();
-	auto end = ResourceManager::Get().ShaderEnd();
-	for (it; it != end; it++) {
-		Renderer::SetLightUniforms(scene.lights, *it->second);
-	}
 
 	isRunning = true;
 	//main loop
@@ -82,10 +93,12 @@ void GameEngine::Run() {
     
 		glfwPollEvents();
 
+
 		scene.physics.StepPhysics(deltaTime);
 		scene.physics.UpdateGameObjects(scene.gameObjects);
+		
+		aiManager.UpdateAgents(deltaTime);
 		luaManager.RunUpdateMethod(deltaTime);
-
 		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(scene, deltaTime);
@@ -98,6 +111,11 @@ void GameEngine::Run() {
 
 	//cleanup
 	glfwDestroyWindow(window);
+}
+
+double GameEngine::Time()
+{
+	return glfwGetTime();
 }
 
 double GameEngine::DeltaTime() {

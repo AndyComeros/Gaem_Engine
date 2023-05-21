@@ -45,7 +45,7 @@ function init()
 
 
 	--Load terrain
-	terrain = resources:CreateTerrain("coolTerrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 50 , 10.0,0.6,10.0);
+	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 50 , 10.0,0.6,10.0);
 
 	terrain:SetTextureScale(50);
 	terrain:SetTextureHeights({-30,-5,40});
@@ -106,14 +106,22 @@ function init()
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateGameObject("arcade"..i, "solider","");
+		Arcade = resources:CreateNPCObject("arcade"..i, "arcade","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(5,5,5);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);
-		physics:AddRigidBody(Arcade,3);
-		physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
-		Arcade.rigidBody:SetMass(1);
+		--physics:AddRigidBody(Arcade,3);
+		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
+		--Arcade.rigidBody:SetMass(1);
+
+		--Arcade.stateMachine:ChangeState(state_wander);
+		--Arcade.stateMachine:ChangeState(state_chase);
+		--Arcade.stateMachine:ChangeState(state_pursuit);
+		--Arcade.stateMachine:ChangeState(state_flee);
+		--Arcade.stateMachine:ChangeState(state_evade);
+		Arcade.stateMachine:ChangeState(state_patrol);
+
 		scene:AddObject(Arcade);
 	end
 	

@@ -9,7 +9,6 @@
 #include <Camera.h>
 #include <GameObject.h>
 
-
 /**
 *	@Class InputManager
 *	@brief allows for custom and dynamic allocation for key input from the game 

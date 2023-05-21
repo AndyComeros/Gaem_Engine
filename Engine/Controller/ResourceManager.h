@@ -4,6 +4,7 @@
 #include <Model.h>
 #include <MD2/MD2Reader.h>
 #include <Terrain.h>
+#include <NPC.h>
 /**
 *	@Class ResourceManager
 *	@brief  Utilises the Abstract factory method for game object creation.
@@ -32,7 +33,16 @@ public:
 		*	@return a game object created using the selected parameters
 		*/
 	GameObject& CreateGameObject(std::string objectName, std::string modelName, std::string shaderName);
-		
+
+		/**
+		*	@brief Abstract factory method for creating NPC game objects
+		*	@param objectName name of created NPC object
+		*	@param modelName name key of model data
+		*	@param shaderName name key for shader data, use "" to use default shader
+		*	@return a NPC object created using the selected parameters
+		*/
+	GameObject& CreateNPCObject(std::string objectName, std::string modelName, std::string shaderName);
+
 		/**
 		*	@brief Abstract factory method for creating terrain game objects
 		*	@param terrainName name of created game object
@@ -47,7 +57,7 @@ public:
 		*	@param scaleZ z axis scaling
 		*	@return a game object created using the selected parameters
 		*/
-	Terrain CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
+	Terrain& CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
 
 		/**
 		*	@brief loads a texture into storage
@@ -130,6 +140,13 @@ public:
 		*/
 	CubeMap* GetCubeMap(std::string resName);
 
+		/**
+		*	@brief Retrieve a gameobject from storage
+		*	@param resName name key of resource
+		*	@return gameobject pointer
+		*/
+	GameObject* GetGameObject(std::string resName);
+
 		///Get itterator for texture resources
 	auto TextureBegin() { return textures.begin(); }
 		///Get itterator for texture resources
@@ -170,5 +187,7 @@ private:
 	std::map<std::string, Shader*> shaders;
 		///cubemap storage
 	std::map<std::string, CubeMap*> cubemaps;
+		///gameobject storage
+	std::map<std::string, GameObject*> objects;
 };
 

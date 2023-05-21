@@ -1,6 +1,7 @@
 #pragma once
 #include <reactphysics3d/reactphysics3d.h>
-#include <ResourceManager.h>
+#include <GameObject.h>
+#include <Terrain.h>
 #include <map>
 #include <math.h>
 #include <algorithm>
