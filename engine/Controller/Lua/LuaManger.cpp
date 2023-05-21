@@ -13,6 +13,12 @@ LuaManager::~LuaManager()
 	luaState.collect_garbage();
 }
 
+LuaManager& LuaManager::Get()
+{
+	static LuaManager l_instance;
+	return l_instance;
+}
+
 void LuaManager::RunInitMethod() {
 	if (init.valid())
 		init();
@@ -66,6 +72,7 @@ void LuaManager::Expose_Engine() {
 		"rotation", &GameObject::rotation,
 		"scale", &GameObject::scale,
 		"rigidBody", &GameObject::rigidBody,
+		"stateMachine", &GameObject::stateMachine,
 		"SetPosition", &GameObject::SetPosition,
 		"SetRotation", &GameObject::SetRotation
 		);
@@ -88,6 +95,7 @@ void LuaManager::Expose_Engine() {
 		"Get", &ResourceManager::Get,
 
 		"CreateGameObject", &ResourceManager::CreateGameObject,
+		"CreateNPCObject", &ResourceManager::CreateNPCObject,
 		"CreateTerrain", &ResourceManager::CreateTerrain,
 		"CreateWater", &ResourceManager::CreateWater,
 		"LoadTexture", &ResourceManager::LoadTexture,
@@ -217,7 +225,11 @@ void LuaManager::Expose_Engine() {
 		"SetMass", &Rigidbody::SetMass,
 		"SetCenterOfMass", &Rigidbody::SetCenterOfMass,
 		"SetDampeningAngle", &Rigidbody::SetDampeningAngle,
-		"SetDampeningLinear", &Rigidbody::SetDampeningLinear
+		"SetDampeningLinear", &Rigidbody::SetDampeningLinear,
+		"ToggleColliderListener", &Rigidbody::ToggleContactListenState,
+		"GetIsContact", &Rigidbody::GetIsContact,
+		"GetLinearVelocity", &Rigidbody::GetLinearVelocty,
+		"GetAngularVelocity", &Rigidbody::GetAngularVelocity
 		);
 
 	Expose_CPPClass<GUIRenderer>("GUIRenderer",
@@ -229,6 +241,23 @@ void LuaManager::Expose_Engine() {
 		sol::no_constructor,
 		"ToggleWireFrame", &Renderer::ToggleWireFrame
 		);
+
+	Expose_CPPClass<StateMachine>("StateMachine",
+		sol::no_constructor,
+		"ChangeState", &StateMachine::ChangeState,
+		"ChangeGlobalState", &StateMachine::ChangeGlobalState,
+		"RevertState", &StateMachine::RevertState
+		);
+
+	Expose_CPPClass<State>("State",
+		sol::no_constructor,
+		"Enter", &State::Enter,
+		"Exit", &State::Exit,
+		"Update", &State::Update,
+		"ProcessMessage", &State::ProcessMessage
+		);
+
+
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");
@@ -259,3 +288,4 @@ sol::function LuaManager::GetFunction(const char* luaName) {
 	}
 
 }
+

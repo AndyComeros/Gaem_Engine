@@ -3,8 +3,10 @@
 #include <Renderer.h>
 #include <GUIRenderer.h>
 #include <InputManager.h>
+#include <AI/AIManager.h>
 #include <Physics.h>
-#include <Lua/LuaManager.h>
+#include <AI/States/global_states.h>
+
 /**
 *	@Class GameEngine
 *	@brief Used to manage the engine, windowing, controllers and run the main loop.
@@ -29,6 +31,12 @@ public:
 		*	@return void
 		*/
 	void Run();
+
+		/**
+		*	@brief returns current game time
+		*	@return time since start of game
+		*/
+	double Time();
 
 		/**
 		*	@brief Calculates and returns time since last frame
@@ -57,9 +65,11 @@ public:
 		///Main GUI Renderer
 	GUIRenderer guirenderer;
 		///Main Lua Manager
-	LuaManager luaManager;
+	LuaManager& luaManager = LuaManager::Get();
 		///Reference to input manager
 	InputManager& inputMngr = InputManager::Get();
+		///Reference to AI manager
+	AIManager& aiManager = AIManager::Get();
 
 private:
 		///updates per second

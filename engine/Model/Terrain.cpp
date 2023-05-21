@@ -175,8 +175,16 @@ void Terrain::SetMaterailTextures(std::vector<Texture*> textures) {
 
 void Terrain::SetTextureHeights(std::vector<float> heights) {
 
-	shader->SetUniform("heights", heights);
-	shader->SetUniform("heightCount", (int)heights.size());
+	std::vector<float> nHeights;
+
+	nHeights.push_back(heights[0]);
+	for (int i = 0; i < heights.size(); i++)
+	{
+		nHeights.push_back(heights[i]);
+	}
+
+	shader->SetUniform("heights", nHeights);
+	shader->SetUniform("heightCount", (int)nHeights.size());
 }
 
 
@@ -193,9 +201,10 @@ void Terrain::SetTextureScale(float nScale) {
 
 void Terrain::SetUniforms()
 {
-	if(shader)
+	if (shader) {
 		shader->SetUniform("textures", tUnits);
 		shader->SetUniform("textureCount", tCount);
+	}
 }
 
 void Terrain::LoadHeightMap(const std::string& fileName) {

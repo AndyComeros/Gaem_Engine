@@ -1,6 +1,7 @@
 #pragma once
 #include <reactphysics3d/reactphysics3d.h>
-#include <ResourceManager.h>
+#include <GameObject.h>
+#include <Terrain.h>
 #include <map>
 #include <math.h>
 #include <algorithm>
@@ -182,6 +183,7 @@ public:
 
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
+
 private:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
@@ -195,4 +197,3 @@ private:
 
 	bool isDebug = false;
 };
-

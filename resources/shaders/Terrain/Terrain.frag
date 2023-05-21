@@ -218,31 +218,32 @@ vec4 CalcTextureMix(){
 
 
 	vec4 colors[MAX_TEXTURES];
-	for(int i = 0; i <= textureCount; i++)
-		colors[i] = texture(textures[i],textureCoord);
+	colors[0] = texture(textures[0],textureCoord);
+	for(int i = 1; i <= textureCount + 1; i++)
+		colors[i] = texture(textures[i-1],textureCoord);
 
 
     if(height < heights[0]){
         result = texture(textures[0],textureCoord);
     }else if(height <= heights[heightCount - 1])
 	{
-        for(int i = 1; i < textureCount; i++)
+        for(int i = 0; i < textureCount + 1; i++)
 		{
-            if(height <= heights[i] && height >= heights[i-1])
+            if(height <= heights[i + 1] && height >= heights[i])
 			{
-                float factor = ((height - heights[i-1])/(heights[i] - heights[i-1]));
+                float factor = ((height - heights[i])/(heights[i + 1] - heights[i]));
 				factor = smoothstep(0.0, 1.0, factor);
-                result = (mix(colors[i-1],colors[i],factor));
+                result = (mix(colors[i],colors[i + 1],factor));
                 break;
             }
          }
 
     }else{
-        result = colors[textureCount - 1];
+        result = colors[textureCount];
     }
 
 	//add detail map
-	result += colors[textureCount];
+	result += colors[textureCount + 1];
 
     return result;
 }

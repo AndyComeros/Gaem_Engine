@@ -2,6 +2,7 @@
 #include <Graphics/Graphics.h>
 #include <Model.h>
 #include <Rigidbody.h>
+#include <AI/StateMachine.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -38,6 +39,7 @@ public:
 		*	@return void
 		*/
 	void SetPosition(glm::vec3 nPos);
+
 		/**
 		*	@brief Set the current rotation in world space, also updates
 		*	the rigidbody rotation data.
@@ -51,6 +53,12 @@ public:
 		*	@return void
 		*/
 	virtual void SetUniforms();
+
+		/**
+		*	@brief runs every update loop. used to give special behaviors to subclasses
+		*	@return void
+		*/
+	virtual void Update(double dt);
 
 		/**
 		*	@brief calculates this objects up vector.
@@ -70,6 +78,13 @@ public:
 		*/
 	glm::vec3 GetRightVec();
 	
+		/**
+		*	@brief rotates this game object to face a direction
+		*	@param lookvec positon to face towawrds
+		*	@return this objects right vector
+		*/
+	void LookAt(glm::vec3 lookvec);
+
 		///Position in worldspace
 	glm::vec3 position = {0,0,0};
 		///Scale along each axis
@@ -90,6 +105,8 @@ public:
 	int GetID() { return ID; }
 		///Set this objects ID  
 	void SetID(int id) { ID = id; };
+		///FSM for AI and sending/receiving messages
+	StateMachine stateMachine;
 private:
 		///Unique identifier
 	unsigned int ID = 0;
