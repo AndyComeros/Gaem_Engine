@@ -13,27 +13,15 @@ public:
 	void AddData(const std::string& dataName, float value);
 	bool HasData(const std::string& dataName);
 	float GetData(const std::string& dataName);
-
-	void AddPointer(const std::string& dataName, void* ptr);
-	bool HasPointer(const std::string& dataName);
-
-	template<typename T>
-	T* GetPointer(const std::string& dataName) {
-
-		if (pointers.find(dataName) != pointers.end()) {
-			return pointers.at(dataName);
-		}
-		else {
-			return nullptr;
-		}
-	}
-
 	void Update(double dt);
 
 	//npc will move to position at speed
 	//offset is how close to get to target before stopping
-	void MoveTo(glm::vec3 nPos, float speed, float offset);
+	//return true if arrived
+	void MoveTo3D(glm::vec3 nPos, float speed, float offset);
+	void MoveTo2D(glm::vec3 nPos, float speed, float offset);
 	void StopMoving();
+	bool IsTargeting();
 
 private:
 
@@ -42,11 +30,9 @@ private:
 	//how close to stop in front of target
 	float moveOffset;
 	bool isTargeting;
+	bool move3D;
 
 		//stores values
 	std::map<std::string, float> data;
-
-		//stores arbitrary data
-	std::map<std::string, void*> pointers;
 
 };

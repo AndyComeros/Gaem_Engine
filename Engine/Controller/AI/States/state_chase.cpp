@@ -43,7 +43,7 @@ void State_Chase::Update(GameObject& ent, double dt)
 	if (npc == nullptr)
 		return;
 
-	npc->MoveTo(target->position,npc->GetData("speed"), npc->GetData("offset"));
+	npc->MoveTo3D(target->position,npc->GetData("speed"), npc->GetData("offset"));
 
 	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;
 	npc->SetPosition({ npc->position.x,nY,npc->position.z });

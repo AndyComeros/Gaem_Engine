@@ -4,7 +4,8 @@ NPC::NPC() :
 targetPos({ 0.0f,0.0f,0.0f }),
 moveSpeed(0.0f),
 moveOffset(0.0f),
-isTargeting(false)
+isTargeting(false),
+move3D(false)
 {
 }
 
@@ -30,20 +31,6 @@ float NPC::GetData(const std::string& dataName)
 	}
 }
 
-void NPC::AddPointer(const std::string& dataName, void* ptr)
-{
-	pointers[dataName] = ptr;
-}
-
-bool NPC::HasPointer(const std::string& dataName)
-{
-	if (pointers.find(dataName) != pointers.end()) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
 
 bool NPC::HasData(const std::string& dataName)
 {
@@ -57,27 +44,59 @@ bool NPC::HasData(const std::string& dataName)
 
 void NPC::Update(double dt)
 {
-	if (!isTargeting)
+	if (!isTargeting) {
 		return;
+	}
 
-	glm::vec3 toTarget = targetPos - position;
-	toTarget = glm::normalize(toTarget);
-	glm::vec3 newPos = position + (toTarget) * (float)(moveSpeed * dt);
 
-	//check if overshooting target
-	glm::vec3 offsetPos = targetPos - toTarget * moveOffset;
-	glm::vec3 toOffset = offsetPos - newPos;
-	if (glm::dot(toOffset, toTarget) < 0.0f) {
-		newPos = offsetPos;
-		isTargeting = false;
+
+	glm::vec3 offsetPos;
+	glm::vec3 toOffset ;
+	glm::vec3 newPos;
+	glm::vec3 toTarget;
+
+	if (move3D)
+	{
+		toTarget = glm::normalize(targetPos - position);
+		newPos = position + (toTarget) * (float)(moveSpeed * dt);
+		offsetPos = targetPos - (toTarget * moveOffset);
+		toOffset = offsetPos - newPos;
+
+		if (glm::dot(toOffset, toTarget) < 0.0f || glm::length(targetPos - position) < 0.1f) {
+			newPos = offsetPos;
+			isTargeting = false;
+		}
+	}
+	else {
+		glm::vec3 targetPosFlat(targetPos.x, position.y, targetPos.z);
+
+		toTarget = glm::normalize(targetPosFlat - position);
+		newPos = position + (toTarget) * (float)(moveSpeed * dt);
+		offsetPos = targetPos - (toTarget * moveOffset);
+		toOffset = offsetPos - newPos;
+
+		if (glm::dot(toOffset, toTarget) < 0.0f || glm::length(targetPosFlat - position) < 0.1f) {
+			newPos = offsetPos;
+			isTargeting = false;
+		}
 	}
 
 	position = newPos;
 }
 
-void NPC::MoveTo(glm::vec3 nPos, float speed, float offset)
+void NPC::MoveTo3D(glm::vec3 nPos, float speed, float offset)
 {
 	isTargeting = true;
+	move3D = true;
+	targetPos = nPos;
+	moveSpeed = speed;
+	moveOffset = offset;
+}
+
+void NPC::MoveTo2D(glm::vec3 nPos, float speed, float offset)
+{
+	isTargeting = true;
+	move3D = false;
 	targetPos = nPos;
 	moveSpeed = speed;
 	moveOffset = offset;
@@ -86,4 +105,9 @@ void NPC::MoveTo(glm::vec3 nPos, float speed, float offset)
 void NPC::StopMoving()
 {
 	isTargeting = false;
+}
+
+bool NPC::IsTargeting()
+{
+	return isTargeting;
 }

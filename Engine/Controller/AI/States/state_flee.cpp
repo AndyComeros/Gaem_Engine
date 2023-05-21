@@ -48,7 +48,7 @@ void State_Flee::Update(GameObject& ent, double dt)
 
 	glm::vec3 toTarget = target->position - npc->position;
 
-	npc->MoveTo(npc->position - glm::normalize(toTarget), npc->GetData("fleeSpeed"),0);
+	npc->MoveTo3D(npc->position - glm::normalize(toTarget), npc->GetData("fleeSpeed"),0);
 
 	//lock to terrain height
 	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;

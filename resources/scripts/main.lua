@@ -119,7 +119,8 @@ function init()
 		--Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
-		Arcade.stateMachine:ChangeState(state_evade);
+		--Arcade.stateMachine:ChangeState(state_evade);
+		Arcade.stateMachine:ChangeState(state_patrol);
 
 		scene:AddObject(Arcade);
 	end

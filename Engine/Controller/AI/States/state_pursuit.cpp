@@ -46,12 +46,12 @@ void State_Pursuit::Update(GameObject& ent, double dt)
 	glm::vec3 toTarget = npc->position - target->position;
 
 	if (glm::dot(target->GetForwardVec(), toTarget) < -0.95f) {
-		npc->MoveTo(target->position, npc->GetData("speed"), npc->GetData("offset"));
+		npc->MoveTo3D(target->position, npc->GetData("speed"), npc->GetData("offset"));
 	}
 	else {
 		glm::vec3 targetVel = target->rigidBody.GetLinearVelocty();
 
-		npc->MoveTo(target->position + targetVel * 2.0f, npc->GetData("speed"), 0);
+		npc->MoveTo3D(target->position + targetVel * 2.0f, npc->GetData("speed"), 0);
 	}
 
 	//lock to terrain height
