@@ -28,7 +28,7 @@ void State_Patrol::Enter(GameObject& ent)
 	if (!npc->HasData("speed"))
 		npc->AddData("speed",40);
 
-
+	npc->LookAt(waypoints[(int)npc->GetData("curWaypoint")]);
 	npc->MoveTo2D(waypoints[(int)npc->GetData("curWaypoint")], npc->GetData("speed"), 0);
 }
 
@@ -45,6 +45,7 @@ void State_Patrol::Update(GameObject& ent, double dt)
 			npc->AddData("curWaypoint", npc->GetData("curWaypoint") + 1.0f);
 		}
 
+		npc->LookAt(waypoints[(int)npc->GetData("curWaypoint")]);
 		npc->MoveTo2D(waypoints[(int)npc->GetData("curWaypoint")], npc->GetData("speed"), 0);
 	}
 

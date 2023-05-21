@@ -53,3 +53,16 @@ glm::vec3 GameObject::GetRightVec()
 	rotationMatrix = glm::rotate(rotationMatrix, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 	return glm::vec3(rotationMatrix[0][0], rotationMatrix[1][0], rotationMatrix[2][0]);
 }
+
+void GameObject::LookAt(glm::vec3 lookvec)
+{
+	glm::vec3 newRot(0.0f,0.0f,0.0f);
+
+	lookvec = glm::normalize(lookvec);
+
+	newRot.y = glm::degrees(atan2(lookvec.z, lookvec.x));
+	
+	newRot.x = glm::degrees(asin(lookvec.y));
+
+	SetRotation(newRot);
+}
