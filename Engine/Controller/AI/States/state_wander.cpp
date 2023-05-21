@@ -2,7 +2,6 @@
 
 State_Wander::State_Wander()
 {
-	target = { 0,0,0 };
 }
 
 State_Wander::~State_Wander()
@@ -29,7 +28,6 @@ inline void State_Wander::Enter(GameObject& ent)
 	npc->AddData("timer", 0.0f);
 
 	npc->StopMoving();
-	PickWanderTarget();
 }
 
 inline void State_Wander::Update(GameObject& ent, double dt)
@@ -47,7 +45,7 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 		float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;
 		npc->SetPosition({ npc->position.x,nY,npc->position.z });
 
-		npc->LookAt(target);
+		
 
 		//if been walking too long
 		if (npc->GetData("timer") > npc->GetData("wanderTime")) {
@@ -69,8 +67,9 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 
 			//pick new target location
 			npc->GetDrawItem().Animate("run");
-			PickWanderTarget();
-			npc->MoveTo2D(target,npc->GetData("wanderSpeed"),0);
+			glm::vec3 target = GetWanderTarget();
+			npc->MoveTo2D(target,npc->GetData("wanderSpeed"),4);
+			npc->LookAt(target);
 		}
 	}
 
@@ -95,13 +94,15 @@ inline void State_Wander::ProcessMessage(GameObject* ent, const Message* message
 
 }
 
-void State_Wander::PickWanderTarget()
+glm::vec3 State_Wander::GetWanderTarget()
 {
-	float sx = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetScaleX();
-	float sz = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetScaleZ();
+	srand(time(NULL));
 
-	float nx = -sx/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / sx));
-	float nz = -sz/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / sz));
+	float s = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetSize() * static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetScaleX();
+
+	float nx = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
+	float nz = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
+
 	float ny = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(nx, nz) + 1;
-	target = { nx,ny,nz };
+	return { nx,ny,nz };
 }
