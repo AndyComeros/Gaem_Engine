@@ -41,10 +41,6 @@ void DrawItem::SetAnimation(const std::string& animName, int start, int end, flo
 {
 }
 
-void DrawItem::Animate(animation animation)
-{
-}
-
 void DrawItem::Animate(const std::string& animation)
 {
 }

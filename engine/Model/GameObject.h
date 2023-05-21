@@ -107,6 +107,9 @@ public:
 	void SetID(int id) { ID = id; };
 		///FSM for AI and sending/receiving messages
 	StateMachine stateMachine;
+
+		//retuns a reference to model data
+	DrawItem& GetDrawItem();
 private:
 		///Unique identifier
 	unsigned int ID = 0;

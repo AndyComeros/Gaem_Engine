@@ -99,9 +99,6 @@ public:
 	void SetAnimation(const std::string& animName, int start, int end, float speed);
 
 	//animate a specific animation cycle
-	void Animate(animation animation);
-
-	//animate a specific animation cycle
 	void Animate(const std::string& animation);
 
 	//set how fast animations are played

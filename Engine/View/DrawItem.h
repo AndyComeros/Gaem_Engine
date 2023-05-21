@@ -7,6 +7,17 @@
 #include <Material.h>
 
 struct animation {
+    animation() :
+        start(0),
+        end(0),
+        speed(0.0f)
+    {}
+    animation(int st, int en, int sp) : 
+        start(st),
+        end(en),
+        speed(sp)
+    {}
+
     int start;
     int end;
     float speed;
@@ -80,16 +91,13 @@ public:
     Texture* GetEmissionTexture(int index);
 
         //Set an animation cycle and its name
-    virtual void SetAnimation(const std::string& animName, int start, int end, float speed);
+    void SetAnimation(const std::string& animName, int start, int end, float speed);
 
         //animate a specific animation cycle
-    virtual void Animate(animation animation);
-
-        //animate a specific animation cycle
-    virtual void Animate(const std::string& animation);
+    void Animate(const std::string& animation);
 
         //set how fast animations are played
-    virtual void SetAnimationSpeed(float speed);
+    void SetAnimationSpeed(float speed);
 
     bool visible = true;
 

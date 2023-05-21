@@ -264,32 +264,28 @@ void md2_model_t::SetAnimation(const std::string& animName, int start, int end, 
 {
     if (start >= 0 && start < header.num_frames) {
         if (end >= start && end < header.num_frames) {
-            animations.insert({ animName, {start,end,speed} });
+            animations.insert({ animName, animation(start,end,speed) });
         }
     }
 }
 
-void md2_model_t::Animate(animation animation)
+void md2_model_t::Animate(const std::string& animname)
 {
-    if (animation.start != startFrame || animation.end != endFrame) {
-        prevFrame = animation.start;
-        startFrame = animation.start;
-        endFrame = animation.end;
-        curInterpolation = 0;
-    }
-    animSpeed = animation.speed;
-}
-
-void md2_model_t::Animate(const std::string& animation)
-{
-    if (animations.find(animation) == animations.end()) {
+    if (animations.find(animname) == animations.end()) {
         visible = false;
         return;
     }
 
     visible = true;
+    animation& anim = animations.at(animname);
 
-    Animate(animations.at(animation));
+    if (anim.start != startFrame || anim.end != endFrame) {
+        prevFrame = anim.start;
+        startFrame = anim.start;
+        endFrame = anim.end;
+        curInterpolation = 0;
+    }
+    animSpeed = anim.speed;
 }
 
 void md2Header::Print()

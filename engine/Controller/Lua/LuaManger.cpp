@@ -29,6 +29,7 @@ void LuaManager::RunUpdateMethod(double dt) {
 		update(dt);
 }
 
+
 void LuaManager::Expose_Engine() {
 	//expose vec3
 	Expose_CPPClass<glm::vec3>("vec3",
@@ -64,6 +65,23 @@ void LuaManager::Expose_Engine() {
 		"y", &glm::vec2::y
 		);
 
+
+	//expose aniation struct
+	Expose_CPPClass<animation>("animation",
+		sol::constructors<animation(), animation(int,int,int)>(),
+		"start",&animation::start,
+		"end",&animation::end,
+		"speed",&animation::speed
+	);
+
+	//expose draw item
+	Expose_CPPClass<DrawItem>("DrawItem",
+		sol::no_constructor,
+		"SetAnimationSpeed", &DrawItem::SetAnimationSpeed,
+		"SetAnimation", &DrawItem::SetAnimation,
+		"Animate", &DrawItem::Animate
+		);
+
 	//expose game object
 	Expose_CPPClass<GameObject>("GameObject",
 		sol::constructors<GameObject()>(),
@@ -74,7 +92,8 @@ void LuaManager::Expose_Engine() {
 		"rigidBody", &GameObject::rigidBody,
 		"stateMachine", &GameObject::stateMachine,
 		"SetPosition", &GameObject::SetPosition,
-		"SetRotation", &GameObject::SetRotation
+		"SetRotation", &GameObject::SetRotation,
+		"GetDrawItem", &GameObject::GetDrawItem
 		);
 
 	//expose terrain

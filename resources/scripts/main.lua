@@ -109,7 +109,7 @@ function init()
 		Arcade = resources:CreateNPCObject("arcade"..i, "solider","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
-		Arcade.scale = vec3:new(0.3,0.3,0.3);
+		Arcade.scale = vec3:new(0.15,0.15,0.15);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);
 		--physics:AddRigidBody(Arcade,3);
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);

@@ -66,3 +66,11 @@ void GameObject::LookAt(glm::vec3 lookvec)
 
 	SetRotation(newRot);
 }
+
+DrawItem& GameObject::GetDrawItem()
+{
+	if (model_data) {
+		return *model_data;
+	}
+	return *(new DrawItem);
+}
