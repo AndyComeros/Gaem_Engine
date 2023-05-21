@@ -111,7 +111,7 @@ function init()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
-	for i = 1,10,1
+	for i = 1,5,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
@@ -127,12 +127,12 @@ function init()
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
 
-		--Arcade.stateMachine:ChangeState(state_wander);
+		Arcade.stateMachine:ChangeState(state_wander);
 		--Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
 		--Arcade.stateMachine:ChangeState(state_evade);
-		Arcade.stateMachine:ChangeState(state_patrol);
+		--Arcade.stateMachine:ChangeState(state_patrol);
 
 		scene:AddObject(Arcade);
 	end

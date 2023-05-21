@@ -93,7 +93,6 @@ void GameEngine::Run() {
     
 		glfwPollEvents();
 
-
 		scene.physics.StepPhysics(deltaTime);
 		scene.physics.UpdateGameObjects(scene.gameObjects);
 		

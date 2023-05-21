@@ -29,6 +29,8 @@ void State_Chase::Enter(GameObject& ent)
 
 	if (!npc->HasData("offset"))
 		npc->AddData("offset", 5);
+
+	npc->GetDrawItem().Animate("run");
 }
 
 void State_Chase::Update(GameObject& ent, double dt)
@@ -43,6 +45,7 @@ void State_Chase::Update(GameObject& ent, double dt)
 	if (npc == nullptr)
 		return;
 
+	npc->LookAt(target->position);
 	npc->MoveTo3D(target->position,npc->GetData("speed"), npc->GetData("offset"));
 
 	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;

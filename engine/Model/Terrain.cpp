@@ -33,10 +33,10 @@ Terrain::~Terrain()
 
 float Terrain::GetHeight(float x, float z) {
 	
-	x = (x / scaleX + (((float)terrainSize - 1) / 2.0f)) * scaleX;
-	z = (z / scaleZ + (((float)terrainSize - 1) / 2.0f)) * scaleZ;
+	x = (x / scaleX + (((float)terrainSize - 1.0f) / 2.0f)) * scaleX;
+	z = (z / scaleZ + (((float)terrainSize - 1.0f) / 2.0f)) * scaleZ;
 
-	if (x >= (terrainSize - 1) * scaleX || z >= (terrainSize - 1) * scaleZ || x < 0 || z < 0)
+	if (x >= (terrainSize - 1.0f) * scaleX || z >= (terrainSize - 1.0f) * scaleZ || x <= 0.0f || z <= 0.0f)
 		return 0;
 
 	int xDown = (int)(z / scaleX);
