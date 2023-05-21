@@ -5,6 +5,11 @@
 #include <map>
 #include <cmath>
 #include <DrawItem.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/vector_angle.hpp>
+
 
 struct md2Header
 {
@@ -72,13 +77,6 @@ struct pos_normal_vert{
 	glm::vec3 normal;
 };
 
-struct md2_animation {
-	int start;
-	int end;
-	float speed;
-};
-
-
 class md2_model_t : public DrawItem{
 public:
 	
@@ -90,22 +88,25 @@ public:
 
 	//update animation
 	void Update(float deltaTime);
-	
-	//Set an animation cycle and its name
-	void SetAnimation(const std::string& animName, int start, int end, float speed);
-
-	//animate a specific animation cycle
-	void Animate(md2_animation animation);
-	void Animate(const std::string& animation);
 
 	//render the current verts
 	void Render(Camera* camera, Shader* shader, bool isElements, unsigned int primative);
 	
 	//print the header data
 	void PrintHeader();
-	
+
+	//Set an animation cycle and its name
+	void SetAnimation(const std::string& animName, int start, int end, float speed);
+
+	//animate a specific animation cycle
+	void Animate(animation animation);
+
+	//animate a specific animation cycle
+	void Animate(const std::string& animation);
+
 	//set how fast animations are played
 	void SetAnimationSpeed(float speed);
+
 
 private:
 	//read in a header and create model data
@@ -117,7 +118,7 @@ private:
 	//liner interpolation function
 	float lerp(float start, float end, float factor);	
 
-	std::map<std::string,md2_animation> animations;
+	std::map<std::string,animation> animations;
 
 	md2Header header;
 	md2_texCoord_t* texcoords;

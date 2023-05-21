@@ -99,17 +99,17 @@ function init()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
-	for i = 1,100,1
+	for i = 1,10,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateNPCObject("arcade"..i, "arcade","");
+		Arcade = resources:CreateNPCObject("arcade"..i, "solider","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
-		Arcade.scale = vec3:new(5,5,5);
+		Arcade.scale = vec3:new(0.3,0.3,0.3);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);
 		--physics:AddRigidBody(Arcade,3);
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);

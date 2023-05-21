@@ -5,6 +5,13 @@
 #include "OBJReader.h"
 #include <lighting.h>
 #include <Material.h>
+
+struct animation {
+    int start;
+    int end;
+    float speed;
+};
+
 /**
 *	@Class DrawItem
 *	@brief Shared interface for items that can be drawn using the renderer
@@ -71,6 +78,18 @@ public:
     Texture* GetDiffuseTexture(int index);
     Texture* GetSpecularTexture(int index);
     Texture* GetEmissionTexture(int index);
+
+        //Set an animation cycle and its name
+    virtual void SetAnimation(const std::string& animName, int start, int end, float speed);
+
+        //animate a specific animation cycle
+    virtual void Animate(animation animation);
+
+        //animate a specific animation cycle
+    virtual void Animate(const std::string& animation);
+
+        //set how fast animations are played
+    virtual void SetAnimationSpeed(float speed);
 
     bool visible = true;
 
