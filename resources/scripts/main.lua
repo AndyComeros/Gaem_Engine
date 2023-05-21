@@ -38,6 +38,18 @@ function init()
 	resources:LoadTexture("solider","resources/models/md2/cipher.png");
 	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
 
+	soliderModel = resources:GetModel("solider")
+	soliderModel:SetAnimation("stand"	, 0		, 39	, 10);
+	soliderModel:SetAnimation("run"		, 40	, 45	, 10);
+	soliderModel:SetAnimation("attack"	, 46	, 53	, 10);
+	soliderModel:SetAnimation("pain"	, 54	, 65	, 10);
+	soliderModel:SetAnimation("jump"	, 66	, 71	, 10);
+	soliderModel:SetAnimation("flip"	, 72	, 83	, 10);
+	soliderModel:SetAnimation("salute"	, 84	, 94	, 10);
+	soliderModel:SetAnimation("taunt"	, 95	, 111	, 10);
+	soliderModel:SetAnimation("wave"	, 112	, 122	, 10);
+	soliderModel:SetAnimation("death"	, 178	, 197	, 10);
+
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);

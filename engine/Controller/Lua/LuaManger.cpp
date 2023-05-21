@@ -122,10 +122,14 @@ void LuaManager::Expose_Engine() {
 		"LoadShader", &ResourceManager::LoadShader,
 		"LoadCubemap", &ResourceManager::LoadCubemap,
 
-		"GetTexture", &ResourceManager::GetTexture,
+		"GetCubeMap", &ResourceManager::GetCubeMap,
+		"GetGameObject", &ResourceManager::GetGameObject,
 		"GetModel", &ResourceManager::GetModel,
 		"GetShader", &ResourceManager::GetShader,
-		"GetCubeMap", &ResourceManager::GetCubeMap
+		"GetTexture", &ResourceManager::GetTexture,
+
+
+		"GetModel", &ResourceManager::GetDrawItemReference
 		);
 	//expose resource manager singleton
 	luaState["resources"] = &ResourceManager::Get();
