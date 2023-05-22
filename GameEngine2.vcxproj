@@ -231,6 +231,7 @@
     <ClInclude Include="Engine\Model\Scene.h" />
     <ClInclude Include="engine\Model\Camera.h" />
     <ClInclude Include="Engine\View\DrawItem.h" />
+    <ClInclude Include="Engine\View\Frustum.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\CubeMap.h" />
     <ClInclude Include="engine\View\Graphics\OpenGL\EBO.h" />
     <ClInclude Include="engine\View\Graphics\Graphics.h" />

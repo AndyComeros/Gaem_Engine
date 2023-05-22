@@ -71,9 +71,7 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 
 			//pitch roll and yaw rotationss
 			modelMat = glm::rotate(modelMat, glm::radians(obj->rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-
 			modelMat = glm::rotate(modelMat, glm::radians(obj->rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-
 			modelMat = glm::rotate(modelMat, glm::radians(obj->rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 
 			if (obj->shader) {
