@@ -93,7 +93,8 @@ void LuaManager::Expose_Engine() {
 		"stateMachine", &GameObject::stateMachine,
 		"SetPosition", &GameObject::SetPosition,
 		"SetRotation", &GameObject::SetRotation,
-		"GetDrawItem", &GameObject::GetDrawItem
+		"GetDrawItem", &GameObject::GetDrawItem,
+		"GetDrawItem", &GameObject::LookAt
 		);
 
 	//expose terrain
@@ -106,6 +107,19 @@ void LuaManager::Expose_Engine() {
 		"SetTextureHeights",&Terrain::SetTextureHeights,
 		"GetSize",&Terrain::GetSize,
 		"SetTextureScale",&Terrain::SetTextureScale
+		);
+
+	//expose NPC
+	Expose_CPPClass<NPC>("NPC",
+		sol::constructors<NPC()>(),
+		sol::base_classes, sol::bases<GameObject>(),
+		"AddData", &NPC::AddData,
+		"GetData", &NPC::GetData,
+		"HasData", &NPC::HasData,
+		"MoveTo2D", &NPC::MoveTo2D,
+		"MoveTo3D", &NPC::MoveTo3D,
+		"IsTargeting", &NPC::IsTargeting,
+		"StopMoving", &NPC::StopMoving
 		);
 
 	//expose resource manager class
