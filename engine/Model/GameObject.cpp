@@ -5,6 +5,17 @@ GameObject::GameObject() : stateMachine(this) {}
 
 GameObject::~GameObject() {}
 
+bool GameObject::CheckInFrustum(Frustum& frustum)
+{
+	return
+	(frustum.top.	CalcSignedDistance(position) > -boundingRadius &&
+	frustum.bottom.	CalcSignedDistance(position) > -boundingRadius &&
+	frustum.left.	CalcSignedDistance(position) > -boundingRadius &&
+	frustum.right.	CalcSignedDistance(position) > -boundingRadius &&
+	frustum.far.	CalcSignedDistance(position) > -boundingRadius &&
+	frustum.near.	CalcSignedDistance(position) > -boundingRadius);
+}
+
 void GameObject::SetPosition(glm::vec3 nPos)
 {
 	rigidBody.SetPosition(nPos);
