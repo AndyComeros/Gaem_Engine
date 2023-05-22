@@ -62,6 +62,8 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 
 	for (auto& it : scene.gameObjects) {
 		if (it.second) {
+
+			//if not in view, dont render
 			if (!it.second->CheckInFrustum(camFrustum))
 				continue;
 

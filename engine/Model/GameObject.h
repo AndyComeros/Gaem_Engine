@@ -118,9 +118,11 @@ public:
 
 		//retuns a reference to model data
 	DrawItem& GetDrawItem();
-private:
+
+	float boundingRadius = 0;
+protected:
 		///Unique identifier
 	unsigned int ID = 0;
 
-	float boundingRadius = 10.0f;
+	
 };

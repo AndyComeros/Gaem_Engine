@@ -22,13 +22,11 @@ Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale) 
 }
 
 Terrain::Terrain(std::vector<float> nHeights) {
-
 	LoadHeightMap(nHeights);
 }
 
 Terrain::~Terrain()
 {
-	
 }
 
 float Terrain::GetHeight(float x, float z) {
@@ -227,6 +225,7 @@ void Terrain::CreateHeightArray() {
 
 	terrainSize = tWidth;
 
+
 	for (int y = 0; y < tHeight; y++)
 	{
 		for (int x = 0; x < tWidth; x++)
@@ -247,6 +246,7 @@ void Terrain::GenerateModel() {
 		model_data = new Model();
 		return;
 	}
+	boundingRadius =  (terrainSize/2.0f)*scaleX;
 
 	std::vector<vertex> vertexData;
 	std::vector<glm::uvec3> elementsIndexes;

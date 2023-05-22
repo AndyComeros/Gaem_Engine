@@ -12,8 +12,7 @@ struct Plane
 
 	float CalcSignedDistance(glm::vec3& point)
 	{
-		glm::vec3 toPoint = point - position;
-		return glm::dot(toPoint, normal);
+		return glm::dot(point - position, normal) / glm::length(normal);
 	}
 };
 
