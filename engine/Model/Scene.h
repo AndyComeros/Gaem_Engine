@@ -27,6 +27,11 @@ public:
 	~Scene();
 
 		/**
+		*	@brief assignment operator overload
+		*/
+	Scene& operator=(const Scene& other);
+
+		/**
 		*	@brief Add an object to the scene
 		*	@param gameObject object to add to scene
 		*	@return void

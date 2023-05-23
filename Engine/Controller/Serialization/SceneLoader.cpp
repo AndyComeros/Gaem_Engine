@@ -49,10 +49,27 @@ Scene* SceneLoader::LoadScene(const std::string inName)
 
     ResourceManager& res = ResourceManager::Get();
 
+    scene->skybox = res.GetCubeMap(sceneJSON["skybox"].asString());
+
     Json::Value objects = sceneJSON["objects"];
     for (int i = 0; i < objects.size(); i++)
     {
+        Json::Value jobj = objects[i];
+
         GameObject* go = &res.CreateGameObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
+        go->name = jobj["name"].asString();
+        go->position.x = jobj["position"][0].asFloat();
+        go->position.y = jobj["position"][1].asFloat();
+        go->position.z = jobj["position"][2].asFloat();
+
+        go->scale.x = jobj["scale"][0].asFloat();
+        go->scale.y = jobj["scale"][1].asFloat();
+        go->scale.z = jobj["scale"][2].asFloat();
+
+        go->rotation.x = jobj["rotation"][0].asFloat();
+        go->rotation.y = jobj["rotation"][1].asFloat();
+        go->rotation.z = jobj["rotation"][2].asFloat();
+
         scene->AddObject(*go);
     }
 
