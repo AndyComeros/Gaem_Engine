@@ -206,4 +206,7 @@ private:
 
 	bool registered = false;
 	CollisionListener collideListen;
+
+
+
 };

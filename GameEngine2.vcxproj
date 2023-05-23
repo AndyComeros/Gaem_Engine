@@ -223,6 +223,7 @@
     <ClInclude Include="engine\Controller\InputManager.h" />
     <ClInclude Include="engine\Controller\Lua\LuaManager.h" />
     <ClInclude Include="Engine\Controller\md2Reader.h" />
+    <ClInclude Include="Engine\Controller\Physics\Collider.h" />
     <ClInclude Include="Engine\Controller\Physics\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="Engine\Controller\Serialization\SceneLoader.h" />
