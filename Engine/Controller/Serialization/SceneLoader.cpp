@@ -151,10 +151,52 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().z);
 
     Json::Value rbcollider;
-    rbcollider["type"] =
+    PhysicsCollider* collider = obj->rigidBody.GetCollider();
+
+    rbcollider["type"] = collider->GetType();
+    if (collider->GetType() != COLLIDER_INVALID)
+    {
+        rbcollider["mass"] = collider->mass;
+        rbcollider["bounce"] = collider->bounce;
+        rbcollider["friction"] = collider->friction;
+        rbcollider["offset"].append(collider->offset.x);
+        rbcollider["offset"].append(collider->offset.y);
+        rbcollider["offset"].append(collider->offset.z);
+
+        rbcollider["rotation"].append(collider->rotation.x);
+        rbcollider["rotation"].append(collider->rotation.y);
+        rbcollider["rotation"].append(collider->rotation.z);
+    }
+
+    switch (collider->GetType())
+    {
+    case COLLIDER_BOX:
+        rb["scale"].append(static_cast<BoxCollider*>(collider)->scale.x);
+        rb["scale"].append(static_cast<BoxCollider*>(collider)->scale.y);
+        rb["scale"].append(static_cast<BoxCollider*>(collider)->scale.z);
+        break;
+    case COLLIDER_SPHERE:
+        rb["radius"] = static_cast<SphereCollider*>(collider)->radius;
+        break;
+    case COLLIDER_CAPSULE:
+        rb["radius"] = static_cast<CapsuleCollider*>(collider)->radius;
+        rb["height"] = static_cast<CapsuleCollider*>(collider)->height;
+        break;
+    case COLLIDER_TERRAIN:
+        rb["rows"] = static_cast<TerrainCollider*>(collider)->rows;
+        rb["columns"] = static_cast<TerrainCollider*>(collider)->columns;
+        rb["min"] = static_cast<TerrainCollider*>(collider)->min;
+        rb["max"] = static_cast<TerrainCollider*>(collider)->max;
+        rb["heights"] = static_cast<TerrainCollider*>(collider)->heights;
+        break;
+    case COLLIDER_INVALID:
+        break;
+    default:
+        break;
+    }
 
 
-
+    rb["collider"] = rbcollider;
     jobj["rigidbody"] = rb;
     //end rigidbody
 

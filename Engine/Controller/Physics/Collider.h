@@ -93,6 +93,7 @@ struct TerrainCollider : public PhysicsCollider
 		type = COLLIDER_BOX;
 		offset = nOffset;
 		rotation = nRotation;
+
 		rows = nRows;
 		columns = nCols;
 		min = nMin;

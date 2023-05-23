@@ -175,6 +175,8 @@ public:
 	void SetColliderSphere	(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius);
 	void SetColliderCapsule	(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius, float height);
 
+	PhysicsCollider* GetCollider();
+
 	int GetModType();
 	float GetMass();
 	float GetDampeningLinear();
@@ -209,5 +211,5 @@ private:
 	bool registered = false;
 	CollisionListener collideListen;
 
-	PhysicsCollider* collider = nullptr;
+	PhysicsCollider* collider = new PhysicsCollider;
 };

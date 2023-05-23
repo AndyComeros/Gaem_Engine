@@ -171,6 +171,11 @@ void Rigidbody::SetColliderCapsule(float mass, float bounce, float friction, glm
 {
 }
 
+PhysicsCollider* Rigidbody::GetCollider()
+{
+	return collider;
+}
+
 int Rigidbody::GetModType()
 {
 	return mod;
