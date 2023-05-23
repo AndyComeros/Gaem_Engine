@@ -111,7 +111,7 @@ function init()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
-	for i = 1,100,1
+	for i = 1,20,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;

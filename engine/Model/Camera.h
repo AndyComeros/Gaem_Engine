@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <cmath>
+#include <Frustum.h>
 
 #define PI 3.14159265
 
@@ -57,6 +58,12 @@ public:
 		*/
 	void UpdateCameraVectors();
 
+		/**
+		*	@brief calculates the currrent view fustum volume and stores it in frustum
+		*	@return void
+		*/
+	void CreateViewFrustum();
+
 		///Cameras rotation in degrees
 	glm::vec3 rotation;
 		///Cameras positon in meters
@@ -80,6 +87,9 @@ public:
 	float nearPlane;
 		///Far clipping plane
 	float farPlane;
+
+	Frustum frustum;
+
 private:
 
 };

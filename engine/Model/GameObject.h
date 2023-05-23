@@ -33,6 +33,13 @@ public:
 		*/
 	~GameObject();
 
+		/*
+		*   @brief Checks if this models bouding sphere is in a frustum
+		*   @param frustum frustum to check if inside
+		*   @return if object is in frustum
+		*/
+	bool CheckInFrustum(Frustum& frustum);
+
 		/**
 		*	@brief Set the current position in world space, also updates
 		*	the rigidbody position data.
@@ -111,7 +118,10 @@ public:
 
 		//retuns a reference to model data
 	DrawItem& GetDrawItem();
-private:
+
+protected:
 		///Unique identifier
 	unsigned int ID = 0;
+
+	
 };
