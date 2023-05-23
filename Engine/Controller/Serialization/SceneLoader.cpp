@@ -56,7 +56,32 @@ Scene* SceneLoader::LoadScene(const std::string inName)
     {
         Json::Value jobj = objects[i];
 
-        GameObject* go = &res.CreateGameObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
+     
+        GameObject* go = nullptr;
+
+        if(jobj["type"].asString() == "npc"){
+            go = &res.CreateNPCObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
+            for (auto& member : jobj["data"].getMemberNames())
+            {
+                dynamic_cast<NPC*>(go)->AddData(member, jobj["data"][member].asFloat());
+            }
+        }
+        else if (jobj["type"].asString() == "terrain") {
+          
+            go = &res.CreateTerrainFromModel(objects[i]["name"].asString(),
+                objects[i]["model"].asString(),
+                objects[i]["height_texture"].asString(),
+                objects[i]["terrain_size"].asInt(),
+                objects[i]["texture_scale"].asFloat(),
+                objects[i]["scaleX"].asFloat(),
+                objects[i]["scaleY"].asFloat(),
+                objects[i]["scaleZ"].asFloat());
+        }
+        else {
+            go = &res.CreateGameObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
+        }
+        
+        
         go->name = jobj["name"].asString();
         go->position.x = jobj["position"][0].asFloat();
         go->position.y = jobj["position"][1].asFloat();
@@ -69,6 +94,8 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         go->rotation.x = jobj["rotation"][0].asFloat();
         go->rotation.y = jobj["rotation"][1].asFloat();
         go->rotation.z = jobj["rotation"][2].asFloat();
+
+
 
         scene->AddObject(*go);
     }
@@ -137,9 +164,9 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
     else if (dynamic_cast<Terrain*>(obj)) {
         Terrain* ter = dynamic_cast<Terrain*>(obj);
         jobj["type"] = "terrain";
-        jobj["scaleX"] = ter->GetScaleX();
-        jobj["scaleY"] = ter->GetScaleY();
-        jobj["scaleZ"] = ter->GetScaleZ();
+        jobj["scaleX"] = ter->scaleX;
+        jobj["scaleY"] = ter->scaleY;
+        jobj["scaleZ"] = ter->scaleZ;
         jobj["terrain_size"] = ter->GetSize();
         jobj["texture_scale"] = ter->GetSize();
 

@@ -205,6 +205,11 @@ void Terrain::SetTextureScale(float nScale) {
 
 }
 
+void Terrain::SetHeightTexture(Texture* nHeightTex)
+{
+	heightTexture = nHeightTex;
+}
+
 void Terrain::SetUniforms()
 {
 	if (shader) {
@@ -231,21 +236,6 @@ void Terrain::LoadHeightMap(std::vector<float> nHeights) {
 	*heightArray = nHeights;
 	terrainSize = (int)sqrt(nHeights.size());
 	GenerateModel();
-}
-
-float Terrain::GetScaleX()
-{
-	return scaleX;
-}
-
-float Terrain::GetScaleY()
-{
-	return scaleY;
-}
-
-float Terrain::GetScaleZ()
-{
-	return scaleZ;
 }
 
 Texture* Terrain::GetHeightTexture()

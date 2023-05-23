@@ -121,6 +121,8 @@ public:
 		*/
 	void SetTextureScale(float nScale);
 
+	void SetHeightTexture(Texture* nHeightTex);
+
 		/**
 		*	@brief Loads a heightmap and generates model data based on it
 		*	@param fileName file path to heightmap
@@ -141,24 +143,8 @@ public:
 		*	@return void
 		*/
 	void LoadHeightMap(std::vector<float> nHeights);
-	
-		///return x scale
-	float GetScaleX();
-		///return z scale
-	float GetScaleY();
-		///return y scale
-	float GetScaleZ();
 
 	Texture* GetHeightTexture();
-
-private:
-	///creates height values from array from heightTexture
-	void CreateHeightArray();
-	///generates the vertex buffer from height array
-	void GenerateModel();
-
-	///how often terrain textures repeat
-	float textureScale = 10.0f;
 
 		///scale along x axis
 	float scaleX = 1.0f;
@@ -166,6 +152,18 @@ private:
 	float scaleY = 1.0f;
 		///scale along z axis
 	float scaleZ = 1.0f;
+
+	///creates height values from array from heightTexture
+	void CreateHeightArray();
+
+private:
+
+	///generates the vertex buffer from height array
+	void GenerateModel();
+
+	///how often terrain textures repeat
+	float textureScale = 10.0f;
+
 		///square size of terrain
 	int terrainSize;
 

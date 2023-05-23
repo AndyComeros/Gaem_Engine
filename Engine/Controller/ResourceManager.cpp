@@ -97,6 +97,28 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	return *terrain;
 }
 
+Terrain& ResourceManager::CreateTerrainFromModel(std::string terrainName, std::string modelName, std::string heightMapName, int Size, float texScale, float scaleX, float scaleY, float scaleZ)
+{
+	Terrain* terrain = new Terrain;
+	
+	terrain->scaleX = scaleX;
+	terrain->scaleY = scaleY;
+	terrain->scaleZ = scaleZ;
+
+	terrain->SetHeightTexture(textures.at(heightMapName));
+	terrain->CreateHeightArray();
+
+	if (shaders.find("terrain") != shaders.end())
+		terrain->shader = shaders.at("terrain");
+	
+	terrain->name = terrainName;
+	terrain->SetID(IDIndex);
+	IDIndex++;
+
+	objects.insert({ terrainName, terrain });
+	return *terrain;
+}
+
 Terrain& ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
 {
 	Terrain* terrain = new Terrain(Size, scaleX, scaleZ);
