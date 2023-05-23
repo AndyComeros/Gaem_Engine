@@ -34,7 +34,12 @@ public:
 		*/
 	Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale);
 
-	Terrain(int size, float xScale, float yScale, float zScale);
+		/**
+		*	@brief constructor with no height values, creates flat plane
+		*	@param xScale how scaled terrain is on x axis
+		*	@param zScale how scaled terrain is on z axis
+		*/
+	Terrain(int size, float xScale, float zScale);
 
 		/**
 		*	@brief constructor with height values
@@ -149,8 +154,6 @@ private:
 	void CreateHeightArray();
 	///generates the vertex buffer from height array
 	void GenerateModel();
-
-	void GenerateFlatModel();
 
 	///how often terrain textures repeat
 	float textureScale = 10.0f;

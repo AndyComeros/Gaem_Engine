@@ -96,7 +96,7 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 
 Terrain ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
 {
-	Terrain terrain(Size, scaleX, scaleY, scaleZ);
+	Terrain terrain(Size, scaleX, scaleZ);
 
 	if (shaders.find("Water") != shaders.end()) 
 		terrain.shader = shaders.at("Water");
