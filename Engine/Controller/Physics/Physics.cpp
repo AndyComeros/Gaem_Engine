@@ -41,6 +41,12 @@ void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, float mas
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
 
+	//refactor
+	BoxCollider* box = new BoxCollider(mass, bounce, friction, { 0,0,0 }, { 0,0,0 }, scale);
+	delete go.rigidBody.collider;
+	go.rigidBody.collider = box;
+	
+
 	BoxShape* shape = physicsCommon.createBoxShape({scale.x,scale.y,scale.z});
 	Transform transform = Transform::identity();
 	rb->addCollider(shape, transform);
@@ -54,6 +60,11 @@ void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, float mas
 void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3 offset, float mass, float bounce, float friction)
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
+
+	//refactor
+	SphereCollider* sphere = new SphereCollider(mass, bounce, friction, offset, { 0,0,0 }, radius);
+	delete go.rigidBody.collider;
+	go.rigidBody.collider = sphere;
 
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
 	rp3d::Quaternion q = Quaternion::identity();
@@ -71,6 +82,12 @@ void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3
 void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height, glm::vec3 offset, glm::vec3 rotation,float mass, float bounce, float friction)
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
+
+	//refactor
+	CapsuleCollider* capsule = new CapsuleCollider(mass, bounce, friction, offset, rotation, radius, height);
+	delete go.rigidBody.collider;
+	go.rigidBody.collider = capsule;
+
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
 
 	rotation = glm::radians(rotation);

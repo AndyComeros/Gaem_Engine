@@ -35,9 +35,15 @@ protected:
 
 struct BoxCollider : public PhysicsCollider
 {
-	BoxCollider() :
-		scale({1,1,1})
+	BoxCollider(float nMass, float nBounce, float nFriction, glm::vec3 nOffset, glm::vec3 nRotation,glm::vec3 nScale)
 	{
+		mass = nMass;
+		bounce = nBounce;
+		friction = nFriction;
+		type = COLLIDER_BOX;
+		offset = nOffset;
+		rotation = nRotation;
+		scale = nScale;
 		type = COLLIDER_BOX;
 	}
 	glm::vec3 scale;
@@ -45,9 +51,15 @@ struct BoxCollider : public PhysicsCollider
 
 struct SphereCollider : public PhysicsCollider
 {
-	SphereCollider() :
-		radius(0.5)
+	SphereCollider(float nMass, float nBounce, float nFriction, glm::vec3 nOffset, glm::vec3 nRotation,float nRadius)
 	{
+		mass = nMass;
+		bounce = nBounce;
+		friction = nFriction;
+		type = COLLIDER_BOX;
+		offset = nOffset;
+		rotation = nRotation;
+		radius = nRadius;
 		type = COLLIDER_SPHERE;
 	}
 	float radius;
@@ -55,10 +67,16 @@ struct SphereCollider : public PhysicsCollider
 
 struct CapsuleCollider : public PhysicsCollider
 {
-	CapsuleCollider() :
-		radius(0.5),
-		height(1)
+	CapsuleCollider(float nMass, float nBounce, float nFriction, glm::vec3 nOffset, glm::vec3 nRotation, float nRadius, float nHeight)
 	{
+		mass = nMass;
+		bounce = nBounce;
+		friction = nFriction;
+		type = COLLIDER_BOX;
+		offset = nOffset;
+		rotation = nRotation;
+		radius = nRadius;
+		height = nHeight;
 		type = COLLIDER_CAPSULE;
 	}
 	float radius;
@@ -67,13 +85,19 @@ struct CapsuleCollider : public PhysicsCollider
 
 struct TerrainCollider : public PhysicsCollider
 {
-	TerrainCollider() :
-		rows(0),
-		columns(0),
-		min(0),
-		max(0),
-		heights(nullptr)
+	TerrainCollider(float nMass, float nBounce, float nFriction, glm::vec3 nOffset, glm::vec3 nRotation, int nRows, int nCols, int nMin, int nMax, float* nHeights)
 	{
+		mass = nMass;
+		bounce = nBounce;
+		friction = nFriction;
+		type = COLLIDER_BOX;
+		offset = nOffset;
+		rotation = nRotation;
+		rows = nRows;
+		columns = nCols;
+		min = nMin;
+		max = nMax;
+		heights = nHeights;
 		type = COLLIDER_TERRAIN;
 	}
 	int rows;
@@ -81,5 +105,4 @@ struct TerrainCollider : public PhysicsCollider
 	float min;
 	float max;
 	float* heights;
-	
 };

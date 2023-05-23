@@ -2,6 +2,7 @@
 #include <reactphysics3d/reactphysics3d.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Collider.h"
 
 // RigidBody type
 #define KINE 1
@@ -170,6 +171,9 @@ public:
 		*/
 	glm::vec3 GetAngularVelocity();
 
+	void SetColliderBox		(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, glm::vec3 scale);
+	void SetColliderSphere	(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius);
+	void SetColliderCapsule	(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius, float height);
 
 	int GetModType();
 	float GetMass();
@@ -178,8 +182,6 @@ public:
 	glm::vec3 GetCenterOfMass();
 	glm::vec3 GetAxisLinearFactor();
 	glm::vec3 GetAxisAngleFactor();
-
-
 
 	void ToggleContactListenState()
 	{
@@ -207,6 +209,5 @@ private:
 	bool registered = false;
 	CollisionListener collideListen;
 
-
-
+	PhysicsCollider* collider = nullptr;
 };

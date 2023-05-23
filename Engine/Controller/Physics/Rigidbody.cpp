@@ -159,6 +159,18 @@ glm::vec3 Rigidbody::GetAngularVelocity()
 	return { rVal.x,rVal.y,rVal.z};
 }
 
+void Rigidbody::SetColliderBox(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, glm::vec3 scale)
+{
+}
+
+void Rigidbody::SetColliderSphere(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius)
+{
+}
+
+void Rigidbody::SetColliderCapsule(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius, float height)
+{
+}
+
 int Rigidbody::GetModType()
 {
 	return mod;
