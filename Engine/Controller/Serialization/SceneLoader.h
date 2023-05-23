@@ -19,8 +19,6 @@ public:
 	//load a scene from json file.
 	Scene* LoadScene(const std::string inName);
 
-
-	
 private:
 	Json::Value ObjectToJson(GameObject* obj);
 

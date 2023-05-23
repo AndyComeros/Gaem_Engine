@@ -68,7 +68,9 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         }
         else if (jobj["type"].asString() == "terrain") {
           
-            go = &res.CreateTerrainFromModel(objects[i]["name"].asString(),
+            std::cout << objects[i]["name"].asString() << "\n";
+            go = &res.CreateTerrainFromModel(
+                objects[i]["name"].asString(),
                 objects[i]["model"].asString(),
                 objects[i]["height_texture"].asString(),
                 objects[i]["terrain_size"].asInt(),
@@ -147,6 +149,12 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().x);
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().y);
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().z);
+
+    Json::Value rbcollider;
+    rbcollider["type"] =
+
+
+
     jobj["rigidbody"] = rb;
     //end rigidbody
 
@@ -176,9 +184,6 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
     else {
         jobj["type"] = "base";
     }
-
-
-
     return jobj;
 }
 

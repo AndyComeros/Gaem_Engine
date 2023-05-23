@@ -4,7 +4,7 @@
 #include <GUIRenderer.h>
 #include <InputManager.h>
 #include <AI/AIManager.h>
-#include <Physics.h>
+#include <Physics/Physics.h>
 #include <AI/States/global_states.h>
 #include <Serialization/SceneLoader.h>
 

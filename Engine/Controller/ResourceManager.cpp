@@ -91,7 +91,7 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	terrain->SetID(IDIndex);
 	IDIndex++;
 
-	models.insert({std::string(terrainName),terrain->model_data});
+	models.insert({terrainName,terrain->model_data});
 
 	objects.insert({ terrainName, terrain });
 	return *terrain;
@@ -105,8 +105,12 @@ Terrain& ResourceManager::CreateTerrainFromModel(std::string terrainName, std::s
 	terrain->scaleY = scaleY;
 	terrain->scaleZ = scaleZ;
 
-	terrain->SetHeightTexture(textures.at(heightMapName));
+	if(textures.find(heightMapName) != textures.end())
+		terrain->SetHeightTexture(textures.at(heightMapName));
+
 	terrain->CreateHeightArray();
+	terrain->model_data = models.at(modelName);
+
 
 	if (shaders.find("terrain") != shaders.end())
 		terrain->shader = shaders.at("terrain");

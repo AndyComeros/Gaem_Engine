@@ -20,7 +20,6 @@ class Terrain;
 *	@date 19/04/2023
 */
 
-
 class CollisionListener : public rp3d::EventListener
 {
 public:
@@ -179,6 +178,8 @@ public:
 	glm::vec3 GetCenterOfMass();
 	glm::vec3 GetAxisLinearFactor();
 	glm::vec3 GetAxisAngleFactor();
+
+
 
 	void ToggleContactListenState()
 	{
