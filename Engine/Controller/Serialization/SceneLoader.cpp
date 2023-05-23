@@ -101,7 +101,14 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
 
     //idendify obj type.
     if (dynamic_cast<NPC*>(obj)) {
+        NPC* npc = dynamic_cast<NPC*>(obj);
         jobj["type"] = "npc";
+        
+        Json::Value data;
+        for (auto& it : npc->data) {
+            data[it.first] = it.second;
+        }
+        jobj["data"] = data;
     }
     else if (dynamic_cast<Terrain*>(obj)) {
         Terrain* ter = dynamic_cast<Terrain*>(obj);
@@ -112,10 +119,8 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
         jobj["terrain_size"] = ter->GetSize();
         jobj["texture_scale"] = ter->GetSize();
 
-        jobj["height_texture"] = ter->GetHeightTexture()->name;
-
-
-       
+        if(ter->GetHeightTexture())
+            jobj["height_texture"] = ter->GetHeightTexture()->name;
     }
     else {
         jobj["type"] = "base";

@@ -51,7 +51,8 @@
 			"type" : "base"
 		},
 		{
-			"model" : "",
+			"height_texture" : "heightMap",
+			"model" : "Terrain",
 			"name" : "Terrain",
 			"position" : 
 			[
@@ -96,17 +97,33 @@
 				1.0,
 				1.0
 			],
+			"scaleX" : 10.0,
+			"scaleY" : 0.60000002384185791,
+			"scaleZ" : 10.0,
 			"shader" : "terrain",
+			"terrain_size" : 256,
+			"texture_scale" : 256,
 			"type" : "terrain"
 		},
 		{
+			"data" : 
+			{
+				"idleTime" : 5.6358532905578613,
+				"isIdle" : 0.0,
+				"maxIdle" : 10.0,
+				"maxWander" : 10.0,
+				"timer" : 0.0,
+				"wanderDistance" : 20.0,
+				"wanderSpeed" : 20.0,
+				"wanderTime" : 0.012512588873505592
+			},
 			"model" : "",
 			"name" : "arcade1",
 			"position" : 
 			[
-				308.0,
-				-33.520015716552734,
-				469.0
+				-730.0,
+				8.239990234375,
+				-642.0
 			],
 			"rigidbody" : 
 			{
@@ -782,7 +799,12 @@
 				1.0,
 				1.0
 			],
+			"scaleX" : 1.0,
+			"scaleY" : 0.0,
+			"scaleZ" : 1.0,
 			"shader" : "Water",
+			"terrain_size" : 256,
+			"texture_scale" : 256,
 			"type" : "terrain"
 		}
 	]

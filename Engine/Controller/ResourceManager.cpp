@@ -87,6 +87,7 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	terrain->SetTextures(layers,textures.at(detailName));
 
 	terrain->name = terrainName;
+	terrain->model_data->name = terrainName;
 	terrain->SetID(IDIndex);
 	IDIndex++;
 	
