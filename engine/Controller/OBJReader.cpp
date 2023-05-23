@@ -7,6 +7,8 @@ OBJData *ReadObjFile(const char* fileName) {
 	std::vector<glm::vec2>  texCoords;
 	std::vector<glm::ivec3> indexes;
 
+	float maxDist = 0.0f;
+
 	OBJData* objData = new OBJData();
 	std::unordered_map<glm::ivec3, int> elementMap;//track whats in indexes, stops needing linear search
 
@@ -29,6 +31,11 @@ OBJData *ReadObjFile(const char* fileName) {
 			glm::vec3 data;
 			file >> data.x >> data.y >> data.z;
 			vertCoords.push_back(data);
+
+			float ndist = glm::length(data);
+			if (ndist > maxDist)
+				maxDist = ndist;
+
 		}
 		else if (strcmp(dt, "vt") == 0) {
 			glm::vec2 data;
@@ -72,5 +79,6 @@ OBJData *ReadObjFile(const char* fileName) {
 		objData->vertexData.push_back(nVert);
 	}
 	
+	objData->boundingShpere = maxDist;
 	return objData;
 }

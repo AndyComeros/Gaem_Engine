@@ -26,6 +26,8 @@ struct OBJData
 {
 	std::vector<unsigned int> elements;
 	std::vector<vertex> vertexData;
+
+	float boundingShpere = 0.0f;
 };
 	/*
 	*	@brief Reads in vertex information and returns and OBJ data

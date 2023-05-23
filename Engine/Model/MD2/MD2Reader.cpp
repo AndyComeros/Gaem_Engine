@@ -106,6 +106,7 @@ void md2_model_t::CreateModel(int n)
     pos_normal_vert nVert;
     glm::vec2 nUV;
 
+    maxBounds = 0.0f;
 
     for (i = 0; i < header.num_tris; ++i)
     {
@@ -129,6 +130,9 @@ void md2_model_t::CreateModel(int n)
             nVert.vertex.x = (pframe->scale[0] * pvert->v[0]) + pframe->translate[0];
             nVert.vertex.z = (pframe->scale[1] * pvert->v[1]) + pframe->translate[1];
             nVert.vertex.y = (pframe->scale[2] * pvert->v[2]) + pframe->translate[2];
+
+            if (maxBounds < glm::length(nVert.vertex))
+                maxBounds = glm::length(nVert.vertex);
 
             vertbuff.push_back(nVert);
             uvbuff.push_back(nUV);

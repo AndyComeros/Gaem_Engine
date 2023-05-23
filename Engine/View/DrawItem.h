@@ -106,6 +106,8 @@ public:
         //set how fast animations are played
     virtual  void SetAnimationSpeed(float speed);
 
+    float maxBounds = 0.0f;
+
     bool visible = true;
 
 protected:
@@ -116,4 +118,6 @@ protected:
     void BindMaterial(Shader* shader);
 
     Material material;
+
+
 };

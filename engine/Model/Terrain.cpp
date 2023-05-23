@@ -246,7 +246,6 @@ void Terrain::GenerateModel() {
 		model_data = new Model();
 		return;
 	}
-	boundingRadius =  (terrainSize/2.0f)*scaleX;
 
 	std::vector<vertex> vertexData;
 	std::vector<glm::uvec3> elementsIndexes;
@@ -326,5 +325,6 @@ void Terrain::GenerateModel() {
 	else {
 		model_data = new Model();
 	}
+	model_data->maxBounds = (terrainSize / 2.0f) * scaleX;
 	((Model*)model_data)->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
 }	

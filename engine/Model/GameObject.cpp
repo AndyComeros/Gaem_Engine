@@ -7,6 +7,7 @@ GameObject::~GameObject() {}
 
 bool GameObject::CheckInFrustum(Frustum& frustum)
 {
+	float boundingRadius = model_data->maxBounds * std::max(std::max(scale.x,scale.y),scale.z);
 	return
 	(frustum.top.	CalcSignedDistance(position) > -boundingRadius &&
 	frustum.bottom.	CalcSignedDistance(position) > -boundingRadius &&
