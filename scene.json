@@ -1,5 +1,4 @@
 {
-	"data" : null,
 	"objects" : 
 	[
 		{
@@ -48,7 +47,8 @@
 				1.0,
 				1.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "",
@@ -96,16 +96,17 @@
 				1.0,
 				1.0
 			],
-			"shader" : "terrain"
+			"shader" : "terrain",
+			"type" : "terrain"
 		},
 		{
 			"model" : "",
 			"name" : "arcade1",
 			"position" : 
 			[
-				-840.0,
-				29.360000610351562,
-				-527.0
+				308.0,
+				-33.520015716552734,
+				469.0
 			],
 			"rigidbody" : 
 			{
@@ -144,7 +145,8 @@
 				0.15000000596046448,
 				0.15000000596046448
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "npc"
 		},
 		{
 			"model" : "building1",
@@ -192,7 +194,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building3",
@@ -240,7 +243,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building3",
@@ -288,7 +292,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building3",
@@ -336,7 +341,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building1",
@@ -384,7 +390,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building1",
@@ -432,7 +439,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building1",
@@ -480,7 +488,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building1",
@@ -528,7 +537,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building1",
@@ -576,7 +586,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building3",
@@ -624,7 +635,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building3",
@@ -672,7 +684,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "building3",
@@ -720,7 +733,8 @@
 				10.0,
 				10.0
 			],
-			"shader" : "default"
+			"shader" : "default",
+			"type" : "base"
 		},
 		{
 			"model" : "",
@@ -768,7 +782,8 @@
 				1.0,
 				1.0
 			],
-			"shader" : "Water"
+			"shader" : "Water",
+			"type" : "terrain"
 		}
 	]
 }

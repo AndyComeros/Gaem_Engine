@@ -248,6 +248,11 @@ float Terrain::GetScaleZ()
 	return scaleZ;
 }
 
+Texture* Terrain::GetHeightTexture()
+{
+	return heightTexture;
+}
+
 void Terrain::CreateHeightArray() {
 
 	terrainSize = 0;

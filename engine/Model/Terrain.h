@@ -149,6 +149,8 @@ public:
 		///return y scale
 	float GetScaleZ();
 
+	Texture* GetHeightTexture();
+
 private:
 	///creates height values from array from heightTexture
 	void CreateHeightArray();

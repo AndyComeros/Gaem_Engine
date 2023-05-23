@@ -73,6 +73,7 @@ GameEngine::GameEngine()
 	SceneLoader loader;
 
 	loader.SaveScene(&scene,"scene.json");
+	loader.LoadScene("scene.json");
 
 }
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <ResourceManager.h>
 #include <Scene.h>
 #include <NPC.h>
 #include <Terrain.h>
@@ -19,9 +20,8 @@ public:
 	Scene* LoadScene(const std::string inName);
 
 
-	void* SaveObject();
-private:
-
 	
+private:
+	Json::Value ObjectToJson(GameObject* obj);
 
 };

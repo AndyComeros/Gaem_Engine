@@ -89,35 +89,41 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	terrain->name = terrainName;
 	terrain->SetID(IDIndex);
 	IDIndex++;
+	
+	models.insert({std::string(terrainName),terrain->model_data});
 
 	objects.insert({ terrainName, terrain });
 	return *terrain;
 }
 
-Terrain ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
+Terrain& ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
 {
-	Terrain terrain(Size, scaleX, scaleZ);
+	Terrain* terrain = new Terrain(Size, scaleX, scaleZ);
 
 	if (shaders.find("Water") != shaders.end()) 
-		terrain.shader = shaders.at("Water");
+		terrain->shader = shaders.at("Water");
 
 	std::vector<Texture*> layers;
 	for (int i = 0; i < layerTextures.size(); i++)
 		layers.emplace_back(textures.at(layerTextures[i]));
 
-	terrain.SetMaterailTextures(layers);
+	terrain->SetMaterailTextures(layers);
 
-	terrain.name = waterName;
-	terrain.SetID(IDIndex);
+	terrain->name = waterName;
+	terrain->SetID(IDIndex);
 	IDIndex++;
 
-	return terrain;
+	models.insert({ std::string(waterName),terrain->model_data });
+	objects.insert({ waterName, terrain });
+	return *terrain;
 }
 
 void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 	try
 	{
-		textures.emplace(resName, new Texture(fileName.c_str()));
+		Texture* nTex = new Texture(fileName.c_str());
+		nTex->name = resName;
+		textures.emplace(resName, nTex);
 	}
 	catch (const std::exception&)
 	{
