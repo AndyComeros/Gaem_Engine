@@ -103,10 +103,10 @@ void LuaManager::Expose_Engine() {
 		sol::base_classes, sol::bases<GameObject>(),
 		"GetHeight", &Terrain::GetHeight,
 		"GetNormal", &Terrain::GetNormal,
-		"SetTextures",&Terrain::SetTextures,
-		"SetTextureHeights",&Terrain::SetTextureHeights,
-		"GetSize",&Terrain::GetSize,
-		"SetTextureScale",&Terrain::SetTextureScale
+		"SetTextures", &Terrain::SetTextures,
+		"SetTextureHeights", &Terrain::SetTextureHeights,
+		"GetSize", &Terrain::GetSize,
+		"SetTextureScale", &Terrain::SetTextureScale
 		);
 
 	//expose NPC
@@ -130,6 +130,7 @@ void LuaManager::Expose_Engine() {
 		"CreateGameObject", &ResourceManager::CreateGameObject,
 		"CreateNPCObject", &ResourceManager::CreateNPCObject,
 		"CreateTerrain", &ResourceManager::CreateTerrain,
+		"CreateWater", &ResourceManager::CreateWater,
 		"LoadTexture", &ResourceManager::LoadTexture,
 		"LoadModel", &ResourceManager::LoadModel,
 		"LoadAnimatedModel", &ResourceManager::LoadAnimatedModel,

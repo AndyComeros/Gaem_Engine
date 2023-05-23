@@ -21,6 +21,16 @@ Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale) 
 	LoadHeightMap(nHeightMap);
 }
 
+Terrain::Terrain(int size, float xScale, float yScale, float zScale) 
+{
+	heightArray = new std::vector<float>;
+	terrainSize = size;
+	scaleX = xScale;
+	scaleY = yScale;
+	scaleZ = zScale;
+	GenerateFlatModel();
+}
+
 Terrain::Terrain(std::vector<float> nHeights) {
 	LoadHeightMap(nHeights);
 }
@@ -129,6 +139,28 @@ void Terrain::SetTextures(std::vector<Texture*> textures, Texture* detailMap) {
 
 	model_data->SetDiffuseTexture(detailMap);
 	tUnits.push_back(i);
+
+	//need to use all texture units in shader or GLSL will only use one texture
+	for (i = tCount; i < MAX_TERRAIN_TEXTURES; i++)
+		tUnits.push_back(0);
+
+	SetUniforms();
+}
+
+void Terrain::SetMaterailTextures(std::vector<Texture*> textures) {
+
+	if (textures.size() > MAX_TERRAIN_TEXTURES) {
+		std::cout << "ERROR: Max terrain textures is: " << MAX_TERRAIN_TEXTURES << std::endl;
+		return;
+	}
+
+	int i;
+	for (i = 0; i < textures.size(); i++) {
+		model_data->SetDiffuseTexture(textures[i]);
+		tUnits.push_back(i);
+		tCount++;
+	}
+;
 
 	//need to use all texture units in shader or GLSL will only use one texture
 	for (i = tCount; i < MAX_TERRAIN_TEXTURES; i++)
@@ -328,3 +360,86 @@ void Terrain::GenerateModel() {
 	model_data->maxBounds = (terrainSize / 2.0f) * scaleX;
 	((Model*)model_data)->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
 }	
+
+void Terrain::GenerateFlatModel() 
+{
+	std::vector<vertex> vertexData;
+	std::vector<glm::uvec3> elementsIndexes;
+	std::vector<glm::vec3> faceNorms;
+
+	vertexData.reserve(terrainSize * terrainSize);
+	elementsIndexes.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
+	faceNorms.reserve((terrainSize - 1) * (terrainSize - 1) * 2);
+
+	float heightOffset = ((maxHeight + minHeight) / 2) + 1;
+	float xzOffset = (terrainSize - 1) / 2.0f;
+	//create vert data
+	float texCoordScaleX = (float)textureScale / (float)terrainSize;
+	float texCoordScaleY = (float)textureScale / (float)terrainSize;
+
+	for (int y = 0; y < terrainSize; y++)
+	{
+		for (int x = 0; x < terrainSize; x++)
+		{
+			vertex nVert;
+			nVert.normal = { 0,0,0 };
+			nVert.texCoord = { x * texCoordScaleX, y * texCoordScaleY };
+			nVert.vertex.x = (x - xzOffset) * scaleX;
+			nVert.vertex.z = (y - xzOffset) * scaleZ;
+			nVert.vertex.y = 0;
+
+			vertexData.emplace_back(nVert);
+		}
+	}
+
+	//create vert indexes for EBO
+	for (int y = 0; y < terrainSize - 1; y++)
+	{
+		for (int x = 0; x < terrainSize - 1; x++)
+		{
+			glm::uvec3 nIndex;
+
+			nIndex.x = (y * terrainSize) + x + terrainSize;
+			nIndex.y = (y * terrainSize) + x + 1;
+			nIndex.z = (y * terrainSize) + x;
+			elementsIndexes.emplace_back(nIndex);
+
+			nIndex.x = (y * terrainSize) + x + terrainSize;
+			nIndex.y = (y * terrainSize) + x + terrainSize + 1;
+			nIndex.z = (y * terrainSize) + x + 1;
+			elementsIndexes.emplace_back(nIndex);
+		}
+	}
+
+	//create norms for faces
+	for (int i = 0; i < elementsIndexes.size(); i++)
+	{
+		glm::vec3 nNorm;
+		glm::vec3 e1 = vertexData[elementsIndexes[i].x].vertex - vertexData[elementsIndexes[i].y].vertex;
+		glm::vec3 e2 = vertexData[elementsIndexes[i].x].vertex - vertexData[elementsIndexes[i].z].vertex;
+
+		nNorm = glm::cross(e1, e2);
+		faceNorms.emplace_back(nNorm);
+	}
+
+	//assign vertecies norms
+	for (int i = 0; i < elementsIndexes.size(); i++)
+	{
+		glm::ivec3 curFace = elementsIndexes[i];
+		vertexData[curFace.x].normal += faceNorms[i];
+		vertexData[curFace.y].normal += faceNorms[i];
+		vertexData[curFace.z].normal += faceNorms[i];
+	}
+	for (int i = 0; i < vertexData.size(); i++)
+	{
+		vertexData[i].normal = glm::normalize(vertexData[i].normal);
+	}
+
+	if ((Model*)model_data) {
+		((Model*)model_data)->FreeData();
+	}
+	else {
+		model_data = new Model();
+	}
+	((Model*)model_data)->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
+}

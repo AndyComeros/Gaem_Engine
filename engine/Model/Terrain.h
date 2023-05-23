@@ -34,6 +34,8 @@ public:
 		*/
 	Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale);
 
+	Terrain(int size, float xScale, float yScale, float zScale);
+
 		/**
 		*	@brief constructor with height values
 		*	@param nHeights array of height values
@@ -99,6 +101,7 @@ public:
 		*/
 	void SetTextures(std::vector<Texture*> textures, Texture* detailMap);
 
+	void SetMaterailTextures(std::vector<Texture*> textures);
 		/**
 		*	@brief Set the height of each texutre layer of the terrain
 		*	@param heights height of each texture layer
@@ -146,6 +149,8 @@ private:
 	void CreateHeightArray();
 	///generates the vertex buffer from height array
 	void GenerateModel();
+
+	void GenerateFlatModel();
 
 	///how often terrain textures repeat
 	float textureScale = 10.0f;

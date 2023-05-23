@@ -20,6 +20,8 @@ ResourceManager::ResourceManager(){
 	shaders.emplace("physics", new Shader("resources/shaders/Physics_Debug/Physics.vert", "resources/shaders/Physics_Debug/Physics.frag", ""));
 		//default terrain shader
 	shaders.emplace("terrain", new Shader("resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", ""));
+	//default Water shader
+	shaders.emplace("Water", new Shader("resources/shaders/Water.vert", "resources/shaders/Water.frag", ""));
 		//default texture
 	textures.emplace("default", new Texture("resources/textures/default.png"));
 }
@@ -90,6 +92,26 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 
 	objects.insert({ terrainName, terrain });
 	return *terrain;
+}
+
+Terrain ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
+{
+	Terrain terrain(Size, scaleX, scaleY, scaleZ);
+
+	if (shaders.find("Water") != shaders.end()) 
+		terrain.shader = shaders.at("Water");
+
+	std::vector<Texture*> layers;
+	for (int i = 0; i < layerTextures.size(); i++)
+		layers.emplace_back(textures.at(layerTextures[i]));
+
+	terrain.SetMaterailTextures(layers);
+
+	terrain.name = waterName;
+	terrain.SetID(IDIndex);
+	IDIndex++;
+
+	return terrain;
 }
 
 void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
