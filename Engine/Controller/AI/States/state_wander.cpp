@@ -2,7 +2,6 @@
 
 State_Wander::State_Wander()
 {
-
 }
 
 State_Wander::~State_Wander()
@@ -41,20 +40,24 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 	
 	//if not idle
 	if (npc->GetData("isIdle") < 0.5f) {
-		//move forward
 
-		glm::vec3 npos = npc->position + (npc->GetForwardVec() * moveSpeed);
-		npos.y = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npos.x,npos.z) + 1.0f;
-		npc->SetPosition(npos);
+		//lock to terrain height
+		float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;
+		npc->SetPosition({ npc->position.x,nY,npc->position.z });
+
+		
 
 		//if been walking too long
 		if (npc->GetData("timer") > npc->GetData("wanderTime")) {
 			npc->AddData("isIdle", 1.0f);
 			npc->AddData("timer", 0.0f);
 			npc->AddData("wanderTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxWander"))));
+			npc->StopMoving();
 		}
 	}
 	else {
+
+		npc->GetDrawItem().Animate("stand");
 
 		//if idling too long
 		if (npc->GetData("timer") > npc->GetData("idleTime")) {
@@ -62,10 +65,11 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 			npc->AddData("timer", 0.0f);
 			npc->AddData("idleTime", (static_cast<float>(rand()) / static_cast<float>(RAND_MAX / npc->GetData("maxIdle"))));
 
-			//pick new direction
-			glm::vec3 rot = npc->rotation;
-			rot.y += -360.0f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (360.0f - (-360.0f))));
-			npc->SetRotation(rot);
+			//pick new target location
+			npc->GetDrawItem().Animate("run");
+			glm::vec3 target = GetWanderTarget();
+			npc->MoveTo2D(target,npc->GetData("wanderSpeed"),4);
+			npc->LookAt(target);
 		}
 	}
 
@@ -88,4 +92,17 @@ inline void State_Wander::Exit(GameObject& ent)
 inline void State_Wander::ProcessMessage(GameObject* ent, const Message* message)
 {
 
+}
+
+glm::vec3 State_Wander::GetWanderTarget()
+{
+	srand(time(NULL));
+
+	float s = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetSize() * static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetScaleX();
+
+	float nx = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
+	float nz = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
+
+	float ny = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(nx, nz) + 1;
+	return { nx,ny,nz };
 }

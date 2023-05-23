@@ -17,7 +17,6 @@ public:
 
 	//npc will move to position at speed
 	//offset is how close to get to target before stopping
-	//return true if arrived
 	void MoveTo3D(glm::vec3 nPos, float speed, float offset);
 	void MoveTo2D(glm::vec3 nPos, float speed, float offset);
 	void StopMoving();

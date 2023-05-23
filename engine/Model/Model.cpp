@@ -66,6 +66,7 @@ void Model::ReadOBJ(const char* fileName) {
 
 	FreeData();
 	modelData = ReadObjFile(fileName);
+	maxBounds = modelData->boundingShpere;
 	SetVertexData(&modelData->vertexData[0].vertex.x, (int)modelData->vertexData.size(), &modelData->elements[0], (int)modelData->elements.size());
 
 }

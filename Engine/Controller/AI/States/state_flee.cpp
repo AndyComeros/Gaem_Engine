@@ -32,6 +32,8 @@ void State_Flee::Enter(GameObject& ent)
 
 	if (!npc->HasData("fleeDistance"))
 		npc->AddData("fleeDistance", 300);
+
+	npc->GetDrawItem().Animate("run");
 }
 
 void State_Flee::Update(GameObject& ent, double dt)
@@ -48,7 +50,9 @@ void State_Flee::Update(GameObject& ent, double dt)
 
 	glm::vec3 toTarget = target->position - npc->position;
 
-	npc->MoveTo3D(npc->position - glm::normalize(toTarget), npc->GetData("fleeSpeed"),0);
+	glm::vec3 nPos = npc->position - glm::normalize(toTarget);
+	npc->LookAt(nPos);
+	npc->MoveTo3D(nPos, npc->GetData("fleeSpeed"), 0);
 
 	//lock to terrain height
 	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;

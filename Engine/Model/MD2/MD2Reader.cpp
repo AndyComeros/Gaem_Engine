@@ -78,6 +78,9 @@ void md2_model_t::Render(Camera* camera, Shader* shader, bool isElements = false
     glm::mat4 view = camera->GetView();
     glm::mat4 projection = camera->GetProjection();
 
+    //Set camera position
+	shader->SetUniform("cameraPos", camera->position);
+
     //basic postion matricies
     shader->SetUniform("view", view);
     shader->SetUniform("projection", projection);
@@ -103,6 +106,7 @@ void md2_model_t::CreateModel(int n)
     pos_normal_vert nVert;
     glm::vec2 nUV;
 
+    maxBounds = 0.0f;
 
     for (i = 0; i < header.num_tris; ++i)
     {
@@ -123,9 +127,12 @@ void md2_model_t::CreateModel(int n)
             nVert.normal = { anorms_table[pvert->normalIndex][0],anorms_table[pvert->normalIndex][1],anorms_table[pvert->normalIndex][2] };
 
             /* Calculate vertex real position */
-            nVert.vertex.z = (pframe->scale[0] * pvert->v[0]) + pframe->translate[0];
-            nVert.vertex.y = (pframe->scale[1] * pvert->v[1]) + pframe->translate[1];
-            nVert.vertex.x = (pframe->scale[2] * pvert->v[2]) + pframe->translate[2];
+            nVert.vertex.x = (pframe->scale[0] * pvert->v[0]) + pframe->translate[0];
+            nVert.vertex.z = (pframe->scale[1] * pvert->v[1]) + pframe->translate[1];
+            nVert.vertex.y = (pframe->scale[2] * pvert->v[2]) + pframe->translate[2];
+
+            if (maxBounds < glm::length(nVert.vertex))
+                maxBounds = glm::length(nVert.vertex);
 
             vertbuff.push_back(nVert);
             uvbuff.push_back(nUV);
@@ -247,9 +254,9 @@ void md2_model_t::Update(float deltaTime)
             };
 
             //interpolate and scale verts
-            currentVerts[(i * 3)+j].vertex.z = lerp((pframe->scale[0] * (float)pvert->v[0]) + pframe->translate[0], (nframe->scale[0] * (float)nvert->v[0]) + nframe->translate[0], curInterpolation);
-            currentVerts[(i * 3)+j].vertex.y = lerp((pframe->scale[1] * (float)pvert->v[1]) + pframe->translate[1], (nframe->scale[1] * (float)nvert->v[1]) + nframe->translate[1], curInterpolation);
-            currentVerts[(i * 3)+j].vertex.x = lerp((pframe->scale[2] * (float)pvert->v[2]) + pframe->translate[2], (nframe->scale[2] * (float)nvert->v[2]) + nframe->translate[2], curInterpolation);
+            currentVerts[(i * 3)+j].vertex.x = lerp((pframe->scale[0] * (float)pvert->v[0]) + pframe->translate[0], (nframe->scale[0] * (float)nvert->v[0]) + nframe->translate[0], curInterpolation);
+            currentVerts[(i * 3)+j].vertex.z = lerp((pframe->scale[1] * (float)pvert->v[1]) + pframe->translate[1], (nframe->scale[1] * (float)nvert->v[1]) + nframe->translate[1], curInterpolation);
+            currentVerts[(i * 3)+j].vertex.y = lerp((pframe->scale[2] * (float)pvert->v[2]) + pframe->translate[2], (nframe->scale[2] * (float)nvert->v[2]) + nframe->translate[2], curInterpolation);
         }
     }
     
@@ -261,32 +268,27 @@ void md2_model_t::SetAnimation(const std::string& animName, int start, int end, 
 {
     if (start >= 0 && start < header.num_frames) {
         if (end >= start && end < header.num_frames) {
-            animations.insert({ animName, {start,end,speed} });
+            animations.insert({ animName, animation(start,end,speed) });
         }
     }
 }
 
-void md2_model_t::Animate(md2_animation animation)
+void md2_model_t::Animate(const std::string& animname)
 {
-    if (animation.start != startFrame || animation.end != endFrame) {
-        prevFrame = animation.start;
-        startFrame = animation.start;
-        endFrame = animation.end;
-        curInterpolation = 0;
-    }
-    animSpeed = animation.speed;
-}
-
-void md2_model_t::Animate(const std::string& animation)
-{
-    if (animations.find(animation) == animations.end()) {
+    if (animations.find(animname) == animations.end()) {
         visible = false;
         return;
     }
-
     visible = true;
+    animation& anim = animations.at(animname);
 
-    Animate(animations.at(animation));
+    if (anim.start != startFrame || anim.end != endFrame) {
+        prevFrame = anim.start;
+        startFrame = anim.start;
+        endFrame = anim.end;
+        curInterpolation = 0;
+    }
+    animSpeed = anim.speed;
 }
 
 void md2Header::Print()

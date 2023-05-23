@@ -14,5 +14,5 @@ public:
 	void ProcessMessage(GameObject* ent, const Message* message);
 
 private:
-
+	glm::vec3 GetWanderTarget();
 };

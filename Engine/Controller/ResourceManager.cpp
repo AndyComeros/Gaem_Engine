@@ -7,6 +7,11 @@ ResourceManager& ResourceManager::Get() {
 	return r_instance;
 }
 
+DrawItem& ResourceManager::GetDrawItemReference(std::string resName)
+{
+	return *models.at(resName);
+}
+
 ResourceManager::ResourceManager(){
 
 		//default shader

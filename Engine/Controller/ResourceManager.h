@@ -169,6 +169,9 @@ public:
 	auto CubeMapBegin() { return cubemaps.begin(); }
 		///Get itterator for cubemap resources
 	auto CubeMapEnd() { return cubemaps.end(); }
+		
+		//Get reference to draw item instead of pointer
+	DrawItem& GetDrawItemReference(std::string resName);
 private:
 
 		///ID of next game object created

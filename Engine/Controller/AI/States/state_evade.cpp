@@ -32,6 +32,8 @@ void State_Evade::Enter(GameObject& ent)
 
 	if (!npc->HasData("fleeDistance"))
 		npc->AddData("fleeDistance", 300);
+
+	npc->GetDrawItem().Animate("run");
 }
 
 void State_Evade::Update(GameObject& ent, double dt)
@@ -49,18 +51,21 @@ void State_Evade::Update(GameObject& ent, double dt)
 
 	
 	glm::vec3 predictedPos = target->position + target->rigidBody.GetLinearVelocty() * 2.0f;
+
 	glm::vec3 toTarget =  predictedPos - npc->position;
 
-	npc->MoveTo3D(npc->position - glm::normalize(toTarget), npc->GetData("fleeSpeed"), 0);
+	glm::vec3 nPos = npc->position - glm::normalize(toTarget);
+	npc->LookAt(nPos);
+	npc->MoveTo3D(nPos, npc->GetData("fleeSpeed"), 0);
+
 
 	//lock to terrain height
 	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;
 	npc->SetPosition({ npc->position.x,nY,npc->position.z });
 
-	if (fabs(glm::length(toTarget)) > npc->GetData("fleeDistance")) {
+	if (glm::length(toTarget) > npc->GetData("fleeDistance")) {
 		npc->stateMachine.ChangeState(*stateWander);
 	}
-
 }
 
 void State_Evade::Exit(GameObject& ent)

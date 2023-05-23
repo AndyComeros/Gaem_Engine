@@ -66,3 +66,21 @@ void Camera::UpdateCameraVectors()
 	right = glm::normalize(glm::cross(front, glm::vec3(0.0f, 1.0f, 0.0f)));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
 	up = glm::normalize(glm::cross(right, front));
 }
+
+void Camera::CreateViewFrustum()
+{
+	const float halfVSide = farPlane * tanf(FOV * 0.5f);
+	const float halfHSide = halfVSide * aspectRatio;
+	const glm::vec3 frontMultFar = farPlane * front;
+
+	frustum.near = { position + nearPlane * front, front };
+	frustum.far = { position + frontMultFar, -front};
+	frustum.right = { position,
+							glm::cross(frontMultFar - right * halfHSide, up) };
+	frustum.left = { position,
+							glm::cross(up,frontMultFar + right * halfHSide) };
+	frustum.top = { position,
+							glm::cross(right, frontMultFar - up * halfVSide) };
+	frustum.bottom = { position,
+							glm::cross(frontMultFar + up * halfVSide,right) };
+}

@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/vector_angle.hpp>
+#include <glm/gtx/euler_angles.hpp>
 
 /**
 *	@Class GameObject
@@ -31,6 +32,13 @@ public:
 		*	@brief Destructor
 		*/
 	~GameObject();
+
+		/*
+		*   @brief Checks if this models bouding sphere is in a frustum
+		*   @param frustum frustum to check if inside
+		*   @return if object is in frustum
+		*/
+	bool CheckInFrustum(Frustum& frustum);
 
 		/**
 		*	@brief Set the current position in world space, also updates
@@ -107,7 +115,13 @@ public:
 	void SetID(int id) { ID = id; };
 		///FSM for AI and sending/receiving messages
 	StateMachine stateMachine;
-private:
+
+		//retuns a reference to model data
+	DrawItem& GetDrawItem();
+
+protected:
 		///Unique identifier
 	unsigned int ID = 0;
+
+	
 };

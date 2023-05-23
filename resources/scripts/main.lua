@@ -41,6 +41,18 @@ function init()
 	resources:LoadTexture("solider","resources/models/md2/cipher.png");
 	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
 
+	soliderModel = resources:GetModel("solider");
+	soliderModel:SetAnimation("stand"	, 0		, 39	, 10);
+	soliderModel:SetAnimation("run"		, 40	, 45	, 10);
+	soliderModel:SetAnimation("attack"	, 46	, 53	, 10);
+	soliderModel:SetAnimation("pain"	, 54	, 65	, 10);
+	soliderModel:SetAnimation("jump"	, 66	, 71	, 10);
+	soliderModel:SetAnimation("flip"	, 72	, 83	, 10);
+	soliderModel:SetAnimation("salute"	, 84	, 94	, 10);
+	soliderModel:SetAnimation("taunt"	, 95	, 111	, 10);
+	soliderModel:SetAnimation("wave"	, 112	, 122	, 10);
+	soliderModel:SetAnimation("death"	, 178	, 197	, 10);
+
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
@@ -107,28 +119,28 @@ function init()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
-	for i = 1,100,1
+	for i = 1,20,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateNPCObject("arcade"..i, "arcade","");
+		Arcade = resources:CreateNPCObject("arcade"..i, "solider","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
-		Arcade.scale = vec3:new(5,5,5);
+		Arcade.scale = vec3:new(0.15,0.15,0.15);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);
 		--physics:AddRigidBody(Arcade,3);
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
 
-		--Arcade.stateMachine:ChangeState(state_wander);
+		Arcade.stateMachine:ChangeState(state_wander);
 		--Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
 		--Arcade.stateMachine:ChangeState(state_evade);
-		Arcade.stateMachine:ChangeState(state_patrol);
+		--Arcade.stateMachine:ChangeState(state_patrol);
 
 		scene:AddObject(Arcade);
 	end

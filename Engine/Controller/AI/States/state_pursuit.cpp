@@ -29,6 +29,8 @@ void State_Pursuit::Enter(GameObject& ent)
 
 	if (!npc->HasData("offset"))
 		npc->AddData("offset", 5);
+
+	npc->GetDrawItem().Animate("run");
 }
 
 void State_Pursuit::Update(GameObject& ent, double dt)
@@ -46,11 +48,12 @@ void State_Pursuit::Update(GameObject& ent, double dt)
 	glm::vec3 toTarget = npc->position - target->position;
 
 	if (glm::dot(target->GetForwardVec(), toTarget) < -0.95f) {
+		npc->LookAt(target->position);
 		npc->MoveTo3D(target->position, npc->GetData("speed"), npc->GetData("offset"));
 	}
 	else {
 		glm::vec3 targetVel = target->rigidBody.GetLinearVelocty();
-
+		npc->LookAt(target->position + targetVel * 2.0f);
 		npc->MoveTo3D(target->position + targetVel * 2.0f, npc->GetData("speed"), 0);
 	}
 

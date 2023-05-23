@@ -37,6 +37,18 @@ Texture* DrawItem::GetDiffuseTexture(int index)  { return material.diffuseTextur
 Texture* DrawItem::GetSpecularTexture(int index) { return material.specularMap	 [index]; }
 Texture* DrawItem::GetEmissionTexture(int index) { return material.emissionMap	 [index]; }
 
+void DrawItem::SetAnimation(const std::string& animName, int start, int end, float speed)
+{
+}
+
+void DrawItem::Animate(const std::string& animation)
+{
+}
+
+void DrawItem::SetAnimationSpeed(float speed)
+{
+}
+
 void DrawItem::BindMaterial(Shader* shader)
 {
 	unsigned int curTexture = GL_TEXTURE0;

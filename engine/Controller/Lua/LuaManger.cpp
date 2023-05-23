@@ -29,6 +29,7 @@ void LuaManager::RunUpdateMethod(double dt) {
 		update(dt);
 }
 
+
 void LuaManager::Expose_Engine() {
 	//expose vec3
 	Expose_CPPClass<glm::vec3>("vec3",
@@ -64,6 +65,23 @@ void LuaManager::Expose_Engine() {
 		"y", &glm::vec2::y
 		);
 
+
+	//expose aniation struct
+	Expose_CPPClass<animation>("animation",
+		sol::constructors<animation(), animation(int,int,int)>(),
+		"start",&animation::start,
+		"end",&animation::end,
+		"speed",&animation::speed
+	);
+
+	//expose draw item
+	Expose_CPPClass<DrawItem>("DrawItem",
+		sol::no_constructor,
+		"SetAnimationSpeed", &DrawItem::SetAnimationSpeed,
+		"SetAnimation", &DrawItem::SetAnimation,
+		"Animate", &DrawItem::Animate
+		);
+
 	//expose game object
 	Expose_CPPClass<GameObject>("GameObject",
 		sol::constructors<GameObject()>(),
@@ -74,7 +92,9 @@ void LuaManager::Expose_Engine() {
 		"rigidBody", &GameObject::rigidBody,
 		"stateMachine", &GameObject::stateMachine,
 		"SetPosition", &GameObject::SetPosition,
-		"SetRotation", &GameObject::SetRotation
+		"SetRotation", &GameObject::SetRotation,
+		"GetDrawItem", &GameObject::GetDrawItem,
+		"GetDrawItem", &GameObject::LookAt
 		);
 
 	//expose terrain
@@ -87,6 +107,19 @@ void LuaManager::Expose_Engine() {
 		"SetTextureHeights", &Terrain::SetTextureHeights,
 		"GetSize", &Terrain::GetSize,
 		"SetTextureScale", &Terrain::SetTextureScale
+		);
+
+	//expose NPC
+	Expose_CPPClass<NPC>("NPC",
+		sol::constructors<NPC()>(),
+		sol::base_classes, sol::bases<GameObject>(),
+		"AddData", &NPC::AddData,
+		"GetData", &NPC::GetData,
+		"HasData", &NPC::HasData,
+		"MoveTo2D", &NPC::MoveTo2D,
+		"MoveTo3D", &NPC::MoveTo3D,
+		"IsTargeting", &NPC::IsTargeting,
+		"StopMoving", &NPC::StopMoving
 		);
 
 	//expose resource manager class
@@ -104,10 +137,14 @@ void LuaManager::Expose_Engine() {
 		"LoadShader", &ResourceManager::LoadShader,
 		"LoadCubemap", &ResourceManager::LoadCubemap,
 
-		"GetTexture", &ResourceManager::GetTexture,
+		"GetCubeMap", &ResourceManager::GetCubeMap,
+		"GetGameObject", &ResourceManager::GetGameObject,
 		"GetModel", &ResourceManager::GetModel,
 		"GetShader", &ResourceManager::GetShader,
-		"GetCubeMap", &ResourceManager::GetCubeMap
+		"GetTexture", &ResourceManager::GetTexture,
+
+
+		"GetModel", &ResourceManager::GetDrawItemReference
 		);
 	//expose resource manager singleton
 	luaState["resources"] = &ResourceManager::Get();
