@@ -117,13 +117,13 @@
 				"wanderSpeed" : 20.0,
 				"wanderTime" : 0.012512588873505592
 			},
-			"model" : "",
+			"model" : "solider",
 			"name" : "arcade1",
 			"position" : 
 			[
-				-730.0,
-				8.239990234375,
-				-642.0
+				882.0,
+				9.5,
+				-731.0
 			],
 			"rigidbody" : 
 			{
@@ -754,7 +754,7 @@
 			"type" : "base"
 		},
 		{
-			"model" : "",
+			"model" : "watertest",
 			"name" : "watertest",
 			"position" : 
 			[
@@ -807,5 +807,6 @@
 			"texture_scale" : 256,
 			"type" : "terrain"
 		}
-	]
+	],
+	"skybox" : "skybox"
 }

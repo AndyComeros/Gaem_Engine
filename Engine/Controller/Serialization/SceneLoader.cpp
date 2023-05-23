@@ -17,12 +17,18 @@ void SceneLoader::SaveScene(Scene* scene, const std::string outName)
     Json::Value root;
     Json::Value objects;
 
+    //skybox
+    root["skybox"] = scene->skybox->name;
+    
+    //lights
+
+
+    //serialize game objects
     for (auto& it : scene->gameObjects)
     {
         Json::Value jobj = ObjectToJson(it.second);
         objects.append(jobj);
     }
-    
     root["objects"] = objects;
 
     Json::StreamWriterBuilder builder;
@@ -34,7 +40,6 @@ void SceneLoader::SaveScene(Scene* scene, const std::string outName)
 
 Scene* SceneLoader::LoadScene(const std::string inName)
 {
-    
     Scene* scene = new Scene();
 
     std::ifstream file(inName);
@@ -44,13 +49,15 @@ Scene* SceneLoader::LoadScene(const std::string inName)
 
     ResourceManager& res = ResourceManager::Get();
 
-    for (int i = 0; i < sceneJSON["objects"].size(); i++)
+    Json::Value objects = sceneJSON["objects"];
+    for (int i = 0; i < objects.size(); i++)
     {
-        
+        GameObject* go = &res.CreateGameObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
+        scene->AddObject(*go);
     }
-    //scene->AddObject(res.CreateGameObject());
-   
-    return nullptr;
+
+
+    return scene;
 
 }
 
@@ -129,4 +136,9 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
 
 
     return jobj;
+}
+
+Json::Value SceneLoader::LightsToJson(Lights* lights)
+{
+    return Json::Value();
 }

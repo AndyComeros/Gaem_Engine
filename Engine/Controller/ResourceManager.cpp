@@ -90,7 +90,7 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	terrain->model_data->name = terrainName;
 	terrain->SetID(IDIndex);
 	IDIndex++;
-	
+
 	models.insert({std::string(terrainName),terrain->model_data});
 
 	objects.insert({ terrainName, terrain });
@@ -114,6 +114,7 @@ Terrain& ResourceManager::CreateWater(std::string waterName, int Size, std::vect
 	terrain->SetID(IDIndex);
 	IDIndex++;
 
+	terrain->model_data->name = waterName;
 	models.insert({ std::string(waterName),terrain->model_data });
 	objects.insert({ waterName, terrain });
 	return *terrain;
@@ -147,6 +148,7 @@ void ResourceManager::LoadAnimatedModel(std::string resName, std::string fileNam
 			model->SetSpecularTexture(textures.at(specName));
 
 		//model
+		model->name = resName;
 		models.emplace(resName, model);
 	}
 	catch (const std::exception&)
@@ -196,7 +198,10 @@ void ResourceManager::LoadCubemap(std::string resName, std::string right, std::s
 	try
 	{
 		std::vector<std::string> sides({right,left,top,bottom,front,back});
-		cubemaps.emplace(resName, new CubeMap(sides));
+
+		CubeMap* nCubemap = new CubeMap(sides);
+		nCubemap->name = resName;
+		cubemaps.emplace(resName, nCubemap);
 	}
 	catch (const std::exception&)
 	{

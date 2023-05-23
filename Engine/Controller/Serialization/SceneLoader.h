@@ -24,4 +24,6 @@ public:
 private:
 	Json::Value ObjectToJson(GameObject* obj);
 
+	Json::Value LightsToJson(Lights* lights);
+
 };
