@@ -1,0 +1,774 @@
+{
+	"data" : null,
+	"objects" : 
+	[
+		{
+			"model" : "AE86",
+			"name" : "Player",
+			"position" : 
+			[
+				0.0,
+				35.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 10.0,
+				"damp_linear" : 1.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					-2.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "",
+			"name" : "Terrain",
+			"position" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "terrain"
+		},
+		{
+			"model" : "",
+			"name" : "arcade1",
+			"position" : 
+			[
+				-840.0,
+				29.360000610351562,
+				-527.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building1",
+			"name" : "building1",
+			"position" : 
+			[
+				50.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building3",
+			"name" : "building10",
+			"position" : 
+			[
+				200.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building3",
+			"name" : "building11",
+			"position" : 
+			[
+				250.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building3",
+			"name" : "building12",
+			"position" : 
+			[
+				300.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building1",
+			"name" : "building2",
+			"position" : 
+			[
+				100.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building1",
+			"name" : "building3",
+			"position" : 
+			[
+				150.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building1",
+			"name" : "building4",
+			"position" : 
+			[
+				200.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building1",
+			"name" : "building5",
+			"position" : 
+			[
+				250.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building1",
+			"name" : "building6",
+			"position" : 
+			[
+				300.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building3",
+			"name" : "building7",
+			"position" : 
+			[
+				50.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building3",
+			"name" : "building8",
+			"position" : 
+			[
+				100.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "building3",
+			"name" : "building9",
+			"position" : 
+			[
+				150.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default"
+		},
+		{
+			"model" : "",
+			"name" : "watertest",
+			"position" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "Water"
+		}
+	]
+}

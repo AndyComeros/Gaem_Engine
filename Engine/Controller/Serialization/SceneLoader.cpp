@@ -61,12 +61,13 @@ void SceneLoader::SaveScene(Scene* scene, const std::string outName)
         rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().x);
         rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().y);
         rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().z);
+        jobj["rigidbody"] = rb;
+        //end rigidbody
 
-
-
+       
+        objects.append(jobj);
     }
     
-    data["number"] = 1;
     root["data"] = data;
 
 

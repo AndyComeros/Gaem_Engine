@@ -15,15 +15,15 @@ DrawItem& ResourceManager::GetDrawItemReference(std::string resName)
 ResourceManager::ResourceManager(){
 
 		//default shader
-	shaders.emplace("default", new Shader("resources/shaders/Default.vert", "resources/shaders/Default.frag", ""));
+	LoadShader("default","resources/shaders/Default.vert", "resources/shaders/Default.frag", "");
 		//default physics debug
-	shaders.emplace("physics", new Shader("resources/shaders/Physics_Debug/Physics.vert", "resources/shaders/Physics_Debug/Physics.frag", ""));
+	LoadShader("physics","resources/shaders/Physics_Debug/Physics.vert", "resources/shaders/Physics_Debug/Physics.frag", "");
 		//default terrain shader
-	shaders.emplace("terrain", new Shader("resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", ""));
-	//default Water shader
-	shaders.emplace("Water", new Shader("resources/shaders/Water.vert", "resources/shaders/Water.frag", ""));
+	LoadShader("terrain", "resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", "");
+		//default Water shader
+	LoadShader("Water","resources/shaders/Water.vert", "resources/shaders/Water.frag", "");
 		//default texture
-	textures.emplace("default", new Texture("resources/textures/default.png"));
+	LoadTexture("default", "resources/textures/default.png");
 }
 
 ResourceManager::~ResourceManager(){}

@@ -70,6 +70,10 @@ GameEngine::GameEngine()
 		Renderer::SetLightUniforms(scene.lights, *it->second);
 	}
 
+	SceneLoader loader;
+
+	loader.SaveScene(&scene,"scene.json");
+
 }
 
 GameEngine::~GameEngine() {

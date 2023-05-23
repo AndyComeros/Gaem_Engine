@@ -169,7 +169,7 @@
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="Engine\Controller\Physics.cpp" />
     <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
-    <ClCompile Include="Engine\Controller\Serailization\SceneLoader.cpp" />
+    <ClCompile Include="Engine\Controller\Serialization\SceneLoader.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
     <ClCompile Include="Engine\Model\MD2\MD2Reader.cpp" />
@@ -225,7 +225,7 @@
     <ClInclude Include="Engine\Controller\md2Reader.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
-    <ClInclude Include="Engine\Controller\Serailization\SceneLoader.h" />
+    <ClInclude Include="Engine\Controller\Serialization\SceneLoader.h" />
     <ClInclude Include="Engine\Controller\Timer.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Lighting.h" />

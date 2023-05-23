@@ -6,6 +6,7 @@
 #include <AI/AIManager.h>
 #include <Physics.h>
 #include <AI/States/global_states.h>
+#include <Serialization/SceneLoader.h>
 
 /**
 *	@Class GameEngine
