@@ -152,6 +152,7 @@
     <ClCompile Include="dependencies\include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="dependencies\include\jsoncpp.cpp" />
     <ClCompile Include="Engine\Controller\AI\AIManager.cpp" />
     <ClCompile Include="Engine\Controller\AI\Message\Message.cpp" />
     <ClCompile Include="Engine\Controller\AI\Message\MessageDispatcher.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="Engine\Controller\Physics.cpp" />
     <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
+    <ClCompile Include="Engine\Controller\Serailization\SceneLoader.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
     <ClCompile Include="engine\Model\Camera.cpp" />
     <ClCompile Include="Engine\Model\MD2\MD2Reader.cpp" />
@@ -201,6 +203,8 @@
     <ClInclude Include="dependencies\include\imgui\imstb_rectpack.h" />
     <ClInclude Include="dependencies\include\imgui\imstb_textedit.h" />
     <ClInclude Include="dependencies\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="dependencies\include\json\json-forwards.h" />
+    <ClInclude Include="dependencies\include\json\json.h" />
     <ClInclude Include="Engine\Controller\AI\AIManager.h" />
     <ClInclude Include="Engine\Controller\AI\Message\Message.h" />
     <ClInclude Include="Engine\Controller\AI\Message\MessageDispatcher.h" />
@@ -221,6 +225,7 @@
     <ClInclude Include="Engine\Controller\md2Reader.h" />
     <ClInclude Include="Engine\Controller\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
+    <ClInclude Include="Engine\Controller\Serailization\SceneLoader.h" />
     <ClInclude Include="Engine\Controller\Timer.h" />
     <ClInclude Include="Engine\Model\GameObject.h" />
     <ClInclude Include="engine\Model\Lighting.h" />

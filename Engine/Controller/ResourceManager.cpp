@@ -152,7 +152,7 @@ void ResourceManager::LoadModel(std::string resName, std::string fileName, std::
 	try
 	{
 		Model* model = new Model(fileName.c_str());
-
+		model->name = resName;
 		//textures
 		if (textures.find(diffName) != textures.end())
 			model->SetDiffuseTexture(textures.at(diffName));
@@ -175,7 +175,9 @@ void ResourceManager::LoadModel(std::string resName, std::string fileName, std::
 void ResourceManager::LoadShader(std::string resName, std::string vertPath, std::string fragPath, std::string geomPath) {
 	try
 	{
-		shaders.emplace(resName, new Shader(vertPath.c_str(), fragPath.c_str(), geomPath.c_str()));
+		Shader* nshader = new Shader(vertPath.c_str(), fragPath.c_str(), geomPath.c_str());
+		nshader->name = resName;
+		shaders.emplace(resName, nshader);
 	}
 	catch (const std::exception&)
 	{
