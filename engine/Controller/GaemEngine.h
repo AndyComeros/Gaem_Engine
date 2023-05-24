@@ -44,6 +44,7 @@ public:
 		*	@return time since last frame
 		*/
 	double DeltaTime();
+
 		/**
 		*	@brief GLFW callback for window resizing. recalulates camera properties and viewport
 		*	@param width new window width
@@ -51,6 +52,19 @@ public:
 		*	@return void
 		*/
 	static void ResizeCallback(GLFWwindow* window, int width, int height);		
+
+		/**
+		*	@brief Set if the AI and physics should be updated
+		*	@param isRun if simulation should be running
+		*	@return void
+		*/
+	void SetSimulation(bool isRun);
+
+		/**
+		*	@brief returns is simulation is running
+		*	@return bool if sim is running
+		*/
+	bool IsSimRunning();
 
 		///Window width
 	int wWidth = 1920;
@@ -82,8 +96,14 @@ private:
 		///time since last frame
 	double deltaTime = 0.0f;
 		///whether main loop is running
+<<<<<<< Updated upstream
 	bool isRunning = false;
 		
+=======
+	bool isRunning = false;	
+		///whether AI and physics are being updated
+	bool simIsRunning = true;
+>>>>>>> Stashed changes
 		///Default constructor. Private becuase singleton
 	GameEngine();
 		///Default Destructor.

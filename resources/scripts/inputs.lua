@@ -1,8 +1,6 @@
 
 dofile("resources/scripts/keybinds.lua")
 
-input:SetMouseLock(false);
-
 input:BindKey("forward",KEY_W);
 input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);
@@ -18,7 +16,6 @@ mouseSensitivity = 0.1
 Distance = 10
 moveSpeed = 100
 
-thirdPerson = false
 
 function MouseMoveFunc(dt)
 	local camera = scene:GetCamera();
@@ -93,6 +90,7 @@ function KeyPressFunc(dt)
 
 	if(input:GetKeyState("escape"))
 	then
+		current_menu = 1;
 		GUI:SwitchMenu(1);
 	end
 

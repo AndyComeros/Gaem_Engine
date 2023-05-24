@@ -8,7 +8,24 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
+<<<<<<< Updated upstream
 GameEngine::GameEngine() 
+=======
+void GameEngine::ExposeToLua(){
+
+	luaManager.Expose_CPPClass<GameEngine>("GameEngine",
+		sol::no_constructor,
+		"Time", &GameEngine::Time,
+		"DeltaTime", &GameEngine::DeltaTime,
+		"Shutdown", &GameEngine::Shutdown,
+		"IsSimRunning", &GameEngine::IsSimRunning,
+		"SetSimulation", &GameEngine::SetSimulation
+		);
+	luaManager.Expose_CPPReference("engine",*this);
+}
+
+GameEngine::GameEngine()
+>>>>>>> Stashed changes
 {
 	//init window and glfw.
 	glfwInit();
@@ -98,6 +115,7 @@ void GameEngine::Run() {
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;
     
+<<<<<<< Updated upstream
 		glfwPollEvents();
 
 		scene->physics.StepPhysics(deltaTime);
@@ -110,8 +128,25 @@ void GameEngine::Run() {
 		renderer.Draw(*scene, deltaTime);
 		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
 		guirenderer.Draw();
-		glfwSwapBuffers(window);
+=======
+		inputMngr.KeyActions(deltaTime);
 
+		if (simIsRunning) {
+			scene->physics.StepPhysics(deltaTime);
+			scene->physics.UpdateGameObjects(scene->gameObjects);
+			aiManager.UpdateAgents(deltaTime);
+		}
+		else {
+			deltaTime = 0.0f;
+		}
+
+		renderer.Draw(*scene, deltaTime);
+		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
+		luaManager.RunUpdateMethod(deltaTime);
+
+>>>>>>> Stashed changes
+		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 	isRunning = false;
 
@@ -135,3 +170,22 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s, GameEngine::Get().deltaTime);
   }
+<<<<<<< Updated upstream
+=======
+
+void GameEngine::Shutdown()
+{
+	isRunning = false;
+	glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void GameEngine::SetSimulation(bool isRun)
+{
+	simIsRunning = isRun;
+}
+
+bool GameEngine::IsSimRunning()
+{
+	return simIsRunning;
+}
+>>>>>>> Stashed changes
