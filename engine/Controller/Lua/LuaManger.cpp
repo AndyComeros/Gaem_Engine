@@ -272,7 +272,6 @@ void LuaManager::Expose_Engine() {
 
 	Expose_CPPClass<GUIRenderer>("GUIRenderer",
 		sol::no_constructor,
-		"SwitchMenu", &GUIRenderer::SwitchMenu,
 		"Start", &GUIRenderer::Start,
 		"End", &GUIRenderer::End,
 		"Text", &GUIRenderer::Text,

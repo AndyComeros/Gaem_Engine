@@ -94,7 +94,6 @@ function KeyPressFunc(dt)
 	if(input:GetKeyState("escape"))
 	then
 		current_menu = 1;
-		GUI:SwitchMenu(1);
 	end
 
 
@@ -114,7 +113,6 @@ function KeyPressFunc(dt)
 	if(input:GetKeyState("toggleControlMenu"))
 	then
 		controlPress = true;
-		GUI:SwitchMenu(2);
 	end
 
 

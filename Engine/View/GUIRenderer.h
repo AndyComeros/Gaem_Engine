@@ -69,27 +69,8 @@ public:
 
 private:
 
-		///Draw generic main menu
-	void GUI_Main();
-		///Draw generic settings menu
-	void GUI_Settings();
-		///Draw generic exit menu
-	void GUI_Exit();
-		///Draw generic main menu
-	void GUI_Manual();
-		///Draw generic debug menu
-	void GUI_Debug();
-		///Draw generic in game menu
-	void GUI_InGame();
-
-	void TextCenteredOnLine(const char* label, float alignment);
-
-	bool ButtonCenteredOnLine(const char* label, float alignment, float width);
 
 	void AlignForWidth(float width, float alignment);
-		
-		///Current GUI to be drawn
-	int currentGUI = 0;
 		
 		///imgui settings for windos
 	ImGuiWindowFlags flags;

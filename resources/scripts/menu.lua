@@ -29,16 +29,17 @@ local cases = {
 --called every update, renders current menu
 function draw_menu()
 
-	GUI:Start(false);
 	if(cases[current_menu])
 	then
 		cases[current_menu]();
 	end;
-	GUI:End();
+	
 end
 
 
 function draw_main_menu()
+
+	GUI:Start(true);
 	GUI:Tab(300);
 	GUI:Text("Main Menu",0.5);
 
@@ -63,21 +64,27 @@ function draw_main_menu()
 	then
 		engine:Shutdown();
 	end
+
+	GUI:End();
 end
 
 
 function draw_save_menu()
-	
+
+	GUI:Start(true);
+
 	GUI:Tab(300);
 	GUI:Text("Choose a save to load:",0.5);
 	GUI:Tab(10);
 
+	saves = loader:GetSaves("resources/saves");
+
 	if(GUI:Button("Save Current Game",0.5, 200, 40))
 	then
-		print("Save!");
+		loader:SaveScene(engine.scene,"resources/saves/save"..(#saves + 1)..".json");
 	end
 
-	saves = loader:GetSaves("resources/saves");
+	
 	for i, v in ipairs(saves)
 	do
 		if(GUI:Button(v, 0.5, 200, 40))
@@ -92,9 +99,12 @@ function draw_save_menu()
 		current_menu = 1;
 	end
 
+	GUI:End();
 end
 
 function draw_options_menu()
+
+	GUI:Start(true);
 
 	GUI:Tab(300);
 	GUI:Text("Options",0.5);
@@ -103,11 +113,17 @@ function draw_options_menu()
 	then
 		current_menu = 1;
 	end
+
+	GUI:End();
 end
 
 function draw_ingame()
-	
+
+	GUI:Start(false);
+
 	GUI:Text("in-game",0.5);
 	local fps = math.floor(renderer:GetFPS() + 0.5); 
 	GUI:Text((fps.."fps"),0.5);
+
+	GUI:End();
 end

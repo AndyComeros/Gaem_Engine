@@ -16,7 +16,8 @@ void GameEngine::ExposeToLua(){
 		"DeltaTime", &GameEngine::DeltaTime,
 		"Shutdown", &GameEngine::Shutdown,
 		"IsSimRunning", &GameEngine::IsSimRunning,
-		"SetSimulation", &GameEngine::SetSimulation
+		"SetSimulation", &GameEngine::SetSimulation,
+		"scene", &GameEngine::scene
 		);
 	luaManager.Expose_CPPReference("engine",*this);
 }
