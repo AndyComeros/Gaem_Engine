@@ -104,12 +104,13 @@ void GameEngine::Run() {
 		scene->physics.UpdateGameObjects(scene->gameObjects);
 		
 		aiManager.UpdateAgents(deltaTime);
-		luaManager.RunUpdateMethod(deltaTime);
+		
 		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(*scene, deltaTime);
 		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
-		guirenderer.Draw();
+		//guirenderer.Draw();
+		luaManager.RunUpdateMethod(deltaTime);
 		glfwSwapBuffers(window);
 
 	}

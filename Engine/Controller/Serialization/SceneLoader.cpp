@@ -151,7 +151,7 @@ Scene* SceneLoader::LoadScene(const std::string inName)
                 max = rb["max"].asFloat();
                 if(rb["heights"].asBool())
                     scene->physics.AddRigidBodyColliderHeightMap(*static_cast<Terrain*>(go));
-                //;
+                
                 break;
             case COLLIDER_INVALID:
                 break;

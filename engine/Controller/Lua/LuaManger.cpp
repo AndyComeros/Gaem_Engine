@@ -271,7 +271,15 @@ void LuaManager::Expose_Engine() {
 
 	Expose_CPPClass<GUIRenderer>("GUIRenderer",
 		sol::no_constructor,
-		"SwitchMenu", &GUIRenderer::SwitchMenu
+		"SwitchMenu", &GUIRenderer::SwitchMenu,
+		"Start", &GUIRenderer::Start,
+		"End", &GUIRenderer::End,
+		"Text", &GUIRenderer::Text,
+		"Button", &GUIRenderer::Button,
+		"Image", &GUIRenderer::Image,
+		"Tab", &GUIRenderer::Tab,
+		"SetCursorPosX", &GUIRenderer::SetCursorPosX,
+		"SetCursorPosY", &GUIRenderer::SetCursorPosY
 		);
 
 	Expose_CPPClass<Renderer>("Renderer",

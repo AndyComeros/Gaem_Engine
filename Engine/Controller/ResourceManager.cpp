@@ -244,7 +244,7 @@ Texture* ResourceManager::GetTexture(std::string resName) {
 	catch (const std::exception& e)
 	{
 		std::cout << "ERROR: Texture: '" << resName << "' does not exist: " << e.what() << std::endl;
-		texture = nullptr;
+		texture = textures.at("default");
 	}
 	return texture;
 }
