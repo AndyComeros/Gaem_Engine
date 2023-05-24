@@ -37,10 +37,11 @@ GameEngine::GameEngine()
 	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
-	aiManager.Init(&scene);
+	aiManager.Init(scene);
 
 	//scene camera settings
-	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
+	scene = new Scene;
+	scene->camera.aspectRatio = (float)wWidth / (float)wHeight;
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window, ResizeCallback);
@@ -48,8 +49,8 @@ GameEngine::GameEngine()
 
 	//expose to lua
 	luaManager.Expose_Engine();
-	luaManager.Expose_CPPReference("scene", scene);
-	luaManager.Expose_CPPReference("physics", scene.physics);
+	luaManager.Expose_CPPReference("scene", *scene);
+	luaManager.Expose_CPPReference("physics", scene->physics);
 	luaManager.Expose_CPPReference("renderer", renderer);
 	luaManager.Expose_CPPReference("GUI", guirenderer);
 
@@ -67,13 +68,15 @@ GameEngine::GameEngine()
 	auto it = ResourceManager::Get().ShaderBegin();
 	auto end = ResourceManager::Get().ShaderEnd();
 	for (it; it != end; it++) {
-		Renderer::SetLightUniforms(scene.lights, *it->second);
+		Renderer::SetLightUniforms(scene->lights, *it->second);
 	}
 
-	SceneLoader loader;
-	loader.SaveScene(&scene,"scene.json");
-	//scene = *(loader.LoadScene("scene.json"));
-
+	//SceneLoader loader;
+	//loader.SaveScene(scene,"scene.json");
+	//scene = (loader.LoadScene("scene.json"));
+	//luaManager.Expose_CPPReference("scene", *scene);
+	//luaManager.Expose_CPPReference("physics", scene->physics);
+	//aiManager.Init(scene);
 }
 
 GameEngine::~GameEngine() {
@@ -97,15 +100,15 @@ void GameEngine::Run() {
     
 		glfwPollEvents();
 
-		scene.physics.StepPhysics(deltaTime);
-		scene.physics.UpdateGameObjects(scene.gameObjects);
+		scene->physics.StepPhysics(deltaTime);
+		scene->physics.UpdateGameObjects(scene->gameObjects);
 		
 		aiManager.UpdateAgents(deltaTime);
 		luaManager.RunUpdateMethod(deltaTime);
 		inputMngr.KeyActions(deltaTime);
 
-		renderer.Draw(scene, deltaTime);
-		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
+		renderer.Draw(*scene, deltaTime);
+		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
 		guirenderer.Draw();
 		glfwSwapBuffers(window);
 
@@ -127,7 +130,7 @@ double GameEngine::DeltaTime() {
 
 void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 
-	Scene& s = GameEngine::Get().scene;
+	Scene& s = *GameEngine::Get().scene;
 	s.camera.aspectRatio = (float)width / (float)height;
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s, GameEngine::Get().deltaTime);

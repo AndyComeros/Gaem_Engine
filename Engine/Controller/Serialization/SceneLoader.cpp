@@ -55,10 +55,10 @@ Scene* SceneLoader::LoadScene(const std::string inName)
     for (int i = 0; i < objects.size(); i++)
     {
         Json::Value jobj = objects[i];
-
      
         GameObject* go = nullptr;
 
+        //type specific data
         if(jobj["type"].asString() == "npc"){
             go = &res.CreateNPCObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
             for (auto& member : jobj["data"].getMemberNames())
@@ -68,22 +68,13 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         }
         else if (jobj["type"].asString() == "terrain") {
           
-            std::cout << objects[i]["name"].asString() << "\n";
-            go = &res.CreateTerrainFromModel(
-                objects[i]["name"].asString(),
-                objects[i]["model"].asString(),
-                objects[i]["height_texture"].asString(),
-                objects[i]["terrain_size"].asInt(),
-                objects[i]["texture_scale"].asFloat(),
-                objects[i]["scaleX"].asFloat(),
-                objects[i]["scaleY"].asFloat(),
-                objects[i]["scaleZ"].asFloat());
+            go = res.GetGameObject(jobj["name"].asString());
         }
         else {
             go = &res.CreateGameObject(objects[i]["name"].asString(), objects[i]["model"].asString(), objects[i]["shader"].asString());
         }
         
-        
+        //transform properties
         go->name = jobj["name"].asString();
         go->position.x = jobj["position"][0].asFloat();
         go->position.y = jobj["position"][1].asFloat();
@@ -97,14 +88,85 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         go->rotation.y = jobj["rotation"][1].asFloat();
         go->rotation.z = jobj["rotation"][2].asFloat();
 
+        //state information
+        AIManager& ai = AIManager::Get();
+        if(!jobj["state"].empty())
+            go->stateMachine.ChangeState(*ai.GetState(jobj["state"].asString()));
+        if (!jobj["previous_state"].empty())
+            go->stateMachine.ChangePreviousState(*ai.GetState(jobj["previous_state"].asString()));
+        if (!jobj["global_state"].empty())
+            go->stateMachine.ChangeGlobalState(*ai.GetState(jobj["global_state"].asString()));
+
+        //physics properties
+
+
+        Json::Value rb = jobj["rigidbody"];
+        Json::Value rbcollider = rb["collider"];
+        
+        scene->physics.AddRigidBody(*go, rb["mod"].asInt());
+        go->rigidBody.SetMass(rb["mass"].asFloat());
+        go->rigidBody.SetDampeningLinear(rb["damp_linear"].asFloat());
+        go->rigidBody.SetDampeningAngle(rb["damp_angle"].asFloat());
+
+        go->rigidBody.SetCenterOfMass    ({ rb["mass_center"][0].asFloat() ,rb["mass_center"][1].asFloat() ,rb["mass_center"][2].asFloat() });
+        
+        go->rigidBody.SetAxisLinearFactor( rb["axis_linear_factor"][0].asFloat() ,rb["axis_linear_factor"][1].asFloat() ,rb["axis_linear_factor"][2].asFloat() );
+
+        go->rigidBody.SetAxisAngleFactor(rb["axis_angle_factor"][0].asFloat(), rb["axis_angle_factor"][1].asFloat(), rb["axis_angle_factor"][2].asFloat());
+
+
+        if (rbcollider["type"].asInt() != COLLIDER_INVALID)
+        {
+            float mass = rbcollider["mass"].asFloat();
+            float bounce = rbcollider["bounce"].asFloat();
+            float friction = rbcollider["friction"].asFloat();
+            glm::vec3 offset(rbcollider["offset"][0].asFloat(), rbcollider["offset"][1].asFloat(), rbcollider["offset"][2].asFloat());
+            glm::vec3 rotation(rbcollider["rotation"][0].asFloat(), rbcollider["rotation"][1].asFloat(), rbcollider["rotation"][2].asFloat());
+
+            float radius;
+            float height;
+            int rows;
+            int columns;
+            float min;
+            float max;
+            switch (rbcollider["type"].asInt())
+            {
+            case COLLIDER_BOX:
+                glm::vec3 scale(rb["scale"][0].asFloat(), rb["scale"][1].asFloat(), rb["scale"][2].asFloat());
+                scene->physics.AddRigidBodyColliderBox(*go,scale,mass,bounce ,friction);
+                break;
+            case COLLIDER_SPHERE:
+                radius = rb["radius"].asFloat();
+                scene->physics.AddRigidBodyColliderSphere(*go,radius,offset,mass,bounce,friction);
+                break;
+            case COLLIDER_CAPSULE:
+                radius = rb["radius"].asFloat();
+                height = rb["height"].asFloat();
+                scene->physics.AddRigidBodyColliderCapsule(*go,radius,height,offset,rotation,mass,bounce,friction);
+                break;
+            case COLLIDER_TERRAIN:
+                rows = rb["rows"].asInt();
+                columns = rb["columns"].asInt();
+                min = rb["min"].asFloat();
+                max = rb["max"].asFloat();
+                if(rb["heights"].asBool())
+                    scene->physics.AddRigidBodyColliderHeightMap(*static_cast<Terrain*>(go));
+                //;
+                break;
+            case COLLIDER_INVALID:
+                break;
+            default:
+                break;
+            }
+
+        }
+        //end phyiscs
 
 
         scene->AddObject(*go);
     }
 
-
     return scene;
-
 }
 
 Json::Value SceneLoader::ObjectToJson(GameObject* obj)
@@ -194,11 +256,21 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
     default:
         break;
     }
-
-
     rb["collider"] = rbcollider;
     jobj["rigidbody"] = rb;
     //end rigidbody
+
+    //state machine info
+    AIManager& ai = AIManager::Get();
+
+    if (obj->stateMachine.GetState())
+        jobj["state"] = ai.GetStateKey(obj->stateMachine.GetState());
+
+    if (obj->stateMachine.GetPreviousState())
+        jobj["previous_state"] = ai.GetStateKey(obj->stateMachine.GetPreviousState());
+
+    if (obj->stateMachine.GetGlobalState())
+        jobj["global_state"] = ai.GetStateKey(obj->stateMachine.GetGlobalState());
 
     //idendify obj type.
     if (dynamic_cast<NPC*>(obj)) {

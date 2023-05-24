@@ -57,7 +57,7 @@ public:
 		///Window height
 	int wHeight = 1080;
 		///Contains all data for rendering scene and stores world physics info
-	Scene scene;
+	Scene* scene;
 		///Window being drawn to and being used for inputs
 	GLFWwindow* window;
 		

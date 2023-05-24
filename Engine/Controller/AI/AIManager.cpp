@@ -44,6 +44,15 @@ State* AIManager::GetState(const std::string& stateName)
 	return nullptr;
 }
 
+std::string AIManager::GetStateKey(State* state)
+{
+	for (auto& it : states) {
+		if (state == it.second)
+			return it.first;
+	}
+	return "";
+}
+
 AIManager::AIManager()
 {
 	msgDispatcher = &Dispatcher::Get();

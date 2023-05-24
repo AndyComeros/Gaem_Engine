@@ -9,6 +9,7 @@ Physics::~Physics() {
 	DestroyPhysicsWorld();
 }
 
+
 void Physics::CreatePhysicsWorld()
 {
 	world = physicsCommon.createPhysicsWorld();
@@ -124,18 +125,7 @@ void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 
 void Physics::ModRigidBodyType(GameObject &go, int type)
 {
-	switch (type)
-	{
-	case KINE:
-		go.rigidBody.rbPtr->setType(BodyType::KINEMATIC);
-		break;
-	case STAT:
-		go.rigidBody.rbPtr->setType(BodyType::STATIC);
-		break;
-	case DYNA:
-		go.rigidBody.rbPtr->setType(BodyType::DYNAMIC);
-		break;
-	}
+	go.rigidBody.ModType(type);
 }
 
 void Physics::ModRigidBodyGravity(GameObject &go, bool state)

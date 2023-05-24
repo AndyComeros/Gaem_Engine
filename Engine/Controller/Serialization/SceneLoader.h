@@ -1,5 +1,7 @@
 #pragma once
 #include <ResourceManager.h>
+#include <AI/AIManager.h>
+#include <Physics/Physics.h>
 #include <Scene.h>
 #include <NPC.h>
 #include <Terrain.h>
@@ -18,6 +20,9 @@ public:
 
 	//load a scene from json file.
 	Scene* LoadScene(const std::string inName);
+
+	
+
 
 private:
 	Json::Value ObjectToJson(GameObject* obj);
