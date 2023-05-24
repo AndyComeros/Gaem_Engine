@@ -132,6 +132,7 @@
     <None Include="resources\scripts\inputs.lua" />
     <None Include="resources\scripts\keybinds.lua" />
     <None Include="resources\scripts\main.lua" />
+    <None Include="resources\scripts\menu.lua" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />
