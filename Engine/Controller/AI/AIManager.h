@@ -1,6 +1,5 @@
 #pragma once
 #include <AI/Message/MessageDispatcher.h>
-#include <lua/LuaManager.h>
 
 class AIManager
 {

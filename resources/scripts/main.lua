@@ -2,7 +2,15 @@
 
 function init()
 	print("init lua");
-		
+	
+	 saves = loader:GetSaves("resources/saves");
+
+	    for i, v in ipairs(saves) do
+            print(i, v)
+        end
+
+	 print(saves);
+
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	print("End Init");
 end
