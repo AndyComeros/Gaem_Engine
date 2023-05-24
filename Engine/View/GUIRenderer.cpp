@@ -25,12 +25,19 @@ void GUIRenderer::Init(GLFWwindow* nwindow) {
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 330");
+	ImGuiIO& nio = ImGui::GetIO(); (void)nio;
+	io = &ImGui::GetIO(); (void)io;
 	ImGui::StyleColorsDark();
 
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
+
 	ResourceManager::Get().LoadTexture("exitsplash", "resources/textures/exit.png");
+}
+
+void GUIRenderer::SetFont(std::string path)
+{
+	io->Fonts->AddFontFromFileTTF(path.c_str(), 20.0f);
 }
 
 void GUIRenderer::Start(bool background)

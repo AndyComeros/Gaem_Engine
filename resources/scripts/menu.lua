@@ -28,7 +28,7 @@ local cases = {
 
 --called every update, renders current menu
 function draw_menu()
-
+--set font
 	if(cases[current_menu])
 	then
 		cases[current_menu]();

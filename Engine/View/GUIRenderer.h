@@ -42,17 +42,11 @@ public:
 	void Init(GLFWwindow* nwindow);
 
 		/**
-		*	@brief Draw current GUI to the screen
+		*	@brief set font to a ttf font
+		*	@param path path to font
 		*	@return void
 		*/
-	void Draw();
-
-		/**
-		*	@brief Switch the current GUI
-		*	@param nGUI GUI being switched to
-		*	@return void
-		*/
-	void SwitchMenu(int nGUI);
+	void SetFont(std::string path);
 
 	//lua programmable GUI//
 
@@ -69,6 +63,7 @@ public:
 
 private:
 
+	ImGuiIO* io;
 
 	void AlignForWidth(float width, float alignment);
 		

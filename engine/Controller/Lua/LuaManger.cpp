@@ -279,7 +279,8 @@ void LuaManager::Expose_Engine() {
 		"Image", &GUIRenderer::Image,
 		"Tab", &GUIRenderer::Tab,
 		"SetCursorPosX", &GUIRenderer::SetCursorPosX,
-		"SetCursorPosY", &GUIRenderer::SetCursorPosY
+		"SetCursorPosY", &GUIRenderer::SetCursorPosY,
+		"SetFont", &GUIRenderer::SetFont
 		);
 
 	Expose_CPPClass<Renderer>("Renderer",
