@@ -34,14 +34,14 @@ GameEngine::GameEngine()
 		return;
 	}
 
+	//scene camera settings
+	scene = new Scene;
+	scene->camera.aspectRatio = (float)wWidth / (float)wHeight;
+
 	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
 	aiManager.Init(scene);
-
-	//scene camera settings
-	scene = new Scene;
-	scene->camera.aspectRatio = (float)wWidth / (float)wHeight;
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window, ResizeCallback);
