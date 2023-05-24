@@ -84,7 +84,6 @@ void InputManager::SetMouseLock(bool isLock)
 {
 	if (!_Window)
 		return;
-
 	if(isLock)
 	{
 		glfwSetInputMode(_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -164,4 +163,12 @@ void InputManager::Init(GLFWwindow* window) {
 	glfwSetCursorPosCallback(window, GlfwMouseCallback);
 	glfwSetKeyCallback(window, GlfwKeyCallback);
 	glfwSetScrollCallback(window, GlfwScrollCallback);
+}
+
+bool InputManager::GetMouseLock()
+{
+	if (glfwGetInputMode(_Window, GLFW_CURSOR) == GLFW_CURSOR_NORMAL)
+		return true;
+	
+	return false;
 }

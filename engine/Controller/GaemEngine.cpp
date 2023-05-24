@@ -8,8 +8,6 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
-GameEngine::GameEngine() 
-
 void GameEngine::ExposeToLua(){
 
 	luaManager.Expose_CPPClass<GameEngine>("GameEngine",

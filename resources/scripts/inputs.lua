@@ -31,17 +31,20 @@ function MouseMoveFunc(dt)
 	xoffset = xoffset * mouseSensitivity
 	yoffset = yoffset * mouseSensitivity
 
-	camera.Yaw =  camera.Yaw - xoffset
-	camera.Pitch = camera.Pitch - yoffset
+	if(not input:GetMouseLock())
+	then
+		camera.Yaw =  camera.Yaw - xoffset
+		camera.Pitch = camera.Pitch - yoffset
 
-	if (camera.Pitch < -89.0)
-	then
-		camera.Pitch = -89.0;
-	end
+		if (camera.Pitch < -89.0)
+		then
+			camera.Pitch = -89.0;
+		end
 	
-	if (camera.Pitch > 0.0)
-	then
-		camera.Pitch = 0.0;
+		if (camera.Pitch > 0.0)
+		then
+			camera.Pitch = 0.0;
+		end
 	end
 
 	camDistance();
