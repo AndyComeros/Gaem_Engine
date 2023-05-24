@@ -4,8 +4,9 @@
 #include <GUIRenderer.h>
 #include <InputManager.h>
 #include <AI/AIManager.h>
-#include <Physics.h>
+#include <Physics/Physics.h>
 #include <AI/States/global_states.h>
+#include <Serialization/SceneLoader.h>
 
 /**
 *	@Class GameEngine
@@ -56,7 +57,7 @@ public:
 		///Window height
 	int wHeight = 1080;
 		///Contains all data for rendering scene and stores world physics info
-	Scene scene;
+	Scene* scene;
 		///Window being drawn to and being used for inputs
 	GLFWwindow* window;
 		

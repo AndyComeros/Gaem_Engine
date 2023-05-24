@@ -59,8 +59,9 @@ public:
 		*	@return a game object created using the selected parameters
 		*/
 	Terrain& CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
+	Terrain& CreateTerrainFromModel(std::string terrainName, std::string modelName, std::string heightMapName, int Size, float texScale, float scaleX, float scaleY, float scaleZ);
 
-	Terrain CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ);
+	Terrain& CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ);
 
 		/**
 		*	@brief loads a texture into storage

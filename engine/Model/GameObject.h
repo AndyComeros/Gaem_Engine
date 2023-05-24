@@ -1,7 +1,7 @@
 #pragma once
 #include <Graphics/Graphics.h>
 #include <Model.h>
-#include <Rigidbody.h>
+#include <Physics/Rigidbody.h>
 #include <AI/StateMachine.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

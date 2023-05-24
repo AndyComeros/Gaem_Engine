@@ -39,6 +39,8 @@ public:
 	void SetTextures(std::vector<std::string>& nTextures);
 		///Shader used to render cubemap
 	Shader shader;
+
+	std::string name = "";
 private:
 		///Cubemap VAO
 	VAO vao;

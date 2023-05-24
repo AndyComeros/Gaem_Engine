@@ -10,7 +10,8 @@ public:
 
 	~StateMachine() {}
 	void ChangeState(State& nState);
-	void ChangeGlobalState(State* nState);
+	void ChangeGlobalState(State& nState);
+	void ChangePreviousState(State& nState);
 	void RevertState();
 
 	void Update(double dt);

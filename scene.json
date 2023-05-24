@@ -1,0 +1,2285 @@
+{
+	"objects" : 
+	[
+		{
+			"model" : "AE86",
+			"name" : "Player",
+			"position" : 
+			[
+				0.0,
+				35.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 10.0,
+				"damp_linear" : 1.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					-2.0,
+					0.0
+				],
+				"mod" : 3,
+				"scale" : 
+				[
+					1.5,
+					0.20000000298023224,
+					0.69999998807907104
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"height_texture" : "heightMap",
+			"model" : "Terrain",
+			"name" : "Terrain",
+			"position" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 1.0,
+					"friction" : 1.0,
+					"mass" : 1.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 4
+				},
+				"columns" : 256,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"heights" : true,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"max" : 152.0,
+				"min" : 20.0,
+				"mod" : 2,
+				"rows" : 256
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"scaleX" : 10.0,
+			"scaleY" : 0.60000002384185791,
+			"scaleZ" : 10.0,
+			"shader" : "terrain",
+			"terrain_size" : 256,
+			"texture_scale" : 256,
+			"type" : "terrain"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade1",
+			"position" : 
+			[
+				-874.0,
+				-19.240009307861328,
+				1120.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade10",
+			"position" : 
+			[
+				-555.0,
+				-15.040008544921875,
+				-672.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade11",
+			"position" : 
+			[
+				255.0,
+				-28.000007629394531,
+				355.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade12",
+			"position" : 
+			[
+				-43.0,
+				-3.6400070190429688,
+				449.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade13",
+			"position" : 
+			[
+				841.0,
+				-48.279998779296875,
+				406.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade14",
+			"position" : 
+			[
+				-295.0,
+				-34.180007934570312,
+				-1102.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade15",
+			"position" : 
+			[
+				593.0,
+				-27.519996643066406,
+				1081.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade16",
+			"position" : 
+			[
+				276.0,
+				4.6399917602539062,
+				-200.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade17",
+			"position" : 
+			[
+				-622.0,
+				32.000053405761719,
+				186.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade18",
+			"position" : 
+			[
+				-927.0,
+				-11.080009460449219,
+				-1235.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade19",
+			"position" : 
+			[
+				409.0,
+				-46.299995422363281,
+				362.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade2",
+			"position" : 
+			[
+				-348.0,
+				-0.57999420166015625,
+				184.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade20",
+			"position" : 
+			[
+				605.0,
+				-45.039985656738281,
+				603.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade3",
+			"position" : 
+			[
+				-1060.0,
+				14.719993591308594,
+				-294.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade4",
+			"position" : 
+			[
+				906.0,
+				14.480003356933594,
+				-193.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade5",
+			"position" : 
+			[
+				1280.0,
+				5.0,
+				957.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade6",
+			"position" : 
+			[
+				-969.0,
+				9.55999755859375,
+				-806.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade7",
+			"position" : 
+			[
+				1150.0,
+				-10.360000610351562,
+				277.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade8",
+			"position" : 
+			[
+				-1001.0,
+				-23.980010986328125,
+				156.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"model" : "solider",
+			"name" : "arcade9",
+			"position" : 
+			[
+				327.0,
+				-50.680007934570312,
+				1207.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"model" : "building1",
+			"name" : "building1",
+			"position" : 
+			[
+				50.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building10",
+			"position" : 
+			[
+				200.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building11",
+			"position" : 
+			[
+				250.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building12",
+			"position" : 
+			[
+				300.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building2",
+			"position" : 
+			[
+				100.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building3",
+			"position" : 
+			[
+				150.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building4",
+			"position" : 
+			[
+				200.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building5",
+			"position" : 
+			[
+				250.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building6",
+			"position" : 
+			[
+				300.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building7",
+			"position" : 
+			[
+				50.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building8",
+			"position" : 
+			[
+				100.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building9",
+			"position" : 
+			[
+				150.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "watertest",
+			"name" : "watertest",
+			"position" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"scaleX" : 1.0,
+			"scaleY" : 0.0,
+			"scaleZ" : 1.0,
+			"shader" : "Water",
+			"terrain_size" : 256,
+			"texture_scale" : 256,
+			"type" : "terrain"
+		}
+	],
+	"skybox" : "skybox"
+}

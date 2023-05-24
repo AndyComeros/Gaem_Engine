@@ -15,15 +15,15 @@ DrawItem& ResourceManager::GetDrawItemReference(std::string resName)
 ResourceManager::ResourceManager(){
 
 		//default shader
-	shaders.emplace("default", new Shader("resources/shaders/Default.vert", "resources/shaders/Default.frag", ""));
+	LoadShader("default","resources/shaders/Default.vert", "resources/shaders/Default.frag", "");
 		//default physics debug
-	shaders.emplace("physics", new Shader("resources/shaders/Physics_Debug/Physics.vert", "resources/shaders/Physics_Debug/Physics.frag", ""));
+	LoadShader("physics","resources/shaders/Physics_Debug/Physics.vert", "resources/shaders/Physics_Debug/Physics.frag", "");
 		//default terrain shader
-	shaders.emplace("terrain", new Shader("resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", ""));
-	//default Water shader
-	shaders.emplace("Water", new Shader("resources/shaders/Water.vert", "resources/shaders/Water.frag", ""));
+	LoadShader("terrain", "resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", "");
+		//default Water shader
+	LoadShader("Water","resources/shaders/Water.vert", "resources/shaders/Water.frag", "");
 		//default texture
-	textures.emplace("default", new Texture("resources/textures/default.png"));
+	LoadTexture("default", "resources/textures/default.png");
 }
 
 ResourceManager::~ResourceManager(){}
@@ -87,6 +87,35 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	terrain->SetTextures(layers,textures.at(detailName));
 
 	terrain->name = terrainName;
+	terrain->model_data->name = terrainName;
+	terrain->SetID(IDIndex);
+	IDIndex++;
+
+	models.insert({terrainName,terrain->model_data});
+
+	objects.insert({ terrainName, terrain });
+	return *terrain;
+}
+
+Terrain& ResourceManager::CreateTerrainFromModel(std::string terrainName, std::string modelName, std::string heightMapName, int Size, float texScale, float scaleX, float scaleY, float scaleZ)
+{
+	Terrain* terrain = new Terrain;
+	
+	terrain->scaleX = scaleX;
+	terrain->scaleY = scaleY;
+	terrain->scaleZ = scaleZ;
+
+	if(textures.find(heightMapName) != textures.end())
+		terrain->SetHeightTexture(textures.at(heightMapName));
+
+	terrain->CreateHeightArray();
+	terrain->model_data = models.at(modelName);
+
+
+	if (shaders.find("terrain") != shaders.end())
+		terrain->shader = shaders.at("terrain");
+	
+	terrain->name = terrainName;
 	terrain->SetID(IDIndex);
 	IDIndex++;
 
@@ -94,30 +123,35 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 	return *terrain;
 }
 
-Terrain ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
+Terrain& ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
 {
-	Terrain terrain(Size, scaleX, scaleZ);
+	Terrain* terrain = new Terrain(Size, scaleX, scaleZ);
 
 	if (shaders.find("Water") != shaders.end()) 
-		terrain.shader = shaders.at("Water");
+		terrain->shader = shaders.at("Water");
 
 	std::vector<Texture*> layers;
 	for (int i = 0; i < layerTextures.size(); i++)
 		layers.emplace_back(textures.at(layerTextures[i]));
 
-	terrain.SetMaterailTextures(layers);
+	terrain->SetMaterailTextures(layers);
 
-	terrain.name = waterName;
-	terrain.SetID(IDIndex);
+	terrain->name = waterName;
+	terrain->SetID(IDIndex);
 	IDIndex++;
 
-	return terrain;
+	terrain->model_data->name = waterName;
+	models.insert({ std::string(waterName),terrain->model_data });
+	objects.insert({ waterName, terrain });
+	return *terrain;
 }
 
 void ResourceManager::LoadTexture(std::string resName, std::string fileName) {
 	try
 	{
-		textures.emplace(resName, new Texture(fileName.c_str()));
+		Texture* nTex = new Texture(fileName.c_str());
+		nTex->name = resName;
+		textures.emplace(resName, nTex);
 	}
 	catch (const std::exception&)
 	{
@@ -140,6 +174,7 @@ void ResourceManager::LoadAnimatedModel(std::string resName, std::string fileNam
 			model->SetSpecularTexture(textures.at(specName));
 
 		//model
+		model->name = resName;
 		models.emplace(resName, model);
 	}
 	catch (const std::exception&)
@@ -152,7 +187,7 @@ void ResourceManager::LoadModel(std::string resName, std::string fileName, std::
 	try
 	{
 		Model* model = new Model(fileName.c_str());
-
+		model->name = resName;
 		//textures
 		if (textures.find(diffName) != textures.end())
 			model->SetDiffuseTexture(textures.at(diffName));
@@ -175,7 +210,9 @@ void ResourceManager::LoadModel(std::string resName, std::string fileName, std::
 void ResourceManager::LoadShader(std::string resName, std::string vertPath, std::string fragPath, std::string geomPath) {
 	try
 	{
-		shaders.emplace(resName, new Shader(vertPath.c_str(), fragPath.c_str(), geomPath.c_str()));
+		Shader* nshader = new Shader(vertPath.c_str(), fragPath.c_str(), geomPath.c_str());
+		nshader->name = resName;
+		shaders.emplace(resName, nshader);
 	}
 	catch (const std::exception&)
 	{
@@ -187,7 +224,10 @@ void ResourceManager::LoadCubemap(std::string resName, std::string right, std::s
 	try
 	{
 		std::vector<std::string> sides({right,left,top,bottom,front,back});
-		cubemaps.emplace(resName, new CubeMap(sides));
+
+		CubeMap* nCubemap = new CubeMap(sides);
+		nCubemap->name = resName;
+		cubemaps.emplace(resName, nCubemap);
 	}
 	catch (const std::exception&)
 	{

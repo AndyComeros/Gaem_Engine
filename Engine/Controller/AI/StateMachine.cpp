@@ -15,10 +15,16 @@ void StateMachine::ChangeState(State& nState)
 	}
 }
 
-void StateMachine::ChangeGlobalState(State* nState)
+void StateMachine::ChangeGlobalState(State& nState)
 {
-	globalState = nState;
+	globalState = &nState;
 	globalState->Enter(*owner);
+}
+
+void StateMachine::ChangePreviousState(State& nState)
+{
+	previousState = &nState;
+	previousState->Enter(*owner);
 }
 
 void StateMachine::RevertState()

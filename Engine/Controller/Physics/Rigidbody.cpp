@@ -23,18 +23,23 @@ void Rigidbody::ApplyTorqueLocal(glm::vec3 torque)
 
 void Rigidbody::ModType(int type)
 {
+	mod = 0;
 	switch (type)
 	{
 	case KINE:
 		rbPtr->setType(rp3d::BodyType::KINEMATIC);
+		mod = type;
 		break;
 	case STAT:
 		rbPtr->setType(rp3d::BodyType::STATIC);
+		mod = type;
 		break;
 	case DYNA:
 		rbPtr->setType(rp3d::BodyType::DYNAMIC);
+		mod = type;
 		break;
 	}
+	
 }
 
 void Rigidbody::SetUseGravity(bool isGravity)
@@ -118,6 +123,22 @@ void Rigidbody::SetAxisAngleFactor(float x, float y, float z)
 	rbPtr->setAngularLockAxisFactor({ x,y,z });
 }
 
+void Rigidbody::SetLinearVelocity(float x, float y, float z)
+{
+	if (!rbPtr)
+		return;
+
+	rbPtr->setLinearVelocity({ x,y,z });
+}
+
+void Rigidbody::SetAngularVelocity(float x, float y, float z)
+{
+	if (!rbPtr)
+		return;
+
+	rbPtr->setAngularVelocity({ x,y,z });
+}
+
 glm::vec3 Rigidbody::GetLinearVelocty()
 {
 	if (!rbPtr)
@@ -136,4 +157,77 @@ glm::vec3 Rigidbody::GetAngularVelocity()
 	rp3d::Vector3 rVal = rbPtr->getAngularVelocity();
 
 	return { rVal.x,rVal.y,rVal.z};
+}
+
+void Rigidbody::SetColliderBox(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, glm::vec3 scale)
+{
+}
+
+void Rigidbody::SetColliderSphere(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius)
+{
+}
+
+void Rigidbody::SetColliderCapsule(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius, float height)
+{
+}
+
+PhysicsCollider* Rigidbody::GetCollider()
+{
+	return collider;
+}
+
+int Rigidbody::GetModType()
+{
+	return mod;
+}
+
+float Rigidbody::GetMass()
+{
+	if (!rbPtr)
+		return -1.0f;
+
+	return rbPtr->getMass();
+}
+
+float Rigidbody::GetDampeningLinear()
+{
+	if (!rbPtr)
+		return 0.0f;
+
+	return rbPtr->getLinearDamping();
+}
+
+float Rigidbody::GetDampeningAngle()
+{
+	if (!rbPtr)
+		return 0.0f;
+
+	return rbPtr->getAngularDamping();
+}
+
+glm::vec3 Rigidbody::GetCenterOfMass()
+{
+	if (!rbPtr)
+		return {0,0,0};
+
+	rp3d::Vector3 val = rbPtr->getLocalCenterOfMass();
+	return { val.x, val.y, val.z};
+}
+
+glm::vec3 Rigidbody::GetAxisLinearFactor()
+{
+	if (!rbPtr)
+		return { 0,0,0 };
+
+	rp3d::Vector3 val = rbPtr->getLinearLockAxisFactor();
+	return { val.x, val.y, val.z };
+}
+
+glm::vec3 Rigidbody::GetAxisAngleFactor()
+{
+	if (!rbPtr)
+		return { 0,0,0 };
+
+	rp3d::Vector3 val = rbPtr->getAngularLockAxisFactor();
+	return { val.x, val.y, val.z };
 }

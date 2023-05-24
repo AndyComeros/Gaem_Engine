@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Terrain.h"
 #include "Lighting.h"
-#include <Physics.h>
+#include <Physics/Physics.h>
 #include <map>
 /**
 *	@Class Scene
@@ -25,6 +25,11 @@ public:
 		*	@brief destructor
 		*/
 	~Scene();
+
+		/**
+		*	@brief assignment operator overload
+		*/
+	Scene& operator=(const Scene& other);
 
 		/**
 		*	@brief Add an object to the scene
