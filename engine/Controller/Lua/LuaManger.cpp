@@ -284,7 +284,8 @@ void LuaManager::Expose_Engine() {
 
 	Expose_CPPClass<Renderer>("Renderer",
 		sol::no_constructor,
-		"ToggleWireFrame", &Renderer::ToggleWireFrame
+		"ToggleWireFrame", &Renderer::ToggleWireFrame,
+		"GetFPS", &Renderer::GetFPS
 		);
 
 	Expose_CPPClass<StateMachine>("StateMachine",

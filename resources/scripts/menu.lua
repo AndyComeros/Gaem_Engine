@@ -21,13 +21,11 @@ local current_menu = 1;
 function draw_menu()
 
 	GUI:Start(false);
-	--print("start");
 	if(cases[current_menu])
 	then
 		cases[current_menu]();
 	end;
 	GUI:End();
-	--print("end");
 end
 
 
@@ -99,5 +97,8 @@ function draw_options_menu()
 end
 
 function draw_ingame()
+	
 	GUI:Text("in-game",0.5);
+	local fps = math.floor(renderer:GetFPS() + 0.5); 
+	GUI:Text((fps.."fps"),0.5);
 end
