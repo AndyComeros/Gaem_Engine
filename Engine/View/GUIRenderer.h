@@ -29,6 +29,12 @@ public:
 	~GUIRenderer();
 
 		/**
+		*	@brief free up GUI resources
+		*	@return void
+		*/
+	void Shutdown();
+
+		/**
 		*	@brief initalize gui
 		*	@param nwindow window being rendered to
 		*	@return void

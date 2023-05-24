@@ -21,12 +21,13 @@ local current_menu = 1;
 function draw_menu()
 
 	GUI:Start(false);
-	
+	--print("start");
 	if(cases[current_menu])
 	then
 		cases[current_menu]();
 	end;
 	GUI:End();
+	--print("end");
 end
 
 
@@ -53,7 +54,7 @@ function draw_main_menu()
 
 	if(GUI:Button("Exit",0.5, 200, 40))
 	then
-		print("Exit");
+		engine:Shutdown();
 	end
 end
 

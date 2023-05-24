@@ -9,6 +9,11 @@ GUIRenderer::GUIRenderer() : window(nullptr), currentGUI(0) {
 }
 
 GUIRenderer::~GUIRenderer() {
+	Shutdown();
+}
+
+void GUIRenderer::Shutdown()
+{
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
@@ -89,8 +94,6 @@ void GUIRenderer::Start(bool background)
 
 void GUIRenderer::End()
 {
-	
-
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

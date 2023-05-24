@@ -8,7 +8,18 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
-GameEngine::GameEngine() 
+void GameEngine::ExposeToLua(){
+
+	luaManager.Expose_CPPClass<GameEngine>("GameEngine",
+		sol::no_constructor,
+		"Time", &GameEngine::Time,
+		"DeltaTime", &GameEngine::DeltaTime,
+		"Shutdown", &GameEngine::Shutdown
+		);
+	luaManager.Expose_CPPReference("engine",*this);
+}
+
+GameEngine::GameEngine()
 {
 	//init window and glfw.
 	glfwInit();
@@ -48,6 +59,7 @@ GameEngine::GameEngine()
 
 
 	//expose to lua
+	ExposeToLua();
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("scene", *scene);
 	luaManager.Expose_CPPReference("physics", scene->physics);
@@ -73,8 +85,7 @@ GameEngine::GameEngine()
 
 GameEngine::~GameEngine() {
 	//do some cleanup
-	
-	glfwTerminate();
+
 }
 
 //start main loop
@@ -100,9 +111,12 @@ void GameEngine::Run() {
 		inputMngr.KeyActions(deltaTime);
 
 		renderer.Draw(*scene, deltaTime);
+
+		luaManager.RunUpdateMethod(deltaTime);
+
 		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
 		//guirenderer.Draw();
-		luaManager.RunUpdateMethod(deltaTime);
+		
 		glfwSwapBuffers(window);
 
 	}
@@ -110,6 +124,7 @@ void GameEngine::Run() {
 
 	//cleanup
 	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
 double GameEngine::Time()
@@ -128,3 +143,9 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s, GameEngine::Get().deltaTime);
   }
+
+void GameEngine::Shutdown()
+{
+	isRunning = false;
+	glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
