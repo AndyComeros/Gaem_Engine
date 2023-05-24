@@ -31,7 +31,6 @@ void AIManager::Init(Scene* nScene)
 void AIManager::AddState(const std::string& stateName, State* nState)
 {
 	states.insert({stateName,nState});
-	LuaManager::Get().Expose_CPPReference(stateName.c_str(), *nState);
 }
 
 State* AIManager::GetState(const std::string& stateName)
