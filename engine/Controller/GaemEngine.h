@@ -4,8 +4,8 @@
 #include <GUIRenderer.h>
 #include <InputManager.h>
 #include <AI/AIManager.h>
+#include <Lua/LuaManager.h>
 #include <Physics/Physics.h>
-#include <AI/States/global_states.h>
 #include <Serialization/SceneLoader.h>
 
 /**
@@ -51,7 +51,13 @@ public:
 		*	@param height new window height
 		*	@return void
 		*/
-	static void ResizeCallback(GLFWwindow* window, int width, int height);		
+	static void ResizeCallback(GLFWwindow* window, int width, int height);	
+
+		/**
+		*	@brief destroys context windows and frees up recources
+		*	@return void
+		*/
+	void Shutdown();
 
 		/**
 		*	@brief Set if the AI and physics should be updated
@@ -87,6 +93,10 @@ public:
 	AIManager& aiManager = AIManager::Get();
 
 private:
+
+		//expose game engine windowing and special functions to lua
+	void ExposeToLua();
+
 		///updates per second
 	decimal timeStep = 0.0f;
 		///time since last update
@@ -96,14 +106,9 @@ private:
 		///time since last frame
 	double deltaTime = 0.0f;
 		///whether main loop is running
-<<<<<<< Updated upstream
-	bool isRunning = false;
-		
-=======
 	bool isRunning = false;	
 		///whether AI and physics are being updated
 	bool simIsRunning = true;
->>>>>>> Stashed changes
 		///Default constructor. Private becuase singleton
 	GameEngine();
 		///Default Destructor.

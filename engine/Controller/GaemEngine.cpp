@@ -8,9 +8,8 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
-<<<<<<< Updated upstream
 GameEngine::GameEngine() 
-=======
+
 void GameEngine::ExposeToLua(){
 
 	luaManager.Expose_CPPClass<GameEngine>("GameEngine",
@@ -25,7 +24,7 @@ void GameEngine::ExposeToLua(){
 }
 
 GameEngine::GameEngine()
->>>>>>> Stashed changes
+
 {
 	//init window and glfw.
 	glfwInit();
@@ -63,21 +62,13 @@ GameEngine::GameEngine()
 	//callbacks
 	glfwSetFramebufferSizeCallback(window, ResizeCallback);
 
-
 	//expose to lua
+	ExposeToLua();
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("scene", *scene);
 	luaManager.Expose_CPPReference("physics", scene->physics);
 	luaManager.Expose_CPPReference("renderer", renderer);
 	luaManager.Expose_CPPReference("GUI", guirenderer);
-
-	//add generic built in states
-	aiManager.AddState("state_wander", new State_Wander);
-	aiManager.AddState("state_chase", new State_Chase);
-	aiManager.AddState("state_pursuit", new State_Pursuit);
-	aiManager.AddState("state_flee", new State_Flee);
-	aiManager.AddState("state_evade", new State_Evade);
-	aiManager.AddState("state_patrol", new State_Patrol);
 
 	luaManager.RunInitMethod();
 
@@ -98,8 +89,7 @@ GameEngine::GameEngine()
 
 GameEngine::~GameEngine() {
 	//do some cleanup
-	
-	glfwTerminate();
+
 }
 
 //start main loop
@@ -114,21 +104,7 @@ void GameEngine::Run() {
 		deltaTime = currentFrameTime - previousFrameTime;
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;
-    
-<<<<<<< Updated upstream
-		glfwPollEvents();
-
-		scene->physics.StepPhysics(deltaTime);
-		scene->physics.UpdateGameObjects(scene->gameObjects);
 		
-		aiManager.UpdateAgents(deltaTime);
-		luaManager.RunUpdateMethod(deltaTime);
-		inputMngr.KeyActions(deltaTime);
-
-		renderer.Draw(*scene, deltaTime);
-		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
-		guirenderer.Draw();
-=======
 		inputMngr.KeyActions(deltaTime);
 
 		if (simIsRunning) {
@@ -144,7 +120,6 @@ void GameEngine::Run() {
 		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
 		luaManager.RunUpdateMethod(deltaTime);
 
->>>>>>> Stashed changes
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -152,6 +127,7 @@ void GameEngine::Run() {
 
 	//cleanup
 	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
 double GameEngine::Time()
@@ -169,9 +145,7 @@ void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 	s.camera.aspectRatio = (float)width / (float)height;
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s, GameEngine::Get().deltaTime);
-  }
-<<<<<<< Updated upstream
-=======
+}
 
 void GameEngine::Shutdown()
 {
@@ -188,4 +162,4 @@ bool GameEngine::IsSimRunning()
 {
 	return simIsRunning;
 }
->>>>>>> Stashed changes
+

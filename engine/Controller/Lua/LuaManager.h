@@ -6,6 +6,8 @@
 #include <GUIRenderer.h>
 #include <Renderer.h>
 #include <AI/States/State.h>
+#include <Serialization/SceneLoader.h>
+#include <AI/States/global_states.h>
 
 /**
 *	@Class LuaManager

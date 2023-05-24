@@ -7,6 +7,7 @@
 #include <Terrain.h>
 #include <json/json.h>
 #include <fstream>
+#include <filesystem>
 
 
 class SceneLoader
@@ -21,6 +22,8 @@ public:
 	//load a scene from json file.
 	Scene* LoadScene(const std::string inName);
 
+	
+	std::vector<std::string> GetSaves(const std::string path);
 	
 
 

@@ -151,7 +151,7 @@ Scene* SceneLoader::LoadScene(const std::string inName)
                 max = rb["max"].asFloat();
                 if(rb["heights"].asBool())
                     scene->physics.AddRigidBodyColliderHeightMap(*static_cast<Terrain*>(go));
-                //;
+                
                 break;
             case COLLIDER_INVALID:
                 break;
@@ -167,6 +167,18 @@ Scene* SceneLoader::LoadScene(const std::string inName)
     }
 
     return scene;
+}
+
+std::vector<std::string> SceneLoader::GetSaves(const std::string path)
+{
+    std::vector<std::string> fileNames;
+
+    for (const auto& entry : std::filesystem::directory_iterator(path)) {
+        if (entry.is_regular_file()) {
+            fileNames.push_back(entry.path().filename().string());
+        }
+    }
+    return fileNames;
 }
 
 Json::Value SceneLoader::ObjectToJson(GameObject* obj)

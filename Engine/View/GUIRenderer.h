@@ -29,6 +29,12 @@ public:
 	~GUIRenderer();
 
 		/**
+		*	@brief free up GUI resources
+		*	@return void
+		*/
+	void Shutdown();
+
+		/**
 		*	@brief initalize gui
 		*	@param nwindow window being rendered to
 		*	@return void
@@ -48,6 +54,19 @@ public:
 		*/
 	void SwitchMenu(int nGUI);
 
+	//lua programmable GUI//
+
+	void Start(bool background);
+	void End();
+
+	void Text(const std::string label, float alignment);
+	bool Button(const std::string label, float alignment, float width, float height);
+	bool Image(const std::string texture, float width, float height, float alignX, float alignY);
+	void Tab(float size);
+	void SetCursorPosX(float pos);
+	void SetCursorPosY(float pos);
+
+
 private:
 
 		///Draw generic main menu
@@ -65,7 +84,7 @@ private:
 
 	void TextCenteredOnLine(const char* label, float alignment);
 
-	bool ButtonCenteredOnLine(const char* label, float alignment);
+	bool ButtonCenteredOnLine(const char* label, float alignment, float width);
 
 	void AlignForWidth(float width, float alignment);
 		

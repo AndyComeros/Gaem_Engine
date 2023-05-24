@@ -1,14 +1,10 @@
-<<<<<<< Updated upstream
-=======
-
 dofile("resources/scripts/menu.lua")
->>>>>>> Stashed changes
 dofile("resources/scripts/inputs.lua")
 
 function init()
 	print("init lua");
 
-	--load textures
+
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
@@ -124,11 +120,8 @@ function init()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
-<<<<<<< Updated upstream
-	for i = 1,20,1
-=======
+
 	for i = 1,200,1
->>>>>>> Stashed changes
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
@@ -158,23 +151,17 @@ function init()
 	camera = scene:GetCamera();
 	camera.farPlane = 10000;
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
-	
+
 	print("End Init");
 end
 
 function update(deltaTime)
+
 	local Player = scene:GetObject("Player");
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
-<<<<<<< Updated upstream
-
-	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-
-=======
-
-	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-
 	draw_menu();
->>>>>>> Stashed changes
+	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
+	draw_menu();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
 end
