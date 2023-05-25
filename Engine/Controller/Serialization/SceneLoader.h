@@ -8,7 +8,7 @@
 #include <json/json.h>
 #include <fstream>
 #include <filesystem>
-
+#include <sys/stat.h>
 
 class SceneLoader
 {

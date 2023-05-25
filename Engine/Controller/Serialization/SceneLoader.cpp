@@ -12,6 +12,8 @@ SceneLoader::~SceneLoader()
 
 void SceneLoader::SaveScene(Scene* scene, const std::string outName)
 {
+
+    struct stat info;
     std::ofstream out(outName);
 
     Json::Value root;
@@ -178,6 +180,9 @@ Scene& SceneLoader::LoadScene(const std::string inName)
 std::vector<std::string> SceneLoader::GetSaves(const std::string path)
 {
     std::vector<std::string> fileNames;
+    struct stat info;
+    if (stat(path.c_str(), &info) != 0)
+        return fileNames;
 
     for (const auto& entry : std::filesystem::directory_iterator(path)) {
         if (entry.is_regular_file()) {
