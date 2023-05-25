@@ -23,6 +23,11 @@ local cases = {
 		input:SetMouseLock(false);
 		engine:SetSimulation(true);
 		draw_ingame();
+	end,
+	[5] = function()
+		input:SetMouseLock(true);
+		engine:SetSimulation(false);
+		draw_window_option();
 	end
 }
 
@@ -107,6 +112,11 @@ function draw_options_menu()
 
 	GUI:Tab(300);
 	GUI:Text("Options",0.5);
+	
+	if(GUI:Button("Window Options",0.5, 200, 40))
+	then
+		current_menu = 5;
+	end
 
 	if(GUI:Button("Back",0.5, 200, 40))
 	then
@@ -123,6 +133,35 @@ function draw_ingame()
 	GUI:Text("in-game",0.5);
 	local fps = math.floor(renderer:GetFPS() + 0.5); 
 	GUI:Text((fps.."fps"),0.5);
+
+	GUI:End();
+end
+
+function draw_window_option()
+
+	GUI:Start(true);
+	GUI:Tab(300);
+	GUI:Text("Change Window Mode",0.5);
+
+
+
+	if(GUI:Button("Windowed",0.5, 200, 40))
+	then
+		engine:SetWindowType(1);
+	end
+	if(GUI:Button("Borderless",0.5, 200, 40))
+	then
+		engine:SetWindowType(2);
+	end
+	if(GUI:Button("Full Screen",0.5, 200, 40))
+	then
+		engine:SetWindowType(3);
+	end
+
+	if(GUI:Button("Back",0.5, 200, 40))
+	then
+		current_menu = 3;
+	end
 
 	GUI:End();
 end

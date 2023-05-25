@@ -8,6 +8,10 @@
 #include <Physics/Physics.h>
 #include <Serialization/SceneLoader.h>
 
+const int WINDOW_TYPE_WINDOWED	 = 1;
+const int WINDOW_TYPE_BORDERLESS = 2;
+const int WINDOW_TYPE_FULLSCREEN = 3;
+
 /**
 *	@Class GameEngine
 *	@brief Used to manage the engine, windowing, controllers and run the main loop.
@@ -78,6 +82,24 @@ public:
 		*	@return void
 		*/
 	void SwitchScenes(Scene& nscene);
+
+		/**
+		*	@brief Change the active windows type; such as borderless, fullscreen etc.
+		*	@param type type of window to be set to. Window types are:
+		*	<ul><li>WINDOW_TYPE_WINDOWED</li>
+		*		<li>WINDOW_TYPE_BORDERLESS</li>
+		*		<li>WINDOW_TYPE_FULLSCREEN</li></ul>
+		* 
+		*	@return void
+		*/
+	void SetWindowType(int type);
+
+		/**
+		*	@brief Set the window icon
+		*	@param path filepath to icon
+		*	@return void
+		*/
+	void SetWindowIcon(std::string path);
 
 		///Window width
 	int wWidth = 1920;
