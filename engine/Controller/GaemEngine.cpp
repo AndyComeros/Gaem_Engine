@@ -20,7 +20,8 @@ void GameEngine::ExposeToLua(){
 		"scene", &GameEngine::scene,
 		"SwitchScenes", &GameEngine::SwitchScenes,
 		"SetWindowType", &GameEngine::SetWindowType,
-		"SetWindowIcon", &GameEngine::SetWindowIcon
+		"SetWindowIcon", &GameEngine::SetWindowIcon,
+		"SetWindowName", &GameEngine::SetWindowName
 		);
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("engine",*this);
@@ -196,5 +197,10 @@ void GameEngine::SetWindowIcon(std::string path)
 	image.width = tex.GetWidth();
 	image.height = tex.GetHeight();
 	glfwSetWindowIcon(window,1, &image);
+}
+
+void GameEngine::SetWindowName(std::string name)
+{
+	glfwSetWindowTitle(window,name.c_str());
 }
 

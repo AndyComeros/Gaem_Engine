@@ -101,6 +101,13 @@ public:
 		*/
 	void SetWindowIcon(std::string path);
 
+		/**
+		*	@brief Set the window title
+		*	@param new window name
+		*	@return void
+		*/
+	void SetWindowName(std::string path);
+
 		///Window width
 	int wWidth = 1920;
 		///Window height
