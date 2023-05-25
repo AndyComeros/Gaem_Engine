@@ -38,7 +38,7 @@ void SceneLoader::SaveScene(Scene* scene, const std::string outName)
 
 }
 
-Scene* SceneLoader::LoadScene(const std::string inName)
+Scene& SceneLoader::LoadScene(const std::string inName)
 {
     Scene* scene = new Scene();
 
@@ -104,6 +104,10 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         Json::Value rbcollider = rb["collider"];
         
         scene->physics.AddRigidBody(*go, rb["mod"].asInt());
+
+        if(rb["contact_listen"].asBool())
+            go->rigidBody.ToggleContactListenState();
+
         go->rigidBody.SetMass(rb["mass"].asFloat());
         go->rigidBody.SetDampeningLinear(rb["damp_linear"].asFloat());
         go->rigidBody.SetDampeningAngle(rb["damp_angle"].asFloat());
@@ -113,7 +117,6 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         go->rigidBody.SetAxisLinearFactor( rb["axis_linear_factor"][0].asFloat() ,rb["axis_linear_factor"][1].asFloat() ,rb["axis_linear_factor"][2].asFloat() );
 
         go->rigidBody.SetAxisAngleFactor(rb["axis_angle_factor"][0].asFloat(), rb["axis_angle_factor"][1].asFloat(), rb["axis_angle_factor"][2].asFloat());
-
 
         if (rbcollider["type"].asInt() != COLLIDER_INVALID)
         {
@@ -158,6 +161,9 @@ Scene* SceneLoader::LoadScene(const std::string inName)
             default:
                 break;
             }
+            go->rigidBody.SetLinearVelocity(rb["linear_velocity"][0].asFloat(), rb["linear_velocity"][1].asFloat(), rb["linear_velocity"][2].asFloat());
+            go->rigidBody.SetAngularVelocity(rb["angular_velocity"][0].asFloat(), rb["angular_velocity"][1].asFloat(), rb["angular_velocity"][2].asFloat());
+            go->SetRotation({ jobj["rotation"][0].asFloat(), jobj["rotation"][1].asFloat(), jobj["rotation"][2].asFloat() });
 
         }
         //end phyiscs
@@ -166,7 +172,7 @@ Scene* SceneLoader::LoadScene(const std::string inName)
         scene->AddObject(*go);
     }
 
-    return scene;
+    return *scene;
 }
 
 std::vector<std::string> SceneLoader::GetSaves(const std::string path)
@@ -207,6 +213,8 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
 
     //rigidbody
     Json::Value rb;
+
+    rb["contact_listen"] = obj->rigidBody.GetIsContactListen();
     rb["mass"] = obj->rigidBody.GetMass();
     rb["mod"] = obj->rigidBody.GetModType();
     rb["damp_linear"] = obj->rigidBody.GetDampeningLinear();
@@ -223,6 +231,14 @@ Json::Value SceneLoader::ObjectToJson(GameObject* obj)
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().x);
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().y);
     rb["axis_angle_factor"].append(obj->rigidBody.GetAxisAngleFactor().z);
+
+    rb["linear_velocity"].append(obj->rigidBody.GetLinearVelocty().x);
+    rb["linear_velocity"].append(obj->rigidBody.GetLinearVelocty().y);
+    rb["linear_velocity"].append(obj->rigidBody.GetLinearVelocty().z);
+
+    rb["angular_velocity"].append(obj->rigidBody.GetAngularVelocity().x);
+    rb["angular_velocity"].append(obj->rigidBody.GetAngularVelocity().y);
+    rb["angular_velocity"].append(obj->rigidBody.GetAngularVelocity().z);
 
     Json::Value rbcollider;
     PhysicsCollider* collider = obj->rigidBody.GetCollider();

@@ -28,18 +28,16 @@ local cases = {
 
 --called every update, renders current menu
 function draw_menu()
---set font
 	if(cases[current_menu])
 	then
 		cases[current_menu]();
-	end;
-	
+	end;	
 end
 
 
 function draw_main_menu()
 
-	GUI:Start(true);
+	GUI:Start(false);
 	GUI:Tab(300);
 	GUI:Text("Main Menu",0.5);
 
@@ -71,7 +69,7 @@ end
 
 function draw_save_menu()
 
-	GUI:Start(true);
+	GUI:Start(false);
 
 	GUI:Tab(300);
 	GUI:Text("Choose a save to load:",0.5);
@@ -83,12 +81,13 @@ function draw_save_menu()
 	then
 		loader:SaveScene(engine.scene,"resources/saves/save"..(#saves + 1)..".json");
 	end
-
 	
 	for i, v in ipairs(saves)
 	do
 		if(GUI:Button(v, 0.5, 200, 40))
 		then
+			nscene = loader:LoadScene("resources/saves/"..v);
+			engine:SwitchScenes(nscene);
 			print(v);
 		end
     end
@@ -104,7 +103,7 @@ end
 
 function draw_options_menu()
 
-	GUI:Start(true);
+	GUI:Start(false);
 
 	GUI:Tab(300);
 	GUI:Text("Options",0.5);

@@ -159,8 +159,7 @@ function update(deltaTime)
 
 	local Player = scene:GetObject("Player");
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
-	draw_menu();
-	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
+	--Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	draw_menu();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);

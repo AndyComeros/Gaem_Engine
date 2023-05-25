@@ -20,7 +20,7 @@ public:
 	void SaveScene(Scene* scene, const std::string outName);
 
 	//load a scene from json file.
-	Scene* LoadScene(const std::string inName);
+	Scene& LoadScene(const std::string inName);
 
 	
 	std::vector<std::string> GetSaves(const std::string path);

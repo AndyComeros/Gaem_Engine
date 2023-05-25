@@ -72,6 +72,13 @@ public:
 		*/
 	bool IsSimRunning();
 
+		/**
+		*	@brief Change the active scene being rendered and simulated
+		*	@param Scene new scene to be used
+		*	@return void
+		*/
+	void SwitchScenes(Scene& nscene);
+
 		///Window width
 	int wWidth = 1920;
 		///Window height

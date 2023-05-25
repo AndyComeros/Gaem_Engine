@@ -12,6 +12,16 @@ DrawItem& ResourceManager::GetDrawItemReference(std::string resName)
 	return *models.at(resName);
 }
 
+void ResourceManager::ClearGameObjects()
+{
+	for (auto& it : objects) {
+		if (!dynamic_cast<Terrain*>(it.second)) {
+			delete it.second;
+			objects.erase(it.first);
+		}
+	}
+}
+
 ResourceManager::ResourceManager(){
 
 		//default shader
@@ -43,7 +53,14 @@ GameObject& ResourceManager::CreateGameObject(std::string objectName, std::strin
 	else if (shaders.find("default") != shaders.end()) {
 		gameObject->shader = shaders.at("default");
 	}
-	objects.insert({objectName, gameObject});
+
+	if (objects.find(objectName) != objects.end()) {
+		delete objects[objectName];
+		objects[objectName] = gameObject;
+	}
+	else {
+		objects.insert({ objectName, gameObject });
+	}
 
 	return *gameObject;
 }

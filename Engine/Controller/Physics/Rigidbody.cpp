@@ -231,3 +231,8 @@ glm::vec3 Rigidbody::GetAxisAngleFactor()
 	rp3d::Vector3 val = rbPtr->getAngularLockAxisFactor();
 	return { val.x, val.y, val.z };
 }
+
+bool Rigidbody::GetIsContactListen()
+{
+	return registered;
+}

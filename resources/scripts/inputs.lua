@@ -90,7 +90,7 @@ function KeyPressFunc(dt)
 	local camera = scene:GetCamera();
 	local turnspeed = 2000 * dt;
 	local movespeed = 3000 * dt;
-
+	--print(player.position.x .. " " .. player.position.z);
 	if(input:GetKeyState("escape"))
 	then
 		current_menu = 1;

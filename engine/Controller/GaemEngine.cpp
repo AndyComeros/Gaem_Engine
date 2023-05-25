@@ -17,9 +17,15 @@ void GameEngine::ExposeToLua(){
 		"Shutdown", &GameEngine::Shutdown,
 		"IsSimRunning", &GameEngine::IsSimRunning,
 		"SetSimulation", &GameEngine::SetSimulation,
-		"scene", &GameEngine::scene
+		"scene", &GameEngine::scene,
+		"SwitchScenes", &GameEngine::SwitchScenes
 		);
+	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("engine",*this);
+	luaManager.Expose_CPPReference("scene", *scene);
+	luaManager.Expose_CPPReference("physics", scene->physics);
+	luaManager.Expose_CPPReference("renderer", renderer);
+	luaManager.Expose_CPPReference("GUI", guirenderer);
 }
 
 GameEngine::GameEngine()
@@ -63,12 +69,6 @@ GameEngine::GameEngine()
 
 	//expose to lua
 	ExposeToLua();
-	luaManager.Expose_Engine();
-	luaManager.Expose_CPPReference("scene", *scene);
-	luaManager.Expose_CPPReference("physics", scene->physics);
-	luaManager.Expose_CPPReference("renderer", renderer);
-	luaManager.Expose_CPPReference("GUI", guirenderer);
-
 	luaManager.RunInitMethod();
 
 	//set light uniforms
@@ -78,17 +78,10 @@ GameEngine::GameEngine()
 		Renderer::SetLightUniforms(scene->lights, *it->second);
 	}
 
-	//SceneLoader loader;
-	//loader.SaveScene(scene,"scene.json");
-	//scene = (loader.LoadScene("scene.json"));
-	//luaManager.Expose_CPPReference("scene", *scene);
-	//luaManager.Expose_CPPReference("physics", scene->physics);
-	//aiManager.Init(scene);
 }
 
 GameEngine::~GameEngine() {
 	//do some cleanup
-
 }
 
 //start main loop
@@ -160,5 +153,15 @@ void GameEngine::SetSimulation(bool isRun)
 bool GameEngine::IsSimRunning()
 {
 	return simIsRunning;
+}
+
+void GameEngine::SwitchScenes(Scene& nscene)
+{
+	SceneLoader loader;
+	delete scene;
+	scene = &nscene;
+	luaManager.Expose_CPPReference("scene", nscene);
+	luaManager.Expose_CPPReference("physics", nscene.physics);
+	aiManager.Init(&nscene);
 }
 

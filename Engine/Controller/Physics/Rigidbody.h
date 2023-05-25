@@ -184,11 +184,14 @@ public:
 	glm::vec3 GetCenterOfMass();
 	glm::vec3 GetAxisLinearFactor();
 	glm::vec3 GetAxisAngleFactor();
+	bool GetIsContactListen();
 
 	void ToggleContactListenState()
 	{
-		if (!registered)
+		if (!registered) {
 			worldPtr->setEventListener(&collideListen);
+			registered = true;
+		}
 
 		collideListen.ToggleState();
 	}
