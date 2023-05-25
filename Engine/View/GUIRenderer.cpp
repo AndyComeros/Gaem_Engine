@@ -29,10 +29,23 @@ void GUIRenderer::Init(GLFWwindow* nwindow) {
 	io = &ImGui::GetIO(); (void)io;
 	ImGui::StyleColorsDark();
 
+	ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
+
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
-	ResourceManager::Get().LoadTexture("exitsplash", "resources/textures/exit.png");
+	//style
+	ImGuiStyle* style = &ImGui::GetStyle();
+	ImVec4* colors = style->Colors;
+
+	colors[ImGuiCol_WindowBg] = { 0,0,0,1 };
+	colors[ImGuiCol_Text] = {0.8,0.8,0.8,1};
+
+	colors[ImGuiCol_Button] =			{0.1f, 0.1f, 0.1f, 1.0f};
+	colors[ImGuiCol_ButtonHovered] =	{0.2f, 0.2f, 0.2f, 1.0f};
+	colors[ImGuiCol_ButtonActive] =		{0.3f, 0.3f, 0.3f, 1.0f};
+
+
 }
 
 void GUIRenderer::SetFont(std::string path)
