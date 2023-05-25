@@ -34,4 +34,5 @@ html
 def
 x64
 .vs
+*.json
 

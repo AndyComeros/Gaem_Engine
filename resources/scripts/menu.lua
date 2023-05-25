@@ -134,7 +134,7 @@ end
 
 function draw_ingame()
 
-	GUI:Start(true);
+	GUI:Start(false);
 
 	GUI:Text("in-game",0.5);
 	local fps = math.floor(renderer:GetFPS() + 0.5); 
