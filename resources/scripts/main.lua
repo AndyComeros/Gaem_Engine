@@ -191,15 +191,15 @@ end
 
 function update(deltaTime)
 	local Player = scene:GetObject("Player");
-	local height = terrain:GetHeight(Player.position.x,Player.position.z);
+	local height = terrain:GetHeight(Player.position.x, Player.position.z);
 
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	
-	Sound:setListenerPos(player.position);
-	Sound:setMusicPos(player.position);
+	
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
-	
+	Sound:setListenerPos(Player.position);
+	Sound:setMusicPos(Player.position);
 end
 
 
