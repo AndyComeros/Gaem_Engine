@@ -305,6 +305,19 @@ void LuaManager::Expose_Engine() {
 		);
 
 
+
+	//expose the sound engine
+	Expose_CPPClass<SoundEngine>("SoundEngine",
+		sol::no_constructor,
+		"addSound", &SoundEngine::addSound,
+		"playSound", &SoundEngine::playSound,
+		"addMusic", &SoundEngine::addMusic,
+		"setListenerPos", &SoundEngine::setListenerPos,
+		"setMusicPos", &SoundEngine::setMusicPos,
+		"toggleMusic", &SoundEngine::toggleMusic
+		);
+	luaState["Sound"] = &SoundEngine::Get();
+
 	//add generic built in states
 	State* state_wander = new State_Wander;
 	AIManager::Get().AddState("state_wander", state_wander);
@@ -330,8 +343,6 @@ void LuaManager::Expose_Engine() {
 	AIManager::Get().AddState("state_patrol", state_patrol);
 	Expose_CPPReference("state_patrol", *state_patrol);
 	
-
-
 	Expose_CPPClass<SceneLoader>("SceneLoader",
 		sol::no_constructor,
 		"LoadScene", &SceneLoader::LoadScene,
@@ -341,7 +352,6 @@ void LuaManager::Expose_Engine() {
 
 	static SceneLoader loader;
 	Expose_CPPReference("loader",loader);
-
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");

@@ -47,6 +47,7 @@
     <ClCompile Include="Engine\Controller\AI\States\state_flee.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_evade.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_patrol.cpp" />
+    <ClCompile Include="engine\Controller\SoundEngine.cpp" />
     <ClCompile Include="dependencies\include\jsoncpp.cpp" />
     <ClCompile Include="Engine\Controller\Serialization\SceneLoader.cpp" />
   </ItemGroup>
@@ -106,6 +107,7 @@
     <ClInclude Include="Engine\Controller\AI\States\state_evade.h" />
     <ClInclude Include="Engine\Controller\AI\States\state_patrol.h" />
     <ClInclude Include="Engine\View\Frustum.h" />
+    <ClInclude Include="engine\Controller\SoundEngine.h" />
     <ClInclude Include="dependencies\include\json\json.h" />
     <ClInclude Include="dependencies\include\json\json-forwards.h" />
     <ClInclude Include="Engine\Controller\Serialization\SceneLoader.h" />
