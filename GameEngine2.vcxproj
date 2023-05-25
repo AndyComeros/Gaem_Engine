@@ -168,6 +168,7 @@
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="engine\Controller\Lua\LuaManger.cpp" />
     <ClCompile Include="Engine\Controller\Physics\Physics.cpp" />
+    <ClCompile Include="Engine\Controller\Physics\Rigidbody.cpp" />
     <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
     <ClCompile Include="Engine\Controller\Serialization\SceneLoader.cpp" />
     <ClCompile Include="engine\Model\GameObject.cpp" />
@@ -191,7 +192,6 @@
     <ClCompile Include="Engine\View\Renderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="engine\Model\Rigidbody.cpp" />
     <ClCompile Include="engine\Controller\SoundEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +226,7 @@
     <ClInclude Include="Engine\Controller\md2Reader.h" />
     <ClInclude Include="Engine\Controller\Physics\Collider.h" />
     <ClInclude Include="Engine\Controller\Physics\Physics.h" />
+    <ClInclude Include="Engine\Controller\Physics\Rigidbody.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="Engine\Controller\Serialization\SceneLoader.h" />
     <ClInclude Include="Engine\Controller\Timer.h" />
@@ -252,7 +253,6 @@
     <ClInclude Include="Engine\Model\Terrain.h" />
     <ClInclude Include="Engine\View\GUIRenderer.h" />
     <ClInclude Include="Engine\View\Renderer.h" />
-    <ClInclude Include="engine\Model\Rigidbody.h" />
     <ClInclude Include="engine\Controller\SoundEngine.h" />
   </ItemGroup>
   <ItemGroup>
