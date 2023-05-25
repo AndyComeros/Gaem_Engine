@@ -295,6 +295,18 @@ void LuaManager::Expose_Engine() {
 		);
 
 
+	//expose the sound engine
+	Expose_CPPClass<SoundEngine>("SoundEngine",
+		sol::no_constructor,
+		"addSound", &SoundEngine::addSound,
+		"playSound", &SoundEngine::playSound,
+		"addMusic", &SoundEngine::addMusic,
+		"setListenerPos", &SoundEngine::setListenerPos,
+		"setMusicPos", &SoundEngine::setMusicPos,
+		"toggleMusic", &SoundEngine::toggleMusic
+		);
+
+	luaState["Sound"] = &SoundEngine::Get();
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");

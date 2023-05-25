@@ -20,7 +20,7 @@ ResourceManager::ResourceManager(){
 	shaders.emplace("physics", new Shader("resources/shaders/Physics_Debug/Physics.vert", "resources/shaders/Physics_Debug/Physics.frag", ""));
 		//default terrain shader
 	shaders.emplace("terrain", new Shader("resources/shaders/Default.vert", "resources/shaders/terrain/Terrain.frag", ""));
-	//default Water shader
+		//default Water shader
 	shaders.emplace("Water", new Shader("resources/shaders/Water.vert", "resources/shaders/Water.frag", ""));
 		//default texture
 	textures.emplace("default", new Texture("resources/textures/default.png"));

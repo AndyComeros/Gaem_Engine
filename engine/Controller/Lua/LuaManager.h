@@ -6,6 +6,7 @@
 #include <GUIRenderer.h>
 #include <Renderer.h>
 #include <AI/States/State.h>
+#include <SoundEngine.h>
 
 /**
 *	@Class LuaManager

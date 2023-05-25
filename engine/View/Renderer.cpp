@@ -59,6 +59,9 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 	//caclulate camera view frustum planes
 	scene.camera.CreateViewFrustum();
 	Frustum& camFrustum = scene.camera.frustum;
+	//draw skybox
+	if (scene.skybox)
+		scene.skybox->Render(&scene.camera);
 
 	for (auto& it : scene.gameObjects) {
 		if (it.second) {
@@ -72,7 +75,6 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 			obj->SetUniforms();
 			obj->shader->SetUniform("wireframe", wireFrame);
 			obj->shader->SetUniform("_Time", (float) glfwGetTime());
-
 			//set model matrix uniforms
 			glm::mat4 modelMat(1.0f);
 			modelMat = glm::translate(modelMat, obj->position);
@@ -95,10 +97,6 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 			obj->model_data->Update(deltaTime);
 		}
 	}
-
-	//draw skybox
-	if(scene.skybox)
-		scene.skybox->Render(&scene.camera);
 }
 
 void Renderer::SetLightUniforms(Lights& sLights, Shader& sShader) {

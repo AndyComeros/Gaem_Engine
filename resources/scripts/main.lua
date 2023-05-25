@@ -28,6 +28,10 @@ function init()
 		"resources/textures/skybox/Synthwave2/Back.png"
 	);
 
+	resources:LoadTexture("Rock 2","resources/textures/rock.jpg");
+	resources:LoadTexture("Palmdiff","resources/textures/Palmdiff.png");
+	resources:LoadTexture("PalmEmiss","resources/textures/Palmemiss.png");
+
 	--load models
 	resources:LoadModel("arcade", "resources/models/untitled2022/Arcade.obj","arcade","","");
 	resources:LoadModel("building1", "resources/models/untitled2022/CyberBuilding1.obj","buildingDiff","buildingEmiss","");
@@ -37,6 +41,11 @@ function init()
 	resources:LoadModel("building5", "resources/models/untitled2022/CyberBuilding5.obj","buildingDiff","buildingEmiss","");
 	resources:LoadModel("building6", "resources/models/untitled2022/CyberBuilding6.obj","buildingDiff","buildingEmiss","");
 	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86Diff", "AE86Emis", "AE86Spec");
+	resources:LoadModel("Rock1", "resources/models/Rocks and Trees/Rock1.obj", "Rock 2", "", "");
+	resources:LoadModel("Rock2", "resources/models/Rocks and Trees/Rock2.obj", "Rock 2", "", "");
+	resources:LoadModel("Rock3", "resources/models/Rocks and Trees/Rock3.obj", "Rock 2", "", "");
+	resources:LoadModel("Rock4", "resources/models/Rocks and Trees/Rock4.obj", "Rock 2", "", "");
+	resources:LoadModel("Palm", "resources/models/Rocks and Trees/Palm.obj", "Palm", "Palmdiff", "PalmEmiss");
 
 	resources:LoadTexture("solider","resources/models/md2/cipher.png");
 	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
@@ -53,6 +62,10 @@ function init()
 	soliderModel:SetAnimation("wave"	, 112	, 122	, 10);
 	soliderModel:SetAnimation("death"	, 178	, 197	, 10);
 
+	--audio
+	Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
+
+
 	--setup lighting
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
@@ -68,10 +81,15 @@ function init()
 	physics:AddRigidBodyColliderHeightMap(terrain);
 	scene:AddObject(terrain);
 
-	--loadWater
+	--load Water
 	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 1, 1, 1);
 	water:SetTextureScale(50);
 	scene:AddObject(water);
+
+	Trail = resources:CreateWater( "TrailTest", 20, { }, 50, 1, 1, 1);
+	Trail:SetTextureScale(50);
+	--Trail:setShader
+	scene:AddObject(Trail);
 
 	--Setup Player
 	Player = resources:CreateGameObject("Player", "AE86", "");
@@ -92,6 +110,24 @@ function init()
 	
 	scene:AddObject(Player);
 
+	--adding terrain details (rocks and trees)
+	Rock1 = resources:CreateGameObject("rock1", "Rock1","");
+	Rock1.position = vec3:new(20, terrain:GetHeight(20,20),20);
+	scene:AddObject(Rock1);
+	Rock2 = resources:CreateGameObject("rock2", "Rock2","");
+	Rock2.position = vec3:new(25, terrain:GetHeight(25,25), 25);
+	scene:AddObject(Rock2);
+	Rock3 = resources:CreateGameObject("rock3", "Rock3","");
+	Rock3.position = vec3:new(30, terrain:GetHeight(30,30),30);
+	scene:AddObject(Rock3);
+	Rock4 = resources:CreateGameObject("rock4", "Rock4","");
+	Rock4.position = vec3:new(35, terrain:GetHeight(35,35),35);
+	scene:AddObject(Rock4);
+	
+	Palm = resources:CreateGameObject("Palm", "Palm","");
+	Palm.position = vec3:new(10,terrain:GetHeight(10,10),10);
+	scene:AddObject(Palm);
+	
 	--buildings
 	for i = 1,6,1
 	do
@@ -161,6 +197,8 @@ function update(deltaTime)
 
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
+	Sound:setListenerPos(player.position);
+	Sound:setMusicPos(player.position);
 end
 
 
