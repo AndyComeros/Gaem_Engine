@@ -21,7 +21,7 @@
     <ClCompile Include="engine\Model\Terrain.cpp" />
     <ClCompile Include="engine\Controller\InputManager.cpp" />
     <ClCompile Include="Engine\Controller\InputManager.cpp" />
-    <ClCompile Include="Engine\Controller\Physics.cpp" />
+    <ClCompile Include="Engine\Controller\Physics\Physics.cpp" />
     <ClCompile Include="Engine\Controller\ResourceManager.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_demo.cpp" />
@@ -30,7 +30,7 @@
     <ClCompile Include="dependencies\include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="dependencies\include\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="engine\Model\Rigidbody.cpp" />
+    <ClCompile Include="Engine\Controller\Physics\Rigidbody.cpp" />
     <ClCompile Include="Engine\View\GUIRenderer.cpp" />
     <ClCompile Include="Engine\View\DrawItem.cpp" />
     <ClCompile Include="Engine\Model\MD2\MD2Reader.cpp" />
@@ -48,6 +48,8 @@
     <ClCompile Include="Engine\Controller\AI\States\state_evade.cpp" />
     <ClCompile Include="Engine\Controller\AI\States\state_patrol.cpp" />
     <ClCompile Include="engine\Controller\SoundEngine.cpp" />
+    <ClCompile Include="dependencies\include\jsoncpp.cpp" />
+    <ClCompile Include="Engine\Controller\Serialization\SceneLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Controller\GaemEngine.h" />
@@ -71,7 +73,7 @@
     <ClInclude Include="engine\Model\Material.h" />
     <ClInclude Include="engine\View\Graphics\Graphics.h" />
     <ClInclude Include="Engine\Controller\InputManager.h" />
-    <ClInclude Include="Engine\Controller\Physics.h" />
+    <ClInclude Include="Engine\Controller\Physics\Physics.h" />
     <ClInclude Include="Engine\Controller\ResourceManager.h" />
     <ClInclude Include="Engine\View\GUIRenderer.h" />
     <ClInclude Include="dependencies\include\imgui\imconfig.h" />
@@ -83,7 +85,7 @@
     <ClInclude Include="dependencies\include\imgui\imstb_textedit.h" />
     <ClInclude Include="dependencies\include\imgui\imstb_truetype.h" />
     <ClInclude Include="dependencies\include\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="engine\Model\Rigidbody.h" />
+    <ClInclude Include="Engine\Controller\Physics\Rigidbody.h" />
     <ClInclude Include="Engine\Controller\md2Reader.h" />
     <ClInclude Include="Engine\View\DrawItem.h" />
     <ClInclude Include="Engine\Model\MD2\anorms.h" />
@@ -106,6 +108,10 @@
     <ClInclude Include="Engine\Controller\AI\States\state_patrol.h" />
     <ClInclude Include="Engine\View\Frustum.h" />
     <ClInclude Include="engine\Controller\SoundEngine.h" />
+    <ClInclude Include="dependencies\include\json\json.h" />
+    <ClInclude Include="dependencies\include\json\json-forwards.h" />
+    <ClInclude Include="Engine\Controller\Serialization\SceneLoader.h" />
+    <ClInclude Include="Engine\Controller\Physics\Collider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Model\Graphics\Shaders\Cube_map.frag" />
@@ -128,6 +134,7 @@
     <None Include="resources\scripts\inputs.lua" />
     <None Include="resources\scripts\keybinds.lua" />
     <None Include="resources\scripts\main.lua" />
+    <None Include="resources\scripts\menu.lua" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />

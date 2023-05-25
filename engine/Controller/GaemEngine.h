@@ -7,6 +7,13 @@
 #include <Physics.h>
 #include <AI/States/global_states.h>
 #include <SoundEngine.h>
+#include <Lua/LuaManager.h>
+#include <Physics/Physics.h>
+#include <Serialization/SceneLoader.h>
+
+const int WINDOW_TYPE_WINDOWED	 = 1;
+const int WINDOW_TYPE_BORDERLESS = 2;
+const int WINDOW_TYPE_FULLSCREEN = 3;
 
 /**
 *	@Class GameEngine
@@ -44,20 +51,72 @@ public:
 		*	@return time since last frame
 		*/
 	double DeltaTime();
+
 		/**
 		*	@brief GLFW callback for window resizing. recalulates camera properties and viewport
 		*	@param width new window width
 		*	@param height new window height
 		*	@return void
 		*/
-	static void ResizeCallback(GLFWwindow* window, int width, int height);		
+	static void ResizeCallback(GLFWwindow* window, int width, int height);	
+
+		/**
+		*	@brief destroys context windows and frees up recources
+		*	@return void
+		*/
+	void Shutdown();
+
+		/**
+		*	@brief Set if the AI and physics should be updated
+		*	@param isRun if simulation should be running
+		*	@return void
+		*/
+	void SetSimulation(bool isRun);
+
+		/**
+		*	@brief returns is simulation is running
+		*	@return bool if sim is running
+		*/
+	bool IsSimRunning();
+
+		/**
+		*	@brief Change the active scene being rendered and simulated
+		*	@param Scene new scene to be used
+		*	@return void
+		*/
+	void SwitchScenes(Scene& nscene);
+
+		/**
+		*	@brief Change the active windows type; such as borderless, fullscreen etc.
+		*	@param type type of window to be set to. Window types are:
+		*	<ul><li>WINDOW_TYPE_WINDOWED</li>
+		*		<li>WINDOW_TYPE_BORDERLESS</li>
+		*		<li>WINDOW_TYPE_FULLSCREEN</li></ul>
+		* 
+		*	@return void
+		*/
+	void SetWindowType(int type);
+
+		/**
+		*	@brief Set the window icon
+		*	@param path filepath to icon
+		*	@return void
+		*/
+	void SetWindowIcon(std::string path);
+
+		/**
+		*	@brief Set the window title
+		*	@param new window name
+		*	@return void
+		*/
+	void SetWindowName(std::string path);
 
 		///Window width
 	int wWidth = 1920;
 		///Window height
 	int wHeight = 1080;
 		///Contains all data for rendering scene and stores world physics info
-	Scene scene;
+	Scene* scene;
 		///Window being drawn to and being used for inputs
 	GLFWwindow* window;
 		
@@ -75,6 +134,10 @@ public:
 	SoundEngine& soundEngine = SoundEngine::Get();
 
 private:
+
+		//expose game engine windowing and special functions to lua
+	void ExposeToLua();
+
 		///updates per second
 	decimal timeStep = 0.0f;
 		///time since last update
@@ -84,8 +147,9 @@ private:
 		///time since last frame
 	double deltaTime = 0.0f;
 		///whether main loop is running
-	bool isRunning = false;
-		
+	bool isRunning = false;	
+		///whether AI and physics are being updated
+	bool simIsRunning = true;
 		///Default constructor. Private becuase singleton
 	GameEngine();
 		///Default Destructor.

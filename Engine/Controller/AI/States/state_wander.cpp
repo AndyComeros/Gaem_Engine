@@ -98,7 +98,7 @@ glm::vec3 State_Wander::GetWanderTarget()
 {
 	srand(time(NULL));
 
-	float s = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetSize() * static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetScaleX();
+	float s = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetSize() * static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->scaleX;
 
 	float nx = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
 	float nz = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));

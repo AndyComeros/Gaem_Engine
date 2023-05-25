@@ -184,7 +184,7 @@ public:
 	//display debug 
 	void DrawDebug(Camera* cam, Shader* shader);
 
-private:
+protected:
 	//physics factory and world
 	PhysicsCommon physicsCommon;	
 	PhysicsWorld* world;

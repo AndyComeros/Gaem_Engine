@@ -1,8 +1,6 @@
 
 dofile("resources/scripts/keybinds.lua")
 
-input:SetMouseLock(false);
-
 input:BindKey("forward",KEY_W);
 input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);
@@ -18,7 +16,6 @@ mouseSensitivity = 0.1
 Distance = 10
 moveSpeed = 100
 
-thirdPerson = false
 
 function MouseMoveFunc(dt)
 	local camera = scene:GetCamera();
@@ -34,17 +31,20 @@ function MouseMoveFunc(dt)
 	xoffset = xoffset * mouseSensitivity
 	yoffset = yoffset * mouseSensitivity
 
-	camera.Yaw =  camera.Yaw - xoffset
-	camera.Pitch = camera.Pitch - yoffset
+	if(not input:GetMouseLock())
+	then
+		camera.Yaw =  camera.Yaw - xoffset
+		camera.Pitch = camera.Pitch - yoffset
 
-	if (camera.Pitch < -89.0)
-	then
-		camera.Pitch = -89.0;
-	end
+		if (camera.Pitch < -89.0)
+		then
+			camera.Pitch = -89.0;
+		end
 	
-	if (camera.Pitch > 0.0)
-	then
-		camera.Pitch = 0.0;
+		if (camera.Pitch > 0.0)
+		then
+			camera.Pitch = 0.0;
+		end
 	end
 
 	camDistance();
@@ -90,10 +90,10 @@ function KeyPressFunc(dt)
 	local camera = scene:GetCamera();
 	local turnspeed = 2000 * dt;
 	local movespeed = 3000 * dt;
-
+	--print(player.position.x .. " " .. player.position.z);
 	if(input:GetKeyState("escape"))
 	then
-		GUI:SwitchMenu(1);
+		current_menu = 1;
 	end
 
 
@@ -113,7 +113,6 @@ function KeyPressFunc(dt)
 	if(input:GetKeyState("toggleControlMenu"))
 	then
 		controlPress = true;
-		GUI:SwitchMenu(2);
 	end
 
 

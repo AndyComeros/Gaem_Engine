@@ -8,7 +8,31 @@ GameEngine& GameEngine::Get() {
 	return e_instance;
 }
 
-GameEngine::GameEngine() 
+void GameEngine::ExposeToLua(){
+
+	luaManager.Expose_CPPClass<GameEngine>("GameEngine",
+		sol::no_constructor,
+		"Time", &GameEngine::Time,
+		"DeltaTime", &GameEngine::DeltaTime,
+		"Shutdown", &GameEngine::Shutdown,
+		"IsSimRunning", &GameEngine::IsSimRunning,
+		"SetSimulation", &GameEngine::SetSimulation,
+		"scene", &GameEngine::scene,
+		"SwitchScenes", &GameEngine::SwitchScenes,
+		"SetWindowType", &GameEngine::SetWindowType,
+		"SetWindowIcon", &GameEngine::SetWindowIcon,
+		"SetWindowName", &GameEngine::SetWindowName
+		);
+	luaManager.Expose_Engine();
+	luaManager.Expose_CPPReference("engine",*this);
+	luaManager.Expose_CPPReference("scene", *scene);
+	luaManager.Expose_CPPReference("physics", scene->physics);
+	luaManager.Expose_CPPReference("renderer", renderer);
+	luaManager.Expose_CPPReference("GUI", guirenderer);
+}
+
+GameEngine::GameEngine()
+
 {
 	//init window and glfw.
 	glfwInit();
@@ -34,53 +58,37 @@ GameEngine::GameEngine()
 		return;
 	}
 
+	//scene camera settings
+	scene = new Scene;
+	scene->camera.aspectRatio = (float)wWidth / (float)wHeight;
+
 	inputMngr.Init(window);
 	renderer.Init(window);
 	guirenderer.Init(window);
-	aiManager.Init(&scene);
-
-	//scene camera settings
-	scene.camera.aspectRatio = (float)wWidth / (float)wHeight;
+	aiManager.Init(scene);
 
 	//callbacks
 	glfwSetFramebufferSizeCallback(window, ResizeCallback);
 
-
 	//expose to lua
-	luaManager.Expose_Engine();
-	luaManager.Expose_CPPReference("scene", scene);
-	luaManager.Expose_CPPReference("physics", scene.physics);
-	luaManager.Expose_CPPReference("renderer", renderer);
-	luaManager.Expose_CPPReference("GUI", guirenderer);
-
-	//add generic built in states
-	aiManager.AddState("state_wander", new State_Wander);
-	aiManager.AddState("state_chase", new State_Chase);
-	aiManager.AddState("state_pursuit", new State_Pursuit);
-	aiManager.AddState("state_flee", new State_Flee);
-	aiManager.AddState("state_evade", new State_Evade);
-	aiManager.AddState("state_patrol", new State_Patrol);
-
+	ExposeToLua();
 	luaManager.RunInitMethod();
 
 	//set light uniforms
 	auto it = ResourceManager::Get().ShaderBegin();
 	auto end = ResourceManager::Get().ShaderEnd();
 	for (it; it != end; it++) {
-		Renderer::SetLightUniforms(scene.lights, *it->second);
+		Renderer::SetLightUniforms(scene->lights, *it->second);
 	}
 
 }
 
 GameEngine::~GameEngine() {
 	//do some cleanup
-	
-	glfwTerminate();
 }
 
 //start main loop
 void GameEngine::Run() {
-
 	isRunning = true;
 	//main loop
 	while (!glfwWindowShouldClose(window))
@@ -90,26 +98,30 @@ void GameEngine::Run() {
 		deltaTime = currentFrameTime - previousFrameTime;
 		previousFrameTime = currentFrameTime;
 		accumulator += deltaTime;
-    
-		glfwPollEvents();
-
-		scene.physics.StepPhysics(deltaTime);
-		scene.physics.UpdateGameObjects(scene.gameObjects);
 		
-		aiManager.UpdateAgents(deltaTime);
-		luaManager.RunUpdateMethod(deltaTime);
 		inputMngr.KeyActions(deltaTime);
 
-		renderer.Draw(scene, deltaTime);
-		scene.physics.DrawDebug(&scene.camera, ResourceManager::Get().GetShader("physics"));
-		guirenderer.Draw();
-		glfwSwapBuffers(window);
+		if (simIsRunning) {
+			scene->physics.StepPhysics(deltaTime);
+			scene->physics.UpdateGameObjects(scene->gameObjects);
+			aiManager.UpdateAgents(deltaTime);
+		}
+		else {
+			deltaTime = 0.0f;
+		}
 
+		renderer.Draw(*scene, deltaTime);
+		scene->physics.DrawDebug(&scene->camera, ResourceManager::Get().GetShader("physics"));
+		luaManager.RunUpdateMethod(deltaTime);
+
+		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 	isRunning = false;
 
 	//cleanup
 	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
 double GameEngine::Time()
@@ -123,8 +135,72 @@ double GameEngine::DeltaTime() {
 
 void GameEngine::ResizeCallback(GLFWwindow* window, int width, int height) {
 
-	Scene& s = GameEngine::Get().scene;
+	Scene& s = *GameEngine::Get().scene;
 	s.camera.aspectRatio = (float)width / (float)height;
 	glViewport(0, 0, width, height);
 	GameEngine::Get().renderer.Draw(s, GameEngine::Get().deltaTime);
-  }
+}
+
+void GameEngine::Shutdown()
+{
+	isRunning = false;
+	glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void GameEngine::SetSimulation(bool isRun)
+{
+	simIsRunning = isRun;
+}
+
+bool GameEngine::IsSimRunning()
+{
+	return simIsRunning;
+}
+
+void GameEngine::SwitchScenes(Scene& nscene)
+{
+	SceneLoader loader;
+	delete scene;
+	scene = &nscene;
+	luaManager.Expose_CPPReference("scene", nscene);
+	luaManager.Expose_CPPReference("physics", nscene.physics);
+	aiManager.Init(&nscene);
+}
+
+void GameEngine::SetWindowType(int type)
+{
+	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();;
+	const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);;
+	switch (type) {
+	case 1: // Windowed Window
+		glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_TRUE);
+		glfwSetWindowAttrib(window, GLFW_RESIZABLE, GLFW_TRUE);
+		glfwSetWindowMonitor(window, nullptr, 1, 1, videoMode->width, videoMode->height, 0);
+		break;
+	case 2: // Borderless Window
+		glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_TRUE);
+		glfwSetWindowAttrib(window, GLFW_RESIZABLE, GLFW_FALSE);
+		glfwSetWindowMonitor(window, nullptr, 0, 0, videoMode->width, videoMode->height, 0);
+		break;
+	case 3: // Fullscreen Window
+		glfwSetWindowMonitor(window, primaryMonitor, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
+		break;
+	}
+
+}
+
+void GameEngine::SetWindowIcon(std::string path)
+{
+	Texture tex(path.c_str());
+	GLFWimage image;
+	image.pixels = tex.GetImageData();
+	image.width = tex.GetWidth();
+	image.height = tex.GetHeight();
+	glfwSetWindowIcon(window,1, &image);
+}
+
+void GameEngine::SetWindowName(std::string name)
+{
+	glfwSetWindowTitle(window,name.c_str());
+}
+

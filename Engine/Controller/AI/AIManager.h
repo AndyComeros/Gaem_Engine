@@ -1,6 +1,5 @@
 #pragma once
 #include <AI/Message/MessageDispatcher.h>
-#include <lua/LuaManager.h>
 
 class AIManager
 {
@@ -14,6 +13,8 @@ public:
 	void AddState(const std::string& stateName, State*  nState);
 
 	State* GetState(const std::string& stateName);
+
+	std::string GetStateKey(State* state);
 private:
 
 	Dispatcher* msgDispatcher;

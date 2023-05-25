@@ -182,6 +182,11 @@ class InputManager
 			*/
 		GLFWwindow* GetWindow() { return _Window; };
 
+			/**
+			*	@brief get whether the mouse is locked
+			*	@return bool mouse lock state
+			*/
+		bool GetMouseLock();
 	private:
 			/**
 			*	@brief input manager construtor

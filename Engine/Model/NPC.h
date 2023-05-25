@@ -22,6 +22,9 @@ public:
 	void StopMoving();
 	bool IsTargeting();
 
+
+	//stores arbitrary values
+	std::map<std::string, float> data;
 private:
 
 	glm::vec3 targetPos;
@@ -30,8 +33,4 @@ private:
 	float moveOffset;
 	bool isTargeting;
 	bool move3D;
-
-		//stores values
-	std::map<std::string, float> data;
-
 };

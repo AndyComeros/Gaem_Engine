@@ -25,6 +25,8 @@ public:
 	std::string GetPath();
 
 	unsigned int ID;
+
+	std::string name = "";
 private:
 
 	
