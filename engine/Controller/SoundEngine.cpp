@@ -1,4 +1,5 @@
 #include "SoundEngine.h"
+#include <iostream>
 
 
 SoundEngine& SoundEngine::Get() {
@@ -19,7 +20,7 @@ void SoundEngine::addSound(std::string name, std::string filePath)
 
 void SoundEngine::playSound(std::string name, glm::vec3 pos)
 {
-	_Engine->play3D(_Audio.at(name).c_str(), { pos.x, pos.y, pos.z }, false, false, false);
+	_Engine->play3D(_Audio.at(name).c_str(), irrklang::vec3df(pos.x, pos.y, pos.z), false, false, false);
 }
 
 void SoundEngine::addMusic(std::string filePath)
@@ -30,12 +31,12 @@ void SoundEngine::addMusic(std::string filePath)
 
 void SoundEngine::setListenerPos(glm::vec3 pos)
 {
-	_Engine->setListenerPosition({ pos.x, pos.y, pos.z }, { 0, 0, 1 });
+	_Engine->setListenerPosition(irrklang::vec3df( pos.x, pos.y, pos.z ), { 0, 0, 1 });
 }
 
 void SoundEngine::setMusicPos(glm::vec3 pos)
 {
-	_Music->setPosition({ pos.x, pos.y, pos.z });
+	_Music->setPosition(irrklang::vec3df(pos.x, pos.y, pos.z));
 }
 
 void SoundEngine::toggleMusic(bool state)

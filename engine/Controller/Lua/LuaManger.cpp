@@ -305,7 +305,6 @@ void LuaManager::Expose_Engine() {
 		"setMusicPos", &SoundEngine::setMusicPos,
 		"toggleMusic", &SoundEngine::toggleMusic
 		);
-
 	luaState["Sound"] = &SoundEngine::Get();
 
 	LoadScript("resources/scripts/main.lua");

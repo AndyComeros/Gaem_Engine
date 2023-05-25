@@ -86,10 +86,10 @@ function init()
 	water:SetTextureScale(50);
 	scene:AddObject(water);
 
-	Trail = resources:CreateWater( "TrailTest", 20, { }, 50, 1, 1, 1);
-	Trail:SetTextureScale(50);
+	--Trail = resources:CreateWater( "TrailTest", 20, { }, 50, 1, 1, 1);
+	--Trail:SetTextureScale(50);
 	--Trail:setShader
-	scene:AddObject(Trail);
+	--scene:AddObject(Trail);
 
 	--Setup Player
 	Player = resources:CreateGameObject("Player", "AE86", "");
@@ -194,11 +194,12 @@ function update(deltaTime)
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-
-	KeyPressFunc(deltaTime);
-	MouseMoveFunc(deltaTime);
+	
 	Sound:setListenerPos(player.position);
 	Sound:setMusicPos(player.position);
+	KeyPressFunc(deltaTime);
+	MouseMoveFunc(deltaTime);
+	
 end
 
 
