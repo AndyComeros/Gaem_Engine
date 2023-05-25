@@ -4,7 +4,12 @@ dofile("resources/scripts/inputs.lua")
 function init()
 	print("init lua");
 
+	--engine:SetWindowType(3);
+	engine:SetWindowIcon("resources/textures/icon.png");
+	engine:SetWindowName("InitalZ");
 	GUI:SetFont("resources/fonts/Excluded-z8XrX.ttf");
+
+
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");

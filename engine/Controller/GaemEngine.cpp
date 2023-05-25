@@ -18,7 +18,10 @@ void GameEngine::ExposeToLua(){
 		"IsSimRunning", &GameEngine::IsSimRunning,
 		"SetSimulation", &GameEngine::SetSimulation,
 		"scene", &GameEngine::scene,
-		"SwitchScenes", &GameEngine::SwitchScenes
+		"SwitchScenes", &GameEngine::SwitchScenes,
+		"SetWindowType", &GameEngine::SetWindowType,
+		"SetWindowIcon", &GameEngine::SetWindowIcon,
+		"SetWindowName", &GameEngine::SetWindowName
 		);
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("engine",*this);
@@ -86,7 +89,6 @@ GameEngine::~GameEngine() {
 
 //start main loop
 void GameEngine::Run() {
-
 	isRunning = true;
 	//main loop
 	while (!glfwWindowShouldClose(window))
@@ -163,5 +165,42 @@ void GameEngine::SwitchScenes(Scene& nscene)
 	luaManager.Expose_CPPReference("scene", nscene);
 	luaManager.Expose_CPPReference("physics", nscene.physics);
 	aiManager.Init(&nscene);
+}
+
+void GameEngine::SetWindowType(int type)
+{
+	GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();;
+	const GLFWvidmode* videoMode = glfwGetVideoMode(primaryMonitor);;
+	switch (type) {
+	case 1: // Windowed Window
+		glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_TRUE);
+		glfwSetWindowAttrib(window, GLFW_RESIZABLE, GLFW_TRUE);
+		glfwSetWindowMonitor(window, nullptr, 1, 1, videoMode->width, videoMode->height, 0);
+		break;
+	case 2: // Borderless Window
+		glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_TRUE);
+		glfwSetWindowAttrib(window, GLFW_RESIZABLE, GLFW_FALSE);
+		glfwSetWindowMonitor(window, nullptr, 0, 0, videoMode->width, videoMode->height, 0);
+		break;
+	case 3: // Fullscreen Window
+		glfwSetWindowMonitor(window, primaryMonitor, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
+		break;
+	}
+
+}
+
+void GameEngine::SetWindowIcon(std::string path)
+{
+	Texture tex(path.c_str());
+	GLFWimage image;
+	image.pixels = tex.GetImageData();
+	image.width = tex.GetWidth();
+	image.height = tex.GetHeight();
+	glfwSetWindowIcon(window,1, &image);
+}
+
+void GameEngine::SetWindowName(std::string name)
+{
+	glfwSetWindowTitle(window,name.c_str());
 }
 
