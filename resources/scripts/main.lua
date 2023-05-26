@@ -1,5 +1,6 @@
 dofile("resources/scripts/menu.lua")
 dofile("resources/scripts/inputs.lua")
+dofile("resources/scripts/ai_states.lua")
 
 function init()
 	print("init lua");
@@ -165,6 +166,8 @@ function init()
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
 
+
+	testState  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
 	for i = 1,100,1
 	do
 		
@@ -182,7 +185,7 @@ function init()
 		--Arcade.rigidBody:SetMass(1);
 
 		--Arcade.stateMachine:ChangeState(state_wander);
-		Arcade.stateMachine:ChangeState(state_chase);
+		Arcade.stateMachine:ChangeState(testState);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
 		--Arcade.stateMachine:ChangeState(state_evade);
@@ -215,5 +218,6 @@ end
 
 
 function car_sound()
+	
 	
 end

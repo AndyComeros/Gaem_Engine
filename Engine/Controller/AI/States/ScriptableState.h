@@ -1,11 +1,12 @@
 #pragma once
 #include "State.h"
-#include <LUA/LuaManager.h>
+#include <sol/sol.hpp>
+#include <GameObject.h>
 
 class ScriptableState : public State
 {
 public:
-	ScriptableState(sol::function& nEnter, sol::function& nUpdate, sol::function& nExit, sol::function& message);
+	ScriptableState(sol::function nEnter, sol::function nUpdate, sol::function nExit, sol::function message);
 	~ScriptableState();
 
 	void Enter(GameObject& ent);
@@ -14,8 +15,8 @@ public:
 	void ProcessMessage(GameObject* ent,const Message* message);
 private:
 
-	sol::function* enterFunc;
-	sol::function* updateFunc;
-	sol::function* exitFunc;
-	sol::function* messageFunc;
+	sol::function enterFunc;
+	sol::function updateFunc;
+	sol::function exitFunc;
+	sol::function messageFunc;
 };

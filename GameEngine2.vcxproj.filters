@@ -135,6 +135,7 @@
     <None Include="resources\scripts\keybinds.lua" />
     <None Include="resources\scripts\main.lua" />
     <None Include="resources\scripts\menu.lua" />
+    <None Include="resources\scripts\ai_states.lua" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />

@@ -267,6 +267,7 @@
     <None Include="Engine\Model\Graphics\Shaders\Instance\Instance.vert" />
     <None Include="Engine\Model\Graphics\Shaders\Instance\InstanceDepth.frag" />
     <None Include="lua54.dll" />
+    <None Include="resources\scripts\ai_states.lua" />
     <None Include="resources\scripts\inputs.lua" />
     <None Include="resources\scripts\keybinds.lua" />
     <None Include="resources\scripts\main.lua" />

@@ -10,7 +10,6 @@
 #include <Serialization/SceneLoader.h>
 #include <AI/States/global_states.h>
 
-
 /**
 *	@Class LuaManager
 *	@brief Provided an interface to expose data, classes and functions

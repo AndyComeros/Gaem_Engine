@@ -1,10 +1,10 @@
 #include "ScriptableState.h"
 
-ScriptableState::ScriptableState(sol::function& nEnter, sol::function& nUpdate, sol::function& nExit, sol::function& message){
-	enterFunc = &nEnter;
-	updateFunc = &nUpdate;
-	exitFunc = &nExit;
-	messageFunc = &message;
+ScriptableState::ScriptableState(sol::function nEnter, sol::function nUpdate, sol::function nExit, sol::function message){
+	enterFunc = nEnter;
+	updateFunc = nUpdate;
+	exitFunc = nExit;
+	messageFunc = message;
 }
 
 ScriptableState::~ScriptableState()
@@ -15,7 +15,7 @@ void ScriptableState::Enter(GameObject& ent)
 {
 	try
 	{
-		(*enterFunc)(ent);
+		(enterFunc)(ent);
 	}
 	catch (const std::exception& e)
 	{
@@ -27,7 +27,7 @@ void ScriptableState::Update(GameObject& ent, double dt)
 {
 	try
 	{
-		(*updateFunc)(ent, dt);
+		(updateFunc)(ent, dt);
 	}
 	catch (const std::exception& e)
 	{
@@ -39,7 +39,7 @@ void ScriptableState::Exit(GameObject& ent)
 {
 	try
 	{
-		(*exitFunc)(ent);
+		(exitFunc)(ent);
 	}
 	catch (const std::exception& e)
 	{
@@ -51,7 +51,7 @@ void ScriptableState::ProcessMessage(GameObject* ent,const Message* message)
 {
 	try
 	{
-		(*messageFunc)(ent, message);
+		(messageFunc)(ent, message);
 	}
 	catch (const std::exception& e)
 	{

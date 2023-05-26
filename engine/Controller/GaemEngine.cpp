@@ -23,6 +23,12 @@ void GameEngine::ExposeToLua(){
 		"SetWindowIcon", &GameEngine::SetWindowIcon,
 		"SetWindowName", &GameEngine::SetWindowName
 		);
+
+	luaManager.Expose_CPPClass<ScriptableState>("ScriptableState",
+		sol::constructors<ScriptableState(sol::function, sol::function, sol::function, sol::function)>(),
+		sol::base_classes, sol::bases<State>()
+		);
+
 	luaManager.Expose_Engine();
 	luaManager.Expose_CPPReference("engine",*this);
 	luaManager.Expose_CPPReference("scene", *scene);

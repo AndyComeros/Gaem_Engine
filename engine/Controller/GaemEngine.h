@@ -9,6 +9,7 @@
 #include <Lua/LuaManager.h>
 #include <Physics/Physics.h>
 #include <Serialization/SceneLoader.h>
+#include <AI/States/ScriptableState.h>
 
 const int WINDOW_TYPE_WINDOWED	 = 1;
 const int WINDOW_TYPE_BORDERLESS = 2;

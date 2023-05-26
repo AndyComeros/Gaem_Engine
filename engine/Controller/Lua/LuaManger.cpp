@@ -314,8 +314,6 @@ void LuaManager::Expose_Engine() {
 		"ProcessMessage", &State::ProcessMessage
 		);
 
-
-
 	//expose the sound engine
 	Expose_CPPClass<SoundEngine>("SoundEngine",
 		sol::no_constructor,
@@ -357,6 +355,13 @@ void LuaManager::Expose_Engine() {
 	AIManager::Get().AddState("state_patrol", state_patrol);
 	Expose_CPPReference("state_patrol", *state_patrol);
 	
+	Expose_CPPClass<AIManager>("AIManager",
+		sol::no_constructor,
+		"AddState", &AIManager::AddState,
+		"GetState", &AIManager::GetState
+		);
+	Expose_CPPReference("aimanager", AIManager::Get());
+
 	Expose_CPPClass<SceneLoader>("SceneLoader",
 		sol::no_constructor,
 		"LoadScene", &SceneLoader::LoadScene,
