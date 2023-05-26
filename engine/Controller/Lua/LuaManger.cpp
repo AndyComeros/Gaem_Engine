@@ -312,6 +312,8 @@ void LuaManager::Expose_Engine() {
 		"addSound", &SoundEngine::addSound,
 		"playSound", &SoundEngine::playSound,
 		"addMusic", &SoundEngine::addMusic,
+		"SetVolume", &SoundEngine::setVolume,
+		"SetMusicVolume", &SoundEngine::setMusicVolume,
 		"setListenerPos", &SoundEngine::setListenerPos,
 		"setMusicPos", &SoundEngine::setMusicPos,
 		"toggleMusic", &SoundEngine::toggleMusic

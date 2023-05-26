@@ -17,6 +17,10 @@ public:
 
 	void addMusic(std::string filePath);
 
+	void setVolume(float volume);
+
+	void setMusicVolume(float volume);
+
 	void setListenerPos(glm::vec3 pos);
 
 	void setMusicPos(glm::vec3 pos);
