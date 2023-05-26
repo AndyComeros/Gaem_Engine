@@ -10,12 +10,9 @@ function attack_enter(ent)
 end
 
 function attack_update(ent)
-	--print(Length(Player.position - ent.position) > 10);	
-	if(true)
-	then
-		
-	end
 	
+	ent:LookAt(Player.position);
+	print(Player:GetData("health"));
 	
 end
 

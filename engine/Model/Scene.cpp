@@ -48,6 +48,11 @@ GameObject& Scene::GetObject(std::string objName) {
 	return *gameObjects.at(objName);
 }
 
+NPC& Scene::GetNPC(std::string objName)
+{
+    return dynamic_cast<NPC&>(*gameObjects.at(objName));
+}
+
 GameObject* Scene::GetObjectByID(int objID)
 {
 	return gameObjectsID.at(objID);

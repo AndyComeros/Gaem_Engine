@@ -42,7 +42,7 @@ public:
 		*	@param shaderName name key for shader data, use "" to use default shader
 		*	@return a NPC object created using the selected parameters
 		*/
-	GameObject& CreateNPCObject(std::string objectName, std::string modelName, std::string shaderName);
+	NPC& CreateNPCObject(std::string objectName, std::string modelName, std::string shaderName);
 
 		/**
 		*	@brief Abstract factory method for creating terrain game objects

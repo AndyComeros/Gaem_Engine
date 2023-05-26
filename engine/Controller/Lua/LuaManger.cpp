@@ -172,7 +172,8 @@ void LuaManager::Expose_Engine() {
 		"SetSkybox", &Scene::SetSkybox,
 		"GetCamera", &Scene::GetCamera,
 		"GetLights", &Scene::GetLights,
-		"GetObject", &Scene::GetObject
+		"GetObject", &Scene::GetObject,
+		"GetNPC", &Scene::GetNPC
 		);
 
 	//expose camera

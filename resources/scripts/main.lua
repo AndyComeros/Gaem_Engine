@@ -102,7 +102,10 @@ function init()
 	--scene:AddObject(Trail);
 
 	--Setup Player
-	Player = resources:CreateGameObject("Player", "AE86", "");
+	Player = resources:CreateNPCObject("Player", "AE86", "");
+		--player stats/health
+	Player:AddData("health", 5.0);
+
 	Player.position = vec3:new(0,35,0);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.7)
@@ -118,6 +121,10 @@ function init()
 
 	Player.rigidBody:ToggleColliderListener();
 	
+
+
+
+
 	scene:AddObject(Player);
 
 	--adding terrain details (rocks and trees)
@@ -208,7 +215,7 @@ end
 
 function update(deltaTime)
 
-	Player = scene:GetObject("Player");
+	Player = scene:GetNPC("Player");
   
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 	--Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));

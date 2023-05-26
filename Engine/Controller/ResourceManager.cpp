@@ -65,7 +65,7 @@ GameObject& ResourceManager::CreateGameObject(std::string objectName, std::strin
 	return *gameObject;
 }
 
-GameObject& ResourceManager::CreateNPCObject(std::string objectName, std::string modelName, std::string shaderName)
+NPC& ResourceManager::CreateNPCObject(std::string objectName, std::string modelName, std::string shaderName)
 {
 	NPC* gameObject = new NPC();
 	gameObject->name = objectName;
