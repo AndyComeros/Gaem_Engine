@@ -203,13 +203,13 @@ void Physics::StepPhysics(float deltaTime)
 	accumulator += deltaTime;
 
 	// While there is enough accumulated time to take one or several physics steps 
-	if (accumulator >= timeStep && timeStep > 0)
+	if (accumulator >= timeStep)
 	{
 		// Update the Dynamics world with a constant time step 
 		world->update(timeStep);
 		// Decrease the accumulated time 
-		accumulator -= deltaTime;
-		//accumulator -= timeStep;
+		//accumulator -= deltaTime;
+		accumulator = timeStep;
 	}
 }
 

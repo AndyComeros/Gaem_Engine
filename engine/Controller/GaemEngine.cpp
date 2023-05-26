@@ -97,7 +97,7 @@ void GameEngine::Run() {
 		double currentFrameTime = glfwGetTime();
 		deltaTime = currentFrameTime - previousFrameTime;
 		previousFrameTime = currentFrameTime;
-		accumulator += deltaTime;
+		//accumulator += deltaTime;
 		
 		inputMngr.KeyActions(deltaTime);
 
