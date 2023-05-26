@@ -1,6 +1,7 @@
 #pragma once
 #include <irrKlang/irrKlang.h>
 #include <map>
+#include <vector>
 #include <string>
 #include <glm/glm.hpp>
 #pragma comment(lib, "irrKlang.lib")
@@ -29,10 +30,16 @@ public:
 
 	void drop();
 
+	void playSoundLoop(std::string name, glm::vec3 pos,float vol);
+
+	void stopSoundLoop(std::string name);
+
 private:
 
 	irrklang::ISoundEngine* _Engine;
 	std::map<std::string, std::string> _Audio;
 	irrklang::ISound* _Music;
+
+	std::map<std::string, irrklang::ISound*> loopedAudio;
 };
 

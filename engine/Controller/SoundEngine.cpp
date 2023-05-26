@@ -61,3 +61,26 @@ void SoundEngine::drop()
 	_Music->drop();
 	_Engine->drop();
 }
+
+void SoundEngine::playSoundLoop(std::string name, glm::vec3 pos, float vol)
+{
+	if (loopedAudio.find(name) == loopedAudio.end()) {
+		irrklang::ISound* nLoop = _Engine->play3D(_Audio[name].c_str(), { pos.x, pos.y, pos.z }, true, false, true);
+		loopedAudio.insert({ name,nLoop });
+	}
+	else {
+		if (loopedAudio[name]->getIsPaused()) {
+			loopedAudio[name]->setIsPaused(false);
+		}
+
+	}
+	loopedAudio[name]->setVolume(vol);
+	loopedAudio[name]->setPosition({ pos.x,pos.y,pos.z });
+}
+
+void SoundEngine::stopSoundLoop(std::string name)
+{
+	if (loopedAudio.find(name) != loopedAudio.end()) {
+		loopedAudio.at(name)->setIsPaused(true);
+	}
+}

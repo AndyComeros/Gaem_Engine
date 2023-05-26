@@ -71,6 +71,9 @@ function init()
 	Sound:addSound("click","resources/audio/menu/click.wav");
 	Sound:addSound("pause","resources/audio/menu/pause.wav");
 
+	Sound:addSound("drift","resources/audio/car/drift.wav");
+	Sound:addSound("engine","resources/audio/car/engine.wav");
+
 
 	--setup lighting
 	lighting = scene:GetLights();
@@ -198,7 +201,7 @@ end
 
 function update(deltaTime)
 
-	local Player = scene:GetObject("Player");
+	Player = scene:GetObject("Player");
   
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 	--Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
@@ -207,6 +210,10 @@ function update(deltaTime)
 	MouseMoveFunc(deltaTime);
 	Sound:setListenerPos(camera.position);
 	Sound:setMusicPos(camera.position);
+	car_sound();
 end
 
 
+function car_sound()
+	
+end

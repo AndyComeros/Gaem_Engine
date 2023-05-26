@@ -59,6 +59,10 @@ void LuaManager::Expose_Engine() {
 		[](const glm::vec3& a, const glm::vec3& b) {return glm::cross(a,b); }
 	);
 
+	luaState["DotVectors"] = sol::overload(
+		[](const glm::vec3& a, const glm::vec3& b) {return glm::dot(a, b); }
+	);
+
 	luaState["CloseWindow"] = sol::overload([](bool shouldClose) {glfwSetWindowShouldClose(InputManager::Get().GetWindow(), shouldClose); });
 
 	//expose vec2
@@ -97,7 +101,10 @@ void LuaManager::Expose_Engine() {
 		"SetPosition", &GameObject::SetPosition,
 		"SetRotation", &GameObject::SetRotation,
 		"GetDrawItem", &GameObject::GetDrawItem,
-		"GetDrawItem", &GameObject::LookAt
+		"GetDrawItem", &GameObject::LookAt,
+		"GetForwardVec", &GameObject::GetForwardVec,
+		"GetRightVec", &GameObject::GetRightVec,
+		"GetUpVec", &GameObject::GetUpVec
 		);
 
 	//expose terrain
@@ -319,7 +326,9 @@ void LuaManager::Expose_Engine() {
 		"SetMusicVolume", &SoundEngine::setMusicVolume,
 		"setListenerPos", &SoundEngine::setListenerPos,
 		"setMusicPos", &SoundEngine::setMusicPos,
-		"toggleMusic", &SoundEngine::toggleMusic
+		"toggleMusic", &SoundEngine::toggleMusic,
+		"playSoundLoop", &SoundEngine::playSoundLoop,
+		"stopSoundLoop", &SoundEngine::stopSoundLoop
 		);
 	luaState["Sound"] = &SoundEngine::Get();
 
