@@ -48,7 +48,11 @@ void LuaManager::Expose_Engine() {
 	);		
 
 	luaState["NormalizeVector"] = sol::overload(
-		[](const glm::vec3& a) {return glm::normalize(a); }
+		[](const glm::vec3& a) {
+			
+			return glm::normalize(a); 
+
+		}
 	);
 
 	luaState["AddVectors"] = sol::overload(

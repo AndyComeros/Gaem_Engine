@@ -68,7 +68,7 @@ function init()
 
 
 	--audio
-	Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
+	--Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
 	Sound:addSound("click","resources/audio/menu/click.wav");
 	Sound:addSound("pause","resources/audio/menu/pause.wav");
 
@@ -231,6 +231,5 @@ end
 
 
 function car_sound()
-	
-	
+
 end

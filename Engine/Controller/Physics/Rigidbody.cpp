@@ -146,7 +146,7 @@ glm::vec3 Rigidbody::GetLinearVelocty()
 
 	rp3d::Vector3 rVal = rbPtr->getLinearVelocity();
 
-	return { rVal.x,rVal.y,rVal.z };
+	return { (float)rVal.x,(float)rVal.y,(float)rVal.z };
 }
 
 glm::vec3 Rigidbody::GetAngularVelocity()
@@ -156,7 +156,7 @@ glm::vec3 Rigidbody::GetAngularVelocity()
 
 	rp3d::Vector3 rVal = rbPtr->getAngularVelocity();
 
-	return { rVal.x,rVal.y,rVal.z};
+	return { (float)rVal.x,(float)rVal.y,(float)rVal.z};
 }
 
 void Rigidbody::SetColliderBox(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, glm::vec3 scale)
