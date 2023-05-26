@@ -232,7 +232,8 @@ void LuaManager::Expose_Engine() {
 		"SetMouseLock", &InputManager::SetMouseLock,
 		"GetMouseX", &InputManager::GetMouseX,
 		"GetMouseY", &InputManager::GetMouseY,
-		"GetScrollOffset", &InputManager::GetScrollOffset
+		"GetScrollOffset", &InputManager::GetScrollOffset,
+		"GetMouseLock", &InputManager::GetMouseLock
 		);
 	luaState["input"] = &InputManager::Get();
 
@@ -271,12 +272,21 @@ void LuaManager::Expose_Engine() {
 
 	Expose_CPPClass<GUIRenderer>("GUIRenderer",
 		sol::no_constructor,
-		"SwitchMenu", &GUIRenderer::SwitchMenu
+		"Start", &GUIRenderer::Start,
+		"End", &GUIRenderer::End,
+		"Text", &GUIRenderer::Text,
+		"Button", &GUIRenderer::Button,
+		"Image", &GUIRenderer::Image,
+		"Tab", &GUIRenderer::Tab,
+		"SetCursorPosX", &GUIRenderer::SetCursorPosX,
+		"SetCursorPosY", &GUIRenderer::SetCursorPosY,
+		"SetFont", &GUIRenderer::SetFont
 		);
 
 	Expose_CPPClass<Renderer>("Renderer",
 		sol::no_constructor,
-		"ToggleWireFrame", &Renderer::ToggleWireFrame
+		"ToggleWireFrame", &Renderer::ToggleWireFrame,
+		"GetFPS", &Renderer::GetFPS
 		);
 
 	Expose_CPPClass<StateMachine>("StateMachine",
@@ -295,6 +305,7 @@ void LuaManager::Expose_Engine() {
 		);
 
 
+
 	//expose the sound engine
 	Expose_CPPClass<SoundEngine>("SoundEngine",
 		sol::no_constructor,
@@ -308,6 +319,41 @@ void LuaManager::Expose_Engine() {
 		"toggleMusic", &SoundEngine::toggleMusic
 		);
 	luaState["Sound"] = &SoundEngine::Get();
+
+	//add generic built in states
+	State* state_wander = new State_Wander;
+	AIManager::Get().AddState("state_wander", state_wander);
+	Expose_CPPReference("state_wander", *state_wander);
+
+	State* state_chase = new State_Chase;
+	AIManager::Get().AddState("state_chase", state_chase);
+	Expose_CPPReference("state_chase", *state_chase);
+
+	State* state_pursuit = new State_Pursuit;
+	AIManager::Get().AddState("state_pursuit", state_pursuit);
+	Expose_CPPReference("state_pursuit", *state_pursuit);
+
+	State* state_flee = new State_Flee;
+	AIManager::Get().AddState("state_flee", state_flee);
+	Expose_CPPReference("state_flee", *state_flee);
+
+	State* state_evade = new State_Evade;
+	AIManager::Get().AddState("state_evade", state_evade);
+	Expose_CPPReference("state_evade", *state_evade);
+
+	State* state_patrol = new State_Patrol;
+	AIManager::Get().AddState("state_patrol", state_patrol);
+	Expose_CPPReference("state_patrol", *state_patrol);
+	
+	Expose_CPPClass<SceneLoader>("SceneLoader",
+		sol::no_constructor,
+		"LoadScene", &SceneLoader::LoadScene,
+		"SaveScene", &SceneLoader::SaveScene,
+		"GetSaves", &SceneLoader::GetSaves
+		);
+
+	static SceneLoader loader;
+	Expose_CPPReference("loader",loader);
 
 	LoadScript("resources/scripts/main.lua");
 	update = GetFunction("update");

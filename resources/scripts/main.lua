@@ -1,9 +1,15 @@
+dofile("resources/scripts/menu.lua")
 dofile("resources/scripts/inputs.lua")
 
 function init()
 	print("init lua");
 
-	--load textures
+	--engine:SetWindowType(3);
+	engine:SetWindowIcon("resources/textures/icon.png");
+	engine:SetWindowName("InitalZ");
+	GUI:SetFont("resources/fonts/Excluded-z8XrX.ttf");
+
+
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
@@ -155,7 +161,8 @@ function init()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
-	for i = 1,20,1
+
+	for i = 1,100,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
@@ -171,8 +178,8 @@ function init()
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
 
-		Arcade.stateMachine:ChangeState(state_wander);
-		--Arcade.stateMachine:ChangeState(state_chase);
+		--Arcade.stateMachine:ChangeState(state_wander);
+		Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
 		--Arcade.stateMachine:ChangeState(state_evade);
@@ -185,17 +192,17 @@ function init()
 	camera = scene:GetCamera();
 	camera.farPlane = 10000;
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
-	
+
 	print("End Init");
 end
 
 function update(deltaTime)
-	local Player = scene:GetObject("Player");
-	local height = terrain:GetHeight(Player.position.x, Player.position.z);
 
-	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-	
-	
+	local Player = scene:GetObject("Player");
+  
+	local height = terrain:GetHeight(Player.position.x,Player.position.z);
+	--Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
+	draw_menu();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
 	Sound:setListenerPos(Player.position);

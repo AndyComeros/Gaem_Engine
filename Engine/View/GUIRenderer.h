@@ -29,6 +29,12 @@ public:
 	~GUIRenderer();
 
 		/**
+		*	@brief free up GUI resources
+		*	@return void
+		*/
+	void Shutdown();
+
+		/**
 		*	@brief initalize gui
 		*	@param nwindow window being rendered to
 		*	@return void
@@ -36,41 +42,30 @@ public:
 	void Init(GLFWwindow* nwindow);
 
 		/**
-		*	@brief Draw current GUI to the screen
+		*	@brief set font to a ttf font
+		*	@param path path to font
 		*	@return void
 		*/
-	void Draw();
+	void SetFont(std::string path);
 
-		/**
-		*	@brief Switch the current GUI
-		*	@param nGUI GUI being switched to
-		*	@return void
-		*/
-	void SwitchMenu(int nGUI);
+	//lua programmable GUI//
+
+	void Start(bool background);
+	void End();
+
+	void Text(const std::string label, float alignment);
+	bool Button(const std::string label, float alignment, float width, float height);
+	bool Image(const std::string texture, float width, float height, float alignX, float alignY);
+	void Tab(float size);
+	void SetCursorPosX(float pos);
+	void SetCursorPosY(float pos);
+
 
 private:
 
-		///Draw generic main menu
-	void GUI_Main();
-		///Draw generic settings menu
-	void GUI_Settings();
-		///Draw generic exit menu
-	void GUI_Exit();
-		///Draw generic main menu
-	void GUI_Manual();
-		///Draw generic debug menu
-	void GUI_Debug();
-		///Draw generic in game menu
-	void GUI_InGame();
-
-	void TextCenteredOnLine(const char* label, float alignment);
-
-	bool ButtonCenteredOnLine(const char* label, float alignment);
+	ImGuiIO* io;
 
 	void AlignForWidth(float width, float alignment);
-		
-		///Current GUI to be drawn
-	int currentGUI = 0;
 		
 		///imgui settings for windos
 	ImGuiWindowFlags flags;

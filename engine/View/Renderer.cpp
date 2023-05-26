@@ -24,7 +24,6 @@ void Renderer::Init(GLFWwindow* window) {
 
 	glEnable(GL_MULTISAMPLE);
 
-
 	int	wWidth, wHeight;
 	glfwGetWindowSize(window, &wWidth, &wHeight);
 	glViewport(0, 0, wWidth, wHeight);

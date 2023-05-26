@@ -110,6 +110,7 @@ public:
 
     bool visible = true;
 
+    std::string name;
 protected:
         /*
         *   @brief Binds current material

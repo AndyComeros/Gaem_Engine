@@ -7,6 +7,9 @@
 #include <Renderer.h>
 #include <AI/States/State.h>
 #include <SoundEngine.h>
+#include <Serialization/SceneLoader.h>
+#include <AI/States/global_states.h>
+
 
 /**
 *	@Class LuaManager

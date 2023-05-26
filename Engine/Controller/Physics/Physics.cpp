@@ -1,4 +1,4 @@
-#include <Physics.h>
+#include "Physics.h"
 
 Physics::Physics() {
 	CreatePhysicsWorld();
@@ -8,6 +8,7 @@ Physics::Physics() {
 Physics::~Physics() {
 	DestroyPhysicsWorld();
 }
+
 
 void Physics::CreatePhysicsWorld()
 {
@@ -41,6 +42,12 @@ void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, float mas
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
 
+	//refactor
+	BoxCollider* box = new BoxCollider(mass, bounce, friction, { 0,0,0 }, { 0,0,0 }, scale);
+	delete go.rigidBody.collider;
+	go.rigidBody.collider = box;
+	
+
 	BoxShape* shape = physicsCommon.createBoxShape({scale.x,scale.y,scale.z});
 	Transform transform = Transform::identity();
 	rb->addCollider(shape, transform);
@@ -54,6 +61,11 @@ void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, float mas
 void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3 offset, float mass, float bounce, float friction)
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
+
+	//refactor
+	SphereCollider* sphere = new SphereCollider(mass, bounce, friction, offset, { 0,0,0 }, radius);
+	delete go.rigidBody.collider;
+	go.rigidBody.collider = sphere;
 
 	SphereShape* shape = physicsCommon.createSphereShape(radius);
 	rp3d::Quaternion q = Quaternion::identity();
@@ -71,6 +83,12 @@ void Physics::AddRigidBodyColliderSphere(GameObject &go, float radius, glm::vec3
 void Physics::AddRigidBodyColliderCapsule(GameObject &go, float radius ,float height, glm::vec3 offset, glm::vec3 rotation,float mass, float bounce, float friction)
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
+
+	//refactor
+	CapsuleCollider* capsule = new CapsuleCollider(mass, bounce, friction, offset, rotation, radius, height);
+	delete go.rigidBody.collider;
+	go.rigidBody.collider = capsule;
+
 	CapsuleShape* shape = physicsCommon.createCapsuleShape(radius, height);
 
 	rotation = glm::radians(rotation);
@@ -93,26 +111,21 @@ void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 	float min = terrain.GetMinHeight();
 	float max = terrain.GetMaxHeight();
 	float* hv = &terrain.GetHeightArray()->at(0);
+
+	//refactor
+	TerrainCollider* collider = new TerrainCollider(1, 1, 1, { 0,0,0 }, {0,0,0}, rows,cols,min,max, hv);
+	delete terrain.rigidBody.collider;
+	terrain.rigidBody.collider = collider;
+
 	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max+1, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
-	shape->setScale({terrain.GetScaleX(),1,terrain.GetScaleZ()});
+	shape->setScale({terrain.scaleX,1,terrain.scaleZ});
 	Transform transform = Transform::identity();
 	terrain.rigidBody.rbPtr->addCollider(shape, transform);
 }
 
 void Physics::ModRigidBodyType(GameObject &go, int type)
 {
-	switch (type)
-	{
-	case KINE:
-		go.rigidBody.rbPtr->setType(BodyType::KINEMATIC);
-		break;
-	case STAT:
-		go.rigidBody.rbPtr->setType(BodyType::STATIC);
-		break;
-	case DYNA:
-		go.rigidBody.rbPtr->setType(BodyType::DYNAMIC);
-		break;
-	}
+	go.rigidBody.ModType(type);
 }
 
 void Physics::ModRigidBodyGravity(GameObject &go, bool state)
