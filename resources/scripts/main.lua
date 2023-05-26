@@ -56,7 +56,8 @@ function init()
 
 	resources:LoadTexture("robot","resources/models/md2/robot.png");
 	resources:LoadTexture("robot_emiss","resources/models/md2/robot_emiss.png");
-	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","");
+	resources:LoadTexture("robot_spec","resources/models/md2/robot_spec.png");
+	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","robot_spec");
 
 
 	robotModel = resources:GetModel("robot");
