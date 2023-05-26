@@ -36,11 +36,13 @@ void SoundEngine::setListenerPos(glm::vec3 pos)
 
 void SoundEngine::setMusicPos(glm::vec3 pos)
 {
+	if(_Music)
 	_Music->setPosition(irrklang::vec3df(pos.x, pos.y, pos.z));
 }
 
 void SoundEngine::toggleMusic(bool state)
 {
+	if (_Music)
 	_Music->setIsPaused(state);
 }
 

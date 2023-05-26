@@ -55,7 +55,7 @@ void State_Flee::Update(GameObject& ent, double dt)
 	npc->MoveTo3D(nPos, npc->GetData("fleeSpeed"), 0);
 
 	//lock to terrain height
-	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) + 1.0f;
+	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z);
 	npc->SetPosition({ npc->position.x,nY,npc->position.z });
 	
 	if (fabs(glm::length(toTarget)) > npc->GetData("fleeDistance")) {

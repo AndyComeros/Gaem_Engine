@@ -61,13 +61,15 @@ function init()
 
 
 	robotModel = resources:GetModel("robot");
-	robotModel:SetAnimation("run"	, 0		, 22	, 30);
-	robotModel:SetAnimation("attack", 24	, 92	, 30);
-	robotModel:SetAnimation("stand"	, 93	, 152	, 30);
+	robotModel:SetAnimation("run"	, 0		, 22	, 50);
+	robotModel:SetAnimation("attack", 24	, 92	, 60);
+	robotModel:SetAnimation("stand"	, 92	, 151	, 70);
 
 
 	--audio
 	Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
+	Sound:addSound("click","resources/audio/menu/click.wav");
+	Sound:addSound("pause","resources/audio/menu/pause.wav");
 
 
 	--setup lighting
@@ -203,8 +205,8 @@ function update(deltaTime)
 	draw_menu();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
-	Sound:setListenerPos(Player.position);
-	Sound:setMusicPos(Player.position);
+	Sound:setListenerPos(camera.position);
+	Sound:setMusicPos(camera.position);
 end
 
 

@@ -91,8 +91,9 @@ function KeyPressFunc(dt)
 	local turnspeed = 2000 * dt;
 	local movespeed = 3000 * dt;
 	--print(player.position.x .. " " .. player.position.z);
-	if(input:GetKeyState("escape"))
+	if(input:GetKeyState("escape") and  current_menu ~= 1)
 	then
+		Sound:playSound("pause",camera.position);
 		current_menu = 1;
 	end
 

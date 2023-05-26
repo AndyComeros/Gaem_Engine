@@ -55,21 +55,25 @@ function draw_main_menu()
 
 	if(GUI:Button("Start Game",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 4;
 	end
 
 	if(GUI:Button("Load Game",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 2;
 	end
 
 	if(GUI:Button("Options",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 3;
 	end
 
 	if(GUI:Button("Exit",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		engine:Shutdown();
 	end
 
@@ -89,6 +93,7 @@ function draw_save_menu()
 
 	if(GUI:Button("--Save--",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		loader:SaveScene(engine.scene,"resources/saves/save"..(#saves + 1)..".json");
 	end
 	GUI:Tab(20);
@@ -98,6 +103,7 @@ function draw_save_menu()
 	do
 		if(GUI:Button(v, 0.5, buttonWidth, buttonHeight))
 		then
+			Sound:playSound("click",camera.position);
 			nscene = loader:LoadScene("resources/saves/"..v);
 			engine:SwitchScenes(nscene);
 		end
@@ -106,6 +112,7 @@ function draw_save_menu()
 
 	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 1;
 	end
 
@@ -121,11 +128,13 @@ function draw_options_menu()
 	GUI:Tab(10);
 	if(GUI:Button("Window Options",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 5;
 	end
 
 	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 1;
 	end
 
@@ -153,19 +162,23 @@ function draw_window_option()
 
 	if(GUI:Button("Windowed",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		engine:SetWindowType(1);
 	end
 	if(GUI:Button("Borderless",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		engine:SetWindowType(2);
 	end
 	if(GUI:Button("Full Screen",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		engine:SetWindowType(3);
 	end
 
 	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
 	then
+		Sound:playSound("click",camera.position);
 		current_menu = 3;
 	end
 
