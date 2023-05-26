@@ -29,6 +29,16 @@ void SoundEngine::addMusic(std::string filePath)
 	_Music->setVolume(0.5f);
 }
 
+void SoundEngine::setVolume(float volume)
+{
+	_Engine->setSoundVolume(volume);
+}
+
+void SoundEngine::setMusicVolume(float volume)
+{
+	_Music->setVolume(volume);
+}
+
 void SoundEngine::setListenerPos(glm::vec3 pos)
 {
 	_Engine->setListenerPosition(irrklang::vec3df( pos.x, pos.y, pos.z ), { 0, 0, 1 });
