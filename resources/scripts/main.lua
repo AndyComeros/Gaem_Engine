@@ -53,20 +53,17 @@ function init()
 	resources:LoadModel("Rock4", "resources/models/Rocks and Trees/Rock4.obj", "Rock 2", "", "");
 	resources:LoadModel("Palm", "resources/models/Rocks and Trees/Palm.obj", "Palm", "Palmdiff", "PalmEmiss");
 
-	resources:LoadTexture("solider","resources/models/md2/cipher.png");
-	resources:LoadAnimatedModel("solider","resources/models/md2/tris.md2","solider","","");
 
-	soliderModel = resources:GetModel("solider");
-	soliderModel:SetAnimation("stand"	, 0		, 39	, 10);
-	soliderModel:SetAnimation("run"		, 40	, 45	, 10);
-	soliderModel:SetAnimation("attack"	, 46	, 53	, 10);
-	soliderModel:SetAnimation("pain"	, 54	, 65	, 10);
-	soliderModel:SetAnimation("jump"	, 66	, 71	, 10);
-	soliderModel:SetAnimation("flip"	, 72	, 83	, 10);
-	soliderModel:SetAnimation("salute"	, 84	, 94	, 10);
-	soliderModel:SetAnimation("taunt"	, 95	, 111	, 10);
-	soliderModel:SetAnimation("wave"	, 112	, 122	, 10);
-	soliderModel:SetAnimation("death"	, 178	, 197	, 10);
+	resources:LoadTexture("robot","resources/models/md2/robot.png");
+	resources:LoadTexture("robot_emiss","resources/models/md2/robot_emiss.png");
+	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","");
+
+
+	robotModel = resources:GetModel("robot");
+	robotModel:SetAnimation("run"	, 0		, 22	, 30);
+	robotModel:SetAnimation("attack", 24	, 92	, 30);
+	robotModel:SetAnimation("stand"	, 93	, 152	, 30);
+
 
 	--audio
 	Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
@@ -169,7 +166,7 @@ function init()
 		local zpos = math.random(1,tSize) - tSize/2;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Arcade = resources:CreateNPCObject("arcade"..i, "solider","");
+		Arcade = resources:CreateNPCObject("arcade"..i, "robot","");
 
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(0.15,0.15,0.15);
