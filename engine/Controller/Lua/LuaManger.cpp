@@ -42,7 +42,10 @@ void LuaManager::Expose_Engine() {
 		"z", &glm::vec3::z,
 		"length",&glm::vec3::length
 		);
-		
+
+	luaState["Length"] = sol::overload(
+		[](const glm::vec3& a) {return glm::length(a); }
+	);		
 
 	luaState["NormalizeVector"] = sol::overload(
 		[](const glm::vec3& a) {return glm::normalize(a); }
