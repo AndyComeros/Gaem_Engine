@@ -75,6 +75,10 @@ function init()
 	Sound:addSound("drift","resources/audio/car/drift.wav");
 	Sound:addSound("engine","resources/audio/car/engine.wav");
 
+	Sound:addSound("grunt","resources/audio/zombie/grunt.wav");
+	Sound:addSound("carhit","resources/audio/zombie/carhit.wav");
+	Sound:addSound("hitcar","resources/audio/zombie/hitcar.wav");
+
 
 	--setup lighting
 	lighting = scene:GetLights();
@@ -103,8 +107,7 @@ function init()
 
 	--Setup Player
 	Player = resources:CreateNPCObject("Player", "AE86", "");
-		--player stats/health
-	Player:AddData("health", 5.0);
+
 
 	Player.position = vec3:new(0,35,0);
 	physics:AddRigidBody(Player,3);
@@ -121,9 +124,8 @@ function init()
 
 	Player.rigidBody:ToggleColliderListener();
 	
-
-
-
+	--player stats/health
+	Player:AddData("health", 1000);
 
 	scene:AddObject(Player);
 

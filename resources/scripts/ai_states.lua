@@ -4,23 +4,41 @@
 ----------------------------------------------------------
 				--ATTACK STATE FUNCTIONS--
 ----------------------------------------------------------
-function attack_enter(ent)
+attackDelay = 0.5;
+function attack_enter(ent, dt)
 	ent:GetDrawItem():Animate("attack");
-	
+
+	Sound:playSound("grunt",camera.position);
+
+	if(not ent:HasData("lastAttack"))
+	then
+		ent:AddData("lastAttack",0);
+	end
 end
 
-function attack_update(ent)
-	
+function attack_update(ent, dt)
+
+	local playerDist = Length(Player.position - ent.position);
+	local newLAttack = ent:GetData("lastAttack") + dt;
+	ent:AddData("lastAttack",newLAttack);
+
+	if(newLAttack > attackDelay and playerDist < 10)
+	then
+		Sound:playSound("hitcar",camera.position);
+		ent:AddData("lastAttack",0);
+		Player:AddData("health", Player:GetData("health") - 1);
+		print(Player:GetData("health"));
+	end
+
 	ent:LookAt(Player.position);
-	print(Player:GetData("health"));
+
+end
+
+function attack_exit(ent, dt)
 	
 end
 
-function attack_exit(ent)
-	
-end
-
-function attack_message(ent)
+function attack_message(ent, dt)
 	
 end
 ----------------------------------------------------------
@@ -31,12 +49,12 @@ end
 ----------------------------------------------------------
 atkrange = 10;
 
-function global_enter(ent)
+function global_enter(ent, dt)
 	
 end
 
-function global_update(ent)
-
+function global_update(ent, dt)
+	
 	local playerDist = Length(Player.position - ent.position);
 	if(playerDist < atkrange)
 	then
@@ -47,11 +65,11 @@ function global_update(ent)
 		
 end
 
-function global_exit(ent)
+function global_exit(ent, dt)
 	
 end
 
-function global_message(ent)
+function global_message(ent, dt)
 	
 end
 ----------------------------------------------------------

@@ -1,0 +1,9034 @@
+{
+	"objects" : 
+	[
+		{
+			"model" : "Palm",
+			"name" : "Palm",
+			"position" : 
+			[
+				10.0,
+				-10.200004577636719,
+				10.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"data" : 
+			{
+				"health" : 1000.0
+			},
+			"model" : "AE86",
+			"name" : "Player",
+			"position" : 
+			[
+				-209.03373718261719,
+				-6.6068367958068848,
+				36.102108001708984
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					-0.00052492547547444701,
+					0.0083825327455997467,
+					0.01155290100723505
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : true,
+				"damp_angle" : 10.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					-51.859027862548828,
+					1.6795299053192139,
+					9.7478046417236328
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					-2.0,
+					0.0
+				],
+				"mod" : 3,
+				"scale" : 
+				[
+					1.5,
+					0.20000000298023224,
+					0.69999998807907104
+				]
+			},
+			"rotation" : 
+			[
+				4.4596834182739258,
+				-13.592816352844238,
+				1.0964362621307373
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "npc"
+		},
+		{
+			"height_texture" : "heightMap",
+			"model" : "Terrain",
+			"name" : "Terrain",
+			"position" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 1.0,
+					"friction" : 1.0,
+					"mass" : 1.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 4
+				},
+				"columns" : 256,
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"heights" : true,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"max" : 152.0,
+				"min" : 20.0,
+				"mod" : 2,
+				"rows" : 256
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"scaleX" : 10.0,
+			"scaleY" : 0.60000002384185791,
+			"scaleZ" : 10.0,
+			"shader" : "terrain",
+			"terrain_size" : 256,
+			"texture_scale" : 256,
+			"type" : "terrain"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade1",
+			"position" : 
+			[
+				32.153858184814453,
+				-1.0292434692382812,
+				706.36273193359375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.44746625423431396,
+				109.79083251953125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade10",
+			"position" : 
+			[
+				-680.89117431640625,
+				-32.036552429199219,
+				-892.86236572265625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.3988875150680542,
+				-63.07220458984375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade100",
+			"position" : 
+			[
+				-353.15939331054688,
+				10.291885375976562,
+				-399.2342529296875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				2.1008572578430176,
+				-71.681991577148438,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade11",
+			"position" : 
+			[
+				559.2071533203125,
+				-63.653621673583984,
+				411.68634033203125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-3.8170499801635742,
+				153.94651794433594,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade12",
+			"position" : 
+			[
+				-693.88836669921875,
+				21.060279846191406,
+				756.21832275390625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.8203914165496826,
+				56.047595977783203,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade13",
+			"position" : 
+			[
+				-240.55191040039062,
+				-9.616729736328125,
+				-555.139404296875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.29692339897155762,
+				-86.948532104492188,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade14",
+			"position" : 
+			[
+				192.8472900390625,
+				13.199996948242188,
+				-264.24407958984375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				2.2584741115570068,
+				216.77264404296875,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade15",
+			"position" : 
+			[
+				-299.94595336914062,
+				10.904388427734375,
+				-121.7938232421875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				5.4876656532287598,
+				-60.067825317382812,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade16",
+			"position" : 
+			[
+				-334.5885009765625,
+				26.574005126953125,
+				578.3116455078125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				3.4124739170074463,
+				76.962303161621094,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade17",
+			"position" : 
+			[
+				-83.417579650878906,
+				13.199996948242188,
+				-516.8150634765625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.9988595247268677,
+				257.20034790039062,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade18",
+			"position" : 
+			[
+				-872.59332275390625,
+				0.98142242431640625,
+				-760.6180419921875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.41759347915649414,
+				-50.210296630859375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade19",
+			"position" : 
+			[
+				-160.9541015625,
+				-8.5915451049804688,
+				24.573150634765625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.2928440570831299,
+				193.48428344726562,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade2",
+			"position" : 
+			[
+				-565.91571044921875,
+				65.399993896484375,
+				407.80343627929688
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				7.947300910949707,
+				46.165233612060547,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade20",
+			"position" : 
+			[
+				-182.47605895996094,
+				-8.3817596435546875,
+				32.171867370605469
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-3.7648553848266602,
+				188.41802978515625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade21",
+			"position" : 
+			[
+				141.38442993164062,
+				-18.382247924804688,
+				89.993118286132812
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.905936598777771,
+				171.2569580078125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade22",
+			"position" : 
+			[
+				785.8201904296875,
+				-53.542610168457031,
+				338.19677734375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.5823757648468018,
+				163.10870361328125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade23",
+			"position" : 
+			[
+				173.69326782226562,
+				-17.889541625976562,
+				69.07940673828125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.6809077262878418,
+				175.0753173828125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade24",
+			"position" : 
+			[
+				438.20877075195312,
+				-36.028522491455078,
+				93.633316040039062
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.5936203002929688,
+				174.9205322265625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade25",
+			"position" : 
+			[
+				-267.1375732421875,
+				26.056510925292969,
+				647.60186767578125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				3.0419003963470459,
+				84.572128295898438,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade26",
+			"position" : 
+			[
+				-102.91641998291016,
+				-10.084815979003906,
+				19.040048599243164
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.8395183086395264,
+				189.13412475585938,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade27",
+			"position" : 
+			[
+				-145.01451110839844,
+				-9.6319198608398438,
+				25.546369552612305
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.6449589729309082,
+				189.3629150390625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade28",
+			"position" : 
+			[
+				-240.16731262207031,
+				10.884864807128906,
+				-191.24710083007812
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				4.3579287528991699,
+				-82.202316284179688,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade29",
+			"position" : 
+			[
+				-885.5029296875,
+				-16.821197509765625,
+				335.652587890625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.79331797361373901,
+				23.884468078613281,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade3",
+			"position" : 
+			[
+				467.90802001953125,
+				63.142196655273438,
+				781.18505859375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				3.9640460014343262,
+				132.25657653808594,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade30",
+			"position" : 
+			[
+				-12.245757102966309,
+				1.6347503662109375,
+				632.08258056640625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.75084054470062256,
+				108.27281188964844,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade31",
+			"position" : 
+			[
+				-144.59837341308594,
+				-9.3938674926757812,
+				23.282228469848633
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.4000985622406006,
+				191.25247192382812,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade32",
+			"position" : 
+			[
+				900.4837646484375,
+				-48.446620941162109,
+				417.92724609375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.0403506755828857,
+				161.00981140136719,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade33",
+			"position" : 
+			[
+				186.44157409667969,
+				5.8927001953125,
+				-224.65338134765625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.5088309049606323,
+				213.39874267578125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade34",
+			"position" : 
+			[
+				-608.1622314453125,
+				26.890823364257812,
+				-223.18051147460938
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				4.0235567092895508,
+				-33.008636474609375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade35",
+			"position" : 
+			[
+				-643.385009765625,
+				45.540802001953125,
+				711.18939208984375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				3.6917660236358643,
+				57.242767333984375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade36",
+			"position" : 
+			[
+				-735.44000244140625,
+				18.668899536132812,
+				-160.35429382324219
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				2.5784647464752197,
+				-20.465728759765625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade37",
+			"position" : 
+			[
+				-159.69731140136719,
+				-1.282135009765625,
+				-506.36886596679688
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.55633789300918579,
+				264.80337524414062,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade38",
+			"position" : 
+			[
+				-143.85528564453125,
+				1.7823715209960938,
+				-475.293701171875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.92799359560012817,
+				262.7366943359375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade39",
+			"position" : 
+			[
+				-328.9229736328125,
+				-44.635387420654297,
+				-961.13360595703125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.1673707962036133,
+				-83.14471435546875,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade4",
+			"position" : 
+			[
+				437.57662963867188,
+				-31.025287628173828,
+				38.543937683105469
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.1609821319580078,
+				179.78363037109375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade40",
+			"position" : 
+			[
+				97.543975830078125,
+				13.199996948242188,
+				-443.84152221679688
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.9901062250137329,
+				237.43043518066406,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade41",
+			"position" : 
+			[
+				366.94448852539062,
+				-44.674457550048828,
+				297.62948608398438
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-3.4447381496429443,
+				155.57920837402344,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade42",
+			"position" : 
+			[
+				103.51888275146484,
+				13.199996948242188,
+				-580.9771728515625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.6389609575271606,
+				243.13763427734375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade43",
+			"position" : 
+			[
+				0.72686290740966797,
+				-13.705375671386719,
+				53.422832489013672
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.9276734590530396,
+				175.27958679199219,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade44",
+			"position" : 
+			[
+				63.084312438964844,
+				-10.045974731445312,
+				496.28359985351562
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.36300495266914368,
+				120.59700012207031,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade45",
+			"position" : 
+			[
+				762.25750732421875,
+				-6.6687698364257812,
+				-755.57305908203125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.0045985025353729725,
+				219.1826171875,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade46",
+			"position" : 
+			[
+				179.43336486816406,
+				13.199996948242188,
+				-515.1131591796875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.6811259984970093,
+				234.82586669921875,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade47",
+			"position" : 
+			[
+				725.40948486328125,
+				-16.141624450683594,
+				-844.0269775390625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.42633843421936035,
+				223.2855224609375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade48",
+			"position" : 
+			[
+				456.95196533203125,
+				7.0828781127929688,
+				-592.0230712890625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.85485744476318359,
+				223.32423400878906,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade49",
+			"position" : 
+			[
+				-115.66688537597656,
+				-15.646369934082031,
+				96.439735412597656
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-4.649193286895752,
+				147.12773132324219,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade5",
+			"position" : 
+			[
+				-984.2008056640625,
+				24.41729736328125,
+				-607.245849609375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.7633388042449951,
+				-39.690902709960938,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade50",
+			"position" : 
+			[
+				-51.084037780761719,
+				-0.50365447998046875,
+				-106.60585784912109
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.6438359022140503,
+				222.097900390625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade51",
+			"position" : 
+			[
+				916.83935546875,
+				-11.809837341308594,
+				-931.83050537109375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.20148111879825592,
+				220.68621826171875,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade52",
+			"position" : 
+			[
+				270.1357421875,
+				13.199996948242188,
+				-770.855224609375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.2083767652511597,
+				239.29824829101562,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade53",
+			"position" : 
+			[
+				-919.15533447265625,
+				-14.853080749511719,
+				411.6041259765625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.58869224786758423,
+				27.869239807128906,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade54",
+			"position" : 
+			[
+				316.50308227539062,
+				-16.760780334472656,
+				-47.156932830810547
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.0949368476867676,
+				189.00236511230469,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade55",
+			"position" : 
+			[
+				-379.39529418945312,
+				10.087867736816406,
+				401.8680419921875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				2.3759675025939941,
+				65.025466918945312,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade56",
+			"position" : 
+			[
+				-676.24603271484375,
+				-38.640571594238281,
+				-981.50146484375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.6380597352981567,
+				-65.338729858398438,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade57",
+			"position" : 
+			[
+				766.49322509765625,
+				-24.675262451171875,
+				37.120307922363281
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.0569556951522827,
+				179.94020080566406,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade58",
+			"position" : 
+			[
+				-56.395332336425781,
+				-17.286026000976562,
+				104.49575805664062
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-3.6559088230133057,
+				155.86398315429688,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade59",
+			"position" : 
+			[
+				320.55059814453125,
+				13.199996948242188,
+				-560.49725341796875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.4213752746582031,
+				228.40544128417969,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade6",
+			"position" : 
+			[
+				-102.62053680419922,
+				-10.045608520507812,
+				18.713449478149414
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.8128929138183594,
+				189.280517578125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade60",
+			"position" : 
+			[
+				-525.81890869140625,
+				64.376541137695312,
+				677.12335205078125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				5.6686444282531738,
+				63.701957702636719,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade61",
+			"position" : 
+			[
+				10.518196105957031,
+				-18.211570739746094,
+				331.47409057617188
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.7997337579727173,
+				126.62366485595703,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade62",
+			"position" : 
+			[
+				202.69647216796875,
+				-31.712482452392578,
+				935.84478759765625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.4550337791442871,
+				114.58924865722656,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade63",
+			"position" : 
+			[
+				-157.19509887695312,
+				-6.9868316650390625,
+				3.6422290802001953
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.36199742555618286,
+				212.05361938476562,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade64",
+			"position" : 
+			[
+				310.69766235351562,
+				50.916152954101562,
+				843.569091796875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				3.406428337097168,
+				122.76762390136719,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade65",
+			"position" : 
+			[
+				-296.14370727539062,
+				28.442428588867188,
+				641.4483642578125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				3.2833142280578613,
+				81.811294555664062,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade66",
+			"position" : 
+			[
+				130.19291687011719,
+				-15.532546997070312,
+				58.682914733886719
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.5071167945861816,
+				176.19169616699219,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade67",
+			"position" : 
+			[
+				-885.72320556640625,
+				-14.948699951171875,
+				83.421768188476562
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.70678377151489258,
+				4.0000762939453125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade68",
+			"position" : 
+			[
+				-533.32763671875,
+				-40.267646789550781,
+				-819.72747802734375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.1080715656280518,
+				-69.24713134765625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade69",
+			"position" : 
+			[
+				960.2620849609375,
+				-38.091842651367188,
+				589.61181640625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.3905836343765259,
+				154.66851806640625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade7",
+			"position" : 
+			[
+				-31.720983505249023,
+				-18.673049926757812,
+				132.93838500976562
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-3.4209945201873779,
+				151.359619140625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade70",
+			"position" : 
+			[
+				203.86650085449219,
+				13.199996948242188,
+				-899.87823486328125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.1086325645446777,
+				246.19572448730469,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade71",
+			"position" : 
+			[
+				140.64762878417969,
+				-19.267807006835938,
+				100.48249816894531
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.0421745777130127,
+				169.56800842285156,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade72",
+			"position" : 
+			[
+				-587.6934814453125,
+				63.858795166015625,
+				342.60623168945312
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				8.2117462158203125,
+				38.988258361816406,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade73",
+			"position" : 
+			[
+				-598.03082275390625,
+				-44.151077270507812,
+				-953.8819580078125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.0214900970458984,
+				-68.548507690429688,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade74",
+			"position" : 
+			[
+				-853.35687255859375,
+				5.4985809326171875,
+				689.052001953125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.75428932905197144,
+				45.381008148193359,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade75",
+			"position" : 
+			[
+				921.52630615234375,
+				-2.0491943359375,
+				-820.3397216796875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.18353892862796783,
+				217.14529418945312,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade76",
+			"position" : 
+			[
+				445.77578735351562,
+				-4.6244430541992188,
+				-237.92607116699219
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.16084897518157959,
+				202.70858764648438,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade77",
+			"position" : 
+			[
+				-747.88818359375,
+				15.34173583984375,
+				-567.39752197265625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.5495975017547607,
+				-48.2388916015625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade78",
+			"position" : 
+			[
+				78.994659423828125,
+				-12.294120788574219,
+				860.45343017578125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.37739056348800659,
+				109.25941467285156,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade79",
+			"position" : 
+			[
+				420.109375,
+				-40.127323150634766,
+				156.83966064453125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.9965851306915283,
+				169.13656616210938,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade8",
+			"position" : 
+			[
+				212.79310607910156,
+				13.199996948242188,
+				-577.05072021484375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.523435115814209,
+				235.47343444824219,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade80",
+			"position" : 
+			[
+				843.9190673828125,
+				-6.8502120971679688,
+				-808.0889892578125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.010128501802682877,
+				218.72042846679688,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade81",
+			"position" : 
+			[
+				-328.78521728515625,
+				12.412696838378906,
+				-361.90689086914062
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				2.6140375137329102,
+				-73.25469970703125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade82",
+			"position" : 
+			[
+				-212.38746643066406,
+				-11.113510131835938,
+				301.44424438476562
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.97090309858322144,
+				89.275863647460938,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade83",
+			"position" : 
+			[
+				955.65411376953125,
+				6.0283126831054688,
+				1044.1640625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.47228240966796875,
+				139.12312316894531,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade84",
+			"position" : 
+			[
+				601.76995849609375,
+				-12.671028137207031,
+				-809.41375732421875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.29858320951461792,
+				226.20059204101562,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade85",
+			"position" : 
+			[
+				-250.39427185058594,
+				-1.805145263671875,
+				0.48006322979927063
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				5.0255155563354492,
+				-40.736892700195312,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade86",
+			"position" : 
+			[
+				-173.98995971679688,
+				-27.478809356689453,
+				-855.6654052734375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.3388252258300781,
+				267.74960327148438,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade87",
+			"position" : 
+			[
+				-918.8707275390625,
+				27.235191345214844,
+				-511.07998657226562
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				2.1625502109527588,
+				-37.627044677734375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade88",
+			"position" : 
+			[
+				-265.8818359375,
+				12.862907409667969,
+				-218.5
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				4.2679424285888672,
+				-77.413330078125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade89",
+			"position" : 
+			[
+				342.1373291015625,
+				63.701858520507812,
+				783.8349609375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				4.3264193534851074,
+				126.394775390625,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade9",
+			"position" : 
+			[
+				645.77032470703125,
+				-1.24468994140625,
+				-263.48486328125
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.34145373106002808,
+				199.31427001953125,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade90",
+			"position" : 
+			[
+				-47.615638732910156,
+				-15.600006103515625,
+				77.412940979003906
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-3.088639497756958,
+				165.64472961425781,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade91",
+			"position" : 
+			[
+				812.6942138671875,
+				-49.961833953857422,
+				323.08599853515625
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.3355088233947754,
+				164.31097412109375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade92",
+			"position" : 
+			[
+				940.36102294921875,
+				4.4604873657226562,
+				1034.490234375
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.41873437166213989,
+				139.02174377441406,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade93",
+			"position" : 
+			[
+				-150.36581420898438,
+				-9.4000701904296875,
+				27.033586502075195
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-2.6953082084655762,
+				188.78689575195312,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade94",
+			"position" : 
+			[
+				-102.24716949462891,
+				-10.054306030273438,
+				18.785835266113281
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-1.8115568161010742,
+				189.21078491210938,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade95",
+			"position" : 
+			[
+				13.511382102966309,
+				13.199996948242188,
+				-591.969482421875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				1.7013188600540161,
+				250.48919677734375,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade96",
+			"position" : 
+			[
+				721.48834228515625,
+				-4.0120849609375,
+				-718.3563232421875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.12426303327083588,
+				219.03482055664062,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade97",
+			"position" : 
+			[
+				-314.16116333007812,
+				-2.412078857421875,
+				315.63772583007812
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.81088274717330933,
+				69.389778137207031,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade98",
+			"position" : 
+			[
+				-761.399169921875,
+				-6.9357986450195312,
+				241.66465759277344
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				-0.043092507869005203,
+				20.412727355957031,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"data" : 
+			{
+				"offset" : 5.0,
+				"speed" : 20.0
+			},
+			"global_state" : "global_state",
+			"model" : "robot",
+			"name" : "arcade99",
+			"position" : 
+			[
+				-164.64125061035156,
+				1.42828369140625,
+				-471.1951904296875
+			],
+			"previous_state" : "state_chase",
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.89965075254440308,
+				264.9989013671875,
+				0.0
+			],
+			"scale" : 
+			[
+				0.15000000596046448,
+				0.15000000596046448,
+				0.15000000596046448
+			],
+			"shader" : "default",
+			"state" : "state_chase",
+			"type" : "npc"
+		},
+		{
+			"model" : "building1",
+			"name" : "building1",
+			"position" : 
+			[
+				50.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building10",
+			"position" : 
+			[
+				200.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building11",
+			"position" : 
+			[
+				250.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building12",
+			"position" : 
+			[
+				300.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building2",
+			"position" : 
+			[
+				100.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building3",
+			"position" : 
+			[
+				150.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building4",
+			"position" : 
+			[
+				200.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building5",
+			"position" : 
+			[
+				250.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building1",
+			"name" : "building6",
+			"position" : 
+			[
+				300.0,
+				10.0,
+				-500.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building7",
+			"position" : 
+			[
+				50.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building8",
+			"position" : 
+			[
+				100.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "building3",
+			"name" : "building9",
+			"position" : 
+			[
+				150.0,
+				12.0,
+				-400.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"axis_linear_factor" : 
+				[
+					1.0,
+					1.0,
+					1.0
+				],
+				"collider" : 
+				{
+					"bounce" : 0.20000000298023224,
+					"friction" : 0.5,
+					"mass" : 500.0,
+					"offset" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation" : 
+					[
+						0.0,
+						0.0,
+						0.0
+					],
+					"type" : 1
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : 1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 2,
+				"scale" : 
+				[
+					10.0,
+					60.0,
+					10.0
+				]
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				10.0,
+				10.0,
+				10.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "Rock1",
+			"name" : "rock1",
+			"position" : 
+			[
+				20.0,
+				-11.100006103515625,
+				20.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "Rock2",
+			"name" : "rock2",
+			"position" : 
+			[
+				25.0,
+				-11.400009155273438,
+				25.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "Rock3",
+			"name" : "rock3",
+			"position" : 
+			[
+				30.0,
+				-12.0,
+				30.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "Rock4",
+			"name" : "rock4",
+			"position" : 
+			[
+				35.0,
+				-12.600006103515625,
+				35.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"shader" : "default",
+			"type" : "base"
+		},
+		{
+			"model" : "watertest",
+			"name" : "watertest",
+			"position" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"rigidbody" : 
+			{
+				"angular_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_angle_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"axis_linear_factor" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"collider" : 
+				{
+					"type" : 0
+				},
+				"contact_listen" : false,
+				"damp_angle" : 0.0,
+				"damp_linear" : 0.0,
+				"linear_velocity" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mass" : -1.0,
+				"mass_center" : 
+				[
+					0.0,
+					0.0,
+					0.0
+				],
+				"mod" : 1
+			},
+			"rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			],
+			"scaleX" : 1.0,
+			"scaleY" : 0.0,
+			"scaleZ" : 1.0,
+			"shader" : "Water",
+			"terrain_size" : 256,
+			"texture_scale" : 256,
+			"type" : "terrain"
+		}
+	],
+	"skybox" : "skybox"
+}
