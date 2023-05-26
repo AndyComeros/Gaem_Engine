@@ -101,7 +101,7 @@ void LuaManager::Expose_Engine() {
 		"SetPosition", &GameObject::SetPosition,
 		"SetRotation", &GameObject::SetRotation,
 		"GetDrawItem", &GameObject::GetDrawItem,
-		"GetDrawItem", &GameObject::LookAt,
+		"LookAt", &GameObject::LookAt,
 		"GetForwardVec", &GameObject::GetForwardVec,
 		"GetRightVec", &GameObject::GetRightVec,
 		"GetUpVec", &GameObject::GetUpVec

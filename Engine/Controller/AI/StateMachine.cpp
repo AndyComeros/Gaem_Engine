@@ -37,6 +37,8 @@ void StateMachine::Update(double dt)
 {
 	if(currentState)
 		currentState->Update(*owner, dt);
+	if (globalState)
+		globalState->Update(*owner, dt);
 }
 
 void StateMachine::ReceiveMessage(const Message* message)

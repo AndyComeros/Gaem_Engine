@@ -63,7 +63,7 @@ function init()
 
 	robotModel = resources:GetModel("robot");
 	robotModel:SetAnimation("run"	, 0		, 22	, 50);
-	robotModel:SetAnimation("attack", 24	, 92	, 60);
+	robotModel:SetAnimation("attack", 24	, 91	, 80);
 	robotModel:SetAnimation("stand"	, 92	, 151	, 70);
 
 
@@ -167,7 +167,10 @@ function init()
 	local tSize = terrain:GetSize() * 10;
 
 
-	testState  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
+	attack_state  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
+	global_state  = ScriptableState:new(global_enter, global_update, global_exit, global_message);
+	aimanager:AddState("attack_state",attack_state);
+	aimanager:AddState("global_state",global_state);
 	for i = 1,100,1
 	do
 		
@@ -184,8 +187,9 @@ function init()
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
 
+		Arcade.stateMachine:ChangeGlobalState(global_state);
 		--Arcade.stateMachine:ChangeState(state_wander);
-		Arcade.stateMachine:ChangeState(testState);
+		--Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
 		--Arcade.stateMachine:ChangeState(state_evade);

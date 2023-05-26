@@ -1,14 +1,21 @@
 
 
-testState  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
-aimanager:AddState("testState",testState);
 
+----------------------------------------------------------
+				--ATTACK STATE FUNCTIONS--
+----------------------------------------------------------
 function attack_enter(ent)
+	ent:GetDrawItem():Animate("attack");
 	
-
 end
 
 function attack_update(ent)
+	--print(Length(Player.position - ent.position) > 10);	
+	if(true)
+	then
+		
+	end
+	
 	
 end
 
@@ -19,6 +26,37 @@ end
 function attack_message(ent)
 	
 end
+----------------------------------------------------------
 
+
+----------------------------------------------------------
+				--GLOBAL ENEMY STATE FUNCTIONS--
+----------------------------------------------------------
+atkrange = 10;
+
+function global_enter(ent)
+	
+end
+
+function global_update(ent)
+
+	local playerDist = Length(Player.position - ent.position);
+	if(playerDist < atkrange)
+	then
+		ent.stateMachine:ChangeState(attack_state);
+	else
+		ent.stateMachine:ChangeState(state_chase);
+	end
+		
+end
+
+function global_exit(ent)
+	
+end
+
+function global_message(ent)
+	
+end
+----------------------------------------------------------
 
 print("end script states");

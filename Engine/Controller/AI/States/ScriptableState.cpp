@@ -15,7 +15,8 @@ void ScriptableState::Enter(GameObject& ent)
 {
 	try
 	{
-		(enterFunc)(ent);
+		NPC& npc = dynamic_cast<NPC&>(ent);
+		(enterFunc)(npc);
 	}
 	catch (const std::exception& e)
 	{
@@ -27,7 +28,8 @@ void ScriptableState::Update(GameObject& ent, double dt)
 {
 	try
 	{
-		(updateFunc)(ent, dt);
+		NPC& npc = dynamic_cast<NPC&>(ent);
+		(updateFunc)(npc, dt);
 	}
 	catch (const std::exception& e)
 	{
@@ -39,7 +41,8 @@ void ScriptableState::Exit(GameObject& ent)
 {
 	try
 	{
-		(exitFunc)(ent);
+		NPC& npc = dynamic_cast<NPC&>(ent);
+		(exitFunc)(npc);
 	}
 	catch (const std::exception& e)
 	{
@@ -51,7 +54,8 @@ void ScriptableState::ProcessMessage(GameObject* ent,const Message* message)
 {
 	try
 	{
-		(messageFunc)(ent, message);
+		NPC& npc = dynamic_cast<NPC&>(*ent);
+		(messageFunc)(npc, message);
 	}
 	catch (const std::exception& e)
 	{
