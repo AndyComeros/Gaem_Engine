@@ -61,7 +61,8 @@ function init()
 	resources:LoadTexture("robot_emiss","resources/models/md2/robot_emiss.png");
 	resources:LoadTexture("robot_spec","resources/models/md2/robot_spec.png");
 	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","robot_spec");
-
+	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer.md2","robot","robot_emiss","robot_spec");
+	resources:GetModel("dancer"):SetAnimationSpeed(6);
 
 	robotModel = resources:GetModel("robot");
 	robotModel:SetAnimation("run"	, 0		, 22	, 50);
@@ -110,7 +111,7 @@ function init()
 	Player = resources:CreateNPCObject("Player", "AE86", "");
 
 
-	Player.position = vec3:new(0,35,0);
+	Player.position = vec3:new(800,35,500);
 	physics:AddRigidBody(Player,3);
 
 	local scale = vec3:new(1.5,0.2,0.7)
@@ -150,28 +151,36 @@ function init()
 	Palm.position = vec3:new(10,terrain:GetHeight(10,10),10);
 	scene:AddObject(Palm);
 	
-	--buildings
-	for i = 1,6,1
+	math.randomseed(os.time());
+
+	--City
+	--"resources/shaders/hologram"
+	--
+	resources:LoadShader("holo","resources/shaders/Default.vert", "resources/shaders/hologram/Holo.frag", "");
+	hologram = resources:CreateGameObject("zdancer", "dancer","holo");
+	hologram.position = vec3:new(1140,50,640);
+	hologram.scale = vec3:new(7,7,7);
+	scene:AddObject(hologram);
+	count = 0;
+	for i = 0,22,1
 	do
-		Building1 = resources:CreateGameObject("building"..i, "building1","");
-		Building1:SetPosition(vec3:new(50 * i, 10, -500));
-		Building1.scale = vec3:new(10,10,10);
-		local scale = vec3:new(10,60,10)
-		physics:AddRigidBody(Building1,2);
-		physics:AddRigidBodyColliderBox(Building1,scale, mass,bounce,friction);
-		scene:AddObject(Building1);
+		for j = 0, 12, 1
+		do
+			if(math.random(1,10) < 5)
+			then
+				Building1 = resources:CreateGameObject("building"..count, "building"..math.random(1,6),"");
+				Building1:SetPosition(vec3:new(700 + i * 40, 15, 350 + j * 50));
+				Building1.scale = vec3:new(10,10,10);
+				local scale = vec3:new(10,60,10)
+				physics:AddRigidBody(Building1,2);
+				physics:AddRigidBodyColliderBox(Building1,scale, mass,bounce,friction);
+				scene:AddObject(Building1);
+			end
+	
+			count = count + 1;
+		end
 	end
 
-	for i = 1,6,1
-	do
-		Building2 = resources:CreateGameObject("building"..i+6, "building3","");
-		Building2:SetPosition(vec3:new(50 * i, 12, -400));
-		Building2.scale = vec3:new(10,10,10);
-		local scale = vec3:new(10,60,10)
-		physics:AddRigidBody(Building2,2);
-		physics:AddRigidBodyColliderBox(Building2,scale, mass,bounce,friction);
-		scene:AddObject(Building2);
-	end
 	
 
 	--NPC spawning
@@ -191,14 +200,14 @@ function init()
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
 		Arcade = resources:CreateNPCObject("arcade"..i, "robot","");
-
+	
 		Arcade:SetPosition(vec3:new(xpos,ypos,zpos));
 		Arcade.scale = vec3:new(0.15,0.15,0.15);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);
 		--physics:AddRigidBody(Arcade,3);
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
-
+	
 		Arcade.stateMachine:ChangeGlobalState(global_state);
 		--Arcade.stateMachine:ChangeState(state_wander);
 		--Arcade.stateMachine:ChangeState(state_chase);
@@ -206,7 +215,7 @@ function init()
 		--Arcade.stateMachine:ChangeState(state_flee);
 		--Arcade.stateMachine:ChangeState(state_evade);
 		--Arcade.stateMachine:ChangeState(state_patrol);
-
+	
 		scene:AddObject(Arcade);
 	end
 	
@@ -221,7 +230,7 @@ end
 function update(deltaTime)
 
 	Player = scene:GetNPC("Player");
-  
+	--print(Player.position.x .. " " .. Player.position.y .. " " .. Player.position.z .. " ");
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	draw_menu();
