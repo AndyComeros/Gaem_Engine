@@ -89,7 +89,7 @@ function KeyPressFunc(dt)
 	local player = scene:GetObject("Player");
 	local camera = scene:GetCamera();
 	local turnspeed = 2000 * dt;
-	local movespeed = 3000 * dt;
+	local movespeed = 6000 * dt;
 	--print(player.position.x .. " " .. player.position.z);
 	if(input:GetKeyState("escape") and  current_menu ~= 1)
 	then
@@ -101,8 +101,8 @@ function KeyPressFunc(dt)
 	if(input:GetKeyState("debug") and (not debugPress))
 	then
 		debugPress = true;
-		renderer:ToggleWireFrame();
-		--physics:ToggleDebugDisplay();
+		--renderer:ToggleWireFrame();
+		physics:ToggleDebugDisplay();
 
 	elseif(input:GetKeyState("debug"))
 	then

@@ -17,6 +17,7 @@ function init()
 	resources:LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
 	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap256.png");
 	resources:LoadTexture("heightMapBig","resources/textures/heightmap/heightmap4096.png");
+	resources:LoadTexture("heightMapMed","resources/textures/heightmap/heightmap512.png");
 	resources:LoadTexture("specular","resources/textures/tile_Specular2.png");
 	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
 	resources:LoadTexture("AE86Diff","resources/textures/AE86.png");
@@ -88,7 +89,7 @@ function init()
 		
 
 	--Load terrain
-	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 500 , 50,0.6,50);
+	terrain = resources:CreateTerrain("Terrain","heightMapMed",{"dirt","grass","rock"},"detailMap","detailMap","", 500 , 12,0.5,12);
 	terrain:SetTextureHeights({-30,-5,40});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
@@ -96,7 +97,8 @@ function init()
 	scene:AddObject(terrain);
 
 	--load Water
-	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 1, 1, 1);
+	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 100, 1, 100);
+	water.position = vec3:new(0,-50,0);
 	scene:AddObject(water);
 
 	--Trail = resources:CreateWater( "TrailTest", 20, { }, 50, 1, 1, 1);
@@ -110,11 +112,13 @@ function init()
 
 	Player.position = vec3:new(0,35,0);
 	physics:AddRigidBody(Player,3);
+
 	local scale = vec3:new(1.5,0.2,0.7)
 	local mass = 500;
-	local bounce = 0.2;
+	local bounce = 0;
 	local friction = 0.5;
 	physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
+	--physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
 
 	--Player.rigidBody:SetMass(500);
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
@@ -219,7 +223,7 @@ function update(deltaTime)
 	Player = scene:GetNPC("Player");
   
 	local height = terrain:GetHeight(Player.position.x,Player.position.z);
-	--Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
+	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	draw_menu();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
