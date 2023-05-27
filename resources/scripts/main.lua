@@ -96,6 +96,9 @@ function init()
 		--void AddPointLight(const glm::vec3& position, const glm::vec3& diffuse, const glm::vec3& specular,
 		--float constant, float linear, float quadratic) 
 
+
+
+
 	--Load terrain
 	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 500 , 12,0.5,12);
 	terrain:SetTextureHeights({-30,-5,40});
@@ -104,8 +107,9 @@ function init()
 	scene:AddObject(terrain);
 
 	--load Water
+	waterHeight = -50;
 	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 100, 1, 100);
-	water.position = vec3:new(0,-50,0);
+	water.position = vec3:new(0,waterHeight,0);
 	scene:AddObject(water);
 
 	--Setup Player
@@ -125,6 +129,7 @@ function init()
 	
 	--player stats/health
 	Player:AddData("health", 1000);
+	Player:AddData("score", 0);
 
 	scene:AddObject(Player);
 
@@ -205,8 +210,8 @@ function init()
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
 	
-		Arcade.stateMachine:ChangeGlobalState(global_state);
-		--Arcade.stateMachine:ChangeState(state_wander);
+		--Arcade.stateMachine:ChangeGlobalState(global_state);
+		Arcade.stateMachine:ChangeState(state_wander);
 		--Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
@@ -236,6 +241,7 @@ function update(deltaTime)
 	Sound:setListenerPos(camera.position);
 	Sound:setMusicPos(camera.position);
 	lock_player_terrain();
+	check_hazard_collide();
 end
 
 
@@ -247,5 +253,14 @@ function lock_player_terrain()
 	then
 		local player = scene:GetObject("Player")
 		player:SetPosition(vec3:new(player.position.x,t_Height + 1,player.position.z));
+	end
+end
+
+function check_hazard_collide()
+	t_Height = terrain:GetHeight(Player.position.x,Player.position.z);
+
+	if(Player.position.y <= waterHeight)
+	then
+		current_menu = 7;
 	end
 end

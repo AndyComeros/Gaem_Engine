@@ -1,9 +1,11 @@
 
 --load menu texutres
-img_drive = resources:LoadTexture("driver"	,"resources/textures/GUI/DRIVE.png");
-img_exlr8 = resources:LoadTexture("exlr8"	,"resources/textures/GUI/exlr8.png");
-img_frict = resources:LoadTexture("friction","resources/textures/GUI/friction.png");
-img_gas	  = resources:LoadTexture("gas"		,"resources/textures/GUI/GAS.png");
+resources:LoadTexture("driver"	,"resources/textures/GUI/DRIVE.png");
+resources:LoadTexture("exlr8"	,"resources/textures/GUI/exlr8.png");
+resources:LoadTexture("friction","resources/textures/GUI/friction.png");
+resources:LoadTexture("gas"		,"resources/textures/GUI/GAS.png");
+
+resources:LoadTexture("exit"		,"resources/textures/exit.png");
 
 
 
@@ -40,6 +42,16 @@ local cases = {
 		input:SetMouseLock(true);
 		engine:SetSimulation(false);
 		draw_window_option();
+	end,
+	[6] = function()
+		input:SetMouseLock(true);
+		engine:SetSimulation(false);
+		draw_exit();
+	end,
+	[7] = function()
+		input:SetMouseLock(true);
+		engine:SetSimulation(false);
+		draw_lose();
 	end
 }
 
@@ -81,7 +93,7 @@ function draw_main_menu()
 	if(GUI:Button("Exit",0.5, buttonWidth, buttonHeight))
 	then
 		Sound:playSound("click",camera.position);
-		engine:Shutdown();
+		current_menu = 6
 	end
 
 	GUI:End();
@@ -155,7 +167,7 @@ function draw_ingame()
 	GUI:Image("gas",300,300,0.9,0)
 	
 	GUI:Text("Health: " .. Player:GetData("health"), 0.9);
-	GUI:Text("Score: " .. Player:GetData("health"), 0.9);
+	GUI:Text("Score: " .. Player:GetData("score"), 0.9);
 
 	
 	GUI:SetCursorPosX(0)
@@ -195,6 +207,42 @@ function draw_window_option()
 	then
 		Sound:playSound("click",camera.position);
 		current_menu = 3;
+	end
+
+	GUI:End();
+end
+
+function draw_exit()
+
+	GUI:Start(false);
+
+	if(GUI:ImageButton("exit",500,500,0.5,0.5))
+	then
+		engine:Shutdown();
+	end
+	
+	GUI:Tab(10);
+
+	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
+	then
+		Sound:playSound("click",camera.position);
+		current_menu = 1;
+	end
+
+	GUI:End();
+end
+
+function draw_lose()
+
+	GUI:Start(true);
+
+	GUI:Tab(300);
+	GUI:Text("YOU DIED",0.5);
+
+	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
+	then
+		Sound:playSound("click",camera.position);
+		current_menu = 1;
 	end
 
 	GUI:End();
