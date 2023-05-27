@@ -62,7 +62,7 @@ function init()
 	resources:LoadTexture("robot_spec","resources/models/md2/robot_spec.png");
 	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","robot_spec");
 	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer2.md2","robot","robot_emiss","robot_spec");
-	resources:GetModel("dancer"):SetAnimationSpeed(6);
+	resources:GetModel("dancer"):SetAnimationSpeed(10);
 
 	robotModel = resources:GetModel("robot");
 	robotModel:SetAnimation("run"	, 0		, 22	, 50);
@@ -154,14 +154,14 @@ function init()
 	math.randomseed(os.time());
 
 	--City
-	--"resources/shaders/hologram"
-	--
 	resources:LoadShader("holo","resources/shaders/Default.vert", "resources/shaders/hologram/Holo.frag", "");
 	hologram = resources:CreateGameObject("zdancer", "dancer","holo");
 	hologram.position = vec3:new(1140,50,640);
 	hologram.scale = vec3:new(7,7,7);
 	scene:AddObject(hologram);
 	count = 0;
+	rots = {0,90,180,270};
+
 	for i = 0,22,1
 	do
 		for j = 0, 12, 1
@@ -171,9 +171,13 @@ function init()
 				Building1 = resources:CreateGameObject("building"..count, "building"..math.random(1,6),"");
 				Building1:SetPosition(vec3:new(700 + i * 40, 15, 350 + j * 50));
 				Building1.scale = vec3:new(10,10,10);
+				
 				local scale = vec3:new(10,60,10)
 				physics:AddRigidBody(Building1,2);
 				physics:AddRigidBodyColliderBox(Building1,scale, mass,bounce,friction);
+
+				m_rot = rots[math.random(1,4)];
+				Building1:SetRotation(vec3:new(0,m_rot,0));
 				scene:AddObject(Building1);
 			end
 	
@@ -182,7 +186,6 @@ function init()
 	end
 
 	
-
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * 10;
@@ -243,5 +246,6 @@ end
 
 
 function car_sound()
-
+	
+	
 end

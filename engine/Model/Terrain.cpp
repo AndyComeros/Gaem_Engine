@@ -280,8 +280,6 @@ void Terrain::CreateHeightArray() {
 }
 
 void Terrain::GenerateModel() {
-
-	float starttime = glfwGetTime();
 	if ((*heightArray).empty()) {
 		model_data = new Model();
 		return;
@@ -367,6 +365,4 @@ void Terrain::GenerateModel() {
 	}
 	model_data->maxBounds = (terrainSize / 2.0f) * scaleX;
 	((Model*)model_data)->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
-
-	std::cout << "Time " << glfwGetTime() - starttime;
 }	

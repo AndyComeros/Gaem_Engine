@@ -117,7 +117,7 @@ void Physics::AddRigidBodyColliderHeightMap(Terrain& terrain)
 	delete terrain.rigidBody.collider;
 	terrain.rigidBody.collider = collider;
 
-	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max+1, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
+	HeightFieldShape* shape = physicsCommon.createHeightFieldShape(rows, cols, min, max+2, hv, HeightFieldShape::HeightDataType::HEIGHT_FLOAT_TYPE);
 	shape->setScale({terrain.scaleX,1,terrain.scaleZ});
 	Transform transform = Transform::identity();
 	terrain.rigidBody.rbPtr->addCollider(shape, transform);
