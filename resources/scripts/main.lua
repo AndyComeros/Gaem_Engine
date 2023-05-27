@@ -130,6 +130,7 @@ function init()
 	--player stats/health
 	Player:AddData("health", 1000);
 	Player:AddData("score", 0);
+	Player:AddData("boost", 99);
 
 	scene:AddObject(Player);
 
@@ -210,8 +211,8 @@ function init()
 		--physics:AddRigidBodyColliderBox(Arcade,scale, 1,0.3,0.5);
 		--Arcade.rigidBody:SetMass(1);
 	
-		--Arcade.stateMachine:ChangeGlobalState(global_state);
-		Arcade.stateMachine:ChangeState(state_wander);
+		Arcade.stateMachine:ChangeGlobalState(global_state);
+		--Arcade.stateMachine:ChangeState(state_wander);
 		--Arcade.stateMachine:ChangeState(state_chase);
 		--Arcade.stateMachine:ChangeState(state_pursuit);
 		--Arcade.stateMachine:ChangeState(state_flee);
@@ -242,6 +243,7 @@ function update(deltaTime)
 	Sound:setMusicPos(camera.position);
 	lock_player_terrain();
 	check_hazard_collide();
+	inscrease_boost(deltaTime);
 end
 
 
@@ -264,3 +266,20 @@ function check_hazard_collide()
 		current_menu = 7;
 	end
 end
+
+function inscrease_boost(dt)
+	local rechargeRate = 5;
+	local maxBoost = 99;
+	local currentBoost = Player:GetData("boost");
+
+	if(math.floor(currentBoost) == maxBoost)
+	then
+		Player:AddData("boost", maxBoost);
+	end
+
+	if(currentBoost < maxBoost)
+	then
+		Player:AddData("boost", currentBoost + (dt * rechargeRate));
+	end
+end
+

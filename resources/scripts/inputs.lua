@@ -117,15 +117,28 @@ function KeyPressFunc(dt)
 	end
 
 
+	local currentBoost = Player:GetData("boost");
+	if(input:GetKeyState("drift") and currentBoost > 0)
+	then
+		Player:AddData("boost", currentBoost - (dt * 20));
+	end
+	if(math.floor(currentBoost) < 0)
+	then
+		Player:AddData("boost", 0);
+	end
+
+
+
 	if(player.rigidBody:GetIsContact())
 	then 
 
-		if(input:GetKeyState("drift"))
+		if(input:GetKeyState("drift") and currentBoost > 0)
 		then
 			player.rigidBody:SetDampeningLinear(0);
 		else
 			player.rigidBody:SetDampeningLinear(1);
 		end
+
 
 		if(input:GetKeyState("forward"))
 		then
