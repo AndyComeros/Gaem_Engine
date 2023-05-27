@@ -130,11 +130,11 @@ vec3 calcPointLight(PointLight light,vec3 fragNormal,vec3 viewDirection){
 
 	//diffuse
 	float difStrength = max(dot(fragNormal,lightDir),0.0f);
-	diffuse = difStrength * light.diffuse * vec3(diffuse);
+	diffuse = difStrength * light.diffuse * vec3(texture(material.diffuseTexture,textureCoord));
 	
 	//specualar
 	vec3 reflectDir = reflect(-lightDir, fragNormal); 
-	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), alpha);
+	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), material.alpha);
 	specular = light.specular * vec3(texture(material.specularMap,textureCoord) * spec);  
 	
 	//attenuation
@@ -200,11 +200,11 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 
 	//diffuse
 	float difStrength = max(dot(fragNormal,light.direction),0.0f);
-	diffuse = difStrength * light.diffuse * vec3(diffTexture);
+	diffuse = difStrength * light.diffuse * vec3(texture(material.diffuseTexture,textureCoord));
 	
 	//specualar
 	vec3 reflectDir = reflect(-light.direction, fragNormal); 
-	float spec = pow(max(dot(viewDirection, reflectDir), 0.0),alpha);
+	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), material.alpha);
 	specular = light.specular * vec3(texture(material.specularMap,textureCoord) * spec);  
 	
 	vec3 result = (diffuse + specular) ;

@@ -5,19 +5,17 @@ dofile("resources/scripts/ai_states.lua")
 function init()
 	print("init lua");
 
+	--window properties
 	--engine:SetWindowType(3);
 	engine:SetWindowIcon("resources/textures/icon.png");
 	engine:SetWindowName("InitalZ");
 	GUI:SetFont("resources/fonts/Excluded-z8XrX.ttf");
 
-
+	--load textures
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
-	resources:LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
-	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap256.png");
-	resources:LoadTexture("heightMapBig","resources/textures/heightmap/heightmap4096.png");
-	resources:LoadTexture("heightMapMed","resources/textures/heightmap/heightmap512.png");
+	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap512.png");
 	resources:LoadTexture("specular","resources/textures/tile_Specular2.png");
 	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
 	resources:LoadTexture("AE86Diff","resources/textures/AE86.png");
@@ -25,6 +23,7 @@ function init()
 	resources:LoadTexture("AE86Spec","resources/textures/AE86Specular.png");
 	resources:LoadTexture("buildingDiff","resources/textures/Untitled2022/buildingDiffuse.png");
 	resources:LoadTexture("buildingEmiss","resources/textures/Untitled2022/buildingEmissive.png");
+	resources:LoadTexture("buildingSpec","resources/textures/Untitled2022/buildingSpecular.png");
 	resources:LoadTexture("water","resources/textures/Water/water.png");
 	resources:LoadTexture("flowMap","resources/textures/Water/flow-speed-noise.png");
 	resources:LoadTexture("DerivHeightMap","resources/textures/Water/water-derivative-height.png");
@@ -43,12 +42,12 @@ function init()
 
 	--load models
 	resources:LoadModel("arcade", "resources/models/untitled2022/Arcade.obj","arcade","","");
-	resources:LoadModel("building1", "resources/models/untitled2022/CyberBuilding1.obj","buildingDiff","buildingEmiss","");
-	resources:LoadModel("building2", "resources/models/untitled2022/CyberBuilding2.obj","buildingDiff","buildingEmiss","");
-	resources:LoadModel("building3", "resources/models/untitled2022/CyberBuilding3.obj","buildingDiff","buildingEmiss","");
-	resources:LoadModel("building4", "resources/models/untitled2022/CyberBuilding4.obj","buildingDiff","buildingEmiss","");
-	resources:LoadModel("building5", "resources/models/untitled2022/CyberBuilding5.obj","buildingDiff","buildingEmiss","");
-	resources:LoadModel("building6", "resources/models/untitled2022/CyberBuilding6.obj","buildingDiff","buildingEmiss","");
+	resources:LoadModel("building1", "resources/models/untitled2022/CyberBuilding1.obj","buildingDiff","buildingEmiss","buildingSpec");
+	resources:LoadModel("building2", "resources/models/untitled2022/CyberBuilding2.obj","buildingDiff","buildingEmiss","buildingSpec");
+	resources:LoadModel("building3", "resources/models/untitled2022/CyberBuilding3.obj","buildingDiff","buildingEmiss","buildingSpec");
+	resources:LoadModel("building4", "resources/models/untitled2022/CyberBuilding4.obj","buildingDiff","buildingEmiss","buildingSpec");
+	resources:LoadModel("building5", "resources/models/untitled2022/CyberBuilding5.obj","buildingDiff","buildingEmiss","buildingSpec");
+	resources:LoadModel("building6", "resources/models/untitled2022/CyberBuilding6.obj","buildingDiff","buildingEmiss","buildingSpec");
 	resources:LoadModel("AE86", "resources/models/Toyota Sprinter Trueno AE86.obj", "AE86Diff", "AE86Emis", "AE86Spec");
 	resources:LoadModel("Rock1", "resources/models/Rocks and Trees/Rock1.obj", "Rock 2", "", "");
 	resources:LoadModel("Rock2", "resources/models/Rocks and Trees/Rock2.obj", "Rock 2", "", "");
@@ -57,13 +56,13 @@ function init()
 	resources:LoadModel("Palm", "resources/models/Rocks and Trees/Palm.obj", "Palm", "Palmdiff", "PalmEmiss");
 
 
+	--setup animated models
 	resources:LoadTexture("robot","resources/models/md2/robot.png");
 	resources:LoadTexture("robot_emiss","resources/models/md2/robot_emiss.png");
 	resources:LoadTexture("robot_spec","resources/models/md2/robot_spec.png");
 	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","robot_spec");
-	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer2.md2","robot","robot_emiss","robot_spec");
+	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer.md2","robot","robot_emiss","robot_spec");
 	resources:GetModel("dancer"):SetAnimationSpeed(10);
-
 	robotModel = resources:GetModel("robot");
 	robotModel:SetAnimation("run"	, 0		, 22	, 50);
 	robotModel:SetAnimation("attack", 24	, 91	, 80);
@@ -74,27 +73,34 @@ function init()
 	--Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
 	Sound:addSound("click","resources/audio/menu/click.wav");
 	Sound:addSound("pause","resources/audio/menu/pause.wav");
-
 	Sound:addSound("drift","resources/audio/car/drift.wav");
 	Sound:addSound("engine","resources/audio/car/engine.wav");
-
 	Sound:addSound("grunt","resources/audio/zombie/grunt.wav");
 	Sound:addSound("carhit","resources/audio/zombie/carhit.wav");
 	Sound:addSound("hitcar","resources/audio/zombie/hitcar.wav");
 
-
 	--setup lighting
 	lighting = scene:GetLights();
-	lighting:SetAmbient(0.1,0.1,0.1);
-	lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.4,0.4,0.4),vec3.new(1,1,1));
-		
+	lighting:SetAmbient(0.1,0.0,0.1);
+	--lighting:SetAmbient(0.01,0.01,0.01);
+	--lighting:SetAmbient(0,0,0);
+	--lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.0,0.6,0.6),vec3.new(1,1,1));
+	lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.3,-1)):multiply(0.2),vec3.new( 0.98,0.8789,0.695),vec3.new(1,1,1):multiply(1));
+
+	lighting:AddPointLight( vec3:new(1140,30,640),
+							vec3.new( 1,0,1),
+							vec3.new( 0.98,0.8789,0.695),
+							1.0,0.007,0.0002);
+		vec3:new(1140,50,640)
+
+		--void AddPointLight(const glm::vec3& position, const glm::vec3& diffuse, const glm::vec3& specular,
+		--float constant, float linear, float quadratic) 
 
 	--Load terrain
-	terrain = resources:CreateTerrain("Terrain","heightMapMed",{"dirt","grass","rock"},"detailMap","detailMap","", 500 , 12,0.5,12);
+	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 500 , 12,0.5,12);
 	terrain:SetTextureHeights({-30,-5,40});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
-	
 	scene:AddObject(terrain);
 
 	--load Water
@@ -102,28 +108,19 @@ function init()
 	water.position = vec3:new(0,-50,0);
 	scene:AddObject(water);
 
-	--Trail = resources:CreateWater( "TrailTest", 20, { }, 50, 1, 1, 1);
-	--Trail:SetTextureScale(50);
-	--Trail:setShader
-	--scene:AddObject(Trail);
-
 	--Setup Player
 	Player = resources:CreateNPCObject("Player", "AE86", "");
 
 	Player.position = vec3:new(800,35,500);
 	physics:AddRigidBody(Player,3);
-
 	local scale = vec3:new(1.5,0.2,0.7)
 	local mass = 500;
 	local bounce = 0;
 	local friction = 0.5;
 	physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
-	--physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
-	--Player.rigidBody:SetMass(500);
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
 	Player.rigidBody:SetDampeningAngle(10);
 	Player.rigidBody:SetDampeningLinear(1);
-
 	Player.rigidBody:ToggleColliderListener();
 	
 	--player stats/health
@@ -149,9 +146,8 @@ function init()
 	Palm.position = vec3:new(10,terrain:GetHeight(10,10),10);
 	scene:AddObject(Palm);
 	
-	math.randomseed(os.time());
-
 	--City
+	math.randomseed(os.time());
 	resources:LoadShader("holo","resources/shaders/Default.vert", "resources/shaders/hologram/Holo.frag", "");
 	hologram = resources:CreateGameObject("zdancer", "dancer","holo");
 	hologram.position = vec3:new(1140,50,640);

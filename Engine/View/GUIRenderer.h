@@ -55,7 +55,8 @@ public:
 
 	void Text(const std::string label, float alignment);
 	bool Button(const std::string label, float alignment, float width, float height);
-	bool Image(const std::string texture, float width, float height, float alignX, float alignY);
+	void Image(const std::string texture, float width, float height, float alignX, float alignY);
+	bool ImageButton(const std::string texture, float width, float height, float alignX, float alignY);
 	void Tab(float size);
 	void SetCursorPosX(float pos);
 	void SetCursorPosY(float pos);

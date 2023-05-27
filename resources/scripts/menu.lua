@@ -1,7 +1,14 @@
 
+--load menu texutres
+img_drive = resources:LoadTexture("driver"	,"resources/textures/GUI/DRIVE.png");
+img_exlr8 = resources:LoadTexture("exlr8"	,"resources/textures/GUI/exlr8.png");
+img_frict = resources:LoadTexture("friction","resources/textures/GUI/friction.png");
+img_gas	  = resources:LoadTexture("gas"		,"resources/textures/GUI/GAS.png");
+
+
+
 --current menu in use
 current_menu = 1;
-
 
 --gui aesthetics
 buttonWidth = 300;
@@ -145,6 +152,14 @@ function draw_ingame()
 
 	GUI:Start(false);
 
+	GUI:Image("gas",300,300,0.9,0)
+	
+	GUI:Text("Health: " .. Player:GetData("health"), 0.9);
+	GUI:Text("Score: " .. Player:GetData("health"), 0.9);
+
+	
+	GUI:SetCursorPosX(0)
+	GUI:SetCursorPosY(0)
 	GUI:Text("in-game",0.5);
 	local fps = math.floor(renderer:GetFPS() + 0.5); 
 	GUI:Text((fps.."fps"),0.5);

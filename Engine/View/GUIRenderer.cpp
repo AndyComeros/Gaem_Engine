@@ -105,7 +105,7 @@ bool GUIRenderer::Button(const std::string label, float alignment, float width, 
 	return ImGui::Button(label.c_str(), ImVec2(total_width, height));
 }
 
-bool GUIRenderer::Image(const std::string texture, float width, float height, float alignX, float alignY)
+void GUIRenderer::Image(const std::string texture, float width, float height, float alignX, float alignY)
 {
 	int wwidth, wheight;
 	glfwGetWindowSize(window, &wwidth, &wheight);
@@ -118,8 +118,26 @@ bool GUIRenderer::Image(const std::string texture, float width, float height, fl
 	ImGui::SetCursorPosX(ImGui::GetCursorPosX() + offX);
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + offY);
 
-	Texture* splash = ResourceManager::Get().GetTexture(texture);
-	if (ImGui::ImageButton((void*)(intptr_t)splash->ID, ImVec2(width, height))) {
+	Texture* img = ResourceManager::Get().GetTexture(texture);
+	ImGui::Image((void*)(intptr_t)img->ID, ImVec2(width, height));
+}
+
+
+bool GUIRenderer::ImageButton(const std::string texture, float width, float height, float alignX, float alignY)
+{
+	int wwidth, wheight;
+	glfwGetWindowSize(window, &wwidth, &wheight);
+	float size = ((wwidth < wheight) ? wwidth : wheight) / 2;
+	float availX = ImGui::GetContentRegionAvail().x;
+	float availY = ImGui::GetContentRegionAvail().y;
+	float offX = (availX - width) * alignX;
+	float offY = (availY - height) * alignY;
+
+	ImGui::SetCursorPosX(ImGui::GetCursorPosX() + offX);
+	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + offY);
+
+	Texture* img = ResourceManager::Get().GetTexture(texture);
+	if (ImGui::ImageButton((void*)(intptr_t)img->ID, ImVec2(width, height))) {
 		return true;
 	}
 	return false;

@@ -292,6 +292,7 @@ void LuaManager::Expose_Engine() {
 		"Text", &GUIRenderer::Text,
 		"Button", &GUIRenderer::Button,
 		"Image", &GUIRenderer::Image,
+		"ImageButton", &GUIRenderer::ImageButton,
 		"Tab", &GUIRenderer::Tab,
 		"SetCursorPosX", &GUIRenderer::SetCursorPosX,
 		"SetCursorPosY", &GUIRenderer::SetCursorPosY,

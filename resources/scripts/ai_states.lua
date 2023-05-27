@@ -27,7 +27,6 @@ function attack_update(ent, dt)
 		Sound:playSound("hitcar",camera.position);
 		ent:AddData("lastAttack",0);
 		Player:AddData("health", Player:GetData("health") - 1);
-		print(Player:GetData("health"));
 	end
 
 	ent:LookAt(Player.position);
