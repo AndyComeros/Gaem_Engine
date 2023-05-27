@@ -16,6 +16,7 @@ function init()
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
 	resources:LoadTexture("arcade","resources/models/untitled2022/Arcade.png");
 	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap256.png");
+	resources:LoadTexture("heightMapBig","resources/textures/heightmap/heightmap4096.png");
 	resources:LoadTexture("specular","resources/textures/tile_Specular2.png");
 	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
 	resources:LoadTexture("AE86Diff","resources/textures/AE86.png");
@@ -84,20 +85,18 @@ function init()
 	lighting = scene:GetLights();
 	lighting:SetAmbient(0.1,0.1,0.1);
 	lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.4,0.4,0.4),vec3.new(1,1,1));
-
+		
 
 	--Load terrain
-	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 50 , 10.0,0.6,10.0);
-
-	terrain:SetTextureScale(50);
+	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 500 , 50,0.6,50);
 	terrain:SetTextureHeights({-30,-5,40});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
+	
 	scene:AddObject(terrain);
 
 	--load Water
 	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 1, 1, 1);
-	water:SetTextureScale(50);
 	scene:AddObject(water);
 
 	--Trail = resources:CreateWater( "TrailTest", 20, { }, 50, 1, 1, 1);

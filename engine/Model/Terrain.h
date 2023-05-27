@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+
 /**
 *	@Class Terrain
 *	@brief GameObject subclass that stores terrain
@@ -23,7 +24,7 @@ public:
 		*	@param yScale how scaled terrain is on y axis
 		*	@param zScale how scaled terrain is on z axis
 		*/
-	Terrain(const std::string& nHeightMap,float xScale, float yScale, float zScale);
+	Terrain(const std::string& nHeightMap,float xScale, float yScale, float zScale, float texScale);
 
 		/**
 		*	@brief constructor with texture heightmap
@@ -32,14 +33,14 @@ public:
 		*	@param yScale how scaled terrain is on y axis
 		*	@param zScale how scaled terrain is on z axis
 		*/
-	Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale);
+	Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale, float texScale);
 
 		/**
 		*	@brief constructor with no height values, creates flat plane
 		*	@param xScale how scaled terrain is on x axis
 		*	@param zScale how scaled terrain is on z axis
 		*/
-	Terrain(int size, float xScale, float zScale);
+	Terrain(int size, float xScale, float zScale, float texScale);
 
 		/**
 		*	@brief constructor with height values
@@ -155,6 +156,7 @@ public:
 
 	///creates height values from array from heightTexture
 	void CreateHeightArray();
+
 
 private:
 

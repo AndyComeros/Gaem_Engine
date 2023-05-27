@@ -87,7 +87,7 @@ NPC& ResourceManager::CreateNPCObject(std::string objectName, std::string modelN
 
 Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ) {
 	
-	Terrain* terrain = new Terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ);
+	Terrain* terrain = new Terrain(textures.at(heightMapName),scaleX,scaleY,scaleZ,texScale);
 	
 	if(textures.find(emissiveName) != textures.end())
 		terrain->model_data->SetEmissionTexture(GetTexture(emissiveName));
@@ -117,7 +117,6 @@ Terrain& ResourceManager::CreateTerrain(std::string terrainName, std::string hei
 Terrain& ResourceManager::CreateTerrainFromModel(std::string terrainName, std::string modelName, std::string heightMapName, int Size, float texScale, float scaleX, float scaleY, float scaleZ)
 {
 	Terrain* terrain = new Terrain;
-	
 	terrain->scaleX = scaleX;
 	terrain->scaleY = scaleY;
 	terrain->scaleZ = scaleZ;
@@ -142,7 +141,7 @@ Terrain& ResourceManager::CreateTerrainFromModel(std::string terrainName, std::s
 
 Terrain& ResourceManager::CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ)
 {
-	Terrain* terrain = new Terrain(Size, scaleX, scaleZ);
+	Terrain* terrain = new Terrain(Size, scaleX, scaleZ,texScale);
 
 	if (shaders.find("Water") != shaders.end()) 
 		terrain->shader = shaders.at("Water");

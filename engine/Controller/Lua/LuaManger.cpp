@@ -113,7 +113,7 @@ void LuaManager::Expose_Engine() {
 
 	//expose terrain
 	Expose_CPPClass<Terrain>("Terrain",
-		sol::constructors<Terrain(), Terrain(std::string&, float, float, float)>(),
+		sol::constructors<Terrain(), Terrain(std::string&, float, float, float,float)>(),
 		sol::base_classes, sol::bases<GameObject>(),
 		"GetHeight", &Terrain::GetHeight,
 		"GetNormal", &Terrain::GetNormal,

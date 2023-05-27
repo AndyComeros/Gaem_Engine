@@ -24,11 +24,36 @@ void Texture::Bind(GLuint tUnit) {
 	glEnable(GL_TEXTURE_2D);
 }
 
-unsigned char Texture::GetPixelValue(int x, int y, int index) {
+unsigned char Texture::GetPixelValue(float x, float y, int index) {
 	if (index > numColorChannels - 1) {
-		return (unsigned char)0.0f;
+		return 0;
 	}
-	return imageData[(numColorChannels * (y * width + x))];
+
+	int x0 = static_cast<int>(x);
+	int y0 = static_cast<int>(y);
+	int x1 = x0 + 1;
+	int y1 = y0 + 1;
+
+	float dx = x - x0;
+	float dy = y - y0;
+
+	unsigned char p00 = GetPixelValueClamped(x0, y0, index);
+	unsigned char p01 = GetPixelValueClamped(x0, y1, index);
+	unsigned char p10 = GetPixelValueClamped(x1, y0, index);
+	unsigned char p11 = GetPixelValueClamped(x1, y1, index);
+
+	float interpolatedValue = (1 - dx) * (1 - dy) * p00 +
+		dx * (1 - dy) * p10 +
+		(1 - dx) * dy * p01 +
+		dx * dy * p11;
+
+	return static_cast<unsigned char>(interpolatedValue);
+}
+
+unsigned char Texture::GetPixelValueClamped(int x, int y, int index) {
+	x = std::clamp(x, 0, width - 1);
+	y = std::clamp(y, 0, height - 1);
+	return imageData[numColorChannels * (y * width + x) + index];
 }
 
 int Texture::GetChannelCount() {

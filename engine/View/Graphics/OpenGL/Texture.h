@@ -2,6 +2,7 @@
 #include <stb_image/stb_image.h>
 #include <glad/glad.h>
 #include <iostream>
+#include <algorithm>
 
 class Texture {
 public:
@@ -12,7 +13,9 @@ public:
 	Texture(unsigned char *imgData, int w,int h,int c);
 	void Bind(GLuint tUnit);
 	
-	 unsigned char GetPixelValue(int x,int y,int index);
+	 unsigned char GetPixelValue(float x,float y,int index);
+
+	 unsigned char GetPixelValueClamped(int x, int y, int index);
 
 	int GetChannelCount();
 	int GetWidth();

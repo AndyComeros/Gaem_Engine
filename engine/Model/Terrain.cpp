@@ -5,7 +5,8 @@ Terrain::Terrain() : terrainSize(0)
 	heightArray = new std::vector<float>;
 }
 
-Terrain::Terrain(const std::string& nHeightMap, float xScale, float yScale, float zScale) {
+Terrain::Terrain(const std::string& nHeightMap, float xScale, float yScale, float zScale, float texScale) {
+	textureScale = texScale;
 	heightArray = new std::vector<float>;
 	scaleX = xScale;
 	scaleY = yScale;
@@ -13,7 +14,8 @@ Terrain::Terrain(const std::string& nHeightMap, float xScale, float yScale, floa
 	LoadHeightMap(nHeightMap);
 }
 
-Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale) {
+Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale, float texScale) {
+	textureScale = texScale;
 	heightArray = new std::vector<float>;
 	scaleX = xScale;
 	scaleY = yScale;
@@ -21,8 +23,9 @@ Terrain::Terrain(Texture* nHeightMap, float xScale, float yScale, float zScale) 
 	LoadHeightMap(nHeightMap);
 }
 
-Terrain::Terrain(int size, float xScale, float zScale)
+Terrain::Terrain(int size, float xScale, float zScale, float texScale)
 {
+	textureScale = texScale;
 	heightArray = new std::vector<float>;
 	for (int y = 0; y < size; y++)
 	{
@@ -245,6 +248,7 @@ Texture* Terrain::GetHeightTexture()
 
 void Terrain::CreateHeightArray() {
 
+	
 	terrainSize = 0;
 
 	if (!heightTexture)
@@ -277,6 +281,7 @@ void Terrain::CreateHeightArray() {
 
 void Terrain::GenerateModel() {
 
+	float starttime = glfwGetTime();
 	if ((*heightArray).empty()) {
 		model_data = new Model();
 		return;
@@ -362,4 +367,6 @@ void Terrain::GenerateModel() {
 	}
 	model_data->maxBounds = (terrainSize / 2.0f) * scaleX;
 	((Model*)model_data)->SetVertexData(&vertexData[0].vertex.x, vertexData.size(), &elementsIndexes[0].x, elementsIndexes.size() * 3);
+
+	std::cout << "Time " << glfwGetTime() - starttime;
 }	
