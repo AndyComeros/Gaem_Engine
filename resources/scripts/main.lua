@@ -110,7 +110,6 @@ function init()
 	--Setup Player
 	Player = resources:CreateNPCObject("Player", "AE86", "");
 
-
 	Player.position = vec3:new(800,35,500);
 	physics:AddRigidBody(Player,3);
 
@@ -120,7 +119,6 @@ function init()
 	local friction = 0.5;
 	physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
 	--physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
-
 	--Player.rigidBody:SetMass(500);
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
 	Player.rigidBody:SetDampeningAngle(10);
@@ -241,11 +239,17 @@ function update(deltaTime)
 	MouseMoveFunc(deltaTime);
 	Sound:setListenerPos(camera.position);
 	Sound:setMusicPos(camera.position);
-	car_sound();
+	lock_player_terrain();
 end
 
 
-function car_sound()
-	
-	
+function lock_player_terrain()
+
+	t_Height = terrain:GetHeight(Player.position.x,Player.position.z);
+
+	if(Player.position.y < t_Height - 1)
+	then
+		local player = scene:GetObject("Player")
+		player:SetPosition(vec3:new(player.position.x,t_Height + 1,player.position.z));
+	end
 end
