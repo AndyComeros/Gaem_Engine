@@ -118,11 +118,11 @@ function load_scene()
 		local offset = vec3:new(0,2,0);
 		local mass = 100;
 		local bounce = 0;
-		local friction = 0;
+		local friction = 1;
 		physics:AddRigidBodyColliderBox(Robot,scale,offset, mass,bounce,friction);
 		Robot.rigidBody:SetCenterOfMass(vec3:new(0,2,0));
 		Robot.rigidBody:SetDampeningAngle(0.5);
-		Robot.rigidBody:SetDampeningLinear(0.5);
+		Robot.rigidBody:SetDampeningLinear(10);
 		--Robot.rigidBody:ToggleColliderListener();
 
 

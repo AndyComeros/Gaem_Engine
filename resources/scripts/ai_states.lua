@@ -46,7 +46,10 @@ end
 attackDelay = 0.5;
 function attack_enter(ent, dt)
 	ent:GetDrawItem():Animate("attack");
-
+	ent.rigidBody:SetLinearVelocity(0,0,0);
+	ent.rigidBody:SetAngularVelocity(0,0,0);
+	ent.rigidBody:ModType(1);
+	
 	--Sound:playSound("grunt",camera.position);
 
 	if(not ent:HasData("lastAttack"))
@@ -89,8 +92,10 @@ hitRange = 5;
 hitVelocity = 20;
 
 function global_enter(ent, dt)
-	ent.rigidBody:SetLinearVelocity(vec3:new(0,0,0));
-	ent.rigidBody:SetAngularVelocity(vec3:new(0,0,0));
+
+	ent.rigidBody:SetLinearVelocity(0,0,0);
+	ent.rigidBody:SetAngularVelocity(0,0,0);
+	ent.rigidBody:ModType(3);
 end
 
 function global_update(ent, dt)
@@ -118,7 +123,7 @@ function global_update(ent, dt)
 end
 
 function global_exit(ent, dt)
-
+	
 end
 
 function global_message(ent, dt)
@@ -136,10 +141,13 @@ function dead_enter(ent, dt)
 	Sound:playSound("carhit",camera.position);
 	ent:GetDrawItem():Animate("stand");
 	ent:AddData("timeToRespawn",respawnTime);
+
+	ent.rigidBody:SetDampeningLinear(0.5);
 	ent.rigidBody:ModType(1);
 --#define KINE 1
 --#define STAT 2
 --#define DYNA 3
+
 
 	local force = Player.rigidBody:GetLinearVelocity():multiply(math.random(1,3) + math.random());
 	force.y = force.y + 20;
@@ -175,7 +183,8 @@ function dead_exit(ent, dt)
 	--ent.rigidBody:SetLinearVelocity (0,0,0);
 	--ent.rigidBody:SetAngularVelocity(0,0,0);
 	--ent:SetRotation(0,0,0);
-	--ent.rigidBody:ModType(1);
+	ent.rigidBody:SetDampeningLinear(10);
+	ent.rigidBody:ModType(3);
 end
 
 function dead_message(ent, dt)
