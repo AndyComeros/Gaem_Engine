@@ -285,7 +285,9 @@ void LuaManager::Expose_Engine() {
 		"ToggleColliderListener", &Rigidbody::ToggleContactListenState,
 		"GetIsContact", &Rigidbody::GetIsContact,
 		"GetLinearVelocity", &Rigidbody::GetLinearVelocty,
-		"GetAngularVelocity", &Rigidbody::GetAngularVelocity
+		"GetAngularVelocity", &Rigidbody::GetAngularVelocity,
+		"SetLinearVelocity", &Rigidbody::SetLinearVelocity,
+		"SetAngularVelocity", &Rigidbody::SetAngularVelocity
 		);
 
 	Expose_CPPClass<GUIRenderer>("GUIRenderer",

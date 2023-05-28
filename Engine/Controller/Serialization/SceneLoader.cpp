@@ -138,7 +138,7 @@ Scene& SceneLoader::LoadScene(const std::string inName)
             {
             case COLLIDER_BOX:
                 glm::vec3 scale(rb["scale"][0].asFloat(), rb["scale"][1].asFloat(), rb["scale"][2].asFloat());
-                scene->physics.AddRigidBodyColliderBox(*go,scale,mass,bounce ,friction);
+                scene->physics.AddRigidBodyColliderBox(*go,scale,offset,mass,bounce ,friction);
                 break;
             case COLLIDER_SPHERE:
                 radius = rb["radius"].asFloat();

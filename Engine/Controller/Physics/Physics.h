@@ -93,12 +93,13 @@ public:
 	*	@brief adds box collider to rigidbody
 	*   @param go containing rigidbody
 	*   @param scale the scale of the collider
+	*   @param offset the offset of the collider
 	*   @param mass the mass of the collider 
 	*   @param bounce the bounciness of the collider
 	*   @param friction the friction of the collider
 	*	@return void
 	*/
-	void AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale,float mass, float bounce, float friction);
+	void AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, glm::vec3 offset ,float mass, float bounce, float friction);
 	/**
 	*	@brief adds sphere collider to rigidbody
 	*   @param go containing rigidbody

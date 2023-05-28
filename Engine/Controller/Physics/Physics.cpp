@@ -38,18 +38,20 @@ void Physics::DelRigidBody(GameObject &go)
 	world->destroyRigidBody(go.rigidBody.rbPtr);
 }
 
-void Physics::AddRigidBodyColliderBox(GameObject &go, glm::vec3 scale, float mass, float bounce, float friction)
+void Physics::AddRigidBodyColliderBox(GameObject& go, glm::vec3 scale, glm::vec3 offset, float mass, float bounce, float friction)
 {
 	RigidBody* rb = go.rigidBody.rbPtr;
 
 	//refactor
-	BoxCollider* box = new BoxCollider(mass, bounce, friction, { 0,0,0 }, { 0,0,0 }, scale);
+	BoxCollider* box = new BoxCollider(mass, bounce, friction, offset, { 0,0,0 }, scale);
 	delete go.rigidBody.collider;
 	go.rigidBody.collider = box;
 	
 
 	BoxShape* shape = physicsCommon.createBoxShape({scale.x,scale.y,scale.z});
-	Transform transform = Transform::identity();
+
+	rp3d::Quaternion q = Quaternion::identity();
+	Transform transform({ offset.x,offset.y, offset.z }, q);
 	rb->addCollider(shape, transform);
 
 	rp3d::Material& mat= rb->getCollider(rb->getNbColliders() - 1)->getMaterial();

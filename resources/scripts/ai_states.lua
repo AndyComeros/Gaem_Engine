@@ -47,7 +47,7 @@ attackDelay = 0.5;
 function attack_enter(ent, dt)
 	ent:GetDrawItem():Animate("attack");
 
-	Sound:playSound("grunt",camera.position);
+	--Sound:playSound("grunt",camera.position);
 
 	if(not ent:HasData("lastAttack"))
 	then
@@ -56,20 +56,19 @@ function attack_enter(ent, dt)
 end
 
 function attack_update(ent, dt)
-
+	
 	local playerDist = Length(Player.position - ent.position);
 	local newLAttack = ent:GetData("lastAttack") + dt;
 	ent:AddData("lastAttack",newLAttack);
 
 	if(newLAttack > attackDelay and playerDist < 10)
 	then
-		Sound:playSound("hitcar",camera.position);
+		--Sound:playSound("hitcar",camera.position);
 		ent:AddData("lastAttack",0);
 		Player:AddData("health", Player:GetData("health") - 1);
 	end
 
 	ent:LookAt(Player.position);
-
 end
 
 function attack_exit(ent, dt)
@@ -87,10 +86,11 @@ end
 ----------------------------------------------------------
 atkrange = 10;
 hitRange = 5;
-hitVelocity = 10;
+hitVelocity = 20;
 
 function global_enter(ent, dt)
-	
+	ent.rigidBody:SetLinearVelocity(vec3:new(0,0,0));
+	ent.rigidBody:SetAngularVelocity(vec3:new(0,0,0));
 end
 
 function global_update(ent, dt)
@@ -111,10 +111,14 @@ function global_update(ent, dt)
 		end
 	end
 
+	--make sure physics dont go wild
+	--ent.rigidBody:SetLinearVelocity(vec3:new(0,0,0));
+	--ent.rigidBody:SetAngularVelocity(vec3:new(0,0,0));
+
 end
 
 function global_exit(ent, dt)
-	
+
 end
 
 function global_message(ent, dt)
@@ -126,26 +130,41 @@ end
 ----------------------------------------------------------
 				--DEAD ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
-respawnTime = 5;
+respawnTime = 10;
 
 function dead_enter(ent, dt)
 	Sound:playSound("carhit",camera.position);
 	ent:GetDrawItem():Animate("stand");
-	Player:AddData("timeToRespawn",respawnTime);
+	ent:AddData("timeToRespawn",respawnTime);
+	ent.rigidBody:ModType(3);
+--#define KINE 1
+--#define STAT 2
+--#define DYNA 3
+
+	local force = Player.rigidBody:GetLinearVelocity():multiply(200);
+	force.y = force.y + 1000;
+	ent.rigidBody:ApplyForce(force);
+	ent.rigidBody:ApplyTorqueLocal(vec3:new(100,100,100));
+	
+
 end
 
 function dead_update(ent, dt)
-	Player:AddData("timeToRespawn",Player:GetData("timeToRespawn") - dt);
-
-	if(Player:GetData("timeToRespawn") < 0)
+	ent:AddData("timeToRespawn",ent:GetData("timeToRespawn") - dt);
+	if(ent:GetData("timeToRespawn") < 0)
 	then
 		ent.stateMachine:ChangeGlobalState(global_state);
 	end
 
+	--temp animation
+	--ent:SetPosition(vec3:new(ent.position.x,ent.position.y + (dt * 100),ent.position.z));
 end
 
 function dead_exit(ent, dt)
-	
+	ent.rigidBody:SetLinearVelocity(vec3:new(0,0,0));
+	ent.rigidBody:SetAngularVelocity(vec3:new(0,0,0));
+	ent:SetRotation(vec3:new(0,0,0));
+	ent.rigidBody:ModType(1);
 end
 
 function dead_message(ent, dt)

@@ -40,7 +40,7 @@ function load_scene()
 	local mass = 500;
 	local bounce = 0;
 	local friction = 0.5;
-	physics:AddRigidBodyColliderBox(Player,scale, mass,bounce,friction);
+	physics:AddRigidBodyColliderBox(Player,scale,vec3:new(0,0,0), mass,bounce,friction);
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
 	Player.rigidBody:SetDampeningAngle(10);
 	Player.rigidBody:SetDampeningLinear(1);
@@ -75,7 +75,7 @@ function load_scene()
 				
 				local scale = vec3:new(10,60,10)
 				physics:AddRigidBody(Building1,2);
-				physics:AddRigidBodyColliderBox(Building1,scale, mass,bounce,friction);
+				physics:AddRigidBodyColliderBox(Building1,scale,vec3:new(0,0,0), mass,bounce,friction);
 
 				m_rot = rots[math.random(1,4)];
 				Building1:SetRotation(vec3:new(0,m_rot,0));
@@ -100,6 +100,10 @@ function load_scene()
 	aimanager:AddState("global_state",global_state);
 	aimanager:AddState("empty_state",empty_state);
 
+	--// RigidBody type
+	--#define KINE 1
+	--#define STAT 2
+	--#define DYNA 3
 	for i = 1,500,1
 	do
 		
@@ -108,6 +112,21 @@ function load_scene()
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
 		Robot = resources:CreateNPCObject("robot"..i, "robot","");
+
+		physics:AddRigidBody(Robot,1);
+		local scale = vec3:new(1,1,1)
+		local offset = vec3:new(0,2,0);
+		local mass = 100;
+		local bounce = 0;
+		local friction = 0;
+		physics:AddRigidBodyColliderBox(Robot,scale,offset, mass,bounce,friction);
+		Robot.rigidBody:SetCenterOfMass(vec3:new(0,2,0));
+		Robot.rigidBody:SetDampeningAngle(0.5);
+		Robot.rigidBody:SetDampeningLinear(0.5);
+		--Robot.rigidBody:ToggleColliderListener();
+
+
+
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
 		Robot.scale = vec3:new(0.15,0.15,0.15);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);

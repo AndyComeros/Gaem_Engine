@@ -8,6 +8,8 @@ StateMachine::StateMachine(GameObject* nOwner) :
 
 void StateMachine::ChangeState(State& nState)
 {
+	if(currentState)
+		currentState->Exit(*owner);
 	if (previousState != &nState) {
 		previousState = currentState;
 		currentState = &nState;
@@ -17,6 +19,8 @@ void StateMachine::ChangeState(State& nState)
 
 void StateMachine::ChangeGlobalState(State& nState)
 {
+	if(globalState)
+		globalState->Exit(*owner);
 	globalState = &nState;
 	globalState->Enter(*owner);
 }
