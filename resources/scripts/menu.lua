@@ -215,7 +215,7 @@ end
 
 function draw_exit()
 
-	GUI:Start(false);
+	GUI:Start(true);
 
 	if(GUI:ImageButton("exit",500,500,0.5,0.5))
 	then

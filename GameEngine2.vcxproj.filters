@@ -137,6 +137,8 @@
     <None Include="resources\scripts\menu.lua" />
     <None Include="resources\scripts\ai_states.lua" />
     <None Include="resources\shaders\hologram\Holo.frag" />
+    <None Include="resources\scripts\load_resources.lua" />
+    <None Include="resources\scripts\load_scene.lua" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependencies\lib\liblua54.a" />

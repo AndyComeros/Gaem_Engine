@@ -53,7 +53,7 @@ void State_Patrol::Update(GameObject& ent, double dt)
 	
 
 	//lock to terrain height
-	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z);
+	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) - 1;
 	npc->SetPosition({ npc->position.x,nY,npc->position.z });
 
 }
@@ -72,7 +72,7 @@ void State_Patrol::GenRandWaypoints(float min, float max, int count)
 	{
 		float nx = min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
 		float nz = min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
-		float ny = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(nx, nz);
+		float ny = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(nx, nz) - 1;
 		glm::vec3 nVec = { nx,0,nz };
 		waypoints.push_back(nVec);
 	}

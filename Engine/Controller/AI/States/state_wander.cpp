@@ -42,7 +42,7 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 	if (npc->GetData("isIdle") < 0.5f) {
 
 		//lock to terrain height
-		float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z);
+		float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) - 1;
 		npc->SetPosition({ npc->position.x,nY,npc->position.z });
 
 		
@@ -103,6 +103,6 @@ glm::vec3 State_Wander::GetWanderTarget()
 	float nx = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
 	float nz = -s/2 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / s));
 
-	float ny = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(nx, nz);
+	float ny = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(nx, nz) - 1;
 	return { nx,ny,nz };
 }

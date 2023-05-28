@@ -60,7 +60,7 @@ void State_Evade::Update(GameObject& ent, double dt)
 
 
 	//lock to terrain height
-	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z);
+	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) - 1;
 	npc->SetPosition({ npc->position.x,nY,npc->position.z });
 
 	if (glm::length(toTarget) > npc->GetData("fleeDistance")) {

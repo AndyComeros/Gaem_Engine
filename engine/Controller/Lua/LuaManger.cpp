@@ -120,7 +120,10 @@ void LuaManager::Expose_Engine() {
 		"SetTextures", &Terrain::SetTextures,
 		"SetTextureHeights", &Terrain::SetTextureHeights,
 		"GetSize", &Terrain::GetSize,
-		"SetTextureScale", &Terrain::SetTextureScale
+		"SetTextureScale", &Terrain::SetTextureScale,
+		"scaleX", &Terrain::scaleX,
+		"scaleY", &Terrain::scaleY,
+		"scaleZ", &Terrain::scaleZ
 		);
 
 	//expose NPC

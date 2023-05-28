@@ -1,9 +1,29 @@
 
+----------------------------------------------------------
+				--PLAYER STATE FUNCTIONS--
+----------------------------------------------------------
 
+function player_enter(ent, dt)
+	
+end
+
+function player_update(ent, dt)
+		
+end
+
+function player_exit(ent, dt)
+	
+end
+
+function player_message(ent, dt)
+	
+end
+----------------------------------------------------------
 
 ----------------------------------------------------------
-				--ATTACK STATE FUNCTIONS--
+				-- ENEMY ATTACK STATE FUNCTIONS--
 ----------------------------------------------------------
+
 attackDelay = 0.5;
 function attack_enter(ent, dt)
 	ent:GetDrawItem():Animate("attack");
@@ -73,4 +93,25 @@ function global_message(ent, dt)
 end
 ----------------------------------------------------------
 
+
+----------------------------------------------------------
+				--DEAD ENEMY STATE FUNCTIONS--
+----------------------------------------------------------
+
+function dead_enter(ent, dt)
+	print("i am dead i am dead, only eat all natural wholegrain bread.")
+end
+
+function dead_update(ent, dt)
+		
+end
+
+function dead_exit(ent, dt)
+	
+end
+
+function dead_message(ent, dt)
+	
+end
+----------------------------------------------------------
 print("end script states");
