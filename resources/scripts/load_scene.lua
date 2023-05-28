@@ -126,7 +126,6 @@ function load_scene()
 		--Robot.rigidBody:ToggleColliderListener();
 
 
-
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
 		Robot.scale = vec3:new(0.15,0.15,0.15);
 		local scale = vec3:new(0.5,1,0.5):multiply(3);

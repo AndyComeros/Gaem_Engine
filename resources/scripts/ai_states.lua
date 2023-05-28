@@ -136,16 +136,21 @@ function dead_enter(ent, dt)
 	Sound:playSound("carhit",camera.position);
 	ent:GetDrawItem():Animate("stand");
 	ent:AddData("timeToRespawn",respawnTime);
-	ent.rigidBody:ModType(3);
+	ent.rigidBody:ModType(1);
 --#define KINE 1
 --#define STAT 2
 --#define DYNA 3
 
-	local force = Player.rigidBody:GetLinearVelocity():multiply(200);
-	force.y = force.y + 1000;
-	ent.rigidBody:ApplyForce(force);
-	ent.rigidBody:ApplyTorqueLocal(vec3:new(100,100,100));
-	
+	local force = Player.rigidBody:GetLinearVelocity():multiply(math.random(1,3) + math.random());
+	force.y = force.y + 20;
+	--ent.rigidBody:ApplyForce(force);
+	--ent.rigidBody:ApplyTorqueLocal(vec3:new(100,100,100));
+	ent.rigidBody:SetLinearVelocity(force.x,force.y,force.z);
+
+
+	math.random(-10,10)
+	ent.rigidBody:SetAngularVelocity(math.random(-10,10),math.random(-10,10),math.random(-10,10));
+
 
 end
 
@@ -156,15 +161,21 @@ function dead_update(ent, dt)
 		ent.stateMachine:ChangeGlobalState(global_state);
 	end
 
+	--simulate gravity for kinematic body
+	gravity = vec3:new(0, -9.81, 0)
+	gravityForce = gravity:multiply(0.0167);
+	newVelocity = ent.rigidBody:GetLinearVelocity() + gravityForce;
+	ent.rigidBody:SetLinearVelocity(newVelocity.x,newVelocity.y,newVelocity.z);
+
 	--temp animation
 	--ent:SetPosition(vec3:new(ent.position.x,ent.position.y + (dt * 100),ent.position.z));
 end
 
 function dead_exit(ent, dt)
-	ent.rigidBody:SetLinearVelocity(vec3:new(0,0,0));
-	ent.rigidBody:SetAngularVelocity(vec3:new(0,0,0));
-	ent:SetRotation(vec3:new(0,0,0));
-	ent.rigidBody:ModType(1);
+	--ent.rigidBody:SetLinearVelocity (0,0,0);
+	--ent.rigidBody:SetAngularVelocity(0,0,0);
+	--ent:SetRotation(0,0,0);
+	--ent.rigidBody:ModType(1);
 end
 
 function dead_message(ent, dt)
