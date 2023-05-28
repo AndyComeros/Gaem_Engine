@@ -94,11 +94,13 @@ function load_scene()
 	attack_state  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
 	dead_state    = ScriptableState:new(dead_enter, dead_update, dead_exit, dead_message);
 	global_state  = ScriptableState:new(global_enter, global_update, global_exit, global_message);
+	empty_state  = ScriptableState:new(empty_enter, empty_update, empty_exit, empty_message);
 	aimanager:AddState("attack_state",attack_state);
 	aimanager:AddState("dead_state",dead_state);
 	aimanager:AddState("global_state",global_state);
+	aimanager:AddState("empty_state",empty_state);
 
-	for i = 1,100,1
+	for i = 1,500,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;

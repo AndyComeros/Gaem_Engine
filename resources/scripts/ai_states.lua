@@ -1,5 +1,23 @@
 
 ----------------------------------------------------------
+				--EMPTY STATE FUNCTIONS--
+----------------------------------------------------------
+
+function empty_enter(ent, dt)
+end
+
+function empty_update(ent, dt)
+end
+
+function empty_exit(ent, dt)
+end
+
+function empty_message(ent, dt)
+end
+----------------------------------------------------------
+
+
+----------------------------------------------------------
 				--PLAYER STATE FUNCTIONS--
 ----------------------------------------------------------
 
@@ -20,8 +38,9 @@ function player_message(ent, dt)
 end
 ----------------------------------------------------------
 
+
 ----------------------------------------------------------
-				-- ENEMY ATTACK STATE FUNCTIONS--
+			-- ENEMY ATTACK STATE FUNCTIONS--
 ----------------------------------------------------------
 
 attackDelay = 0.5;
@@ -64,9 +83,11 @@ end
 
 
 ----------------------------------------------------------
-				--GLOBAL ENEMY STATE FUNCTIONS--
+			--GLOBAL ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
 atkrange = 10;
+hitRange = 5;
+hitVelocity = 10;
 
 function global_enter(ent, dt)
 	
@@ -75,13 +96,21 @@ end
 function global_update(ent, dt)
 	
 	local playerDist = Length(Player.position - ent.position);
-	if(playerDist < atkrange)
+
+	if(playerDist < hitRange and Length(Player.rigidBody:GetLinearVelocity()) > hitVelocity)
 	then
-		ent.stateMachine:ChangeState(attack_state);
+		ent.stateMachine:ChangeState(dead_state);
+		ent.stateMachine:ChangeGlobalState(empty_state);
+		Player:AddData("score", Player:GetData("score") + 1);
 	else
-		ent.stateMachine:ChangeState(state_chase);
+		if(playerDist < atkrange)
+		then
+			ent.stateMachine:ChangeState(attack_state);
+		else
+			ent.stateMachine:ChangeState(state_chase);
+		end
 	end
-		
+
 end
 
 function global_exit(ent, dt)
@@ -97,13 +126,22 @@ end
 ----------------------------------------------------------
 				--DEAD ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
+respawnTime = 5;
 
 function dead_enter(ent, dt)
-	print("i am dead i am dead, only eat all natural wholegrain bread.")
+	Sound:playSound("carhit",camera.position);
+	ent:GetDrawItem():Animate("stand");
+	Player:AddData("timeToRespawn",respawnTime);
 end
 
 function dead_update(ent, dt)
-		
+	Player:AddData("timeToRespawn",Player:GetData("timeToRespawn") - dt);
+
+	if(Player:GetData("timeToRespawn") < 0)
+	then
+		ent.stateMachine:ChangeGlobalState(global_state);
+	end
+
 end
 
 function dead_exit(ent, dt)
