@@ -71,7 +71,6 @@ function attack_update(ent, dt)
 	end
 		
 	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
-	--print("ooooh");
 	ent:LookAt(Player.position);
 
 end
@@ -141,7 +140,7 @@ respawnTime = 10;
 
 function dead_enter(ent, dt)
 	Sound:playSound("carhit",camera.position);
-	ent:GetDrawItem():Animate("stand");
+	ent:GetDrawItem():Animate("fall");
 	ent:AddData("timeToRespawn",respawnTime);
 
 	ent.rigidBody:SetDampeningLinear(0.5);

@@ -60,7 +60,7 @@ std::string AIManager::GetStateKey(State* state)
 
 AIManager::AIManager()
 {
-	updateTime = 1.0 / 30.0;
+	updateTime = 1.0 / 60.0;
 	msgDispatcher = &Dispatcher::Get();
 }
 

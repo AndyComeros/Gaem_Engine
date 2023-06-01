@@ -58,7 +58,7 @@ function load_scene()
 	resources:LoadShader("holo","resources/shaders/Default.vert", "resources/shaders/hologram/Holo.frag", "");
 	hologram = resources:CreateGameObject("zdancer", "dancer","holo");
 	hologram.position = vec3:new(1140,50,640);
-	hologram.scale = vec3:new(7,7,7);
+	hologram.scale = vec3:new(1,1,1):multiply(100);
 	scene:AddObject(hologram);
 	count = 0;
 	rots = {0,90,180,270};
@@ -125,10 +125,8 @@ function load_scene()
 		Robot.rigidBody:SetDampeningLinear(10);
 		--Robot.rigidBody:ToggleColliderListener();
 
-
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
-		Robot.scale = vec3:new(0.15,0.15,0.15);
-		local scale = vec3:new(0.5,1,0.5):multiply(3);
+		Robot.scale = vec3:new(2,2,2);
 		Robot.stateMachine:ChangeGlobalState(global_state);
 
 		scene:AddObject(Robot);

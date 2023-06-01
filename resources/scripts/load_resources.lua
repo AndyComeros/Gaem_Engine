@@ -52,13 +52,16 @@ function load_resources()
 	resources:LoadTexture("robot","resources/models/md2/robot.png");
 	resources:LoadTexture("robot_emiss","resources/models/md2/robot_emiss.png");
 	resources:LoadTexture("robot_spec","resources/models/md2/robot_spec.png");
-	resources:LoadAnimatedModel("robot","resources/models/md2/robot.md2","robot","robot_emiss","robot_spec");
-	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer.md2","robot","robot_emiss","robot_spec");
+	resources:LoadAnimatedModel("robot","resources/models/md2/robot2.md2","robot","robot_emiss","robot_spec");
+	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer3.md2","robot","robot_emiss","robot_spec");
 	resources:GetModel("dancer"):SetAnimationSpeed(10);
+
 	robotModel = resources:GetModel("robot");
-	robotModel:SetAnimation("run"	, 0		, 22	, 50);
-	robotModel:SetAnimation("attack", 24	, 91	, 80);
-	robotModel:SetAnimation("stand"	, 92	, 151	, 70);
+	robotModel:SetAnimation("idle"	, 0		, 30	, 50);
+	robotModel:SetAnimation("run"	, 31	, 53	, 50);
+	robotModel:SetAnimation("attack", 54	, 88	, 50);
+	robotModel:SetAnimation("shoot"	, 89	, 124	, 50);
+	robotModel:SetAnimation("fall"	, 125	, 191	, 50);
 
 	--audio
 	--Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");

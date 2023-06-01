@@ -23,6 +23,8 @@ void Rigidbody::ApplyTorqueLocal(glm::vec3 torque)
 
 void Rigidbody::ModType(int type)
 {
+	if (!rbPtr)
+		return;
 	mod = 0;
 	switch (type)
 	{
