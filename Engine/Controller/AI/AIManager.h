@@ -21,6 +21,9 @@ private:
 	Scene* scene;
 	std::map<std::string, State*> states;
 
+	double accumilator = 0;
+	double updateTime = 0;
+
 	//singleton
 	AIManager();
 	~AIManager();

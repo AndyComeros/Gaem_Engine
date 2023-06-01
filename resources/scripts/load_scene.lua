@@ -104,7 +104,7 @@ function load_scene()
 	--#define KINE 1
 	--#define STAT 2
 	--#define DYNA 3
-	for i = 1,500,1
+	for i = 1,100,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;

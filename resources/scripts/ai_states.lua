@@ -49,7 +49,6 @@ function attack_enter(ent, dt)
 	ent.rigidBody:SetLinearVelocity(0,0,0);
 	ent.rigidBody:SetAngularVelocity(0,0,0);
 	ent.rigidBody:ModType(1);
-	
 	--Sound:playSound("grunt",camera.position);
 
 	if(not ent:HasData("lastAttack"))
@@ -70,12 +69,15 @@ function attack_update(ent, dt)
 		ent:AddData("lastAttack",0);
 		Player:AddData("health", Player:GetData("health") - 1);
 	end
-
+		
+	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
+	--print("ooooh");
 	ent:LookAt(Player.position);
+
 end
 
 function attack_exit(ent, dt)
-	
+	ent.rigidBody:ModType(3);
 end
 
 function attack_message(ent, dt)
@@ -87,7 +89,7 @@ end
 ----------------------------------------------------------
 			--GLOBAL ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
-atkrange = 10;
+atkrange = 6;
 hitRange = 5;
 hitVelocity = 20;
 

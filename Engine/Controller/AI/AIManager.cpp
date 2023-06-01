@@ -8,6 +8,11 @@ AIManager& AIManager::Get()
 
 void AIManager::UpdateAgents(double deltaTime)
 {
+	accumilator += deltaTime;
+	if (accumilator < updateTime) {
+		return;
+	}
+
 	if (!scene) {
 		return;
 	}
@@ -16,10 +21,11 @@ void AIManager::UpdateAgents(double deltaTime)
 	for (auto& it: scene->gameObjects)
 	{
 		if (it.second) {
-			it.second->Update(deltaTime);
-			it.second->stateMachine.Update(deltaTime);
+			it.second->Update(accumilator);
+			it.second->stateMachine.Update(accumilator);
 		}
 	}
+	accumilator = 0;
 }
 
 void AIManager::Init(Scene* nScene)
@@ -54,6 +60,7 @@ std::string AIManager::GetStateKey(State* state)
 
 AIManager::AIManager()
 {
+	updateTime = 1.0 / 30.0;
 	msgDispatcher = &Dispatcher::Get();
 }
 

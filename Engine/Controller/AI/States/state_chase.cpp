@@ -28,7 +28,7 @@ void State_Chase::Enter(GameObject& ent)
 		npc->AddData("speed", 20);
 
 	if (!npc->HasData("offset"))
-		npc->AddData("offset", 5);
+		npc->AddData("offset", 2);
 
 	npc->GetDrawItem().Animate("run");
 }
