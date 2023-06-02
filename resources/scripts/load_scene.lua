@@ -104,7 +104,7 @@ function load_scene()
 	--#define KINE 1
 	--#define STAT 2
 	--#define DYNA 3
-	for i = 1,100,1
+	for i = 1,0,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
@@ -136,10 +136,17 @@ function load_scene()
 	--terrain elements
 	for i = 1,100,10
 	do
-		local xpos = math.random(1,tSize) - tSize/2;
-		local zpos = math.random(1,tSize) - tSize/2;
-		local ypos = terrain:GetHeight(xpos,zpos) - 1;
+		local xpos = 0;
+		local zpos = 0;
+		local ypos = -900;
 		
+		--ensure position is not in city and above water line
+		while((ypos < -40) or (((xpos > 670) and (xpos < 1610)) and ((zpos > 310) and (zpos < 975))))
+		do
+			xpos = math.random(1,tSize) - tSize/2;
+			zpos = math.random(1,tSize) - tSize/2;
+			ypos = terrain:GetHeight(xpos,zpos) - 1;
+		end
 		tree = resources:CreateNPCObject("tree"..i, "Palm","");
 
 		physics:AddRigidBody(tree,2);
