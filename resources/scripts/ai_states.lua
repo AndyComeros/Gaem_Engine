@@ -135,14 +135,17 @@ end
 ----------------------------------------------------------
 				--DEAD ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
-respawnTime = 2;
-respawnRadius = 10;
+respawnTimeMin = 5;
+respawnTimeMax = 10;
+respawnRadius = 100;
 function dead_enter(ent, dt)
-
+	
 	ent:StopMoving();
 
 	Sound:playSound("carhit",camera.position);
 	ent:GetDrawItem():Animate("fall");
+
+	local respawnTime = math.random(respawnTimeMin, respawnTimeMax) + math.random() 
 	ent:AddData("timeToRespawn",respawnTime);
 
 	--modify physics to prevent collisions with other objects
