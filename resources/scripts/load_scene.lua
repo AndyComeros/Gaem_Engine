@@ -100,7 +100,7 @@ function load_scene()
 	aimanager:AddState("global_state",global_state);
 	aimanager:AddState("empty_state",empty_state);
 
-	robotCount = 1;
+	robotCount = 100;
 	for i = 1,robotCount,1
 	do
 		

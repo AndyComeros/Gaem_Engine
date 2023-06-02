@@ -127,15 +127,12 @@ function global_exit(ent, dt)
 end
 
 function global_message(ent, msg)
-
-	print("i got mail");
+	
+	--restart message
 	if(msg.msgType == 0)
 	then
-		print("i used mail!");
 		restartNPC(ent);
 	end
-	--SendMessage(double delay, int sender, int receiver, int type, void* data)
-
 
 end
 ----------------------------------------------------------
@@ -208,6 +205,9 @@ end
 ----------------------------------------------------------
 
 function restartNPC(ent)
+
+	math.randomseed(os.time());
+	local tSize = terrain:GetSize() * terrain.scaleX;
 	local xpos = math.random(1,tSize) - tSize/2;
 	local zpos = math.random(1,tSize) - tSize/2;
 	local ypos = terrain:GetHeight(xpos,zpos) + 5;
