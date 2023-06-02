@@ -45,6 +45,7 @@ end
 
 attackDelay = 0.5;
 function attack_enter(ent, dt)
+
 	ent:GetDrawItem():Animate("attack");
 	ent.rigidBody:SetLinearVelocity(0,0,0);
 	ent.rigidBody:SetAngularVelocity(0,0,0);
@@ -55,6 +56,7 @@ function attack_enter(ent, dt)
 	then
 		ent:AddData("lastAttack",0);
 	end
+
 end
 
 function attack_update(ent, dt)
@@ -76,7 +78,9 @@ function attack_update(ent, dt)
 end
 
 function attack_exit(ent, dt)
+
 	ent.rigidBody:ModType(3);
+
 end
 
 function attack_message(ent, dt)
@@ -93,14 +97,13 @@ hitRange = 5;
 hitVelocity = 20;
 
 function global_enter(ent, dt)
-
+	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
 	ent.rigidBody:SetLinearVelocity(0,0,0);
 	ent.rigidBody:SetAngularVelocity(0,0,0);
 	ent.rigidBody:ModType(3);
 end
 
 function global_update(ent, dt)
-	
 	local playerDist = Length(Player.position - ent.position);
 
 	if(playerDist < hitRange and Length(Player.rigidBody:GetLinearVelocity()) > hitVelocity)
@@ -117,10 +120,6 @@ function global_update(ent, dt)
 		end
 	end
 
-	--make sure physics dont go wild
-	--ent.rigidBody:SetLinearVelocity(vec3:new(0,0,0));
-	--ent.rigidBody:SetAngularVelocity(vec3:new(0,0,0));
-
 end
 
 function global_exit(ent, dt)
@@ -136,39 +135,29 @@ end
 ----------------------------------------------------------
 				--DEAD ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
-respawnTime = 10;
-
+respawnTime = 2;
+respawnRadius = 10;
 function dead_enter(ent, dt)
+
+	ent:StopMoving();
+
 	Sound:playSound("carhit",camera.position);
 	ent:GetDrawItem():Animate("fall");
 	ent:AddData("timeToRespawn",respawnTime);
 
+	--modify physics to prevent collisions with other objects
 	ent.rigidBody:SetDampeningLinear(0.5);
 	ent.rigidBody:ModType(1);
---#define KINE 1
---#define STAT 2
---#define DYNA 3
 
-
+	--Fly away from player in random position
 	local force = Player.rigidBody:GetLinearVelocity():multiply(math.random(1,3) + math.random());
 	force.y = force.y + 20;
-	--ent.rigidBody:ApplyForce(force);
-	--ent.rigidBody:ApplyTorqueLocal(vec3:new(100,100,100));
 	ent.rigidBody:SetLinearVelocity(force.x,force.y,force.z);
-
-
-	math.random(-10,10)
 	ent.rigidBody:SetAngularVelocity(math.random(-10,10),math.random(-10,10),math.random(-10,10));
-
 
 end
 
 function dead_update(ent, dt)
-	ent:AddData("timeToRespawn",ent:GetData("timeToRespawn") - dt);
-	if(ent:GetData("timeToRespawn") < 0)
-	then
-		ent.stateMachine:ChangeGlobalState(global_state);
-	end
 
 	--simulate gravity for kinematic body
 	gravity = vec3:new(0, -9.81, 0)
@@ -176,16 +165,29 @@ function dead_update(ent, dt)
 	newVelocity = ent.rigidBody:GetLinearVelocity() + gravityForce;
 	ent.rigidBody:SetLinearVelocity(newVelocity.x,newVelocity.y,newVelocity.z);
 
-	--temp animation
-	--ent:SetPosition(vec3:new(ent.position.x,ent.position.y + (dt * 100),ent.position.z));
+	local timeToRespawn = ent:GetData("timeToRespawn");
+	ent:AddData("timeToRespawn",ent:GetData("timeToRespawn") - dt);
+
+	if(ent:GetData("timeToRespawn") < 0)
+	then
+		ent.stateMachine:ChangeGlobalState(global_state);
+	end
+
 end
 
 function dead_exit(ent, dt)
-	--ent.rigidBody:SetLinearVelocity (0,0,0);
-	--ent.rigidBody:SetAngularVelocity(0,0,0);
-	--ent:SetRotation(0,0,0);
+
+	--spawn in random position respawnRadius meters away from playera
+	math.randomseed(os.time() * ent:GetID());
+	local theta = math.rad(math.random(0,360));
+	local xPos = Player.position.x + (respawnRadius * math.cos(theta));
+	local zPos = Player.position.z + (respawnRadius * math.sin(theta));
+	ent:SetPosition(vec3:new(xPos,0,zPos));
+
+	--return physics properties to normal
 	ent.rigidBody:SetDampeningLinear(10);
 	ent.rigidBody:ModType(3);
+	ent:GetDrawItem():Animate("idle");
 end
 
 function dead_message(ent, dt)

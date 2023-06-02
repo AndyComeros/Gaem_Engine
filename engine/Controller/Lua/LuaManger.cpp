@@ -108,7 +108,8 @@ void LuaManager::Expose_Engine() {
 		"LookAt", &GameObject::LookAt,
 		"GetForwardVec", &GameObject::GetForwardVec,
 		"GetRightVec", &GameObject::GetRightVec,
-		"GetUpVec", &GameObject::GetUpVec
+		"GetUpVec", &GameObject::GetUpVec,
+		"GetID", &GameObject::GetID
 		);
 
 	//expose terrain

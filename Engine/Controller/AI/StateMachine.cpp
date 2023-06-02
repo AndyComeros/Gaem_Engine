@@ -10,17 +10,17 @@ void StateMachine::ChangeState(State& nState)
 {
 	if(currentState)
 		currentState->Exit(*owner);
-	if (previousState != &nState) {
-		previousState = currentState;
-		currentState = &nState;
-		currentState->Enter(*owner);
-	}
+
+	previousState = currentState;
+	currentState = &nState;
+	currentState->Enter(*owner);
 }
 
 void StateMachine::ChangeGlobalState(State& nState)
 {
 	if(globalState)
 		globalState->Exit(*owner);
+
 	globalState = &nState;
 	globalState->Enter(*owner);
 }

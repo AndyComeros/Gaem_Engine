@@ -94,7 +94,7 @@ function load_scene()
 	attack_state  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
 	dead_state    = ScriptableState:new(dead_enter, dead_update, dead_exit, dead_message);
 	global_state  = ScriptableState:new(global_enter, global_update, global_exit, global_message);
-	empty_state  = ScriptableState:new(empty_enter, empty_update, empty_exit, empty_message);
+	empty_state   = ScriptableState:new(empty_enter, empty_update, empty_exit, empty_message);
 	aimanager:AddState("attack_state",attack_state);
 	aimanager:AddState("dead_state",dead_state);
 	aimanager:AddState("global_state",global_state);
