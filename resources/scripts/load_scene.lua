@@ -131,4 +131,30 @@ function load_scene()
 
 		scene:AddObject(Robot);
 	end
+
+
+	--terrain elements
+	for i = 1,100,10
+	do
+		local xpos = math.random(1,tSize) - tSize/2;
+		local zpos = math.random(1,tSize) - tSize/2;
+		local ypos = terrain:GetHeight(xpos,zpos) - 1;
+		
+		tree = resources:CreateNPCObject("tree"..i, "Palm","");
+
+		physics:AddRigidBody(tree,2);
+		local scale = vec3:new(1,6,1)
+		local offset = vec3:new(0,5,0);
+		local mass = 100;
+		local bounce = 0;
+		local friction = 1;
+		physics:AddRigidBodyColliderBox(tree,scale,offset, mass,bounce,friction);
+
+		tree:SetPosition(vec3:new(xpos,ypos,zpos));
+		tree.scale = vec3:new(1,1,1);
+
+		scene:AddObject(tree);
+
+	end
+
 end
