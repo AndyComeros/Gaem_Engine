@@ -7,6 +7,8 @@ function load_resources()
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
 	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap512.png");
 	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
+	resources:LoadTexture("black","resources/textures/terrain/black.png");
+	resources:LoadTexture("grid","resources/textures/terrain/tile_Specular2.png");
 
 	resources:LoadTexture("AE86Diff","resources/textures/AE86.png");
 	resources:LoadTexture("AE86Emis","resources/textures/AE86Emissive.png");

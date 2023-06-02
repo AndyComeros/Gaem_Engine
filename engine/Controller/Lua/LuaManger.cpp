@@ -85,13 +85,22 @@ void LuaManager::Expose_Engine() {
 		"speed",&animation::speed
 	);
 
+
+	//expose draw item
+	Expose_CPPClass<Texture>("Texture",
+		sol::no_constructor
+		);
+
 	//expose draw item
 	Expose_CPPClass<DrawItem>("DrawItem",
 		sol::no_constructor,
 		"SetAnimationSpeed", &DrawItem::SetAnimationSpeed,
 		"SetAnimation", &DrawItem::SetAnimation,
 		"Animate", &DrawItem::Animate,
-		"SetShine", &DrawItem::SetShine
+		"SetShine", &DrawItem::SetShine,
+		"SetEmissionTexture", sol::overload(
+			static_cast<void (DrawItem::*)(Texture*)>(&DrawItem::SetEmissionTexture),
+			static_cast<void (DrawItem::*)(const char*)>(&DrawItem::SetEmissionTexture))
 		);
 
 	//expose game object
