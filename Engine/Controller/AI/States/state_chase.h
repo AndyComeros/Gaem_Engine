@@ -6,7 +6,7 @@ class State_Chase : public State
 {
 public:
 	State_Chase();
-	State_Chase(std::string& );
+	State_Chase(std::string&);
 	~State_Chase();
 
 	void Enter(GameObject& ent);
@@ -17,4 +17,7 @@ public:
 private:
 	GameObject* target;
 	std::string targetName;
+
+	float speed = 20.0f;
+	float offset = 2.0f;
 };

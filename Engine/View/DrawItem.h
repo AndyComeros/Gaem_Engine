@@ -97,6 +97,13 @@ public:
     Texture* GetSpecularTexture(int index);
     Texture* GetEmissionTexture(int index);
 
+        /*
+        *   @brief set how shiny this object is
+        *   @param nShine new shine value
+        *   @return void
+        */
+    void SetShine(float nShine);
+
         //Set an animation cycle and its name
     virtual void SetAnimation(const std::string& animName, int start, int end, float speed);
 

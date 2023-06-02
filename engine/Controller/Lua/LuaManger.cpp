@@ -90,7 +90,8 @@ void LuaManager::Expose_Engine() {
 		sol::no_constructor,
 		"SetAnimationSpeed", &DrawItem::SetAnimationSpeed,
 		"SetAnimation", &DrawItem::SetAnimation,
-		"Animate", &DrawItem::Animate
+		"Animate", &DrawItem::Animate,
+		"SetShine", &DrawItem::SetShine
 		);
 
 	//expose game object

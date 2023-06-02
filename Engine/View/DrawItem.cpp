@@ -37,6 +37,11 @@ Texture* DrawItem::GetDiffuseTexture(int index)  { return material.diffuseTextur
 Texture* DrawItem::GetSpecularTexture(int index) { return material.specularMap	 [index]; }
 Texture* DrawItem::GetEmissionTexture(int index) { return material.emissionMap	 [index]; }
 
+void DrawItem::SetShine(float nShine)
+{
+	material.shine = nShine;
+}
+
 void DrawItem::SetAnimation(const std::string& animName, int start, int end, float speed)
 {
 }
