@@ -100,11 +100,8 @@ function load_scene()
 	aimanager:AddState("global_state",global_state);
 	aimanager:AddState("empty_state",empty_state);
 
-	--// RigidBody type
-	--#define KINE 1
-	--#define STAT 2
-	--#define DYNA 3
-	for i = 1,0,1
+	robotCount = 1;
+	for i = 1,robotCount,1
 	do
 		
 		local xpos = math.random(1,tSize) - tSize/2;
@@ -123,7 +120,6 @@ function load_scene()
 		Robot.rigidBody:SetCenterOfMass(vec3:new(0,2,0));
 		Robot.rigidBody:SetDampeningAngle(0.5);
 		Robot.rigidBody:SetDampeningLinear(10);
-		--Robot.rigidBody:ToggleColliderListener();
 
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
 		Robot.scale = vec3:new(2,2,2);
@@ -131,7 +127,6 @@ function load_scene()
 
 		scene:AddObject(Robot);
 	end
-
 
 	--terrain elements
 	for i = 1,100,10

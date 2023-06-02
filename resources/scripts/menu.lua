@@ -243,6 +243,22 @@ function draw_lose()
 	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
 	then
 		Sound:playSound("click",camera.position);
+
+		--send message to reset npcs
+		local delay = 0;
+		local sender = -1;
+		local receiver = -1;
+		local type = 0;
+		aimanager:SendMessage(delay, sender, receiver, type);
+
+		--reset player
+		Player:SetPosition(vec3:new(800,35,500));
+		Player:AddData("health", 1000);
+		Player:AddData("score", 0);
+		Player:AddData("boost", 99);
+		Player.rigidBody:SetLinearVelocity(0,0,0);
+		Player.rigidBody:SetAngularVelocity(0,0,0);
+
 		current_menu = 1;
 	end
 

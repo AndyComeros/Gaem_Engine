@@ -12,7 +12,7 @@ end
 function empty_exit(ent, dt)
 end
 
-function empty_message(ent, dt)
+function empty_message(ent, msg)
 end
 ----------------------------------------------------------
 
@@ -33,8 +33,8 @@ function player_exit(ent, dt)
 	
 end
 
-function player_message(ent, dt)
-	
+function player_message(ent, msg)
+
 end
 ----------------------------------------------------------
 
@@ -83,7 +83,7 @@ function attack_exit(ent, dt)
 
 end
 
-function attack_message(ent, dt)
+function attack_message(ent, msg)
 	
 end
 ----------------------------------------------------------
@@ -126,8 +126,17 @@ function global_exit(ent, dt)
 	
 end
 
-function global_message(ent, dt)
-	
+function global_message(ent, msg)
+
+	print("i got mail");
+	if(msg.msgType == 0)
+	then
+		print("i used mail!");
+		restartNPC(ent);
+	end
+	--SendMessage(double delay, int sender, int receiver, int type, void* data)
+
+
 end
 ----------------------------------------------------------
 
@@ -193,8 +202,20 @@ function dead_exit(ent, dt)
 	ent:GetDrawItem():Animate("idle");
 end
 
-function dead_message(ent, dt)
+function dead_message(ent, msg)
 	
 end
 ----------------------------------------------------------
+
+function restartNPC(ent)
+	local xpos = math.random(1,tSize) - tSize/2;
+	local zpos = math.random(1,tSize) - tSize/2;
+	local ypos = terrain:GetHeight(xpos,zpos) + 5;
+	ent.rigidBody:SetPosition(vec3:new(xpos,ypos,zpos));
+	ent.rigidBody:SetDampeningLinear(10);
+	ent.rigidBody:ModType(3);
+	ent.stateMachine:ChangeGlobalState(global_state);
+end
+
+
 print("end script states");

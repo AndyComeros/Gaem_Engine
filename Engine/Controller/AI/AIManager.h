@@ -14,6 +14,8 @@ public:
 
 	State* GetState(const std::string& stateName);
 
+	void SendMessage(double delay, int sender, int receiver, int type);
+
 	std::string GetStateKey(State* state);
 private:
 

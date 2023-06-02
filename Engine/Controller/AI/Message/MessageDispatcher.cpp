@@ -15,7 +15,7 @@ void Dispatcher::SendMessage(double delay, int sender, int receiver, int type, v
 
 	GameObject* nReceiver = scene->GetObjectByID(receiver);
 
-	if (nReceiver) {
+	if (!nReceiver && receiver != -1) {
 		std::cerr << "Could not send message!" << std::endl;
 		return;
 	}
@@ -23,7 +23,14 @@ void Dispatcher::SendMessage(double delay, int sender, int receiver, int type, v
 	Message message(0.0,sender,receiver,type,data);
 
 	if (delay < 0.1) {
-		nReceiver->stateMachine.ReceiveMessage(&message);
+		if (receiver == -1) {
+			for (auto& it : scene->gameObjects) {
+				it.second->stateMachine.ReceiveMessage(&message);
+			}
+		}
+		else {
+			nReceiver->stateMachine.ReceiveMessage(&message);
+		}
 	}
 	else {
 		message.dispatchTime = delay + Timer::Get().Time();
@@ -36,9 +43,17 @@ void Dispatcher::SendMsgQueue()
 	double time = Timer::Get().Time();
 	while (!msgQueue.empty() && msgQueue.begin()->dispatchTime < time)
 	{
-		GameObject* rec = scene->GetObjectByID(msgQueue.begin()->receiverID);
-		if(rec)
-			rec->stateMachine.ReceiveMessage(&*msgQueue.begin());
+		if (msgQueue.begin()->receiverID == -1) {
+			for (auto& it : scene->gameObjects) {
+				it.second->stateMachine.ReceiveMessage(&*msgQueue.begin());
+			}
+		}
+		else {
+			GameObject* rec = scene->GetObjectByID(msgQueue.begin()->receiverID);
+			if (rec)
+				rec->stateMachine.ReceiveMessage(&*msgQueue.begin());
+			
+		}
 		msgQueue.erase(msgQueue.begin());
 	}
 }

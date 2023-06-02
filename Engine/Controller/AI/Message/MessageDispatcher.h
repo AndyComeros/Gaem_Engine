@@ -10,6 +10,8 @@ class Dispatcher
 public:
 	
 	static Dispatcher& Get();
+
+		//message reciver of -1 means every object revcieves the message
 	void SendMessage(double delay, int sender, int receiver, int type, void* data);
 		//checks if message queue items can be sent yet.
 	void SendMsgQueue();

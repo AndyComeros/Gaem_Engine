@@ -55,6 +55,9 @@ NPC& Scene::GetNPC(std::string objName)
 
 GameObject* Scene::GetObjectByID(int objID)
 {
-	return gameObjectsID.at(objID);
+    if (gameObjectsID.find(objID) != gameObjectsID.end()) {
+        return gameObjectsID.at(objID);
+    }
+    return nullptr;
 }
 

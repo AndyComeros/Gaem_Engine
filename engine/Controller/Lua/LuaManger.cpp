@@ -370,9 +370,18 @@ void LuaManager::Expose_Engine() {
 	Expose_CPPClass<AIManager>("AIManager",
 		sol::no_constructor,
 		"AddState", &AIManager::AddState,
-		"GetState", &AIManager::GetState
+		"GetState", &AIManager::GetState,
+		"SendMessage", &AIManager::SendMessage
 		);
 	Expose_CPPReference("aimanager", AIManager::Get());
+
+	Expose_CPPClass<Message>("Message",
+		sol::no_constructor,
+		"dispatchTime", &Message::dispatchTime,
+		"msgType", &Message::msgType,
+		"receiverID", &Message::receiverID,
+		"senderID", &Message::senderID
+		);
 
 	Expose_CPPClass<SceneLoader>("SceneLoader",
 		sol::no_constructor,
@@ -380,6 +389,8 @@ void LuaManager::Expose_Engine() {
 		"SaveScene", &SceneLoader::SaveScene,
 		"GetSaves", &SceneLoader::GetSaves
 		);
+
+
 
 	static SceneLoader loader;
 	Expose_CPPReference("loader",loader);

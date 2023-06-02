@@ -26,8 +26,6 @@ bool Message::operator>(const Message& m2)const
 
 bool Message::operator==(const Message& m2)const
 {
-	if (*this == m2)
-		return false;
 	return fabs(dispatchTime - m2.dispatchTime) < 0.05 &&
 		senderID == m2.senderID &&
 		receiverID == m2.receiverID &&

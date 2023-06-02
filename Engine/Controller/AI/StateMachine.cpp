@@ -47,8 +47,10 @@ void StateMachine::Update(double dt)
 
 void StateMachine::ReceiveMessage(const Message* message)
 {
-	currentState->ProcessMessage(owner, message);
-	globalState->ProcessMessage(owner, message);
+	if(currentState)
+		currentState->ProcessMessage(owner, message);
+	if(globalState)
+		globalState->ProcessMessage(owner, message);
 }
 
 State* StateMachine::GetState()

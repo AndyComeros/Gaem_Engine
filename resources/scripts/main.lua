@@ -28,7 +28,6 @@ end
 
 function update(deltaTime)
 	
-
 	Player = scene:GetNPC("Player");
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	

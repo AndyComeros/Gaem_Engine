@@ -8,7 +8,7 @@ input:BindKey("right",KEY_D);
 input:BindKey("escape",KEY_X);
 input:BindKey("drift",KEY_SPACE);
 input:BindKey("debug",KEY_K);
-input:BindKey("toggleControlMenu",KEY_M)
+input:BindKey("toggleControlMenu",KEY_M);
 
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
