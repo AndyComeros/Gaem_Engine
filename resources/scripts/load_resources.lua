@@ -27,12 +27,12 @@ function load_resources()
 	resources:LoadTexture("PalmEmiss","resources/textures/Palmemiss.png");
 
 	resources:LoadCubemap("skybox",
-		"resources/textures/skybox/Synthwave2/Right.png",
-		"resources/textures/skybox/Synthwave2/Left.png",
-		"resources/textures/skybox/Synthwave2/Top.png",
-		"resources/textures/skybox/Synthwave2/Bottom.png",
-		"resources/textures/skybox/Synthwave2/Front.png",
-		"resources/textures/skybox/Synthwave2/Back.png"
+		"resources/textures/skybox/Synthwave3/Right.png",
+		"resources/textures/skybox/Synthwave3/Left.png",
+		"resources/textures/skybox/Synthwave3/Top.png",
+		"resources/textures/skybox/Synthwave3/Bottom.png",
+		"resources/textures/skybox/Synthwave3/Front.png",
+		"resources/textures/skybox/Synthwave3/Back.png"
 	);
 
 	--load models
