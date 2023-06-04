@@ -67,7 +67,7 @@ function attack_update(ent, dt)
 
 	if(newLAttack > attackDelay and playerDist < 10)
 	then
-		--Sound:playSound("hitcar",camera.position);
+		Sound:playSound("hitcar",camera.position);
 		ent:AddData("lastAttack",0);
 		Player:AddData("health", Player:GetData("health") - 1);
 	end
@@ -106,14 +106,9 @@ end
 function global_update(ent, dt)
 	local playerDist = Length(Player.position - ent.position);
 	local playerVel = Length(Player.rigidBody:GetLinearVelocity());
-
-	if(playerDist < hitRange and playerVel > hitVelocity)
-	then
-		ent.stateMachine:ChangeState(dead_state);
-		ent.stateMachine:ChangeGlobalState(empty_state);
-		Player:AddData("score", Player:GetData("score") + 1);
-
-	elseif(playerVel > hitVelocity and playerDist < hitRange * 5)
+	
+	--choose behaviour bases on player distance and speed
+	if(playerVel > hitVelocity and playerDist < hitRange * 5)
 	then
 		ent.stateMachine:ChangeState(state_evade);
 	else
@@ -124,6 +119,15 @@ function global_update(ent, dt)
 			ent.stateMachine:ChangeState(state_chase);
 		end
 	end
+
+	--check if hit by player
+	if(playerDist < hitRange and playerVel > hitVelocity)
+	then
+		ent.stateMachine:ChangeState(dead_state);
+		ent.stateMachine:ChangeGlobalState(empty_state);
+		Player:AddData("score", Player:GetData("score") + 1);
+	end
+
 end
 
 function global_exit(ent, dt)
@@ -188,6 +192,51 @@ function dead_update(ent, dt)
 
 end
 
+----------------------------------------------------------
+				--IDLE STATE FUNCTIONS--
+----------------------------------------------------------
+
+function idle_enter(ent, dt)
+	ent.rigidBody:SetDampeningLinear(10);
+	ent.rigidBody:ModType(3);
+	ent:GetDrawItem():Animate("idle");
+end
+
+function idle_update(ent, dt)
+	local playerDist = Length(Player.position - ent.position);
+	local playerVel = Length(Player.rigidBody:GetLinearVelocity());
+
+	--check if hit by player, send message to all npcs to start attacking
+	if(playerDist < hitRange and playerVel > hitVelocity)
+	then
+		ent.stateMachine:ChangeState(dead_state);
+		ent.stateMachine:ChangeGlobalState(empty_state);
+		Player:AddData("score", Player:GetData("score") + 1);
+
+		--send message to reset npcs
+		local delay = 0;
+		local sender = -1;
+		local receiver = -1;
+		local type = 1;
+		aimanager:SendMessage(delay, sender, receiver, type);
+
+	end
+end
+
+function idle_exit(ent, dt)
+	
+end
+
+function idle_message(ent, msg)
+
+	--restart message
+	if(msg.msgType == 1)
+	then
+		ent.stateMachine:ChangeGlobalState(global_state);
+	end
+end
+----------------------------------------------------------
+
 function dead_exit(ent, dt)
 
 	--spawn in random position respawnRadius meters away from playera
@@ -220,6 +269,5 @@ function restartNPC(ent)
 	ent.rigidBody:ModType(3);
 	ent.stateMachine:ChangeGlobalState(global_state);
 end
-
 
 print("end script states");

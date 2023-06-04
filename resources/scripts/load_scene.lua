@@ -98,10 +98,12 @@ function load_scene()
 	dead_state    = ScriptableState:new(dead_enter, dead_update, dead_exit, dead_message);
 	global_state  = ScriptableState:new(global_enter, global_update, global_exit, global_message);
 	empty_state   = ScriptableState:new(empty_enter, empty_update, empty_exit, empty_message);
+	idle_state   = ScriptableState:new(idle_enter, idle_update, idle_exit, idle_message);
 	aimanager:AddState("attack_state",attack_state);
 	aimanager:AddState("dead_state",dead_state);
 	aimanager:AddState("global_state",global_state);
 	aimanager:AddState("empty_state",empty_state);
+	aimanager:AddState("idle_state",idle_state);
 
 	robotCount = 100;
 	for i = 1,robotCount,1
@@ -126,7 +128,8 @@ function load_scene()
 
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
 		Robot.scale = vec3:new(2,2,2);
-		Robot.stateMachine:ChangeGlobalState(global_state);
+
+		Robot.stateMachine:ChangeGlobalState(idle_state);
 
 		scene:AddObject(Robot);
 	end

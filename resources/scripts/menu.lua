@@ -234,12 +234,12 @@ function draw_exit()
 end
 
 function draw_lose()
-
+	
 	GUI:Start(true);
 
 	GUI:Tab(300);
 	GUI:Text("YOU DIED",0.5);
-
+	GUI:Text("Score: " ..  math.floor(Player:GetData("score")), 0.5);
 	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
 	then
 		Sound:playSound("click",camera.position);
