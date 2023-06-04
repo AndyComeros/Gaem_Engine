@@ -212,6 +212,7 @@ function idle_update(ent, dt)
 		ent.stateMachine:ChangeState(dead_state);
 		ent.stateMachine:ChangeGlobalState(empty_state);
 		Player:AddData("score", Player:GetData("score") + 1);
+		Sound:playSound("alarm",camera.position);
 
 		--send message to reset npcs
 		local delay = 0;

@@ -74,4 +74,6 @@ function load_resources()
 	Sound:addSound("carhit","resources/audio/zombie/carhit.wav");
 	Sound:addSound("hitcar","resources/audio/zombie/hitcar.wav");
 
+	Sound:addSound("alarm","resources/audio/zombie/alarm.mp3");
+
 end
