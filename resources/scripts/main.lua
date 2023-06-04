@@ -57,6 +57,11 @@ function check_hazard_collide()
 
 	if(Player.position.y <= waterHeight)
 	then
+		if(Player:GetData("isAlive") == 1)
+		then
+			Sound:playSound("splash",camera.position);
+		end
+		Player:AddData("isAlive", 0);
 		current_menu = 7;
 	end
 end

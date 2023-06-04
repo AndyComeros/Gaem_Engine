@@ -53,6 +53,7 @@ function load_scene()
 	Player:AddData("health", 1000);
 	Player:AddData("score", 0);
 	Player:AddData("boost", 99);
+	Player:AddData("isAlive", 1);
 
 	scene:AddObject(Player);
 

@@ -267,6 +267,7 @@ function draw_lose()
 		Player:AddData("health", 1000);
 		Player:AddData("score", 0);
 		Player:AddData("boost", 99);
+		Player:AddData("isAlive", 1);
 		Player.rigidBody:SetLinearVelocity(0,0,0);
 		Player.rigidBody:SetAngularVelocity(0,0,0);
 
