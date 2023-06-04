@@ -1,5 +1,10 @@
 #include "Rigidbody.h"
 
+Rigidbody::Rigidbody()
+{
+	
+}
+
 void Rigidbody::ApplyForce(glm::vec3 force)
 {
 	if (!rbPtr)

@@ -106,12 +106,14 @@ function load_scene()
 	aimanager:AddState("empty_state",empty_state);
 	aimanager:AddState("idle_state",idle_state);
 
-	robotCount = 100;
+	robotCount = 150;
 	for i = 1,robotCount,1
 	do
 		
-		local xpos = math.random(1,tSize) - tSize/2;
-		local zpos = math.random(1,tSize) - tSize/2;
+		--local xpos = math.random(1,tSize) - tSize/2;
+		--local zpos = math.random(1,tSize) - tSize/2;
+		local xpos = math.random(1,tSize) - tSize/8;
+		local zpos = math.random(1,tSize) - tSize/8;
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
 		Robot = resources:CreateNPCObject("robot"..i, "robot","");

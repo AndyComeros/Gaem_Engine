@@ -28,18 +28,23 @@ public:
 	{
 		if (contactListenerState)
 		{
-			CollisionCallback::ContactPair contactPair = callbackData.getContactPair(0);
+			for (int p = 0; p < callbackData.getNbContactPairs(); p++) {
 			
-			if (contactPair.getEventType() == CollisionCallback::ContactPair::EventType::ContactStart)
-			{
-				//std::cout << "contact hit" << std::endl;
-				isContact = true;
-			}
+				CollisionCallback::ContactPair contactPair = callbackData.getContactPair(p);
 
-			if (contactPair.getEventType() == CollisionCallback::ContactPair::EventType::ContactExit)
-			{
-				//std::cout << "contact leave" << std::endl;
-				isContact = false;
+				if (contactPair.getEventType() == CollisionCallback::ContactPair::EventType::ContactStart)
+				{
+					if (contactPair.getBody1()->getEntity().id == ID || contactPair.getBody2()->getEntity().id == ID) {
+						isContact = true;
+					}
+				}
+
+				if (contactPair.getEventType() == CollisionCallback::ContactPair::EventType::ContactExit)
+				{
+					if (contactPair.getBody1()->getEntity().id == ID || contactPair.getBody2()->getEntity().id == ID) {
+						isContact = false;
+					}
+				}
 			}
 		}
 	}
@@ -47,13 +52,20 @@ public:
 	void ToggleState() {contactListenerState = !contactListenerState;}
 
 	bool isContact = false;
+	int ID = -1;
 private:
 	bool contactListenerState = false;
+	
 };
 
 class Rigidbody
 {
 public:
+		/**
+		*	@brief default constructor
+		*/
+	Rigidbody();
+
 		/**
 		*	@brief applies vector force to rigidbody
 		*   @param force the direction and magnitude of the force
@@ -207,7 +219,6 @@ public:
 
 private:
 	int mod = 1;
-	bool isContact = false;
 	rp3d::RigidBody* rbPtr = nullptr;
 	rp3d::PhysicsWorld* worldPtr = nullptr;
 

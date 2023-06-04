@@ -128,7 +128,7 @@ function KeyPressFunc(dt)
 	end
 
 
-
+	print(player.rigidBody:GetIsContact());
 	if(player.rigidBody:GetIsContact())
 	then 
 

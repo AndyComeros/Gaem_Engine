@@ -29,6 +29,8 @@ void Physics::AddRigidBody(GameObject &go, int rbType)
 	go.rigidBody.rbPtr = world->createRigidBody(transform);
 	go.rigidBody.worldPtr = world;
 
+	go.rigidBody.collideListen.ID = go.rigidBody.rbPtr->getEntity().id;
+
 	ModRigidBodyType(go,rbType);
 }
 
