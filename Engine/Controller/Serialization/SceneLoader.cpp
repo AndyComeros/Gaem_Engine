@@ -170,7 +170,7 @@ Scene& SceneLoader::LoadScene(const std::string inName)
         }
         //end phyiscs
 
-
+        res.StoreGameObject(go);
         scene->AddObject(*go);
     }
 

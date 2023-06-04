@@ -6,7 +6,7 @@ function load_scene()
 	--lighting:SetAmbient(0.1,0.05,0.09);
 	lighting:SetAmbient(0.01,0.01,0.01);
 	--lighting:SetAmbient(0,0,0);
-	lighting:AddDirectionLight(NormalizeVector(vec3.new( -1,0.5,0)),vec3.new( 0.0,0.5,0.6),vec3.new(1,1,1));
+	lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.5,-1)),vec3.new( 0.0,0.5,0.6),vec3.new(0,1,1));
 	--lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.3,-1)):multiply(0.2),vec3.new( 0.98,0.8789,0.695),vec3.new(1,1,1):multiply(1));
 
 	lighting:AddPointLight( vec3:new(1140,30,640),
@@ -20,8 +20,8 @@ function load_scene()
 
 	
 	--Load terrain
-	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"black","detailMap","", 100 , 12,0.5,12);
-	terrain:GetDrawItem():SetShine(256);
+	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 100 , 12,0.5,12);
+	terrain:GetDrawItem():SetShine(20);
 	--terrain:GetDrawItem():SetEmissionTexture(resources:GetTexture("grid"));
 
 	terrain:SetTextureHeights({-30,-5,40});

@@ -12,6 +12,11 @@ DrawItem& ResourceManager::GetDrawItemReference(std::string resName)
 	return *models.at(resName);
 }
 
+void ResourceManager::StoreGameObject(GameObject* go)
+{
+	objects[go->name] = go;
+}
+
 void ResourceManager::ClearGameObjects()
 {
 	for (auto& it : objects) {
