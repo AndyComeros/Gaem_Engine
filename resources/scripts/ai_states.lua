@@ -105,12 +105,17 @@ end
 
 function global_update(ent, dt)
 	local playerDist = Length(Player.position - ent.position);
+	local playerVel = Length(Player.rigidBody:GetLinearVelocity());
 
-	if(playerDist < hitRange and Length(Player.rigidBody:GetLinearVelocity()) > hitVelocity)
+	if(playerDist < hitRange and playerVel > hitVelocity)
 	then
 		ent.stateMachine:ChangeState(dead_state);
 		ent.stateMachine:ChangeGlobalState(empty_state);
 		Player:AddData("score", Player:GetData("score") + 1);
+
+	elseif(playerVel > hitVelocity and playerDist < hitRange * 5)
+	then
+		ent.stateMachine:ChangeState(state_evade);
 	else
 		if(playerDist < atkrange)
 		then
@@ -119,7 +124,6 @@ function global_update(ent, dt)
 			ent.stateMachine:ChangeState(state_chase);
 		end
 	end
-
 end
 
 function global_exit(ent, dt)

@@ -22,7 +22,6 @@ function load_resources()
 	resources:LoadTexture("flowMap","resources/textures/Water/flow-speed-noise.png");
 	resources:LoadTexture("DerivHeightMap","resources/textures/Water/water-derivative-height.png");
 
-	resources:LoadTexture("Rock 2","resources/textures/rock.jpg");
 	resources:LoadTexture("Palmdiff","resources/textures/Palmdiff.png");
 	resources:LoadTexture("PalmEmiss","resources/textures/Palmemiss.png");
 

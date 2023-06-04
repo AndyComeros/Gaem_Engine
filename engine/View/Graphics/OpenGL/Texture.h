@@ -36,5 +36,5 @@ private:
 	void GenTexture(unsigned char* imgData, int w, int h, int c);
 	int width, height, numColorChannels;
 	unsigned char* imageData = nullptr;
-	std::string filePath = "";
+	std::string filePath = "un-named";
 };

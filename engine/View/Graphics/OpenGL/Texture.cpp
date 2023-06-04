@@ -69,7 +69,7 @@ std::string Texture::GetPath() { return filePath; }
 void Texture::GenTexture(unsigned char* imgData, int w, int h, int c) {
 
 	if (!imgData)
-		std::cout << "could not load image data" << std::endl;
+		std::cout << "could not load image data: " <<  filePath <<std::endl;
 
 	width = w;
 	height = h;
