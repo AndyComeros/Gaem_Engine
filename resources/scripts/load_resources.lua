@@ -5,7 +5,7 @@ function load_resources()
 	resources:LoadTexture("grass","resources/textures/terrain/grass.png");
 	resources:LoadTexture("rock","resources/textures/terrain/rock.png");
 	resources:LoadTexture("dirt","resources/textures/terrain/dirt.png");
-	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap512.png");
+	resources:LoadTexture("heightMap","resources/textures/heightmap/heightmap512_rivers.png");
 	resources:LoadTexture("detailMap","resources/textures/terrain/detail.png");
 	resources:LoadTexture("black","resources/textures/terrain/black.png");
 	resources:LoadTexture("grid","resources/textures/terrain/tile_Specular2.png");

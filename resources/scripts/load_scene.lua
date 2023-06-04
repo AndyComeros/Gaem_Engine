@@ -20,7 +20,7 @@ function load_scene()
 
 	
 	--Load terrain
-	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 100 , 12,0.5,12);
+	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 100 , 12,0.8,12);
 	terrain:GetDrawItem():SetShine(20);
 	--terrain:GetDrawItem():SetEmissionTexture(resources:GetTexture("grid"));
 
