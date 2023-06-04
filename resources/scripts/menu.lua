@@ -52,6 +52,11 @@ local cases = {
 		input:SetMouseLock(true);
 		engine:SetSimulation(false);
 		draw_lose();
+	end,
+	[8] = function()
+		input:SetMouseLock(true);
+		engine:SetSimulation(false);
+		draw_instructions_menu();
 	end
 }
 
@@ -76,6 +81,12 @@ function draw_main_menu()
 	then
 		Sound:playSound("click",camera.position);
 		current_menu = 4;
+	end
+
+	if(GUI:Button("Instructions",0.5, buttonWidth, buttonHeight))
+	then
+		Sound:playSound("click",camera.position);
+		current_menu = 8;
 	end
 
 	if(GUI:Button("Load Game",0.5, buttonWidth, buttonHeight))
@@ -259,6 +270,33 @@ function draw_lose()
 		Player.rigidBody:SetLinearVelocity(0,0,0);
 		Player.rigidBody:SetAngularVelocity(0,0,0);
 
+		current_menu = 1;
+	end
+
+	GUI:End();
+end
+
+function draw_instructions_menu()
+
+	GUI:Start(true);
+
+	GUI:Tab(300);
+	GUI:Text("How To Play",0.5);
+	GUI:Tab(20);
+	GUI:Text("Accelerate---------[W]",0.5);
+	GUI:Text("Reverse---------------[S]",0.5);
+	GUI:Tab(10);
+	GUI:Text("Steer Left----------[A]",0.5);
+	GUI:Text("Steer Right---------[D]",0.5);
+	GUI:Tab(10);
+	GUI:Text("Boost--------------[SPACE]",0.5);
+	GUI:Text("Pause-------------------[X]",0.5);
+	GUI:Tab(10);
+	GUI:Text("Wireframe Mode-[K]",0.5);
+	GUI:Tab(20);
+	if(GUI:Button("Back",0.5, buttonWidth, buttonHeight))
+	then
+		Sound:playSound("click",camera.position);
 		current_menu = 1;
 	end
 
