@@ -171,7 +171,6 @@ void Terrain::SetMaterailTextures(std::vector<Texture*> textures) {
 		tUnits.push_back(i);
 		tCount++;
 	}
-;
 
 	//need to use all texture units in shader or GLSL will only use one texture
 	for (i = tCount; i < MAX_TERRAIN_TEXTURES; i++)

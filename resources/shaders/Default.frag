@@ -79,8 +79,6 @@ vec4 reflection;
 void main()
 {
 
-  
-
 	vec3 norm = normalize(normal);
 	vec3 viewDir = normalize(cameraPos - fragPos);
 	vec3 result = vec3(0);
@@ -114,9 +112,6 @@ void main()
 	}else{
 		FragColor =	vec4(1.0,1.0,1.0,1.0);
 	}
-
-	
-
 }
 
 

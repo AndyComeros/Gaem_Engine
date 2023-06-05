@@ -2,8 +2,8 @@
 
 in vec2 textureCoord;
 in vec3 fragPos;
+in vec3 normal;
 out vec4 frag_color;
-out vec3 normal;
 
 #define MAX_TEXTURES 11
 #define MAX_POINT_LIGHTS 20
@@ -75,6 +75,7 @@ uniform vec3 cameraPos;
 uniform Material material;
 vec4 _Colour = vec4(0, 0.03773588, 0.245283, 1);
 uniform int wireframe;
+uniform samplerCube cubemap;
 
 uniform float _Time;
 float _UJump = 0;
@@ -116,6 +117,8 @@ vec3 UnpackDerivativeHeight(vec4 textureData)
     return dh;
 }
 
+vec4 reflection;
+
 void main()
 {
     vec3 flow = texture(textures[1], textureCoord).rgb;
@@ -131,14 +134,16 @@ void main()
     float finalHieghtScale = flow.z * _HeightScaleModulated + _HeightScale;
     vec3 dhA = UnpackDerivativeHeight(texture(textures[2], uvwA.xy)) * (uvwA.z * _HeightScale);
     vec3 dhB = UnpackDerivativeHeight(texture(textures[2], uvwB.xy)) * (uvwB.z * _HeightScale);
-    //normal = normalize(vec3(-(dhA.xy + dhB.xy), 1));
+    vec3 Normal = normalize(vec3(-(dhA.xy + dhB.xy), 1));
 
     vec4 texA = texture(textures[0], uvwA.xy) * uvwA.z;
     vec4 texB = texture(textures[0], uvwB.xy) * uvwB.z;
 
 	vec4 c = (texA + texB) *_Colour;
 
-	vec3 norm = normalize(vec3(-(dhA.xy + dhB.xy), 1));
+	//vec3 norm = normalize(vec3(-(dhA.xy + dhB.xy), 1));
+	vec3 norm = normalize(Normal);
+	//vec3 norm = normalize(normal);
 	vec3 viewDir = normalize(cameraPos - fragPos);
 	vec3 result = vec3(0);
 
@@ -157,8 +162,13 @@ void main()
 	//add ambient light
 	result += ambient_Light;
 
-
-    frag_color = (c + vec4(result, 1.0));
+	//add skybox reflection
+	vec3 I = normalize(fragPos - cameraPos);
+    vec3 R = reflect(I, normalize(normal + (Normal * 0.1)));
+    reflection = vec4(texture(cubemap, R).rgb, 1.0);
+	
+	//frag_color = reflection;
+	frag_color = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
 }
 
 
