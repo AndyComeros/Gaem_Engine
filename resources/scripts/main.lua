@@ -30,7 +30,7 @@ function update(deltaTime)
 	
 	Player = scene:GetNPC("Player");
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-	
+	DynamicFOV();
 	--print(math.floor(Length(Player.rigidBody:GetLinearVelocity())));
 	draw_menu();
 	KeyPressFunc(deltaTime);
@@ -40,6 +40,7 @@ function update(deltaTime)
 	lock_player_terrain();
 	check_hazard_collide();
 	inscrease_boost(deltaTime);
+	
 end
 
 function lock_player_terrain()
@@ -82,3 +83,23 @@ function inscrease_boost(dt)
 	end
 end
 
+
+DefaultFOV = 45.0;
+FOVChange = 5;
+function DynamicFOV()
+	local camera = scene:GetCamera();
+	velocity = Player.rigidBody:GetLinearVelocity();
+	
+	test = vec3:new(velocity.x,0,velocity.z);
+	length = Length(test);
+	
+	mod = 0;
+
+	if(length > 20)
+	then
+		mod = FOVChange * (length/10)
+	end
+
+	camera.FOV = DefaultFOV + mod;
+	
+end
