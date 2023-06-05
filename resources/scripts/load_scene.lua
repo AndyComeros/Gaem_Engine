@@ -31,7 +31,7 @@ function load_scene()
 
 	--load Water
 	waterHeight = -50;
-	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 25, 1, 25);
+	water = resources:CreateWater( "watertest", 256, { "water", "flowMap", "DerivHeightMap" }, 50, 100, 1, 100);
 	water.position = vec3:new(0,waterHeight,0);
 	scene:AddObject(water);
 

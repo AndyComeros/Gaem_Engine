@@ -169,6 +169,7 @@ void main()
 	
 	//frag_color = reflection;
 	frag_color = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
+
 }
 
 
