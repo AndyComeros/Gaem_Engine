@@ -73,6 +73,7 @@ void Renderer::Draw(Scene& scene, double deltaTime) {
 			//set special uniforms
 			obj->SetUniforms();
 			obj->shader->SetUniform("wireframe", wireFrame);
+			obj->shader->SetUniform("cubemap", 10);
 			obj->shader->SetUniform("_Time", (float) glfwGetTime());
 			//set model matrix uniforms
 			glm::mat4 modelMat(1.0f);

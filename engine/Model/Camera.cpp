@@ -68,7 +68,7 @@ void Camera::UpdateCameraVectors()
 
 void Camera::CreateViewFrustum()
 {
-	const float halfVSide = farPlane * tanf(FOV * 0.5f);
+	const float halfVSide = farPlane * tanf(90 * 0.5f);
 	const float halfHSide = halfVSide * aspectRatio;
 	const glm::vec3 frontMultFar = farPlane * front;
 

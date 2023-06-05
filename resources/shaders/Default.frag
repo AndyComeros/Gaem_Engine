@@ -54,6 +54,7 @@ uniform vec3 cameraPos;
 uniform Material material;
 uniform vec4 color;
 uniform int wireframe;
+uniform samplerCube cubemap;
 
 uniform vec3 ambient_Light;
 
@@ -73,24 +74,35 @@ vec3 calcPointLight(PointLight light,vec3 fragNormal,vec3 viewDirection);
 vec3 calcSpotLight(SpotLight light,vec3 fragNormal,vec3 viewDirection);
 vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection);
 
+vec4 reflection;
+
 void main()
 {
+
+  
+
 	vec3 norm = normalize(normal);
 	vec3 viewDir = normalize(cameraPos - fragPos);
 	vec3 result = vec3(0);
 	
+	//add skybox reflection
+	vec3 I = normalize(fragPos - cameraPos);
+    vec3 R = reflect(I, normalize(normal));
+    reflection = vec4(texture(cubemap, R).rgb, 1.0);
+	result += reflection.xyz * vec3(texture(material.specularMap,textureCoord) * material.alpha);
+
 	//add all spotlights
 	for(int i = 0; i < min(numSpotLights,MAX_SPOT_LIGHTS);i++)
 		result += calcSpotLight(spotLights[i] ,norm ,viewDir);
-
+	
 	//add all point lights
 	for(int i = 0; i < min(numPointLights,MAX_POINT_LIGHTS);i++)
 		result += calcPointLight(pointLights[i] ,norm ,viewDir);
-
+	
 	//add all direction lights
 	for(int i = 0; i < min(numDirectionLights,MAX_DIRECTION_LIGHTS);i++)
 		result += calcDirectionLight(directionLights[i] ,norm ,viewDir);
-
+	
 	//add ambient light
 	result += ambient_Light;
 	
@@ -102,6 +114,8 @@ void main()
 	}else{
 		FragColor =	vec4(1.0,1.0,1.0,1.0);
 	}
+
+	
 
 }
 
@@ -193,6 +207,6 @@ vec3 calcDirectionLight(DirectionLight light,vec3 fragNormal,vec3 viewDirection)
 	float spec = pow(max(dot(viewDirection, reflectDir), 0.0), material.alpha);
 	specular = light.specular * vec3(texture(material.specularMap,textureCoord) * spec);  
 	
-	vec3 result = (diffuse + specular) ;
+	vec3 result = (diffuse + specular);
 	return result;
 }

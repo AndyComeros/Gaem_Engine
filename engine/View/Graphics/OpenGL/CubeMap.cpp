@@ -80,7 +80,7 @@ void CubeMap::Render(Camera* camera) {
     shader.Use();
     vao.Bind();
 
-    glActiveTexture(ID);
+    glActiveTexture(GL_TEXTURE10);
     glBindTexture(GL_TEXTURE_CUBE_MAP, ID);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 

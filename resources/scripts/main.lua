@@ -95,10 +95,10 @@ function DynamicFOV()
 	
 	mod = 0;
 
-	if(length > 20)
-	then
+	--if(length > 20)
+	--then
 		mod = FOVChange * (length/10)
-	end
+	--end
 
 	camera.FOV = DefaultFOV + mod;
 	
