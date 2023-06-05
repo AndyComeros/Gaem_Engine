@@ -40,13 +40,14 @@ function load_scene()
 	Player.position = vec3:new(800,35,500);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.7)
-	local mass = 500;
+	local mass = 2000;
 	local bounce = 0;
-	local friction = 0.5;
+	local friction = 0.1;
 	physics:AddRigidBodyColliderBox(Player,scale,vec3:new(0,0,0), mass,bounce,friction);
-	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2,0));
+	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2.5,0));
 	Player.rigidBody:SetDampeningAngle(10);
-	Player.rigidBody:SetDampeningLinear(1);
+	Player.rigidBody:SetDampeningLinear(0.9);
+	--Player.rigidBody:SetDampeningLinear(0.2);
 	Player.rigidBody:ToggleColliderListener();
 	
 	--player stats/health

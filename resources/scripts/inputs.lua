@@ -86,10 +86,15 @@ end
 local debugPress = false;
 function KeyPressFunc(dt)
 
-	local player = scene:GetObject("Player");
+	local player = scene:GetObject("Player")
 	local camera = scene:GetCamera();
-	local turnspeed = 2000 * dt;
-	local movespeed = 6000 * dt;
+	local turnspeed = 1500 * dt;
+	local movespeed = 4000 * dt;
+	local finalSpeed = movespeed;
+	local boostMult = 1.5;
+	local playerHeight = player.position.y - terrain:GetHeight(player.position.x,player.position.z);
+	--local playerSpeed = Length(player.rigidBody:GetLinearVelocity());
+
 	--print(player.position.x .. " " .. player.position.z);
 	if(input:GetKeyState("escape") and  current_menu ~= 1)
 	then
@@ -101,8 +106,8 @@ function KeyPressFunc(dt)
 	if(input:GetKeyState("debug") and (not debugPress))
 	then
 		debugPress = true;
-		--renderer:ToggleWireFrame();
-		physics:ToggleDebugDisplay();
+		renderer:ToggleWireFrame();
+		--physics:ToggleDebugDisplay();
 
 	elseif(input:GetKeyState("debug"))
 	then
@@ -128,27 +133,25 @@ function KeyPressFunc(dt)
 	end
 
 
-	print(player.rigidBody:GetIsContact());
-	if(player.rigidBody:GetIsContact())
+	--if(player.rigidBody:GetIsContact())
+	if(playerHeight  < 1)
 	then 
+		Player.rigidBody:SetDampeningLinear(0.9);	
 
 		if(input:GetKeyState("drift") and currentBoost > 0)
 		then
-			player.rigidBody:SetDampeningLinear(0);
-		else
-			player.rigidBody:SetDampeningLinear(1);
+			finalSpeed = finalSpeed * boostMult;
 		end
-
 
 		if(input:GetKeyState("forward"))
 		then
-			local dir = vec3:new(1,0,0):multiply(-movespeed);
+			local dir = vec3:new(1,0,0):multiply(-finalSpeed);
 			player.rigidBody:ApplyForceLocal(dir)
 		end
 		
 		if(input:GetKeyState("backward"))
 		then
-			local dir = vec3:new(1,0,0):multiply(movespeed);
+			local dir = vec3:new(1,0,0):multiply(finalSpeed);
 			player.rigidBody:ApplyForceLocal(dir)
 		end
 		
@@ -163,7 +166,8 @@ function KeyPressFunc(dt)
 			local dir = vec3:new(0,1,0):multiply(-turnspeed);
 			player.rigidBody:ApplyTorqueLocal(dir)
 		end
-
+	else
+		Player.rigidBody:SetDampeningLinear(0);
 	end
 	
 end
