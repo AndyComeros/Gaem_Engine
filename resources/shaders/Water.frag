@@ -91,7 +91,7 @@ float _HeightScaleModulated = 9;
 vec3 calcPointLight(PointLight light, vec3 fragNormal, vec3 viewDirection);
 vec3 calcSpotLight(SpotLight light, vec3 fragNormal, vec3 viewDirection);
 vec3 calcDirectionLight(DirectionLight light, vec3 fragNormal, vec3 viewDirection);
-
+float calcLinearFog();
 
 //allocate space for diffuse texture
 vec4 diffTexture;
@@ -118,6 +118,10 @@ vec3 UnpackDerivativeHeight(vec4 textureData)
 }
 
 vec4 reflection;
+float fogStart = -1.0f;
+float fogEnd = 4000;
+vec3 fogColor = vec3(0,0,0);
+
 
 void main()
 {
@@ -168,10 +172,21 @@ void main()
     reflection = vec4(texture(cubemap, R).rgb, 1.0);
 	
 	//frag_color = reflection;
-	frag_color = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
+	//frag_color = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
+	 c = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
+	frag_color = mix(vec4(fogColor,0.0),c,calcLinearFog());
 
 }
 
+float calcLinearFog(){
+
+	float camToPix = length(fragPos - cameraPos);
+	float range = fogEnd - fogStart;
+	float fogDist = fogEnd - camToPix;
+	float FogFactor = fogDist/range;
+	FogFactor = clamp(FogFactor,0.0,1.0);
+	return 	FogFactor;
+}
 
 vec3 calcPointLight(PointLight light, vec3 fragNormal, vec3 viewDirection) {
 
