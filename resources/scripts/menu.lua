@@ -177,9 +177,9 @@ function draw_ingame()
 
 	--GUI:Image("gas",300,300,0.9,0)
 	GUI:Tab(50);
-	GUI:Text("Health: " .. math.floor(Player:GetData("health")), 0.9);
-	GUI:Text("Score: " ..  math.floor(Player:GetData("score")), 0.9);
-	GUI:Text("Boost: " ..  math.floor(Player:GetData("boost") + 1), 0.9);
+	--GUI:Text("Health: " .. math.floor(Player:GetData("health")), 0.9);
+	--GUI:Text("Score: " ..  math.floor(Player:GetData("score")), 0.9);
+	--GUI:Text("Boost: " ..  math.floor(Player:GetData("boost") + 1), 0.9);
 	
 	GUI:SetCursorPosX(0)
 	GUI:SetCursorPosY(0)

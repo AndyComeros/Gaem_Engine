@@ -14,6 +14,13 @@ input:BindKey("boost",KEY_LEFT_SHIFT);
 input:BindKey("debug",KEY_K);
 input:BindKey("toggleControlMenu",KEY_M);
 
+input:BindKey("camF",KEY_UP);
+input:BindKey("camB",KEY_DOWN);
+input:BindKey("camU",KEY_1);
+input:BindKey("camD",KEY_0);
+input:BindKey("camL",KEY_LEFT);
+input:BindKey("camR",KEY_RIGHT);
+
 lastX = input:GetMouseX();
 lastY = input:GetMouseY();
 mouseSensitivity = 0.1
@@ -32,26 +39,14 @@ function MouseMoveFunc(dt)
 	lastX = xPos
 	lastY = yPos
 
-	xoffset = xoffset * mouseSensitivity
-	yoffset = yoffset * mouseSensitivity
+	xoffset = xoffset * -mouseSensitivity
+	yoffset = yoffset * -mouseSensitivity
 
-	if(not input:GetMouseLock())
-	then
-		camera.Yaw =  camera.Yaw - xoffset
-		camera.Pitch = camera.Pitch - yoffset
 
-		if (camera.Pitch < -89.0)
-		then
-			camera.Pitch = -89.0;
-		end
-		
-		if (camera.Pitch > 0.0)
-		then
-			camera.Pitch = 0.0;
-		end
-	end
+	camera.Yaw =  camera.Yaw - xoffset
+	camera.Pitch = camera.Pitch - yoffset
 
-	camDistance();
+	--camDistance();
 	CalaulateCamPos();
 	camera:UpdateCameraVectors();
 end
@@ -70,21 +65,19 @@ function camDistance()
 end
 
 
+
 function CalaulateCamPos()
 	local camera = scene:GetCamera();
 	yaw = camera.Yaw - 90.0;
 
 	pitch = -camera.Pitch;
 	-- calaulate camera using camera pitch and yaw
-	x = Distance * math.cos(math.rad(pitch)) * math.sin(math.rad(-yaw));
-	y = Distance * math.sin(math.rad(pitch));
-	z = Distance * math.cos(math.rad(pitch)) * math.cos(math.rad(yaw));
+	x = math.cos(math.rad(pitch)) * math.sin(math.rad(-yaw));
+	y = math.sin(math.rad(pitch)) * -1;
+	z = math.cos(math.rad(pitch)) * math.cos(math.rad(yaw));
 
 	local player = scene:GetObject("Player")
-	--add player/target location to camera position to move the camera with it
-	camera.position.x = player.position.x + -x;
-	camera.position.y = player.position.y + y;
-	camera.position.z = player.position.z + -z;
+
 end
 
 local debugPress = false;
@@ -178,5 +171,34 @@ function KeyPressFunc(dt)
 	else
 		Player.rigidBody:SetDampeningLinear(0);
 	end
-	
+		up = vec3:new(0,1,0);
+		camSpeed = 100 * dt;
+		if(input:GetKeyState("camF"))
+		then
+			camera.position = camera.position +  NormalizeVector(CrossVectors(up,camera.right)):multiply(camSpeed);
+		end
+		if(input:GetKeyState("camB"))
+		then
+			camera.position = camera.position -  NormalizeVector(CrossVectors(up,camera.right)):multiply(camSpeed);
+			
+		end
+		if(input:GetKeyState("camU"))
+		then
+			camera.position = camera.position + up:multiply(camSpeed);
+			
+		end
+		if(input:GetKeyState("camD"))
+		then
+			camera.position = camera.position - up:multiply(camSpeed);
+			
+		end
+		if(input:GetKeyState("camL"))
+		then
+			camera.position = camera.position - camera.right:multiply(camSpeed);
+		end
+		if(input:GetKeyState("camR"))
+		then
+			camera.position = camera.position + camera.right:multiply(camSpeed);
+		end
+
 end

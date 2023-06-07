@@ -168,7 +168,7 @@ function global_enter(ent, dt)
 	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
 	ent.rigidBody:SetLinearVelocity(0,0,0);
 	ent.rigidBody:SetAngularVelocity(0,0,0);
-	ent.rigidBody:ModType(1);
+	ent.rigidBody:ModType(3);
 end
 
 function global_update(ent, dt)

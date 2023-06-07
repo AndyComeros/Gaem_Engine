@@ -138,6 +138,11 @@ function load_scene()
 		scene:AddObject(Robot);
 	end
 
+
+	anim = resources:CreateNPCObject("animShow", "robot","");
+	anim.scale = vec3:new(1,1,1):multiply(100);
+	scene:AddObject(anim);
+
 	--terrain obstacle elements
 	for i = 1,35,1
 	do

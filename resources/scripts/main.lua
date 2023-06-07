@@ -21,6 +21,7 @@ function init()
 	--setup camera 
 	camera = scene:GetCamera();
 	camera.farPlane = 10000;
+	camera.FOV = 75;
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
 
 end
@@ -30,16 +31,16 @@ function update(deltaTime)
 	
 	Player = scene:GetNPC("Player");
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
-	DynamicFOV();
+	--DynamicFOV();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
 	draw_menu();
 	Sound:setListenerPos(camera.position);
 	Sound:setMusicPos(camera.position);
 	lock_player_terrain();
-	check_hazard_collide();
-	inscrease_boost(deltaTime);
-	check_player_death();
+	--check_hazard_collide();
+	--inscrease_boost(deltaTime);
+	--check_player_death();
 	
 end
 
