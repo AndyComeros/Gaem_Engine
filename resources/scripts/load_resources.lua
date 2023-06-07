@@ -66,6 +66,7 @@ function load_resources()
 
 	--audio
 	--Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
+	Sound:addMusic("resources/audio/music/flyingv.mp3");
 	Sound:addSound("click","resources/audio/menu/click.wav");
 	Sound:addSound("pause","resources/audio/menu/pause.wav");
 	Sound:addSound("drift","resources/audio/car/drift.wav");
