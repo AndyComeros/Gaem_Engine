@@ -98,11 +98,13 @@ function load_scene()
 	print("scale: " .. terrain.scaleX);
 
 	attack_state  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
+	charge_state  = ScriptableState:new(charge_enter, charge_update, charge_exit, charge_message);
 	dead_state    = ScriptableState:new(dead_enter, dead_update, dead_exit, dead_message);
 	global_state  = ScriptableState:new(global_enter, global_update, global_exit, global_message);
 	empty_state   = ScriptableState:new(empty_enter, empty_update, empty_exit, empty_message);
 	idle_state   = ScriptableState:new(idle_enter, idle_update, idle_exit, idle_message);
 	aimanager:AddState("attack_state",attack_state);
+	aimanager:AddState("charge_state",charge_state);
 	aimanager:AddState("dead_state",dead_state);
 	aimanager:AddState("global_state",global_state);
 	aimanager:AddState("empty_state",empty_state);
@@ -114,8 +116,8 @@ function load_scene()
 		
 		--local xpos = math.random(1,tSize) - tSize/2;
 		--local zpos = math.random(1,tSize) - tSize/2;
-		local xpos = math.random(-(tSize)/2,tSize/2);
-		local zpos = math.random(-(tSize)/2,tSize/2);
+		local xpos = math.random(-(tSize)/4,tSize/4);
+		local zpos = math.random(-(tSize)/4,tSize/4);
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
 		Robot = resources:CreateNPCObject("robot"..i, "robot","");
@@ -132,8 +134,19 @@ function load_scene()
 		Robot.rigidBody:SetDampeningLinear(10);
 
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
-		Robot.scale = vec3:new(2,2,2);
 
+		--choose enemy type
+		if(math.fmod(i,10) == 0)
+		then
+			--Charger Enemy
+			Robot:AddData("type", 1);
+			Robot.scale = vec3:new(4,4,4);
+		else
+			--Minion Enemy
+			Robot:AddData("type", 2);
+			Robot.scale = vec3:new(2,2,2);	
+		end
+		
 		Robot.stateMachine:ChangeGlobalState(idle_state);
 
 		scene:AddObject(Robot);

@@ -60,7 +60,7 @@ function load_resources()
 	robotModel = resources:GetModel("robot");
 	robotModel:SetAnimation("idle"	, 0		, 30	, 50);
 	robotModel:SetAnimation("run"	, 31	, 53	, 50);
-	robotModel:SetAnimation("attack", 54	, 88	, 50);
+	robotModel:SetAnimation("attack", 54	, 88	, 80);
 	robotModel:SetAnimation("shoot"	, 89	, 124	, 50);
 	robotModel:SetAnimation("fall"	, 125	, 191	, 50);
 

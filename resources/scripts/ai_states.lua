@@ -90,9 +90,76 @@ end
 
 
 ----------------------------------------------------------
+				--CHARGE ATTACK STATE FUNCTIONS--
+----------------------------------------------------------
+
+function charge_enter(ent, dt)
+	ent:GetDrawItem():Animate("run");
+	ent:GetDrawItem():SetAnimationSpeed(120);
+	ent.rigidBody:ModType(1);
+
+	if(ent:GetData("isCharging") == 0)
+	then
+		ent:AddData("playerHit",0);	
+
+		local targetVel = Player.rigidBody:GetLinearVelocity();
+
+		local targetPos = Player.position + targetVel:multiply(2);
+
+		local toTarget = NormalizeVector(targetPos - ent.position);
+		
+		local target = targetPos + toTarget:multiply(math.random(50,70));
+		
+		ent:LookAt(target);
+
+		ent:AddData("cX", target.x);
+		ent:AddData("cZ", target.z);
+		ent:AddData("cY", terrain:GetHeight(target.x,target.z) - 1);
+
+		ent:AddData("isCharging", 1);
+	end
+
+end
+
+function charge_update(ent, dt)
+	local cX = ent:GetData("cX");
+	local cY = ent:GetData("cY");
+	local cZ = ent:GetData("cZ");
+
+	local target = vec3:new(cX,cY,cZ);
+	local dist = Length(target - ent.position);
+	local distPlayer = Length(Player.position - ent.position);
+
+	ent:MoveTo2D(target,50,2)
+	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
+
+	if(distPlayer < 3 and ent:GetData("playerHit") == 0)
+	then
+		Sound:playSound("hitcar",camera.position);
+		ent:AddData("playerHit",1);
+		Player:AddData("health", Player:GetData("health") - 10);
+	end
+
+	if(dist < 5)
+	then
+		ent.stateMachine:ChangeGlobalState(global_state);
+		ent:AddData("isCharging", 0);
+	end
+end
+
+function charge_exit(ent, dt)
+end
+
+function charge_message(ent, msg)
+end
+----------------------------------------------------------
+
+
+----------------------------------------------------------
 			--GLOBAL ENEMY STATE FUNCTIONS--
 ----------------------------------------------------------
-atkrange = 6;
+melee_atkrange = 6;
+charge_atkRange = 35;
 hitRange = 5;
 hitVelocity = 20;
 
@@ -106,15 +173,19 @@ end
 function global_update(ent, dt)
 	local playerDist = Length(Player.position - ent.position);
 	local playerVel = Length(Player.rigidBody:GetLinearVelocity());
-	
+	local type = ent:GetData("type");
 	--choose behaviour bases on player distance and speed
-	if(playerVel > hitVelocity and playerDist < hitRange * 5)
+	if(playerVel > hitVelocity and playerDist < hitRange * 5 and type == 2)
 	then
-		ent.stateMachine:ChangeState(state_flee);
+		--ent.stateMachine:ChangeState(state_flee);
 	else
-		if(playerDist < atkrange)
+		if(playerDist < melee_atkrange and type == 2)
 		then
 			ent.stateMachine:ChangeState(attack_state);
+		elseif(playerDist < charge_atkRange and type == 1)
+		then
+			ent.stateMachine:ChangeState(charge_state);
+			ent.stateMachine:ChangeGlobalState(empty_state);
 		else
 			ent.stateMachine:ChangeState(state_chase);
 		end
