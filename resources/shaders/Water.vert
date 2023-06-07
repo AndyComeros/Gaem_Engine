@@ -55,11 +55,9 @@ void main()
 	p += GersterWave(_WaveC, gridPoint, tangent, binormal);
 	vec3 Normal = normalize(cross(binormal, tangent));
 
-	normal = Normal;
-
-	fragPos = (view * model * vec4(p, 1.0)).xyz;
+	fragPos = vec3(model * vec4(p, 1.0));
 	textureCoord = aTexture;
-
+	normal = mat3(transpose(inverse(model))) * aNorm;
 	gl_Position = projection * view * model * vec4(p, 1.0);
 
 }

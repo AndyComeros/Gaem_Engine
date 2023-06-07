@@ -2,8 +2,8 @@
 
 in vec2 textureCoord;
 in vec3 fragPos;
+in vec3 normal;
 out vec4 frag_color;
-out vec3 normal;
 
 #define MAX_TEXTURES 11
 #define MAX_POINT_LIGHTS 20
@@ -75,6 +75,7 @@ uniform vec3 cameraPos;
 uniform Material material;
 vec4 _Colour = vec4(0, 0.03773588, 0.245283, 1);
 uniform int wireframe;
+uniform samplerCube cubemap;
 
 uniform float _Time;
 float _UJump = 0;
@@ -90,7 +91,7 @@ float _HeightScaleModulated = 9;
 vec3 calcPointLight(PointLight light, vec3 fragNormal, vec3 viewDirection);
 vec3 calcSpotLight(SpotLight light, vec3 fragNormal, vec3 viewDirection);
 vec3 calcDirectionLight(DirectionLight light, vec3 fragNormal, vec3 viewDirection);
-
+float calcLinearFog();
 
 //allocate space for diffuse texture
 vec4 diffTexture;
@@ -116,6 +117,12 @@ vec3 UnpackDerivativeHeight(vec4 textureData)
     return dh;
 }
 
+vec4 reflection;
+float fogStart = -1.0f;
+float fogEnd = 4000;
+vec3 fogColor = vec3(0,0,0);
+
+
 void main()
 {
     vec3 flow = texture(textures[1], textureCoord).rgb;
@@ -131,14 +138,16 @@ void main()
     float finalHieghtScale = flow.z * _HeightScaleModulated + _HeightScale;
     vec3 dhA = UnpackDerivativeHeight(texture(textures[2], uvwA.xy)) * (uvwA.z * _HeightScale);
     vec3 dhB = UnpackDerivativeHeight(texture(textures[2], uvwB.xy)) * (uvwB.z * _HeightScale);
-    //normal = normalize(vec3(-(dhA.xy + dhB.xy), 1));
+    vec3 Normal = normalize(vec3(-(dhA.xy + dhB.xy), 1));
 
     vec4 texA = texture(textures[0], uvwA.xy) * uvwA.z;
     vec4 texB = texture(textures[0], uvwB.xy) * uvwB.z;
 
 	vec4 c = (texA + texB) *_Colour;
 
-	vec3 norm = normalize(vec3(-(dhA.xy + dhB.xy), 1));
+	//vec3 norm = normalize(vec3(-(dhA.xy + dhB.xy), 1));
+	vec3 norm = normalize(Normal);
+	//vec3 norm = normalize(normal);
 	vec3 viewDir = normalize(cameraPos - fragPos);
 	vec3 result = vec3(0);
 
@@ -157,10 +166,27 @@ void main()
 	//add ambient light
 	result += ambient_Light;
 
+	//add skybox reflection
+	vec3 I = normalize(fragPos - cameraPos);
+    vec3 R = reflect(I, normalize(normal + (Normal * 0.1)));
+    reflection = vec4(texture(cubemap, R).rgb, 1.0);
+	
+	//frag_color = reflection;
+	//frag_color = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
+	 c = (c + vec4(result, 1.0) + vec4(reflection.xyz, 0.5));
+	frag_color = mix(vec4(fogColor,0.0),c,calcLinearFog());
 
-    frag_color = (c + vec4(result, 1.0));
 }
 
+float calcLinearFog(){
+
+	float camToPix = length(fragPos - cameraPos);
+	float range = fogEnd - fogStart;
+	float fogDist = fogEnd - camToPix;
+	float FogFactor = fogDist/range;
+	FogFactor = clamp(FogFactor,0.0,1.0);
+	return 	FogFactor;
+}
 
 vec3 calcPointLight(PointLight light, vec3 fragNormal, vec3 viewDirection) {
 

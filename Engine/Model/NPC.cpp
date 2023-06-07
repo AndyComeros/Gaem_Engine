@@ -48,13 +48,6 @@ void NPC::Update(double dt)
 		return;
 	}
 
-
-
-	glm::vec3 offsetPos;
-	glm::vec3 toOffset ;
-	glm::vec3 newPos;
-	glm::vec3 toTarget;
-
 	if (move3D)
 	{
 		toTarget = glm::normalize(targetPos - position);
@@ -62,7 +55,7 @@ void NPC::Update(double dt)
 		offsetPos = targetPos - (toTarget * moveOffset);
 		toOffset = offsetPos - newPos;
 
-		if (glm::dot(toOffset, toTarget) < 0.0f || glm::length(targetPos - position) < 0.1f) {
+		if (glm::dot(toOffset, toTarget) < 0.0f) {
 			newPos = offsetPos;
 			isTargeting = false;
 		}
@@ -75,7 +68,7 @@ void NPC::Update(double dt)
 		offsetPos = targetPos - (toTarget * moveOffset);
 		toOffset = offsetPos - newPos;
 
-		if (glm::dot(toOffset, toTarget) < 0.0f || glm::length(targetPosFlat - position) < 0.1f) {
+		if (glm::dot(toOffset, toTarget) < 0.0f) {
 			newPos = offsetPos;
 			isTargeting = false;
 		}

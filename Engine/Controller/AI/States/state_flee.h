@@ -19,4 +19,10 @@ private:
 	GameObject* target;
 	std::string targetName;
 	State* stateWander;
+
+	float speed = 20.0f;
+	float offset = 2.0f;
+
+	float fleeDistance = 300;
+
 };

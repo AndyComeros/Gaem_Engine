@@ -31,6 +31,7 @@ function update(deltaTime)
 	Player = scene:GetNPC("Player");
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	DynamicFOV();
+	--print(Player.position.x .. " " .. Player.position.y .. " " .. Player.position.z);
 	--print(math.floor(Length(Player.rigidBody:GetLinearVelocity())));
 	draw_menu();
 	KeyPressFunc(deltaTime);

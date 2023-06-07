@@ -33,4 +33,10 @@ private:
 	float moveOffset;
 	bool isTargeting;
 	bool move3D;
+
+	//movement variables
+	glm::vec3 offsetPos;
+	glm::vec3 toOffset;
+	glm::vec3 newPos;
+	glm::vec3 toTarget;
 };
