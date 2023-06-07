@@ -290,7 +290,9 @@ function draw_instructions_menu()
 	GUI:Text("Steer Left----------[A]",0.5);
 	GUI:Text("Steer Right---------[D]",0.5);
 	GUI:Tab(10);
-	GUI:Text("Boost--------------[SPACE]",0.5);
+	GUI:Text("Boost--------------[SHIFT]",0.5);
+	GUI:Text("Drift--------------[SPACE]",0.5);
+	GUI:Tab(10);
 	GUI:Text("Pause-------------------[X]",0.5);
 	GUI:Tab(10);
 	GUI:Text("Wireframe Mode-[K]",0.5);

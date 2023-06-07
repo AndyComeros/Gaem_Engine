@@ -7,6 +7,7 @@ input:BindKey("left",KEY_A);
 input:BindKey("right",KEY_D);
 input:BindKey("escape",KEY_X);
 input:BindKey("drift",KEY_SPACE);
+input:BindKey("boost",KEY_LEFT_SHIFT);
 input:BindKey("debug",KEY_K);
 input:BindKey("toggleControlMenu",KEY_M);
 
@@ -90,8 +91,10 @@ function KeyPressFunc(dt)
 	local camera = scene:GetCamera();
 	local turnspeed = 1500 * dt;
 	local movespeed = 4000 * dt;
-	local finalSpeed = movespeed;
-	local boostMult = 1.5;
+	local finalMove = movespeed;
+	local finalTurn = turnspeed;
+	local boostMult = 3;
+	local driftMult = 2;
 	local playerHeight = player.position.y - terrain:GetHeight(player.position.x,player.position.z);
 	--local playerSpeed = Length(player.rigidBody:GetLinearVelocity());
 
@@ -123,7 +126,7 @@ function KeyPressFunc(dt)
 
 
 	local currentBoost = Player:GetData("boost");
-	if(input:GetKeyState("drift") and currentBoost > 0)
+	if(input:GetKeyState("boost") and currentBoost > 0)
 	then
 		Player:AddData("boost", currentBoost - (dt * 20));
 	end
@@ -132,38 +135,41 @@ function KeyPressFunc(dt)
 		Player:AddData("boost", 0);
 	end
 
-
-	--if(player.rigidBody:GetIsContact())
 	if(playerHeight  < 1)
 	then 
 		Player.rigidBody:SetDampeningLinear(0.9);	
 
-		if(input:GetKeyState("drift") and currentBoost > 0)
+		if(input:GetKeyState("boost") and currentBoost > 0)
 		then
-			finalSpeed = finalSpeed * boostMult;
+			finalMove = finalMove * boostMult;
 		end
+
+		if(input:GetKeyState("drift") and (input:GetKeyState("forward") or input:GetKeyState("backward")))
+		then
+			finalTurn = finalTurn * driftMult;
+		end	
 
 		if(input:GetKeyState("forward"))
 		then
-			local dir = vec3:new(1,0,0):multiply(-finalSpeed);
+			local dir = vec3:new(1,0,0):multiply(-finalMove);
 			player.rigidBody:ApplyForceLocal(dir)
 		end
 		
 		if(input:GetKeyState("backward"))
 		then
-			local dir = vec3:new(1,0,0):multiply(finalSpeed);
+			local dir = vec3:new(1,0,0):multiply(finalMove);
 			player.rigidBody:ApplyForceLocal(dir)
 		end
 		
 		if(input:GetKeyState("left"))
 		then
-			local dir = vec3:new(0,1,0):multiply(turnspeed);
+			local dir = vec3:new(0,1,0):multiply(finalTurn);
 			player.rigidBody:ApplyTorqueLocal(dir)
 		end
 		
 		if(input:GetKeyState("right"))
 		then
-			local dir = vec3:new(0,1,0):multiply(-turnspeed);
+			local dir = vec3:new(0,1,0):multiply(-finalTurn);
 			player.rigidBody:ApplyTorqueLocal(dir)
 		end
 	else
