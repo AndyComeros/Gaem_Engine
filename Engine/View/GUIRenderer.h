@@ -50,15 +50,72 @@ public:
 
 	//lua programmable GUI//
 
+		/**
+		*	@brief Start for GUI
+		*	@param background were or not render the GUI
+		*	@return void
+		*/
 	void Start(bool background);
+
+		/**
+		*	@brief ends GUI rendering
+		*	@return void
+		*/
 	void End();
 
+		/**
+		*	@brief create text on gui
+		*	@param label name of the text
+		*   @param aligment type of the text
+		*	@return void
+		*/
 	void Text(const std::string label, float alignment);
+		/**
+		*	@brief create button on gui
+		*	@param label name of the button
+		*   @param aligment type of the button
+		*   @param width type of the button
+		*   @param height type of the button
+		*	@return bool
+		*/
 	bool Button(const std::string label, float alignment, float width, float height);
+		/**
+		*	@brief create Image on gui
+		*	@param texture file location
+		*   @param width type of the image
+		*   @param height type of the image
+		*   @param alignX type of the image
+		*   @param alignY type of the image
+		*	@return void
+		*/
 	void Image(const std::string texture, float width, float height, float alignX, float alignY);
+		/**
+		*	@brief create ImageButton on gui
+		*	@param texture file location
+		*   @param width type of the ImageButton
+		*   @param height type of the ImageButton
+		*   @param alignX type of the ImageButton
+		*   @param alignY type of the ImageButton
+		*	@return bool
+		*/
 	bool ImageButton(const std::string texture, float width, float height, float alignX, float alignY);
+		/**
+		*	@brief create Tab on gui
+		*	@param size of the tab
+		*	@return bool
+		*/
 	void Tab(float size);
+		/**
+		*	@brief set cursor pos x on the image
+		*	@param pos in 2D space
+		*	@return void
+		*/
 	void SetCursorPosX(float pos);
+		/**
+		*	@brief set cursor pos y on the image
+		*	@param pos in 2D space
+		*	@return void
+		*/
 	void SetCursorPosY(float pos);
 
 
@@ -66,6 +123,12 @@ private:
 
 	ImGuiIO* io;
 
+		/**
+		*	@brief set width aligment
+		*	@param width in pixels
+		*	@param the alignment type
+		*	@return void
+		*/
 	void AlignForWidth(float width, float alignment);
 		
 		///imgui settings for windos

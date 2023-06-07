@@ -59,7 +59,31 @@ public:
 		*	@return a game object created using the selected parameters
 		*/
 	Terrain& CreateTerrain(std::string terrainName, std::string heightMapName, std::vector<std::string> layerTextures, std::string detailName, std::string specularName, std::string emissiveName, float texScale, float scaleX, float scaleY, float scaleZ);
+	
+		/**
+		*	@brief Abstract factory method for creating terrain game objects
+		*	@param terrainName name of created game object
+		*	@param modelName name key of texture used as a heightmap
+		*	@param heightMapName array of names used for each layer in terrain texture
+		*   @param Size - size of the Terrain
+		*	@param scaleX x axis scaling
+		*	@param scaleY y axis scaling
+		*	@param scaleZ z axis scaling
+		*	@return a game object created using the selected parameters
+		*/
 	Terrain& CreateTerrainFromModel(std::string terrainName, std::string modelName, std::string heightMapName, int Size, float texScale, float scaleX, float scaleY, float scaleZ);
+
+	/**
+		*	@brief creates flate terrain for water shader
+		*	@param waterName name of created game object
+		*	@param Size of water
+		*	@param Size layered texutres
+		*   @param texScale texture scale
+		*	@param scaleX x axis scaling
+		*	@param scaleY y axis scaling
+		*	@param scaleZ z axis scaling
+		*	@return a game object created using the selected parameters
+		*/
 
 	Terrain& CreateWater(std::string waterName, int Size, std::vector<std::string> layerTextures, float texScale, float scaleX, float scaleY, float scaleZ);
 
@@ -174,7 +198,10 @@ public:
 	DrawItem& GetDrawItemReference(std::string resName);
 		///Store a game object
 	void StoreGameObject(GameObject* go);
-
+		/**
+		*	@brief data cleanUp
+		*	@return Void
+		*/
 	void ClearGameObjects();
 private:
 

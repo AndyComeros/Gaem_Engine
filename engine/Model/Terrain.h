@@ -106,7 +106,11 @@ public:
 		*	@return void
 		*/
 	void SetTextures(std::vector<Texture*> textures, Texture* detailMap);
-
+		/**
+		*	@brief Sets textures of the terrain layers
+		*	@param textures array of textures, one for each layer
+		*	@return void
+		*/
 	void SetMaterailTextures(std::vector<Texture*> textures);
 		/**
 		*	@brief Set the height of each texutre layer of the terrain
@@ -122,6 +126,11 @@ public:
 		*/
 	void SetTextureScale(float nScale);
 
+		/**
+		*	@brief loads the height texture map
+		*	@param texture 
+		*	@return void
+		*/
 	void SetHeightTexture(Texture* nHeightTex);
 
 		/**
@@ -145,6 +154,10 @@ public:
 		*/
 	void LoadHeightMap(std::vector<float> nHeights);
 
+	/**
+	*	@brief returns the height texture of the terrain
+	*	@return Texture
+	*/
 	Texture* GetHeightTexture();
 
 		///scale along x axis
