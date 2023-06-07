@@ -130,7 +130,7 @@ public:
 	InputManager& inputMngr = InputManager::Get();
 		///Reference to AI manager
 	AIManager& aiManager = AIManager::Get();
-
+		
 	SoundEngine& soundEngine = SoundEngine::Get();
 
 private:
