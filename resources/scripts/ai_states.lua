@@ -110,7 +110,7 @@ function global_update(ent, dt)
 	--choose behaviour bases on player distance and speed
 	if(playerVel > hitVelocity and playerDist < hitRange * 5)
 	then
-		ent.stateMachine:ChangeState(state_evade);
+		ent.stateMachine:ChangeState(state_flee);
 	else
 		if(playerDist < atkrange)
 		then

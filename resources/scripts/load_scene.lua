@@ -72,7 +72,7 @@ function load_scene()
 	do
 		for j = 0, 12, 1
 		do
-			if(math.random(1,10) < 5)
+			if(math.random(1,10) < 3)
 			then
 				Building1 = resources:CreateGameObject("building"..count, "building"..math.random(1,6),"");
 				Building1:SetPosition(vec3:new(700 + i * 40, 15, 350 + j * 50));
@@ -95,6 +95,7 @@ function load_scene()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * terrain.scaleX;
+	print("scale: " .. terrain.scaleX);
 
 	attack_state  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
 	dead_state    = ScriptableState:new(dead_enter, dead_update, dead_exit, dead_message);
@@ -113,8 +114,8 @@ function load_scene()
 		
 		--local xpos = math.random(1,tSize) - tSize/2;
 		--local zpos = math.random(1,tSize) - tSize/2;
-		local xpos = math.random(1,tSize) - tSize/8;
-		local zpos = math.random(1,tSize) - tSize/8;
+		local xpos = math.random(-(tSize)/2,tSize/2);
+		local zpos = math.random(-(tSize)/2,tSize/2);
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
 		Robot = resources:CreateNPCObject("robot"..i, "robot","");
@@ -139,7 +140,7 @@ function load_scene()
 	end
 
 	--terrain elements
-	for i = 1,100,10
+	for i = 1,35,1
 	do
 		local xpos = 0;
 		local zpos = 0;
