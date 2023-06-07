@@ -33,9 +33,9 @@ function update(deltaTime)
 	DynamicFOV();
 	--print(Player.position.x .. " " .. Player.position.y .. " " .. Player.position.z);
 	--print(math.floor(Length(Player.rigidBody:GetLinearVelocity())));
-	draw_menu();
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
+	draw_menu();
 	Sound:setListenerPos(camera.position);
 	Sound:setMusicPos(camera.position);
 	lock_player_terrain();
