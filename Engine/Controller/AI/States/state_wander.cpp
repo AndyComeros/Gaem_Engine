@@ -27,6 +27,7 @@ inline void State_Wander::Enter(GameObject& ent)
 	npc->AddData("isIdle", 0.0f);
 	npc->AddData("timer", 0.0f);
 
+	npc->GetDrawItem().Animate("idle");
 	npc->StopMoving();
 }
 
@@ -41,12 +42,6 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 	//if not idle
 	if (npc->GetData("isIdle") < 0.5f) {
 
-		//lock to terrain height
-		float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) - 1;
-		npc->SetPosition({ npc->position.x,nY,npc->position.z });
-
-		
-
 		//if been walking too long
 		if (npc->GetData("timer") > npc->GetData("wanderTime")) {
 			npc->AddData("isIdle", 1.0f);
@@ -57,7 +52,7 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 	}
 	else {
 
-		npc->GetDrawItem().Animate("stand");
+		npc->GetDrawItem().Animate("idle");
 
 		//if idling too long
 		if (npc->GetData("timer") > npc->GetData("idleTime")) {
@@ -72,6 +67,10 @@ inline void State_Wander::Update(GameObject& ent, double dt)
 			npc->LookAt(target);
 		}
 	}
+
+	//lock to terrain height
+	float nY = static_cast<Terrain*>(ResourceManager::Get().GetGameObject("Terrain"))->GetHeight(npc->position.x, npc->position.z) - 1;
+	npc->SetPosition({ npc->position.x,nY,npc->position.z });
 
 	//increment timer
 	npc->AddData("timer", npc->GetData("timer") + dt);

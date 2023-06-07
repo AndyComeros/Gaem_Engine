@@ -79,7 +79,7 @@ end
 
 function attack_exit(ent, dt)
 
-	ent.rigidBody:ModType(3);
+	ent.rigidBody:ModType(1);
 
 end
 
@@ -104,7 +104,8 @@ function charge_enter(ent, dt)
 
 		local targetVel = Player.rigidBody:GetLinearVelocity();
 
-		local targetPos = Player.position + targetVel:multiply(2);
+		targetPos = Player.position + targetVel:multiply(2)
+	
 
 		local toTarget = NormalizeVector(targetPos - ent.position);
 		
@@ -130,7 +131,7 @@ function charge_update(ent, dt)
 	local dist = Length(target - ent.position);
 	local distPlayer = Length(Player.position - ent.position);
 
-	ent:MoveTo2D(target,50,2)
+	ent:MoveTo3D(target,50,2)
 	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
 
 	if(distPlayer < 3 and ent:GetData("playerHit") == 0)
@@ -167,7 +168,7 @@ function global_enter(ent, dt)
 	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
 	ent.rigidBody:SetLinearVelocity(0,0,0);
 	ent.rigidBody:SetAngularVelocity(0,0,0);
-	ent.rigidBody:ModType(3);
+	ent.rigidBody:ModType(1);
 end
 
 function global_update(ent, dt)
@@ -269,7 +270,7 @@ end
 
 function idle_enter(ent, dt)
 	ent.rigidBody:SetDampeningLinear(10);
-	ent.rigidBody:ModType(3);
+	ent.rigidBody:ModType(1);
 	ent:GetDrawItem():Animate("idle");
 end
 
@@ -293,6 +294,8 @@ function idle_update(ent, dt)
 		aimanager:SendMessage(delay, sender, receiver, type);
 
 	end
+
+	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
 end
 
 function idle_exit(ent, dt)
@@ -320,7 +323,7 @@ function dead_exit(ent, dt)
 
 	--return physics properties to normal
 	ent.rigidBody:SetDampeningLinear(10);
-	ent.rigidBody:ModType(3);
+	ent.rigidBody:ModType(1);
 	ent:GetDrawItem():Animate("idle");
 end
 
@@ -338,7 +341,7 @@ function restartNPC(ent)
 	local ypos = terrain:GetHeight(xpos,zpos) + 5;
 	ent.rigidBody:SetPosition(vec3:new(xpos,ypos,zpos));
 	ent.rigidBody:SetDampeningLinear(10);
-	ent.rigidBody:ModType(3);
+	ent.rigidBody:ModType(1);
 	ent.stateMachine:ChangeGlobalState(global_state);
 end
 

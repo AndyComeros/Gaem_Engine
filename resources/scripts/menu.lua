@@ -136,6 +136,7 @@ function draw_save_menu()
 			Sound:playSound("click",camera.position);
 			nscene = loader:LoadScene("resources/saves/"..v);
 			engine:SwitchScenes(nscene);
+			scene = nscene;
 		end
     end
 	GUI:Tab(30);

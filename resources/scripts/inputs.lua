@@ -5,7 +5,7 @@ input:BindKey("forward",KEY_W);
 input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);
 input:BindKey("right",KEY_D);
-input:BindKey("escape",KEY_X);
+input:BindKey("escape",KEY_ESCAPE);
 input:BindKey("drift",KEY_SPACE);
 input:BindKey("boost",KEY_LEFT_SHIFT);
 input:BindKey("debug",KEY_K);
@@ -37,15 +37,15 @@ function MouseMoveFunc(dt)
 		camera.Yaw =  camera.Yaw - xoffset
 		camera.Pitch = camera.Pitch - yoffset
 
-		--if (camera.Pitch < -89.0)
-		--then
-		--	camera.Pitch = -89.0;
-		--end
-		--
-		--if (camera.Pitch > 0.0)
-		--then
-		--	camera.Pitch = 0.0;
-		--end
+		if (camera.Pitch < -89.0)
+		then
+			camera.Pitch = -89.0;
+		end
+		
+		if (camera.Pitch > 0.0)
+		then
+			camera.Pitch = 0.0;
+		end
 	end
 
 	camDistance();

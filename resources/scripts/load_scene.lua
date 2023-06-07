@@ -4,7 +4,8 @@ function load_scene()
 	lighting = scene:GetLights();
 	--lighting:SetAmbient(0.1,0.0,0.1);
 	--lighting:SetAmbient(0.1,0.05,0.09);
-	lighting:SetAmbient(0.06,0.06,0.06);
+	lighting:SetAmbient(0.1,0.1,0.1);
+	--lighting:SetAmbient(0.06,0.06,0.06);
 	--lighting:SetAmbient(0,0,0);
 	lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.5,-1)),vec3.new( 0.0,0.5,0.6),vec3.new(0,1,1));
 	--lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.3,-1)):multiply(0.2),vec3.new( 0.98,0.8789,0.695),vec3.new(1,1,1):multiply(1));
