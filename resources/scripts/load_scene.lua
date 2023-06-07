@@ -1,30 +1,19 @@
 
+--Creates game objects, places them in the scene and sets scene visuals up
 function load_scene()
 	
+	--Setup scene lighting
 	lighting = scene:GetLights();
-	--lighting:SetAmbient(0.1,0.0,0.1);
-	--lighting:SetAmbient(0.1,0.05,0.09);
 	lighting:SetAmbient(0.1,0.1,0.1);
-	--lighting:SetAmbient(0.06,0.06,0.06);
-	--lighting:SetAmbient(0,0,0);
 	lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.5,-1)),vec3.new( 0.0,0.5,0.6),vec3.new(0,1,1));
-	--lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.3,-1)):multiply(0.2),vec3.new( 0.98,0.8789,0.695),vec3.new(1,1,1):multiply(1));
-
 	lighting:AddPointLight( vec3:new(1140,30,640),
 							vec3.new( 1,0,1),
 							vec3.new( 0.98,0.8789,0.695),
 							1.0,0.007,0.0002);
-		vec3:new(1140,50,640)
-
-		--void AddPointLight(const glm::vec3& position, const glm::vec3& diffuse, const glm::vec3& specular,
-		--float constant, float linear, float quadratic) 
-
 	
 	--Load terrain
 	terrain = resources:CreateTerrain("Terrain","heightMap",{"dirt","grass","rock"},"detailMap","detailMap","", 100 , 12,0.8,12);
 	terrain:GetDrawItem():SetShine(20);
-	--terrain:GetDrawItem():SetEmissionTexture(resources:GetTexture("grid"));
-
 	terrain:SetTextureHeights({-30,-5,40});
 	physics:AddRigidBody(terrain,2);
 	physics:AddRigidBodyColliderHeightMap(terrain);
@@ -38,7 +27,7 @@ function load_scene()
 
 	--Setup Player
 	Player = resources:CreateNPCObject("Player", "AE86", "");
-	Player.position = vec3:new(800,35,500);
+	Player.position = vec3:new(800,35,100);
 	physics:AddRigidBody(Player,3);
 	local scale = vec3:new(1.5,0.2,0.7)
 	local mass = 2000;
@@ -48,18 +37,16 @@ function load_scene()
 	Player.rigidBody:SetCenterOfMass(vec3:new(0,-2.5,0));
 	Player.rigidBody:SetDampeningAngle(10);
 	Player.rigidBody:SetDampeningLinear(0.9);
-	--Player.rigidBody:SetDampeningLinear(0.2);
-	Player.rigidBody:ToggleColliderListener();
 	
 	--player stats/health
-	Player:AddData("health", 1000);
+	Player:AddData("health", 100);
 	Player:AddData("score", 0);
 	Player:AddData("boost", 99);
 	Player:AddData("isAlive", 1);
 
 	scene:AddObject(Player);
 
-	--City
+	--Add City
 	math.randomseed(os.time());
 	resources:LoadShader("holo","resources/shaders/Default.vert", "resources/shaders/hologram/Holo.frag", "");
 	hologram = resources:CreateGameObject("zdancer", "dancer","holo");
@@ -114,9 +101,7 @@ function load_scene()
 	robotCount = 150;
 	for i = 1,robotCount,1
 	do
-		
-		--local xpos = math.random(1,tSize) - tSize/2;
-		--local zpos = math.random(1,tSize) - tSize/2;
+
 		local xpos = math.random(-(tSize)/4,tSize/4);
 		local zpos = math.random(-(tSize)/4,tSize/4);
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
@@ -136,7 +121,7 @@ function load_scene()
 
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
 
-		--choose enemy type
+		--choose enemy type , very 10th is a Charger
 		if(math.fmod(i,10) == 0)
 		then
 			--Charger Enemy
@@ -153,7 +138,7 @@ function load_scene()
 		scene:AddObject(Robot);
 	end
 
-	--terrain elements
+	--terrain obstacle elements
 	for i = 1,35,1
 	do
 		local xpos = 0;
@@ -181,7 +166,5 @@ function load_scene()
 		tree.scale = vec3:new(1,1,1);
 
 		scene:AddObject(tree);
-
 	end
-
 end

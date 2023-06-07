@@ -1,13 +1,12 @@
 
+
+
 --load menu texutres
 resources:LoadTexture("driver"	,"resources/textures/GUI/DRIVE.png");
 resources:LoadTexture("exlr8"	,"resources/textures/GUI/exlr8.png");
 resources:LoadTexture("friction","resources/textures/GUI/friction.png");
 resources:LoadTexture("gas"		,"resources/textures/GUI/GAS.png");
-
 resources:LoadTexture("exit"		,"resources/textures/exit.png");
-
-
 
 --current menu in use
 current_menu = 1;
@@ -176,18 +175,17 @@ function draw_ingame()
 
 	GUI:Start(false);
 
-	GUI:Image("gas",300,300,0.9,0)
-	
+	--GUI:Image("gas",300,300,0.9,0)
+	GUI:Tab(50);
 	GUI:Text("Health: " .. math.floor(Player:GetData("health")), 0.9);
 	GUI:Text("Score: " ..  math.floor(Player:GetData("score")), 0.9);
 	GUI:Text("Boost: " ..  math.floor(Player:GetData("boost") + 1), 0.9);
-
 	
 	GUI:SetCursorPosX(0)
 	GUI:SetCursorPosY(0)
-	GUI:Text("in-game",0.5);
-	local fps = math.floor(renderer:GetFPS() + 0.5); 
-	GUI:Text((fps.."fps"),0.5);
+	--GUI:Text("in-game",0.5);
+	--local fps = math.floor(renderer:GetFPS() + 0.5); 
+	--GUI:Text((fps.."fps"),0.5);
 
 	GUI:End();
 end
@@ -198,7 +196,6 @@ function draw_window_option()
 	GUI:Tab(300);
 	GUI:Text("Change Window Mode",0.5);
 	GUI:Tab(10);
-
 
 	if(GUI:Button("Windowed",0.5, buttonWidth, buttonHeight))
 	then
@@ -265,7 +262,7 @@ function draw_lose()
 
 		--reset player
 		Player:SetPosition(vec3:new(800,35,500));
-		Player:AddData("health", 1000);
+		Player:AddData("health", 100);
 		Player:AddData("score", 0);
 		Player:AddData("boost", 99);
 		Player:AddData("isAlive", 1);
@@ -283,7 +280,13 @@ function draw_instructions_menu()
 	GUI:Start(true);
 
 	GUI:Tab(300);
-	GUI:Text("How To Play",0.5);
+	GUI:Text("How To Play:",0.5);
+	GUI:Text("Run over a robot to start. Run over small robots to score.",0.5);
+	GUI:Text("Avoid The large robots.",0.5);
+	GUI:Text("Avoid moving slowly, or the small robots will have a chance to hit you.",0.5);
+
+	GUI:Tab(20);
+	GUI:Text("--Controls--",0.5);
 	GUI:Tab(20);
 	GUI:Text("Accelerate---------[W]",0.5);
 	GUI:Text("Reverse---------------[S]",0.5);

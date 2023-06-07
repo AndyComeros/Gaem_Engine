@@ -1,6 +1,9 @@
 
 dofile("resources/scripts/keybinds.lua")
 
+
+--This File Sets up all the player input events
+
 input:BindKey("forward",KEY_W);
 input:BindKey("backward",KEY_S);
 input:BindKey("left",KEY_A);

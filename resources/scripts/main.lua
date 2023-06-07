@@ -4,8 +4,8 @@ dofile("resources/scripts/load_resources.lua")
 dofile("resources/scripts/load_scene.lua")
 dofile("resources/scripts/ai_states.lua")
 
+--main init function, called once before update
 function init()
-	print("init lua");
 
 	-- set window properties
 	engine:SetWindowIcon("resources/textures/icon.png");
@@ -23,16 +23,14 @@ function init()
 	camera.farPlane = 10000;
 	scene:SetSkybox(resources:GetCubeMap("skybox"));
 
-	print("End Init");
 end
 
+--main update function, called every frame
 function update(deltaTime)
 	
 	Player = scene:GetNPC("Player");
 	Player.rigidBody:ApplyForce(vec3:new(0,-300 * deltaTime,0));
 	DynamicFOV();
-	--print(Player.position.x .. " " .. Player.position.y .. " " .. Player.position.z);
-	--print(math.floor(Length(Player.rigidBody:GetLinearVelocity())));
 	KeyPressFunc(deltaTime);
 	MouseMoveFunc(deltaTime);
 	draw_menu();
@@ -41,9 +39,20 @@ function update(deltaTime)
 	lock_player_terrain();
 	check_hazard_collide();
 	inscrease_boost(deltaTime);
+	check_player_death();
 	
 end
 
+--check if player is dead
+function check_player_death()
+	if(Player:GetData("health") <= 0)
+	then
+		current_menu = 7;
+	end
+
+end
+
+--Stop player from fallnig through the ground
 function lock_player_terrain()
 	t_Height = terrain:GetHeight(Player.position.x,Player.position.z);
 
@@ -54,6 +63,7 @@ function lock_player_terrain()
 	end
 end
 
+--Check if player has hit a danger zone
 function check_hazard_collide()
 	t_Height = terrain:GetHeight(Player.position.x,Player.position.z);
 
@@ -68,6 +78,8 @@ function check_hazard_collide()
 	end
 end
 
+
+--increase players boost
 function inscrease_boost(dt)
 	local rechargeRate = 5;
 	local maxBoost = 99;
@@ -84,7 +96,7 @@ function inscrease_boost(dt)
 	end
 end
 
-
+--modify camera FOV based on player speed
 DefaultFOV = 45.0;
 FOVChange = 5;
 function DynamicFOV()
@@ -96,10 +108,7 @@ function DynamicFOV()
 	
 	mod = 0;
 
-	--if(length > 20)
-	--then
-		mod = FOVChange * (length/10)
-	--end
+	mod = FOVChange * (length/10);
 
 	camera.FOV = DefaultFOV + mod;
 	

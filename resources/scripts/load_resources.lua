@@ -1,4 +1,5 @@
 
+--Loads all resources used in game
 function load_resources()
 
 	--load textures
