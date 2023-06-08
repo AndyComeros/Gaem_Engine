@@ -83,7 +83,6 @@ function load_scene()
 	--NPC spawning
 	math.randomseed(os.time());
 	local tSize = terrain:GetSize() * terrain.scaleX;
-	print("scale: " .. terrain.scaleX);
 
 	attack_state  = ScriptableState:new(attack_enter, attack_update, attack_exit, attack_message);
 	charge_state  = ScriptableState:new(charge_enter, charge_update, charge_exit, charge_message);

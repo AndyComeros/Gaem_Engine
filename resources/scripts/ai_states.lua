@@ -347,5 +347,3 @@ function restartNPC(ent)
 	ent.rigidBody:ModType(1);
 	ent.stateMachine:ChangeGlobalState(global_state);
 end
-
-print("end script states");
