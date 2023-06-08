@@ -133,7 +133,11 @@ function KeyPressFunc(dt)
 	then
 		Sound:playSoundLoop("boost",camera.position,1);
 		Player:AddData("boost", currentBoost - (dt * 20));
+	else
+		Sound:stopSoundLoop("boost");
 	end
+
+
 	if(math.floor(currentBoost) < 0)
 	then
 		Player:AddData("boost", 0);
@@ -152,7 +156,9 @@ function KeyPressFunc(dt)
 		then
 			Sound:playSoundLoop("drift",camera.position,1);
 			finalTurn = finalTurn * driftMult;
-		end	
+		else
+			Sound:stopSoundLoop("drift");
+		end
 
 		if(input:GetKeyState("forward"))
 		then
