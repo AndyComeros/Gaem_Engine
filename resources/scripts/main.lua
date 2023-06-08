@@ -47,7 +47,9 @@ end
 function check_player_death()
 	if(Player:GetData("health") <= 0)
 	then
+		Sound:playSound("explode",camera.position);
 		current_menu = 7;
+		Player:AddData("health", 1);
 	end
 
 end

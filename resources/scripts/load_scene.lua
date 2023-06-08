@@ -4,7 +4,7 @@ function load_scene()
 	
 	--Setup scene lighting
 	lighting = scene:GetLights();
-	lighting:SetAmbient(0.1,0.1,0.1);
+	lighting:SetAmbient(0.2,0.2,0.2);
 	lighting:AddDirectionLight(NormalizeVector(vec3.new( 0,0.5,-1)),vec3.new( 0.0,0.5,0.6),vec3.new(0,1,1));
 	lighting:AddPointLight( vec3:new(1140,30,640),
 							vec3.new( 1,0,1),
@@ -101,12 +101,24 @@ function load_scene()
 	robotCount = 150;
 	for i = 1,robotCount,1
 	do
+		--choose enemy type , very 10th is a Charger
+		if(math.fmod(i,10) == 0)
+		then
+			--Charger Enemy
+			Robot = resources:CreateNPCObject("robot"..i, "robot_shiny","");
+			Robot:AddData("type", 1);
+			Robot.scale = vec3:new(4,4,4);
+		else
+			--Minion Enemy
+			Robot = resources:CreateNPCObject("robot"..i, "robot","");
+			Robot:AddData("type", 2);
+			Robot.scale = vec3:new(2,2,2);	
+		end
 
 		local xpos = math.random(-(tSize)/4,tSize/4);
 		local zpos = math.random(-(tSize)/4,tSize/4);
 		local ypos = terrain:GetHeight(xpos,zpos) + 5;
 		
-		Robot = resources:CreateNPCObject("robot"..i, "robot","");
 
 		physics:AddRigidBody(Robot,1);
 		local scale = vec3:new(1,1,1)
@@ -121,17 +133,7 @@ function load_scene()
 
 		Robot:SetPosition(vec3:new(xpos,ypos,zpos));
 
-		--choose enemy type , very 10th is a Charger
-		if(math.fmod(i,10) == 0)
-		then
-			--Charger Enemy
-			Robot:AddData("type", 1);
-			Robot.scale = vec3:new(4,4,4);
-		else
-			--Minion Enemy
-			Robot:AddData("type", 2);
-			Robot.scale = vec3:new(2,2,2);	
-		end
+		
 		
 		Robot.stateMachine:ChangeGlobalState(idle_state);
 

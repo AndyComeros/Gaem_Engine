@@ -26,7 +26,7 @@ void SoundEngine::playSound(std::string name, glm::vec3 pos)
 void SoundEngine::addMusic(std::string filePath)
 {
 	_Music = _Engine->play3D(filePath.c_str(), { 0, 0, 0 }, true, false, true);
-	_Music->setVolume(0.5f);
+	_Music->setVolume(0.2f);
 }
 
 void SoundEngine::setVolume(float volume)

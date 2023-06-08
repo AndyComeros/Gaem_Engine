@@ -54,7 +54,10 @@ function load_resources()
 	resources:LoadTexture("robot","resources/models/md2/robot.png");
 	resources:LoadTexture("robot_emiss","resources/models/md2/robot_emiss.png");
 	resources:LoadTexture("robot_spec","resources/models/md2/robot_spec.png");
+	resources:LoadTexture("robot_spec_shiny","resources/models/md2/robot_spec_shiny.png");
 	resources:LoadAnimatedModel("robot","resources/models/md2/robot2.md2","robot","robot_emiss","robot_spec");
+	resources:LoadAnimatedModel("robot_shiny","resources/models/md2/robot2.md2","robot","robot_emiss","robot_spec_shiny");
+
 	resources:LoadAnimatedModel("dancer","resources/models/md2/dancer3.md2","robot","robot_emiss","robot_spec");
 	resources:GetModel("dancer"):SetAnimationSpeed(10);
 
@@ -64,6 +67,13 @@ function load_resources()
 	robotModel:SetAnimation("attack", 54	, 88	, 80);
 	robotModel:SetAnimation("shoot"	, 89	, 124	, 50);
 	robotModel:SetAnimation("fall"	, 125	, 191	, 50);
+
+	robotShineModel = resources:GetModel("robot_shiny");
+	robotShineModel:SetAnimation("idle"	, 0		, 30	, 50);
+	robotShineModel:SetAnimation("run"	, 31	, 53	, 50);
+	robotShineModel:SetAnimation("attack", 54	, 88	, 80);
+	robotShineModel:SetAnimation("shoot"	, 89	, 124	, 50);
+	robotShineModel:SetAnimation("fall"	, 125	, 191	, 50);
 
 	--audio
 	--Sound:addMusic("resources/audio/Initial D - Deja Vu.mp3");
@@ -78,4 +88,7 @@ function load_resources()
 
 	Sound:addSound("alarm","resources/audio/zombie/alarm.mp3");
 	Sound:addSound("splash","resources/audio/car/splash.mp3");
+
+	Sound:addSound("boost","resources/audio/car/boost.wav");
+	Sound:addSound("explode","resources/audio/car/explode.wav");
 end

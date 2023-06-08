@@ -96,7 +96,7 @@ function KeyPressFunc(dt)
 	local movespeed = 4000 * dt;
 	local finalMove = movespeed;
 	local finalTurn = turnspeed;
-	local boostMult = 3;
+	local boostMult = 2;
 	local driftMult = 2;
 	local playerHeight = player.position.y - terrain:GetHeight(player.position.x,player.position.z);
 	--local playerSpeed = Length(player.rigidBody:GetLinearVelocity());
@@ -131,6 +131,7 @@ function KeyPressFunc(dt)
 	local currentBoost = Player:GetData("boost");
 	if(input:GetKeyState("boost") and currentBoost > 0)
 	then
+		Sound:playSoundLoop("boost",camera.position,1);
 		Player:AddData("boost", currentBoost - (dt * 20));
 	end
 	if(math.floor(currentBoost) < 0)
@@ -149,6 +150,7 @@ function KeyPressFunc(dt)
 
 		if(input:GetKeyState("drift") and (input:GetKeyState("forward") or input:GetKeyState("backward")))
 		then
+			Sound:playSoundLoop("drift",camera.position,1);
 			finalTurn = finalTurn * driftMult;
 		end	
 

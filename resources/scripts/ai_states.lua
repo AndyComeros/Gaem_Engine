@@ -95,7 +95,7 @@ end
 
 function charge_enter(ent, dt)
 	ent:GetDrawItem():Animate("run");
-	ent:GetDrawItem():SetAnimationSpeed(120);
+	ent:GetDrawItem():SetAnimationSpeed(100);
 	ent.rigidBody:ModType(1);
 
 	if(ent:GetData("isCharging") == 0)
@@ -168,13 +168,14 @@ function global_enter(ent, dt)
 	ent:SetPosition(vec3:new(ent.position.x,terrain:GetHeight(ent.position.x,ent.position.z) - 1,ent.position.z));
 	ent.rigidBody:SetLinearVelocity(0,0,0);
 	ent.rigidBody:SetAngularVelocity(0,0,0);
-	ent.rigidBody:ModType(1);
+	ent.rigidBody:ModType(3);
 end
 
 function global_update(ent, dt)
 	local playerDist = Length(Player.position - ent.position);
 	local playerVel = Length(Player.rigidBody:GetLinearVelocity());
 	local type = ent:GetData("type");
+
 	--choose behaviour bases on player distance and speed
 	if(playerVel > hitVelocity and playerDist < hitRange * 5 and type == 2)
 	then
@@ -228,7 +229,7 @@ function dead_enter(ent, dt)
 	
 	ent:StopMoving();
 
-	Sound:playSound("carhit",camera.position);
+	Sound:playSound("explode",camera.position);
 	ent:GetDrawItem():Animate("fall");
 
 	local respawnTime = math.random(respawnTimeMin, respawnTimeMax) + math.random() 
@@ -263,6 +264,27 @@ function dead_update(ent, dt)
 	end
 
 end
+
+function dead_exit(ent, dt)
+
+	--spawn in random position respawnRadius meters away from playera
+	math.randomseed(os.time() * ent:GetID());
+	local theta = math.rad(math.random(0,360));
+	local xPos = Player.position.x + (respawnRadius * math.cos(theta));
+	local zPos = Player.position.z + (respawnRadius * math.sin(theta));
+	ent:SetPosition(vec3:new(xPos,0,zPos));
+
+	--return physics properties to normal
+	ent.rigidBody:SetDampeningLinear(10);
+	ent.rigidBody:ModType(1);
+	ent:GetDrawItem():Animate("idle");
+end
+
+function dead_message(ent, msg)
+	
+end
+----------------------------------------------------------
+
 
 ----------------------------------------------------------
 				--IDLE STATE FUNCTIONS--
@@ -312,25 +334,6 @@ function idle_message(ent, msg)
 end
 ----------------------------------------------------------
 
-function dead_exit(ent, dt)
-
-	--spawn in random position respawnRadius meters away from playera
-	math.randomseed(os.time() * ent:GetID());
-	local theta = math.rad(math.random(0,360));
-	local xPos = Player.position.x + (respawnRadius * math.cos(theta));
-	local zPos = Player.position.z + (respawnRadius * math.sin(theta));
-	ent:SetPosition(vec3:new(xPos,0,zPos));
-
-	--return physics properties to normal
-	ent.rigidBody:SetDampeningLinear(10);
-	ent.rigidBody:ModType(1);
-	ent:GetDrawItem():Animate("idle");
-end
-
-function dead_message(ent, msg)
-	
-end
-----------------------------------------------------------
 
 function restartNPC(ent)
 
