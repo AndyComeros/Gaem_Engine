@@ -21,6 +21,14 @@ class Terrain;
 *	@date 19/04/2023
 */
 
+
+/**
+*	@class CollisionListener
+*	@brief listens for collision contacts for the specific object
+*	@version 1.0
+*	@author Nathan Choo
+*	@date 21/5/2023
+*/
 class CollisionListener : public rp3d::EventListener
 {
 public:
@@ -167,8 +175,21 @@ public:
 		*/
 	void SetAxisAngleFactor(float x, float y, float z);
 
-
+		/**
+		*	@brief restricts the linear motion of a rigidbody in worldspace
+		*   @param x determines motion along x axis
+		*   @param y determines motion along y axis
+		*   @param z determines motion along z axis
+		*	@return void
+		*/
 	void SetLinearVelocity(float x, float y, float z);
+		/**
+		*	@brief restricts the linear motion of a rigidbody in worldspace
+		*   @param x determines motion along x axis
+		*   @param y determines motion along y axis
+		*   @param z determines motion along z axis
+		*	@return void
+		*/
 	void SetAngularVelocity(float x, float y, float z);
 
 		/**
@@ -187,17 +208,57 @@ public:
 	void SetColliderSphere	(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius);
 	void SetColliderCapsule	(float mass, float bounce, float friction, glm::vec3 offset, glm::vec3 rotation, float radius, float height);
 
+		/**
+		*	@brief returns the rigidbodies collider pointer
+		*	@return PhysicsCollider* - pointer of the collider
+		*/
 	PhysicsCollider* GetCollider();
 
+		/**
+		*	@brief returns the rigidbody type
+		*	@return int
+		*/
 	int GetModType();
+		/**
+		*	@brief returns the rigidbodies mass
+		*	@return float
+		*/
 	float GetMass();
+		/**
+		*	@brief returns the rigidbodies linear dampening value
+		*	@return float
+		*/
 	float GetDampeningLinear();
+		/**
+		*	@brief returns the rigidbodies dampening angle value
+		*	@return float
+		*/
 	float GetDampeningAngle();
+		/**
+		*	@brief returns the rigidbodies center of mass in coordinates
+		*	@return glm::vec3
+		*/
 	glm::vec3 GetCenterOfMass();
+		/**
+		*	@brief returns the rigidbodies linear factor
+		*	@return glm::vec3
+		*/
 	glm::vec3 GetAxisLinearFactor();
+		/**
+		*	@brief returns the rigidbodies axis angle value
+		*	@return float
+		*/
 	glm::vec3 GetAxisAngleFactor();
+		/**
+		*	@brief returns the rigidbodies current collision contact state
+		*	@return bool - true = rigidbody is in contact
+		*/
 	bool GetIsContactListen();
 
+		/**
+		*	@brief enables the listener for the rigidbody
+		*	@return void
+		*/
 	void ToggleContactListenState()
 	{
 		if (!registered) {
